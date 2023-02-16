@@ -93,32 +93,32 @@ public class TelaConsultasPendentes extends JFrame {
 		lblNewLabel_1.setBounds(48, 111, 70, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Paciente");
+		JLabel lblNewLabel_1_1 = new JLabel("Setor");
 		lblNewLabel_1_1.setForeground(Color.BLACK);
 		lblNewLabel_1_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_1_1.setBackground(new Color(219, 219, 219));
-		lblNewLabel_1_1.setBounds(180, 111, 70, 14);
+		lblNewLabel_1_1.setBounds(191, 111, 70, 14);
 		contentPane.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Paciente");
+		JLabel lblNewLabel_1_2 = new JLabel("Profissioal");
 		lblNewLabel_1_2.setForeground(Color.BLACK);
 		lblNewLabel_1_2.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_1_2.setBackground(new Color(219, 219, 219));
 		lblNewLabel_1_2.setBounds(347, 111, 70, 14);
 		contentPane.add(lblNewLabel_1_2);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Paciente");
+		JLabel lblNewLabel_1_3 = new JLabel("Data");
 		lblNewLabel_1_3.setForeground(Color.BLACK);
 		lblNewLabel_1_3.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_1_3.setBackground(new Color(219, 219, 219));
 		lblNewLabel_1_3.setBounds(523, 111, 70, 14);
 		contentPane.add(lblNewLabel_1_3);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Paciente");
+		JLabel lblNewLabel_1_4 = new JLabel("Objetivo");
 		lblNewLabel_1_4.setForeground(Color.BLACK);
 		lblNewLabel_1_4.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_1_4.setBackground(new Color(219, 219, 219));
-		lblNewLabel_1_4.setBounds(703, 111, 70, 14);
+		lblNewLabel_1_4.setBounds(681, 111, 70, 14);
 		contentPane.add(lblNewLabel_1_4);
 	}
 }
