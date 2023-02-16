@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -30,6 +32,7 @@ public class TelaInicial extends JFrame {
 			public void run() {
 				try {
 					TelaInicial frame = new TelaInicial();
+					frame.setState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +46,15 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		setTitle("Hospital Esmeralda");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/visao/logoHospital.png")));
+
+		URL resourceIcon = TelaInicial.class.getResource("/img/logoHospital.png");
+		if (resourceIcon != null) {
+			Image imgIcon = Toolkit.getDefaultToolkit().getImage(resourceIcon);
+			setIconImage(imgIcon);
+		} else {
+			JOptionPane.showMessageDialog(null, "Erro no caminho da imagem");
+		}
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
 		contentPane = new JPanel();
