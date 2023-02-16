@@ -7,8 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -49,19 +52,19 @@ public class TelaInicial extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 81, 81));
 		panel.setBounds(242, 0, 339, 530);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Login Secretaria");
 		lblNewLabel.setBounds(70, 74, 201, 41);
 		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		panel.add(lblNewLabel);
-		
+
 		txtCpf = new JTextField();
 		txtCpf.setForeground(new Color(160, 160, 160));
 		txtCpf.setToolTipText("");
@@ -70,7 +73,7 @@ public class TelaInicial extends JFrame {
 		txtCpf.setBounds(96, 212, 150, 30);
 		panel.add(txtCpf);
 		txtCpf.setColumns(10);
-		
+
 		txtSenha = new JTextField();
 		txtSenha.setForeground(new Color(160, 160, 160));
 		txtSenha.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
@@ -78,25 +81,32 @@ public class TelaInicial extends JFrame {
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(96, 251, 150, 30);
 		panel.add(txtSenha);
-		
+
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
 		btnNewButton.setBackground(new Color(0, 81, 81));
 		btnNewButton.setBounds(114, 311, 116, 30);
 		panel.add(btnNewButton);
-		
+
 		JLabel lblNewLabel2 = new JLabel("");
 		lblNewLabel2.setBounds(154, 380, 82, 87);
 		panel.add(lblNewLabel2);
-		lblNewLabel2.setIcon(new ImageIcon(TelaPadrao.class.getResource("/visao/simbolomed.png")));
-		
-		
+
+		URL resource = TelaPadrao.class.getResource("/img/simbolomed.png");
+		ImageIcon icon = null;
+		if (resource != null) {
+			icon = new ImageIcon(resource);
+			lblNewLabel2.setIcon(icon);
+		} else {
+			JOptionPane.showMessageDialog(null, "Erro no caminho da imagem");
+		}
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(64, 128, 128));
 		panel_1.setBounds(145, 0, 97, 530);
 		contentPane.add(panel_1);
-		
+
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(64, 128, 128));
 		panel_1_1.setBounds(581, 0, 97, 530);
