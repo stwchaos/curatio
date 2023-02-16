@@ -41,7 +41,7 @@ public class TelaListaMedico extends JFrame {
 	 */
 	public TelaListaMedico() {
 		setTitle("Hospital Esmeralda");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/visao/logoHospital.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
 		contentPane = new JPanel();
@@ -52,7 +52,7 @@ public class TelaListaMedico extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/visao/iconPesquisa.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/iconPesquisa.png")));
 		lblNewLabel.setBounds(354, 25, 39, 33);
 		contentPane.add(lblNewLabel);
 		

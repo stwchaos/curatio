@@ -17,12 +17,13 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtCpf;
-	private JTextField txtSenha;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -45,6 +46,7 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda");
 
 		URL resourceIcon = TelaInicial.class.getResource("/img/logoHospital.png");
@@ -79,19 +81,10 @@ public class TelaInicial extends JFrame {
 		txtCpf = new JTextField();
 		txtCpf.setForeground(new Color(160, 160, 160));
 		txtCpf.setToolTipText("");
-		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
-		txtCpf.setText("CPF");
-		txtCpf.setBounds(96, 212, 150, 30);
+		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCpf.setBounds(70, 222, 201, 20);
 		panel.add(txtCpf);
 		txtCpf.setColumns(10);
-
-		txtSenha = new JTextField();
-		txtSenha.setForeground(new Color(160, 160, 160));
-		txtSenha.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
-		txtSenha.setText("Senha");
-		txtSenha.setColumns(10);
-		txtSenha.setBounds(96, 251, 150, 30);
-		panel.add(txtSenha);
 
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.setForeground(new Color(255, 255, 255));
@@ -103,6 +96,20 @@ public class TelaInicial extends JFrame {
 		JLabel lblNewLabel2 = new JLabel("");
 		lblNewLabel2.setBounds(154, 380, 82, 87);
 		panel.add(lblNewLabel2);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(70, 261, 201, 20);
+		panel.add(passwordField);
+		
+		JLabel lblNewLabel_1 = new JLabel("CPF");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(70, 202, 46, 14);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Senha");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(70, 246, 46, 14);
+		panel.add(lblNewLabel_2);
 
 		URL resource = TelaPadrao.class.getResource("/img/simbolomed.png");
 		ImageIcon icon = null;
