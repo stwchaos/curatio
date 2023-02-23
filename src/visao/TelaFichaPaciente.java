@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaFichaPaciente extends JFrame {
 
@@ -144,6 +146,10 @@ public class TelaFichaPaciente extends JFrame {
 		panel.add(lblNewLabel_7);
 		
 		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBackground(new Color(240, 240, 240));
 		btnNewButton.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
 		btnNewButton.setBounds(237, 440, 59, 57);
@@ -194,5 +200,20 @@ public class TelaFichaPaciente extends JFrame {
 		panel_2.setBackground(new Color(64, 128, 128));
 		panel_2.setBounds(467, -9, 243, 59);
 		contentPane.add(panel_2);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBackground(new Color(64, 128, 128));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnVoltar.setBounds(748, 496, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }

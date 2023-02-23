@@ -18,6 +18,8 @@ import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInicial extends JFrame {
 
@@ -86,12 +88,20 @@ public class TelaInicial extends JFrame {
 		panel.add(txtCpf);
 		txtCpf.setColumns(10);
 
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
-		btnNewButton.setBackground(new Color(0, 81, 81));
-		btnNewButton.setBounds(114, 311, 116, 30);
-		panel.add(btnNewButton);
+		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		}});
+		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		btnEntrar.setBackground(new Color(0, 81, 81));
+		btnEntrar.setBounds(114, 311, 116, 30);
+		panel.add(btnEntrar);
 
 		JLabel lblNewLabel2 = new JLabel("");
 		lblNewLabel2.setBounds(154, 380, 82, 87);
