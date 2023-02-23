@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaConsultasPendentes extends JFrame {
 
@@ -58,6 +60,15 @@ public class TelaConsultasPendentes extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setForeground(new Color(255, 255, 255));

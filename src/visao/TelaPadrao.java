@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TelaPadrao extends JFrame {
@@ -23,18 +25,6 @@ public class TelaPadrao extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaPadrao frame = new TelaPadrao();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -59,14 +49,32 @@ public class TelaPadrao extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Consultas pendentes");
-		btnNewButton.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(0, 81, 81));
-		btnNewButton.setBounds(10, 96, 172, 23);
-		panel.add(btnNewButton);
+		JButton btnConsultasPendentes = new JButton("Consultas pendentes");
+		btnConsultasPendentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaConsultasPendentes telaConsultasPendentes = new TelaConsultasPendentes();
+				telaConsultasPendentes.setLocationRelativeTo(null);
+				telaConsultasPendentes.setVisible(true);
+				telaConsultasPendentes.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnConsultasPendentes.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
+		btnConsultasPendentes.setForeground(new Color(255, 255, 255));
+		btnConsultasPendentes.setBackground(new Color(0, 81, 81));
+		btnConsultasPendentes.setBounds(10, 96, 172, 23);
+		panel.add(btnConsultasPendentes);
 		
 		JButton btnMarcarConsulta = new JButton("Marcar consulta");
+		btnMarcarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				//TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta();
+				//telaMarcarConsulta.setLocationRelativeTo(null);
+				//telaMarcarConsulta.setVisible(true);
+				//telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnMarcarConsulta.setForeground(Color.WHITE);
 		btnMarcarConsulta.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnMarcarConsulta.setBackground(new Color(0, 81, 81));
@@ -74,6 +82,15 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnMarcarConsulta);
 		
 		JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
+		btnCadastrarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente();
+				telaCadastroPaciente.setLocationRelativeTo(null);
+				telaCadastroPaciente.setVisible(true);
+				telaCadastroPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnCadastrarPaciente.setForeground(Color.WHITE);
 		btnCadastrarPaciente.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnCadastrarPaciente.setBackground(new Color(0, 81, 81));
@@ -81,6 +98,15 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnCadastrarPaciente);
 		
 		JButton btnListaPaciente = new JButton("Pacientes");
+		btnListaPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente();
+				telaListaPaciente.setLocationRelativeTo(null);
+				telaListaPaciente.setVisible(true);
+				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnListaPaciente.setForeground(Color.WHITE);
 		btnListaPaciente.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnListaPaciente.setBackground(new Color(0, 81, 81));
@@ -88,6 +114,15 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnListaPaciente);
 		
 		JButton btnProfissionais = new JButton("Profissionais");
+		btnProfissionais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaListaMedico telaListaMedico = new TelaListaMedico();
+				telaListaMedico.setLocationRelativeTo(null);
+				telaListaMedico.setVisible(true);
+				telaListaMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnProfissionais.setForeground(Color.WHITE);
 		btnProfissionais.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnProfissionais.setBackground(new Color(0, 81, 81));
@@ -95,6 +130,14 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnProfissionais);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaInicial frame = new TelaInicial();
+				frame.setVisible(true);
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnSair.setForeground(new Color(255, 255, 255));
 		btnSair.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnSair.setBackground(new Color(64, 128, 128));

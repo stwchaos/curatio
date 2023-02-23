@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaListaMedico extends JFrame {
 
@@ -57,17 +60,17 @@ public class TelaListaMedico extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(50, 83, 753, 412);
+		panel.setBounds(50, 83, 744, 383);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(64, 128, 128));
-		panel_1.setBounds(0, 0, 753, 29);
+		panel_1.setBounds(0, 0, 744, 29);
 		panel.add(panel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 28, 753, 384);
+		scrollPane.setBounds(0, 28, 744, 355);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -80,5 +83,20 @@ public class TelaListaMedico extends JFrame {
 		txtPesquisarProfissional.setBounds(50, 22, 344, 39);
 		contentPane.add(txtPesquisarProfissional);
 		txtPesquisarProfissional.setColumns(10);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnVoltar.setBackground(new Color(64, 128, 128));
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBounds(10, 496, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }
