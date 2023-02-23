@@ -145,7 +145,7 @@ public class TelaFichaPaciente extends JFrame {
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBackground(new Color(240, 240, 240));
-		btnNewButton.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/visao/iconCheck.png")));
+		btnNewButton.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
 		btnNewButton.setBounds(237, 440, 59, 57);
 		panel.add(btnNewButton);
 		

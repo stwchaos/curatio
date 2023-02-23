@@ -73,7 +73,7 @@ public class TelaHistorico extends JFrame {
 		lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setBounds(186, -136, 426, 511);
 		panel.add(lblNewLabel_3);
-		lblNewLabel_3.setIcon(new ImageIcon(TelaHistorico.class.getResource("/visao/iconmedicina.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/iconmedicina.png")));
 		
 		lblNewLabel = new JLabel("Setor");
 		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
