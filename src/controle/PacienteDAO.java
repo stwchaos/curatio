@@ -40,7 +40,25 @@ public class PacienteDAO {
 		return false;
 	}
 
-	public boolean atualizar(Paciente p) {
+	public boolean alterar(Paciente p) {
+		Connection c = Conexao.getInstancia().conectar();
+
+		try {
+			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ? WHERE cpf = ?";
+			PreparedStatement stm = c.prepareStatement(query);
+			stm.setString(1, p.getNome());
+			stm.setLong(2, p.getCpf());
+			stm.setDate(3, Date.valueOf(p.getNascimento()));
+			stm.setLong(4, p.getTelefone());
+			stm.setString(5, p.getSexo());
+			stm.setString(6, p.getNomeSocial());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		con.fecharConexao();
 		return false;
 	}
 
