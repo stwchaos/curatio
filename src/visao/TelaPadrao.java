@@ -69,10 +69,10 @@ public class TelaPadrao extends JFrame {
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				//TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta();
-				//telaMarcarConsulta.setLocationRelativeTo(null);
-				//telaMarcarConsulta.setVisible(true);
-				//telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaMarcarConsultas telaMarcarConsulta = new TelaMarcarConsultas();
+				telaMarcarConsulta.setLocationRelativeTo(null);
+				telaMarcarConsulta.setVisible(true);
+				telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnMarcarConsulta.setForeground(Color.WHITE);

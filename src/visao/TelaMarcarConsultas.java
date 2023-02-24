@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class TelaMarcarConsultas extends JFrame {
 
@@ -25,26 +26,10 @@ public class TelaMarcarConsultas extends JFrame {
 	private JTextField textField_6;
 	private JTextField txtMarcarConsulta;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaMarcarConsultas frame = new TelaMarcarConsultas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaMarcarConsultas() {
+		setTitle("Hospital Esmeralda");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 862, 569);
 		contentPane = new JPanel();
