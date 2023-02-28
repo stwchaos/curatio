@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -156,6 +158,15 @@ public class TelaCadastroPaciente extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(64, 128, 128));
 		btnVoltar.setBounds(10, 482, 110, 37);

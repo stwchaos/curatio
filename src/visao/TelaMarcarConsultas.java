@@ -14,6 +14,8 @@ import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaMarcarConsultas extends JFrame {
 
@@ -153,6 +155,15 @@ public class TelaMarcarConsultas extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 11));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(64, 128, 128));
