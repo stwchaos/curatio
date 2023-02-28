@@ -6,22 +6,22 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private static Connection conexao;
+	private Connection conexao;
 	private static Conexao instancia;
-	private static final String DATABASE = "esmeralda";
-	private static final String USER = "";
-	private static final String PSW = "";
+	private final String DATABASE = "esmeralda";
+	private final String USER = "root";
+	private final String PSW = "aluno";
 	
 	private Conexao() {}
 	
-	public Conexao getInstancia() {
+	public static Conexao getInstancia() {
 		if(instancia == null) {
 			instancia = new Conexao();
 		}
 	return instancia;
 	}
 	
-	public static Connection conectar() {
+	public Connection conectar() {
 		try {
 			conexao = DriverManager.getConnection("jdbc:mysql://localhost/"+ DATABASE + "?serverTimeZone=UTC",USER,PSW);
 		} catch (SQLException e) {
@@ -30,7 +30,7 @@ public class Conexao {
 	return conexao;
 	
 	}
-	public static boolean fecharConexao() {
+	public boolean fecharConexao() {
 		
 		try {
 			conexao.close();
