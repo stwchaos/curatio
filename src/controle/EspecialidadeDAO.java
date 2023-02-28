@@ -2,7 +2,9 @@ package controle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Especialidade;
@@ -39,8 +41,6 @@ public class EspecialidadeDAO {
 			String query = "UPDATE especialidade SET especialidade = ? WHERE id_especialidade = ?";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, es.getEspecialidade());
-			stm.setInt(2, es.getId);
-
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -55,6 +55,33 @@ public class EspecialidadeDAO {
 	}
 	
 	public ArrayList<Especialidade> listarEspecialidade(){
-		return null;
+		ArrayList<Especialidade> especialidades = new ArrayList();
+		
+		// instanciar
+				con = Conexao.getInstancia();
+
+		// conectar
+		Connection co = con.conectar();
+		
+		try {
+			Statement stm = co.createStatement();
+			String query = "SELECT * FROM especialidade";
+			ResultSet rs = stm.executeQuery(query);
+			while(rs.next()) {
+				Integer id_especialidade = rs.getInt("id_especialidade");
+				String especialidade = rs.getString("especialidade");
+				Especialidade e = new Especialidade();
+				e.setId_especialidade(id_especialidade);
+				e.setEspecialidade(especialidade);
+			}
+	} catch (SQLException e) {
+		e.printStackTrace();
 	}
+
+	// desconectar
+	con.fecharConexao();
+	return null;
+			
+		}
 }
+

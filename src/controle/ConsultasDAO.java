@@ -78,10 +78,12 @@ public class ConsultasDAO {
 			String query = "SELECT * FROM consultas";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
+				Integer id_consulta = rs.getInt("id_pendentes");
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String pagamento = rs.getString("pagamento");
 				Consultas c = new Consultas();
+				c.setId_consulta(id_consulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(pagamento);

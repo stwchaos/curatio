@@ -4,11 +4,20 @@ import java.time.LocalDate;
 
 public class Consultas {
 
+	private Integer id_consulta;
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;
 	private String pagamento;
 
+	public Integer getId_consulta() {
+		return id_consulta;
+	}
+
+	public void setId_consulta(Integer id_consulta) {
+		this.id_consulta = id_consulta;
+	}
+	
 	public LocalDate getData() {
 		return data;
 	}
