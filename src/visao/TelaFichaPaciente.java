@@ -151,7 +151,21 @@ public class TelaFichaPaciente extends JFrame {
 			telaPadrao.setVisible(true);
 			telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}});
-		panel.add(btnVoltar, "cell 0 17");
+		panel.add(btnVoltar, "cell 0 17,growx,aligny center");
+		
+		JButton btnHistorico = new JButton("Acessar histórico de consultas");
+		btnHistorico.setForeground(new Color(255, 255, 255));
+		btnHistorico.setBackground(new Color(0, 81, 81));
+		btnHistorico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaHistorico telaHistorico = new TelaHistorico();
+				telaHistorico.setLocationRelativeTo(null);
+				telaHistorico.setVisible(true);
+				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		panel.add(btnHistorico, "cell 2 17,growx,aligny center");
 		
 		
 		JPanel panel_2 = new JPanel();
@@ -164,19 +178,6 @@ public class TelaFichaPaciente extends JFrame {
 		lblNewLabel_4.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		panel_2.add(lblNewLabel_4, "cell 0 1,alignx center,aligny center");
 		
-		JButton btnNewButton_1 = new JButton("Acessar hisórico médico");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaHistorico telaHistorico = new TelaHistorico();
-				telaHistorico.setLocationRelativeTo(null);
-				telaHistorico.setVisible(true);
-				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(0, 81, 81));
-		panel_2.add(btnNewButton_1, "cell 0 2,alignx center,aligny center");
 		
 	}
 }
