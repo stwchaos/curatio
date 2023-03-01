@@ -13,6 +13,9 @@ import java.awt.Font;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaHistorico extends JFrame {
 
@@ -25,25 +28,7 @@ public class TelaHistorico extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaHistorico frame = new TelaHistorico();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaHistorico() {
 		setBackground(new Color(0, 81, 81));
 		setTitle("Hospital Esmeralda");
@@ -92,6 +77,20 @@ public class TelaHistorico extends JFrame {
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setBounds(696, 79, 87, 35);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaFichaPaciente telaficha = new TelaFichaPaciente();
+				telaficha.setLocationRelativeTo(null);
+				telaficha.setVisible(true);
+				telaficha.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBackground(new Color(0, 81, 81));
+		btnVoltar.setBounds(10, 508, 89, 23);
+		contentPane.add(btnVoltar);
 	}
-
 }
