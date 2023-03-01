@@ -108,7 +108,8 @@ public class TelaInicial extends JFrame {
 														panel_3.add(passwordField, "cell 1 7,growx");
 														
 																JButton btnEntrar = new JButton("Entrar");
-																panel_3.add(btnEntrar, "cell 1 8,alignx center,aligny bottom");
+																btnEntrar.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/simbolomed.png")));
+																panel_3.add(btnEntrar, "cell 1 8,growx,aligny center");
 																btnEntrar.addActionListener(new ActionListener() {
 																	public void actionPerformed(ActionEvent e) {
 																		dispose();
