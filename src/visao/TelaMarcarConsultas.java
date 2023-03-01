@@ -16,14 +16,14 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class TelaMarcarConsultas extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtInserirAno;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField txtMarcarConsulta;
@@ -57,22 +57,15 @@ public class TelaMarcarConsultas extends JFrame {
 		textField_1.setText("Inserir");
 		textField_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textField_1.setColumns(10);
-		textField_1.setBounds(12, 251, 214, 20);
+		textField_1.setBounds(13, 262, 214, 20);
 		panel.add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("Inserir");
-		textField_2.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textField_2.setColumns(10);
-		textField_2.setBounds(11, 98, 217, 20);
-		panel.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setText("Inserir");
-		textField_3.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textField_3.setColumns(10);
-		textField_3.setBounds(11, 134, 115, 20);
-		panel.add(textField_3);
+		txtInserirAno = new JTextField();
+		txtInserirAno.setText("Inserir ano");
+		txtInserirAno.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtInserirAno.setColumns(10);
+		txtInserirAno.setBounds(120, 139, 59, 20);
+		panel.add(txtInserirAno);
 		
 		JLabel lblNewLabel_1 = new JLabel("Paciente");
 		lblNewLabel_1.setBounds(11, 47, 46, 14);
@@ -87,7 +80,7 @@ public class TelaMarcarConsultas extends JFrame {
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
-		lblNewLabel_7.setBounds(13, 236, 46, 14);
+		lblNewLabel_7.setBounds(14, 247, 46, 14);
 		panel.add(lblNewLabel_7);
 		
 		JButton btnNewButton = new JButton("");
@@ -100,22 +93,22 @@ public class TelaMarcarConsultas extends JFrame {
 		textField_5.setText("Inserir");
 		textField_5.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textField_5.setColumns(10);
-		textField_5.setBounds(10, 210, 214, 20);
+		textField_5.setBounds(11, 221, 214, 20);
 		panel.add(textField_5);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("Forma de Pagamento");
-		lblNewLabel_5_1.setBounds(12, 195, 191, 14);
+		lblNewLabel_5_1.setBounds(13, 206, 191, 14);
 		panel.add(lblNewLabel_5_1);
 		
 		textField_6 = new JTextField();
 		textField_6.setText("Inserir");
 		textField_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textField_6.setColumns(10);
-		textField_6.setBounds(12, 171, 115, 20);
+		textField_6.setBounds(13, 182, 115, 20);
 		panel.add(textField_6);
 		
 		JLabel lblNewLabel_5 = new JLabel("Objetivo");
-		lblNewLabel_5.setBounds(11, 157, 90, 14);
+		lblNewLabel_5.setBounds(12, 168, 90, 14);
 		panel.add(lblNewLabel_5);
 		
 		txtMarcarConsulta = new JTextField();
@@ -128,6 +121,24 @@ public class TelaMarcarConsultas extends JFrame {
 		txtMarcarConsulta.setBackground(new Color(64, 128, 128));
 		txtMarcarConsulta.setBounds(0, 0, 306, 36);
 		panel.add(txtMarcarConsulta);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setForeground(new Color(255, 255, 255));
+		comboBox.setBackground(new Color(64, 128, 128));
+		comboBox.setBounds(11, 101, 217, 20);
+		panel.add(comboBox);
+		
+		JComboBox comboDia = new JComboBox();
+		comboDia.setForeground(new Color(0, 81, 81));
+		comboDia.setBackground(new Color(255, 255, 255));
+		comboDia.setBounds(11, 140, 30, 20);
+		panel.add(comboDia);
+		
+		JComboBox comboMes = new JComboBox();
+		comboMes.setForeground(new Color(0, 81, 81));
+		comboMes.setBackground(new Color(255, 255, 255));
+		comboMes.setBounds(51, 140, 59, 20);
+		panel.add(comboMes);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 81, 81));
@@ -170,5 +181,4 @@ public class TelaMarcarConsultas extends JFrame {
 		btnVoltar.setBounds(747, 417, 89, 23);
 		contentPane.add(btnVoltar);
 	}
-
 }
