@@ -40,7 +40,7 @@ public class TelaPadrao extends JFrame {
 		setBackground(new Color(0, 51, 51));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPadrao.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1008, 643);
+		setBounds(100, 100, 1226, 643);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(219, 219, 219));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,7 +51,7 @@ public class TelaPadrao extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 81, 81));
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[96.00]", "[][][][65px][][][][][][][][][][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[96.00]", "[][][][65px][61.00][][60.00][][58.00][][57.00][][145.00]"));
 				
 						JButton btnProfissionais = new JButton("Profissionais");
 						btnProfissionais.addActionListener(new ActionListener() {
@@ -144,7 +144,7 @@ public class TelaPadrao extends JFrame {
 										btnSair.setForeground(new Color(255, 255, 255));
 										btnSair.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 										btnSair.setBackground(new Color(64, 128, 128));
-										panel.add(btnSair, "cell 0 17,growx,aligny bottom");
+										panel.add(btnSair, "cell 0 12,growx,aligny bottom");
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(64, 128, 128));
@@ -159,10 +159,10 @@ public class TelaPadrao extends JFrame {
 		JPanel panel_4 = new JPanel();
 		contentPane.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[]{120, 319, 0, 0};
-		gbl_panel_4.rowHeights = new int[]{84, 84, 0, 0, 0, 0};
+		gbl_panel_4.columnWidths = new int[]{120, 421, 414, 0};
+		gbl_panel_4.rowHeights = new int[]{84, 137, 0};
 		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 												
 														JPanel panel_2 = new JPanel();
@@ -184,8 +184,7 @@ public class TelaPadrao extends JFrame {
 																				panel_2.add(textField);
 																				textField.setColumns(10);
 																				GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-																				gbc_panel_2.anchor = GridBagConstraints.NORTHWEST;
-																				gbc_panel_2.insets = new Insets(0, 0, 5, 5);
+																				gbc_panel_2.insets = new Insets(0, 0, 0, 5);
 																				gbc_panel_2.gridx = 1;
 																				gbc_panel_2.gridy = 1;
 																				panel_4.add(panel_2, gbc_panel_2);
@@ -202,9 +201,6 @@ public class TelaPadrao extends JFrame {
 																								lblNewLabel_2_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 																								panel_3.add(lblNewLabel_2_1);
 																								GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-																								gbc_panel_3.insets = new Insets(0, 0, 5, 0);
-																								gbc_panel_3.fill = GridBagConstraints.HORIZONTAL;
-																								gbc_panel_3.anchor = GridBagConstraints.NORTH;
 																								gbc_panel_3.gridx = 2;
 																								gbc_panel_3.gridy = 1;
 																								panel_4.add(panel_3, gbc_panel_3);
