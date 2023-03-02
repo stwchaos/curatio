@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import modelo.Consultas;
 import modelo.Profissional;
 
-public class ConsultasDAO {
+public class ConsultaDAO {
 	private Conexao con;
 
 	public boolean inserir(Consultas c) {
