@@ -1,0 +1,14 @@
+public void focusGained(FocusEvent e) {
+				if (txtInserir.getText().equals("Inserir")) {
+					txtInserir.setText("");
+					txtInserir.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtInserir.getText().isEmpty()) {
+					txtInserir.setText("Inserir");
+					txtInserir.setForeground(Color.GRAY);
+				}
+			}
