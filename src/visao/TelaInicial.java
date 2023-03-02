@@ -6,6 +6,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.ProfissionalDAO;
+import modelo.Profissional;
+
 import java.awt.Toolkit;
 import java.net.URL;
 import java.awt.Color;
@@ -28,7 +32,7 @@ public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtCpf;
-	private JPasswordField passwordField;
+	private JPasswordField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -78,59 +82,77 @@ public class TelaInicial extends JFrame {
 
 		JLabel lblNewLabel2 = new JLabel("");
 		panel.add(lblNewLabel2);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(0, 81, 81));
 		panel.add(panel_3);
 		panel_3.setLayout(new MigLayout("", "[311.00][]", "[44.00][73.00][][][64.00][][][42.00][315.00]"));
-												
-														JLabel lblNewLabel = new JLabel("Login Secretaria");
-														panel_3.add(lblNewLabel, "cell 1 1,alignx center,aligny center");
-														lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
-														lblNewLabel.setForeground(new Color(255, 255, 255));
-														
-														JLabel lblNewLabel_1 = new JLabel("CPF");
-														panel_3.add(lblNewLabel_1, "cell 1 3,alignx left,aligny center");
-														lblNewLabel_1.setForeground(new Color(255, 255, 255));
-												
-														txtCpf = new JTextField();
-														panel_3.add(txtCpf, "cell 1 4,growx");
-														txtCpf.setForeground(new Color(160, 160, 160));
-														txtCpf.setToolTipText("");
-														txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-														txtCpf.setColumns(10);
-														
-														JLabel lblNewLabel_2 = new JLabel("Senha");
-														panel_3.add(lblNewLabel_2, "cell 1 6");
-														lblNewLabel_2.setForeground(new Color(255, 255, 255));
-														
-														passwordField = new JPasswordField();
-														panel_3.add(passwordField, "cell 1 7,growx");
-														
-																JButton btnEntrar = new JButton("Entrar");
-																btnEntrar.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/simbolomed.png")));
-																panel_3.add(btnEntrar, "cell 1 8,growx,aligny center");
-																btnEntrar.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		dispose();
-																		TelaPadrao telaPadrao = new TelaPadrao();
-																		telaPadrao.setLocationRelativeTo(null);
-																		telaPadrao.setVisible(true);
-																		telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-																}});
-																btnEntrar.setForeground(new Color(255, 255, 255));
-																btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
-																btnEntrar.setBackground(new Color(0, 81, 81));
-														
-														JPanel panel_4 = new JPanel();
-														panel_4.setBackground(new Color(64, 128, 128));
-														panel.add(panel_4, BorderLayout.WEST);
-														panel_4.setLayout(new MigLayout("", "[73.00]", "[]"));
-														
-														JPanel panel_5 = new JPanel();
-														panel_5.setBackground(new Color(64, 128, 128));
-														panel.add(panel_5, BorderLayout.EAST);
-														panel_5.setLayout(new MigLayout("", "[62.00]", "[]"));
+
+		JLabel lblNewLabel = new JLabel("Login Secretaria");
+		panel_3.add(lblNewLabel, "cell 1 1,alignx center,aligny center");
+		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+
+		JLabel lblNewLabel_1 = new JLabel("CPF");
+		panel_3.add(lblNewLabel_1, "cell 1 3,alignx left,aligny center");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+
+		txtCpf = new JTextField();
+		panel_3.add(txtCpf, "cell 1 4,growx");
+		txtCpf.setForeground(new Color(160, 160, 160));
+		txtCpf.setToolTipText("");
+		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCpf.setColumns(10);
+
+		JLabel lblNewLabel_2 = new JLabel("Senha");
+		panel_3.add(lblNewLabel_2, "cell 1 6");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+
+		txtSenha = new JPasswordField();
+		panel_3.add(txtSenha, "cell 1 7,growx");
+
+		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/simbolomed.png")));
+		panel_3.add(btnEntrar, "cell 1 8,growx,aligny center");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Long cpf = null;
+				if (!txtCpf.getText().isEmpty()) {
+					cpf = Long.valueOf(txtCpf.getText());
+				}
+				String senha = null;
+				if (!txtSenha.getText().isEmpty()) {
+					senha = txtSenha.getText();
+				}
+				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+				Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
+				if (p != null) {
+//					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
+					dispose();
+					TelaPadrao telaPadrao = new TelaPadrao();
+					telaPadrao.setLocationRelativeTo(null);
+					telaPadrao.setVisible(true);
+					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//					}
+				} else {
+					JOptionPane.showMessageDialog(btnEntrar, "Autentificação inválida");
+				}
+			}
+		});
+		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		btnEntrar.setBackground(new Color(0, 81, 81));
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(64, 128, 128));
+		panel.add(panel_4, BorderLayout.WEST);
+		panel_4.setLayout(new MigLayout("", "[73.00]", "[]"));
+
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(64, 128, 128));
+		panel.add(panel_5, BorderLayout.EAST);
+		panel_5.setLayout(new MigLayout("", "[62.00]", "[]"));
 
 		URL resource = TelaPadrao.class.getResource("/img/simbolomed.png");
 		ImageIcon icon = null;
@@ -145,7 +167,7 @@ public class TelaInicial extends JFrame {
 		panel_1.setBackground(new Color(212, 212, 212));
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new MigLayout("", "[136.00]", "[]"));
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(212, 212, 212));
 		contentPane.add(panel_2, BorderLayout.EAST);
