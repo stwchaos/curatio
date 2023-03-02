@@ -10,24 +10,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Paciente;
-import modelo.Profissionais;
+import modelo.Profissional;
 
-public class ProfissionaisDAO {
+public class ProfissionalDAO {
 	private Conexao con;
 
-	public boolean inserir(Profissionais p) {
+	public boolean inserir(Profissional p) {
 		// instanciar
 		con = Conexao.getInstancia();
 
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO profissionais (cpf_profissionais, nome_profissionais, senha) VALUES (?, ?, ?);";
+			String query = "INSERT INTO profissionais (cpf_profissionais, nome_profissionais, senha, especialidade_id_especialidade)"
+					+ " VALUES (?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setLong(1, 123);
 			stm.setString(2, "ProfissionalTeste");
 			stm.setString(3, "admin");
+			stm.setInt(4, 1);
 
 			stm.executeUpdate();
 		} catch (SQLException e) {
@@ -39,7 +41,7 @@ public class ProfissionaisDAO {
 		return false;
 	}
 
-	public boolean alterar(Profissionais p) {
+	public boolean alterar(Profissional p) {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
@@ -58,12 +60,12 @@ public class ProfissionaisDAO {
 		return false;
 	}
 
-	public boolean deletar(Profissionais p) {
+	public boolean deletar(Profissional p) {
 		return false;
 	}
 
-	public ArrayList<Profissionais> listarProfissionais() {
-		ArrayList<Profissionais> profissionais = new ArrayList<>();
+	public ArrayList<Profissional> listarProfissionais() {
+		ArrayList<Profissional> profissionais = new ArrayList<>();
 
 		// instanciar
 		con = Conexao.getInstancia();
@@ -79,11 +81,11 @@ public class ProfissionaisDAO {
 				Long cpf = rs.getLong("cpf_profissionais");
 				String nome = rs.getString("nome_profissionais");
 				String senha = rs.getString("senha");
-				Profissionais p = new Profissionais();
+				Profissional p = new Profissional();
 				p.setCpfProfissionais(cpf);
 				p.setNomeProfissionais(nome);
 				p.setSenha(senha);
-
+				profissionais.add(p);
 			}
 
 		} catch (SQLException e) {
@@ -92,7 +94,17 @@ public class ProfissionaisDAO {
 
 		// desconectar
 		con.fecharConexao();
-		return null;
+		return profissionais;
 	}
 
+	public Profissional efetuarLogin(Long cpf, String senha) {
+		Profissional profissional = null;
+		for (Profissional p : listarProfissionais()) {
+			if ((p.getCpfProfissionais() == cpf) && p.getSenha().equals(senha)) {
+				profissional = p;
+			}
+		}
+		return profissional;
+	}
+	
 }
