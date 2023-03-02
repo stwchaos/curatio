@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -58,6 +60,7 @@ public class TelaConsultasPendentes extends JFrame {
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBounds(10, 7, 112, 37);
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		panel_1.add(btnVoltar);
 		
 		JPanel panel_2 = new JPanel();

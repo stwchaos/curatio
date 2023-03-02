@@ -4,11 +4,11 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-class PanelWithBackgroundImage extends JPanel {
+class PanelComBackgroundImage extends JPanel {
 
     Image bg;
 
-    PanelWithBackgroundImage(Image bg) {
+    PanelComBackgroundImage(Image bg) {
         this.bg = bg;
     }
 

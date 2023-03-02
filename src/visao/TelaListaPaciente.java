@@ -14,6 +14,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -87,6 +89,7 @@ public class TelaListaPaciente extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -110,6 +113,7 @@ public class TelaListaPaciente extends JFrame {
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBackground(new Color(64, 128, 128));
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						dispose();

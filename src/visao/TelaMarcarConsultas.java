@@ -6,15 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
@@ -22,7 +28,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class TelaMarcarConsultas extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel c;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtInserirAno;
@@ -36,15 +42,42 @@ public class TelaMarcarConsultas extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1028, 713);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(219, 219, 219));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		BufferedImage bg = null;;
+		try {
+			bg = ImageIO.read(new File("src/img/Background2.png"));
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JPanel c = new PanelComBackgroundImage(bg);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		//c = new JPanel();
+
+		c.setBackground(new Color(0, 81, 81));
+		c.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(c);
+		c.setLayout(new MigLayout("", "[grow][434px][grow]", "[664px,grow]"));
+		
+		
+		JButton btnVoltar = new JButton("Voltar");
+		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
+		btnVoltar.setBackground(new Color(64, 128, 128));
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnVoltar.addActionListener(new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+		dispose();
+		TelaPadrao telaPadrao = new TelaPadrao();
+		telaPadrao.setLocationRelativeTo(null);
+		telaPadrao.setVisible(true);
+		telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		}});
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.WEST);
+		c.add(panel, "cell 1 0,alignx left,growy");
 		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px][14px][20px][6px][14px][20px][14.00px,grow]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Paciente");
@@ -124,45 +157,5 @@ public class TelaMarcarConsultas extends JFrame {
 		comboMes.setForeground(new Color(0, 81, 81));
 		comboMes.setBackground(new Color(255, 255, 255));
 		panel.add(comboMes, "cell 2 6,grow");
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 81, 81));
-		contentPane.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new MigLayout("", "[]", "[]"));
-		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBackground(new Color(0, 81, 81));
-		contentPane.add(panel_1_1, BorderLayout.CENTER);
-		panel_1_1.setLayout(new MigLayout("", "[]", "[]"));
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
-		panel_1_1.add(lblNewLabel, "cell 0 0");
-		
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBackground(new Color(0, 81, 81));
-		contentPane.add(panel_1_2, BorderLayout.SOUTH);
-		panel_1_2.setLayout(new MigLayout("", "[][]", "[]"));
-		
-		JPanel panel_1_2_1 = new JPanel();
-		panel_1_2_1.setBackground(new Color(0, 81, 81));
-		contentPane.add(panel_1_2_1, BorderLayout.NORTH);
-		panel_1_2_1.setLayout(new MigLayout("", "[]", "[33.00]"));
-		
-		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBackground(new Color(64, 128, 128));
-		btnVoltar.setForeground(new Color(255, 255, 255));
-		panel_1_2.add(btnVoltar, "cell 0 0,alignx left,aligny top");
-		
-		btnVoltar.addActionListener(new ActionListener() {
-		
-		public void actionPerformed(ActionEvent e) {
-		dispose();
-		TelaPadrao telaPadrao = new TelaPadrao();
-		telaPadrao.setLocationRelativeTo(null);
-		telaPadrao.setVisible(true);
-		telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		}});
 	}
 }

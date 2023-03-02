@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -54,6 +56,7 @@ public class TelaPadrao extends JFrame {
 		panel.setLayout(new MigLayout("", "[96.00]", "[][][][65px][61.00][][60.00][][58.00][][57.00][][145.00]"));
 				
 						JButton btnProfissionais = new JButton("Profissionais");
+						btnProfissionais.setCursor(new Cursor (Cursor.HAND_CURSOR));
 						btnProfissionais.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								dispose();
@@ -73,6 +76,7 @@ public class TelaPadrao extends JFrame {
 						panel.add(btnProfissionais, "cell 0 3,growx,aligny center");
 														
 																JButton btnMarcarConsulta = new JButton("Marcar consulta");
+																btnMarcarConsulta.setCursor(new Cursor (Cursor.HAND_CURSOR));
 																btnMarcarConsulta.addActionListener(new ActionListener() {
 																	public void actionPerformed(ActionEvent e) {
 																		dispose();
@@ -88,6 +92,7 @@ public class TelaPadrao extends JFrame {
 																panel.add(btnMarcarConsulta, "cell 0 4,growx,aligny center");
 								
 										JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
+										btnCadastrarPaciente.setCursor(new Cursor (Cursor.HAND_CURSOR));
 										btnCadastrarPaciente.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent e) {
 												dispose();
@@ -103,6 +108,7 @@ public class TelaPadrao extends JFrame {
 										panel.add(btnCadastrarPaciente, "cell 0 6,growx,aligny center");
 								
 										JButton btnListaPaciente = new JButton("Pacientes");
+										btnListaPaciente.setCursor(new Cursor (Cursor.HAND_CURSOR));
 										btnListaPaciente.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent e) {
 												dispose();
@@ -128,6 +134,7 @@ public class TelaPadrao extends JFrame {
 										});
 										
 												JButton btnConsultasPendentes = new JButton("Consultas pendentes");
+												btnConsultasPendentes.setCursor(new Cursor (Cursor.HAND_CURSOR));
 												btnConsultasPendentes.addActionListener(new ActionListener() {
 													public void actionPerformed(ActionEvent e) {
 														dispose();
@@ -144,6 +151,7 @@ public class TelaPadrao extends JFrame {
 										btnSair.setForeground(new Color(255, 255, 255));
 										btnSair.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 										btnSair.setBackground(new Color(64, 128, 128));
+										btnSair.setCursor(new Cursor (Cursor.HAND_CURSOR));
 										panel.add(btnSair, "cell 0 12,growx,aligny bottom");
 
 		JPanel panel_1 = new JPanel();
