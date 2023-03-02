@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Consultas;
-import modelo.Profissionais;
+import modelo.Profissional;
 
 public class ConsultasDAO {
 	private Conexao con;

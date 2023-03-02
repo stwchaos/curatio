@@ -1,6 +1,6 @@
 package modelo;
 
-public class Profissionais {
+public class Profissional {
 
 	private Long cpfProfissionais;
 	private	String nomeProfissionais;

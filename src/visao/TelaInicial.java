@@ -2,6 +2,7 @@ package visao;
 
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +14,8 @@ import modelo.Profissional;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -23,14 +26,20 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import net.miginfocom.swing.MigLayout;
 import java.awt.FlowLayout;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class TelaInicial extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel c;
 	private JTextField txtCpf;
 	private JPasswordField txtSenha;
 
@@ -65,55 +74,67 @@ public class TelaInicial extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "Erro no caminho da imagem");
 		}
+		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(219, 219, 219));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		BufferedImage bg = null;;
+		try {
+			bg = ImageIO.read(new File("src/img/Background.png"));
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JPanel c = new PanelComBackgroundImage(bg);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		c.setBackground(new Color(0, 81, 81));
+		c.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(c);
+		c.setLayout(new MigLayout("", "[grow][446.00px][25.00,grow]", "[grow][290.00px][grow]"));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(64, 128, 128));
-		contentPane.add(panel);
+		c.add(panel, "cell 1 1,grow");
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel2 = new JLabel("");
 		panel.add(lblNewLabel2);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(0, 81, 81));
+		panel_3.setBorder(new LineBorder(new Color(0, 64, 64), 2, true));
+		panel_3.setBackground(new Color(0, 98, 98));
 		panel.add(panel_3);
-		panel_3.setLayout(new MigLayout("", "[311.00][]", "[44.00][73.00][][][64.00][][][42.00][315.00]"));
-
+		panel_3.setLayout(new MigLayout("", "[109.00,grow][grow][113.00,grow]", "[44.00][][73.00][17.00][][64.00][][][42.00][315.00]"));
+		
 		JLabel lblNewLabel = new JLabel("Login Secretaria");
-		panel_3.add(lblNewLabel, "cell 1 1,alignx center,aligny center");
-		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
+		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.PLAIN, 30));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lblNewLabel, "cell 1 1");
 
 		JLabel lblNewLabel_1 = new JLabel("CPF");
-		panel_3.add(lblNewLabel_1, "cell 1 3,alignx left,aligny center");
+		panel_3.add(lblNewLabel_1, "cell 1 4,alignx left,aligny center");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 
 		txtCpf = new JTextField();
-		panel_3.add(txtCpf, "cell 1 4,growx");
+		panel_3.add(txtCpf, "cell 1 5,growx");
 		txtCpf.setForeground(new Color(160, 160, 160));
 		txtCpf.setToolTipText("");
 		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCpf.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Senha");
-		panel_3.add(lblNewLabel_2, "cell 1 6");
+		panel_3.add(lblNewLabel_2, "cell 1 7");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 
 		txtSenha = new JPasswordField();
-		panel_3.add(txtSenha, "cell 1 7,growx");
+		panel_3.add(txtSenha, "cell 1 8,growx");
 
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/simbolomed.png")));
-		panel_3.add(btnEntrar, "cell 1 8,growx,aligny center");
+		panel_3.add(btnEntrar, "cell 1 9,growx,aligny center");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -140,19 +161,10 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
+		btnEntrar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
 		btnEntrar.setBackground(new Color(0, 81, 81));
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(64, 128, 128));
-		panel.add(panel_4, BorderLayout.WEST);
-		panel_4.setLayout(new MigLayout("", "[73.00]", "[]"));
-
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(64, 128, 128));
-		panel.add(panel_5, BorderLayout.EAST);
-		panel_5.setLayout(new MigLayout("", "[62.00]", "[]"));
 
 		URL resource = TelaPadrao.class.getResource("/img/simbolomed.png");
 		ImageIcon icon = null;
@@ -162,15 +174,5 @@ public class TelaInicial extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "Erro no caminho da imagem");
 		}
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(212, 212, 212));
-		contentPane.add(panel_1, BorderLayout.WEST);
-		panel_1.setLayout(new MigLayout("", "[136.00]", "[]"));
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(212, 212, 212));
-		contentPane.add(panel_2, BorderLayout.EAST);
-		panel_2.setLayout(new MigLayout("", "[138.00]", "[]"));
 	}
 }
