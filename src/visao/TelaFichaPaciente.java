@@ -59,8 +59,23 @@ public class TelaFichaPaciente extends JFrame {
 		setContentPane(c);
 		c.setLayout(new MigLayout("", "[grow][436px][grow]", "[682px,grow]"));
 		
+		JButton btnVoltar = new JButton("Voltar");
+		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBackground(new Color(0, 81, 81));
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnVoltar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+			dispose();
+			TelaPadrao telaPadrao = new TelaPadrao();
+			telaPadrao.setLocationRelativeTo(null);
+			telaPadrao.setVisible(true);
+			telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}});
+		
 		JPanel panel = new JPanel();
-		c.add(panel, "cell 1 0,alignx left,growy");
+		c.add(panel, "cell 1 0,alignx center,growy");
 		panel.setLayout(new MigLayout("", "[49px][11px][32px][5px][53.00px][44.00px]", "[][191px][][grow][32px,grow][grow][33px,grow][grow][33px,grow,bottom][14px,grow][20px,grow][14px,grow][20px,grow][6px][14px,grow][1px][31px,grow][]"));
 		
 		JLabel lblNewLabel_9 = new JLabel("Registros dos pacientes");
@@ -72,13 +87,12 @@ public class TelaFichaPaciente extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel.add(panel_1, "cell 1 1 3 1,grow");
-		panel_1.setLayout(null);
+		panel.add(panel_1, "cell 2 1 3 1,grow");
+		panel_1.setLayout(new MigLayout("", "[76.00px,grow]", "[96px,grow]"));
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconpeople.png")));
-		lblNewLabel.setBounds(79, 45, 72, 96);
-		panel_1.add(lblNewLabel);
+		panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
 		
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 3,alignx left,aligny bottom");
@@ -156,22 +170,8 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 9 3 1,growx,aligny top");
 		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(new Color(255, 255, 255));
-		btnVoltar.setBackground(new Color(0, 81, 81));
-		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		btnVoltar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-			dispose();
-			TelaPadrao telaPadrao = new TelaPadrao();
-			telaPadrao.setLocationRelativeTo(null);
-			telaPadrao.setVisible(true);
-			telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}});
-		panel.add(btnVoltar, "cell 0 17,growx,aligny center");
-		
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
+		c.add(btnHistorico, "cell 2 0,alignx right,aligny bottom");
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor (Cursor.HAND_CURSOR));
@@ -184,7 +184,6 @@ public class TelaFichaPaciente extends JFrame {
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		panel.add(btnHistorico, "cell 2 17,growx,aligny center");
 		
 		
 	}
