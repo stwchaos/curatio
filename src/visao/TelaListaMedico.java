@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -85,6 +87,7 @@ public class TelaListaMedico extends JFrame {
 		txtPesquisarProfissional.setColumns(10);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

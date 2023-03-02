@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -79,6 +80,7 @@ public class TelaHistorico extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

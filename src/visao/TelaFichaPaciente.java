@@ -7,21 +7,27 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaFichaPaciente extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel c;
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldEmail;
@@ -36,15 +42,25 @@ public class TelaFichaPaciente extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 731);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(219, 219, 219));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		BufferedImage bg = null;;
+		try {
+			bg = ImageIO.read(new File("src/img/Background2.png"));
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JPanel c = new PanelComBackgroundImage(bg);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		//c = new JPanel();
+		c.setBackground(new Color(0, 81, 81));
+		c.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(c);
+		c.setLayout(new MigLayout("", "[grow][436px][grow]", "[682px,grow]"));
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.WEST);
+		c.add(panel, "cell 1 0,alignx left,growy");
 		panel.setLayout(new MigLayout("", "[49px][11px][32px][5px][53.00px][44.00px]", "[][191px][][grow][32px,grow][grow][33px,grow][grow][33px,grow,bottom][14px,grow][20px,grow][14px,grow][20px,grow][6px][14px,grow][1px][31px,grow][]"));
 		
 		JLabel lblNewLabel_9 = new JLabel("Registros dos pacientes");
@@ -112,14 +128,15 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 14,growx,aligny top");
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnConfirmar = new JButton("");
+		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBackground(new Color(240, 240, 240));
-		btnNewButton.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
-		panel.add(btnNewButton, "cell 5 12 1 5,grow");
+		btnConfirmar.setBackground(new Color(240, 240, 240));
+		btnConfirmar.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
+		btnConfirmar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		panel.add(btnConfirmar, "cell 5 12 1 5,grow");
 		
 		textFieldCEP = new JTextField();
 		textFieldCEP.setText("Alterável");
@@ -142,8 +159,9 @@ public class TelaFichaPaciente extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBackground(new Color(0, 81, 81));
+		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnVoltar.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 			dispose();
 			TelaPadrao telaPadrao = new TelaPadrao();
@@ -156,6 +174,7 @@ public class TelaFichaPaciente extends JFrame {
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
+		btnHistorico.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -166,17 +185,6 @@ public class TelaFichaPaciente extends JFrame {
 			}
 		});
 		panel.add(btnHistorico, "cell 2 17,growx,aligny center");
-		
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(0, 81, 81));
-		contentPane.add(panel_2, BorderLayout.EAST);
-		panel_2.setLayout(new MigLayout("", "[438.00]", "[grow][][grow]"));
-		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
-		panel_2.add(lblNewLabel_4, "cell 0 1,alignx center,aligny center");
 		
 		
 	}
