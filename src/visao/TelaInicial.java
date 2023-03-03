@@ -74,21 +74,20 @@ public class TelaInicial extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "Erro no caminho da imagem");
 		}
-		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
-		BufferedImage bg = null;;
+		BufferedImage bg = null;
+		;
 		try {
 			bg = ImageIO.read(new File("src/img/Background.png"));
-		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);
 
-		
 		c.setBackground(new Color(0, 81, 81));
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -107,34 +106,41 @@ public class TelaInicial extends JFrame {
 		panel_3.setBorder(new LineBorder(new Color(0, 64, 64), 2, true));
 		panel_3.setBackground(new Color(0, 98, 98));
 		panel.add(panel_3);
-		panel_3.setLayout(new MigLayout("", "[109.00,grow][grow][113.00,grow]", "[44.00][][73.00][17.00][][64.00][][][42.00][315.00]"));
-		
+		panel_3.setLayout(new MigLayout("", "[109.00,grow][][grow][][113.00,grow]",
+				"[44.00][][73.00][17.00][][64.00][][][42.00][][315.00]"));
+
 		JLabel lblNewLabel = new JLabel("Login Secretaria");
 		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.PLAIN, 30));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_3.add(lblNewLabel, "cell 1 1");
+		panel_3.add(lblNewLabel, "cell 2 1");
 
 		JLabel lblNewLabel_1 = new JLabel("CPF");
-		panel_3.add(lblNewLabel_1, "cell 1 4,alignx left,aligny center");
+		panel_3.add(lblNewLabel_1, "cell 2 4,alignx left,aligny center");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 
 		txtCpf = new JTextField();
-		panel_3.add(txtCpf, "cell 1 5,growx");
-		txtCpf.setForeground(new Color(160, 160, 160));
+		panel_3.add(txtCpf, "cell 2 5,growx");
+		txtCpf.setForeground(new Color(0, 0, 0));
 		txtCpf.setToolTipText("");
 		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCpf.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Senha");
-		panel_3.add(lblNewLabel_2, "cell 1 7");
+		panel_3.add(lblNewLabel_2, "cell 2 7");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 
 		txtSenha = new JPasswordField();
-		panel_3.add(txtSenha, "cell 1 8,growx");
+		panel_3.add(txtSenha, "cell 2 8,growx");
 
 		JButton btnEntrar = new JButton("Entrar");
-		panel_3.add(btnEntrar, "cell 1 9,growx,aligny center");
+		btnEntrar.setBackground(null);
+		btnEntrar.setOpaque(false);
+		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnEntrar.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
+
+		panel_3.add(btnEntrar, "cell 1 10 3 1,growx,aligny center");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -146,9 +152,9 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
-				Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
-				if (p != null) {
+				 ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+				 Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
+				if ( p != null ) {
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao();
@@ -161,7 +167,7 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
-		btnEntrar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
 		btnEntrar.setBackground(new Color(0, 81, 81));

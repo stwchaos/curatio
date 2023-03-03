@@ -35,113 +35,120 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField textFieldSexo;
 	private JTextField textFieldNascimento;
 	private JTextField textFieldCEP;
-
+	private JTextField txtRegistrosDosPacientes;
 
 	public TelaFichaPaciente() {
 		setTitle("Hospital Esmeralda");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 731);
-		BufferedImage bg = null;;
+		BufferedImage bg = null;
+		;
 		try {
 			bg = ImageIO.read(new File("src/img/Background2.png"));
-		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);
 
-		//c = new JPanel();
+		// c = new JPanel();
 		c.setBackground(new Color(0, 81, 81));
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(c);
-		c.setLayout(new MigLayout("", "[grow][436px][grow]", "[682px,grow]"));
-		
+		c.setLayout(new MigLayout("", "[177.00,grow][436px,grow][grow]", "[682px,grow]"));
+
 		JButton btnVoltar = new JButton("Voltar");
 		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBackground(new Color(0, 81, 81));
-		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnVoltar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-			dispose();
-			TelaPadrao telaPadrao = new TelaPadrao();
-			telaPadrao.setLocationRelativeTo(null);
-			telaPadrao.setVisible(true);
-			telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}});
-		
+				dispose();
+				TelaPadrao telaPadrao = new TelaPadrao();
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+
 		JPanel panel = new JPanel();
-		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[49px][11px][32px][5px][53.00px][44.00px]", "[][191px][][grow][32px,grow][grow][33px,grow][grow][33px,grow,bottom][14px,grow][20px,grow][14px,grow][20px,grow][6px][14px,grow][1px][31px,grow][]"));
-		
-		JLabel lblNewLabel_9 = new JLabel("Registros dos pacientes");
-		panel.add(lblNewLabel_9, "cell 2 0");
-		lblNewLabel_9.setBackground(new Color(255, 255, 255));
-		lblNewLabel_9.setForeground(new Color(0, 81, 81));
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
-		
+		c.add(panel, "flowx,cell 1 0,alignx center,growy");
+		panel.setLayout(new MigLayout("", "[49px,grow][11px][32px][5px][53.00px][44.00px]",
+				"[69.00,grow][153.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][14px][1px][31px][grow]"));
+
+		txtRegistrosDosPacientes = new JTextField();
+		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
+		txtRegistrosDosPacientes.setForeground(new Color(255, 255, 255));
+		txtRegistrosDosPacientes.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
+		txtRegistrosDosPacientes.setEditable(false);
+		txtRegistrosDosPacientes.setText("Registros dos pacientes");
+		txtRegistrosDosPacientes.setBackground(new Color(64, 128, 128));
+		panel.add(txtRegistrosDosPacientes, "cell 0 0 6 1,grow");
+		txtRegistrosDosPacientes.setColumns(10);
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel.add(panel_1, "cell 2 1 3 1,grow");
+		panel.add(panel_1, "cell 1 1 4 1,grow");
 		panel_1.setLayout(new MigLayout("", "[76.00px,grow]", "[96px,grow]"));
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconpeople.png")));
 		panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 3,alignx left,aligny bottom");
-		
+
 		textFieldNome = new JTextField();
 		textFieldNome.setEditable(false);
 		textFieldNome.setText("Inalterável");
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNome, "cell 0 4 5 1,growx,aligny center");
 		textFieldNome.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Nome social");
 		panel.add(lblNewLabel_2, "cell 0 5,alignx left,aligny bottom");
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Sexo");
 		panel.add(lblNewLabel_3, "cell 0 7,alignx left,aligny bottom");
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Nascimento");
 		panel.add(lblNewLabel_6, "cell 4 7,alignx left,aligny bottom");
-		
+
 		textFieldEmail = new JTextField();
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldEmail.setText("Alterável");
-		panel.add(textFieldEmail, "cell 0 16 5 1,growx,aligny center");
+		panel.add(textFieldEmail, "cell 0 15 5 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
-		
+
 		textFieldNomeSocial = new JTextField();
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNomeSocial.setText("Alterável");
 		panel.add(textFieldNomeSocial, "cell 0 6 5 1,growx,aligny center");
 		textFieldNomeSocial.setColumns(10);
-		
+
 		textFieldSexo = new JTextField();
 		textFieldSexo.setEditable(false);
 		textFieldSexo.setText("Inalterável");
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldSexo, "cell 0 8 3 1,growx,aligny center");
 		textFieldSexo.setColumns(10);
-		
+
 		textFieldNascimento = new JTextField();
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNascimento.setText("Inalterável");
 		panel.add(textFieldNascimento, "cell 4 8 2 1,growx,aligny center");
 		textFieldNascimento.setColumns(10);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
-		panel.add(lblNewLabel_7, "cell 0 14,growx,aligny top");
-		
+		panel.add(lblNewLabel_7, "cell 0 13,growx,aligny bottom");
+
 		JButton btnConfirmar = new JButton("");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,32 +156,32 @@ public class TelaFichaPaciente extends JFrame {
 		});
 		btnConfirmar.setBackground(new Color(240, 240, 240));
 		btnConfirmar.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
-		btnConfirmar.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel.add(btnConfirmar, "cell 5 12 1 5,grow");
-		
+		btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel.add(btnConfirmar, "cell 5 12 1 4,alignx center,aligny bottom");
+
 		textFieldCEP = new JTextField();
 		textFieldCEP.setText("Alterável");
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
 		panel.add(textFieldCEP, "cell 0 12 5 1,growx,aligny center");
-		
+
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
-		panel.add(lblNewLabel_5_1, "cell 0 11 3 1,growx,aligny top");
-		
+		panel.add(lblNewLabel_5_1, "cell 0 11 3 1,growx,aligny bottom");
+
 		textFieldTelefone = new JTextField();
 		panel.add(textFieldTelefone, "cell 0 10 5 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setText("Alterável");
 		textFieldTelefone.setColumns(10);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
-		panel.add(lblNewLabel_5, "cell 0 9 3 1,growx,aligny top");
-		
+		panel.add(lblNewLabel_5, "cell 0 9 3 1,growx,aligny bottom");
+
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
 		c.add(btnHistorico, "cell 2 0,alignx right,aligny bottom");
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
-		btnHistorico.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -184,7 +191,6 @@ public class TelaFichaPaciente extends JFrame {
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		
-		
+
 	}
 }
