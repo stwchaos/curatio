@@ -1,5 +1,5 @@
 
-<h1 align="center"> Projeto Integrador - Query  </h1>
+<h1 align="center"> Projeto Integrador - Curatio  </h1>
 
 
 ![logoHospital](https://user-images.githubusercontent.com/88722088/222734463-5cc2c349-a82c-4742-8e9b-4ed890cc390a.png)
