@@ -79,7 +79,12 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 ####  Login
   Na qual o funcionário insere seus dados(CPF e senha), para assim acessar o software.
 
-![image](https://user-images.githubusercontent.com/88722088/222743581-adeed401-acb7-4503-9833-37267e3d8f96.png)
+![image](https://user-images.githubusercontent.com/88722088/222848725-eeff1a4c-b407-437c-b5f8-9bd8667ee49b.png)
+
+> Mensagem de aviso gerada pela validação de acesso:
+
+![image](https://user-images.githubusercontent.com/88722088/222848573-475eaac6-dfaa-450a-8a39-b2814badcb01.png)
+
 
 
 #### Início
