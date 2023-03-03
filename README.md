@@ -6,22 +6,8 @@
 
 ---
 ### Progresso do projeto
-<progress max="100" value="25"></progress>
+🟩🟩🟩🟩 25%
 
-<style>
-  progress {
-    width: 100%;
-    height: 20px;
-    background-color: #e6e6e6;
-    border: none;
-    border-radius: 5px;
-  }
-
-  progress::-webkit-progress-value {
-    background-color: #007bff;
-    border-radius: 5px;
-  }
-</style>
 
 ---
 
