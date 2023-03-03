@@ -91,19 +91,19 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 #### Marcar Consulta
   Nesta tela é onde o usuário irá marcar a consulta de um paciente.
   
-![image](https://user-images.githubusercontent.com/88722088/222743888-b52b9eca-17c9-4a8c-ab39-d42f2bc12b46.png)
+![image](https://user-images.githubusercontent.com/88722088/222823149-e8eae593-f7be-4728-8e3f-04a1e6737dc7.png)
 
 
 #### Cadastrar Paciente
   Insere as informações dos pacientes, as registrando no sistema.
-
-![image](https://user-images.githubusercontent.com/88722088/222743992-95f576bd-14ae-4de3-b7a0-571128783b28.png)
+  
+![image](https://user-images.githubusercontent.com/88722088/222823082-5e478e26-4d0c-41ca-8d16-3f45b3d982bc.png))
 
 
 #### Registro do Paciente Selecionado
   
   Com ela, é possível visualizar e alterar informações do paciente.
   
-![image](https://user-images.githubusercontent.com/88722088/222744194-b31dc790-c949-44a4-ba9f-ad5e588a9be8.png)
+![image](https://user-images.githubusercontent.com/88722088/222823019-da95ae63-82b6-4b74-82a4-6ab1b553aa8a.png)
 
 
