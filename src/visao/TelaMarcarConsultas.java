@@ -36,7 +36,6 @@ public class TelaMarcarConsultas extends JFrame {
 
 	private JPanel c;
 	private JTextField textField_1;
-	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField txtMarcarConsulta;
 
@@ -45,7 +44,7 @@ public class TelaMarcarConsultas extends JFrame {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1028, 713);
+		setBounds(100, 100, 1030, 713);
 		BufferedImage bg = null;
 		;
 		try {
@@ -63,13 +62,15 @@ public class TelaMarcarConsultas extends JFrame {
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(c);
-		c.setLayout(new MigLayout("", "[grow][434px,grow][grow]", "[664px,grow]"));
+		c.setLayout(new MigLayout("", "[247.00,grow][294.00px,grow][247.00,grow]", "[664px,grow]"));
 
 		JButton btnVoltar = new JButton("Voltar");
 		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
-		btnVoltar.setBackground(new Color(64, 128, 128));
+		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBorderPainted(false);
+		btnVoltar.setFocusPainted(false);
 		btnVoltar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -84,12 +85,12 @@ public class TelaMarcarConsultas extends JFrame {
 		JPanel panel = new JPanel();
 		c.add(panel, "cell 1 0,alignx center,growy");
 		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]",
-				"[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px][14px][20px][6px][14px][20px][14.00px,grow]"));
+				"[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][14.00px,grow]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente");
 		panel.add(lblNewLabel_1, "cell 0 1,alignx left,aligny bottom");
 
-		JComboBox comboPaciente = new JComboBox();
+		JComboBox comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 
@@ -110,6 +111,17 @@ public class TelaMarcarConsultas extends JFrame {
 		panel.add(dtConsulta, "cell 0 6 4 1,growx,aligny bottom");
 		dtConsulta.getDate();
 
+		textField_6 = new JTextField();
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setText("Inserir");
+		textField_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		textField_6.setColumns(10);
+		panel.add(textField_6, "cell 0 8 7 1,grow");
+
+		JComboBox comboBox = new RoundComboBox();
+		comboBox.setBackground(new Color(218, 218, 218));
+		panel.add(comboBox, "cell 0 10 5 1,growx");
+
 		textField_1 = new JTextField();
 		textField_1.setText("Inserir");
 		textField_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -119,31 +131,14 @@ public class TelaMarcarConsultas extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Profissional");
 		panel.add(lblNewLabel_2, "cell 0 3 3 1,growx,aligny top");
 
-		JLabel lblNewLabel_3 = new JLabel("Data");
+		JLabel lblNewLabel_3 = new JLabel("Data da consulta");
 		panel.add(lblNewLabel_3, "cell 0 5 3 1,alignx left,aligny top");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 12 3 1,alignx left,aligny bottom");
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(TelaMarcarConsultas.class.getResource("/img/iconCheck.png")));
-		btnNewButton.setBackground(SystemColor.menu);
-		panel.add(btnNewButton, "cell 6 10 1 4,alignx left,growy");
-
-		textField_5 = new JTextField();
-		textField_5.setText("Inserir");
-		textField_5.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textField_5.setColumns(10);
-		panel.add(textField_5, "cell 0 10 5 1,grow");
-
 		JLabel lblNewLabel_5_1 = new JLabel("Forma de Pagamento");
 		panel.add(lblNewLabel_5_1, "cell 0 9 5 1,growx,aligny top");
-
-		textField_6 = new JTextField();
-		textField_6.setText("Inserir");
-		textField_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		panel.add(textField_6, "cell 0 8 5 1,alignx left,growy");
 
 		JLabel lblNewLabel_5 = new JLabel("Objetivo");
 		panel.add(lblNewLabel_5, "cell 0 7 3 1,growx,aligny top");
@@ -158,12 +153,17 @@ public class TelaMarcarConsultas extends JFrame {
 		txtMarcarConsulta.setBackground(new Color(64, 128, 128));
 		panel.add(txtMarcarConsulta, "cell 0 0 7 1,grow");
 
-		JComboBox comboProfissional = new JComboBox();
+		JComboBox comboProfissional = new RoundComboBox();
 		comboProfissional.setForeground(new Color(255, 255, 255));
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
 
 		JButton btnMarcar = new JButton("Agendar");
+		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnMarcar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 14,growx,aligny bottom");

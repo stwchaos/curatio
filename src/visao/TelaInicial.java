@@ -3,6 +3,7 @@ package visao;
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -119,9 +120,14 @@ public class TelaInicial extends JFrame {
 		panel_3.add(lblNewLabel_1, "cell 2 4,alignx left,aligny center");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 
-		txtCpf = new JTextField();
+		txtCpf = new RoundJTextField();
+		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCpf.setBackground(new Color(0, 81, 81));
+		txtCpf.setForeground(new Color(255, 255, 255));
+		txtCpf.setCaretColor(Color.WHITE);
+		// txtCpf.setBorder(BorderFactory.createEmptyBorder());
 		panel_3.add(txtCpf, "cell 2 5,growx");
-		txtCpf.setForeground(new Color(0, 0, 0));
+
 		txtCpf.setToolTipText("");
 		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCpf.setColumns(10);
@@ -130,7 +136,13 @@ public class TelaInicial extends JFrame {
 		panel_3.add(lblNewLabel_2, "cell 2 7");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 
-		txtSenha = new JPasswordField();
+		txtSenha = new RoundPasswordField();
+		txtSenha.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSenha.setForeground(new Color(255, 255, 255));
+		txtSenha.setBackground(new Color(0, 81, 81));
+		txtSenha.setCaretColor(Color.WHITE);
+		txtSenha.setSelectedTextColor(new Color(0, 0, 0));
+
 		panel_3.add(txtSenha, "cell 2 8,growx");
 
 		JButton btnEntrar = new JButton("Entrar");
@@ -139,6 +151,7 @@ public class TelaInicial extends JFrame {
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnEntrar.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
+		btnEntrar.setFocusPainted(false);
 
 		panel_3.add(btnEntrar, "cell 1 10 3 1,growx,aligny center");
 		btnEntrar.addActionListener(new ActionListener() {
@@ -152,9 +165,10 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-				 ProfissionalDAO profissionalDAO = new ProfissionalDAO();
-				 Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
-				if ( p != null ) {
+				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+				Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
+				if (p != null) {
+
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao();
@@ -163,7 +177,8 @@ public class TelaInicial extends JFrame {
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //					}
 				} else {
-					JOptionPane.showMessageDialog(btnEntrar, "Autentificação inválida");
+					new Dialog("Autentificação inválida").setVisible(true);
+					return;
 				}
 			}
 		});

@@ -42,7 +42,7 @@ public class TelaFichaPaciente extends JFrame {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 953, 731);
+		setBounds(100, 100, 1030, 713);
 		BufferedImage bg = null;
 		;
 		try {
@@ -59,7 +59,7 @@ public class TelaFichaPaciente extends JFrame {
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(c);
-		c.setLayout(new MigLayout("", "[177.00,grow][436px,grow][grow]", "[682px,grow]"));
+		c.setLayout(new MigLayout("", "[247.00,grow][294.00px,grow][247.00,grow]", "[682px,grow]"));
 
 		JButton btnVoltar = new JButton("Voltar");
 		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
@@ -79,22 +79,21 @@ public class TelaFichaPaciente extends JFrame {
 
 		JPanel panel = new JPanel();
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[49px,grow][11px][32px][5px][53.00px][44.00px]",
-				"[69.00,grow][153.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][14px][1px][31px][grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]", "[69.00,grow][192.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new JTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtRegistrosDosPacientes.setForeground(new Color(255, 255, 255));
 		txtRegistrosDosPacientes.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		txtRegistrosDosPacientes.setEditable(false);
-		txtRegistrosDosPacientes.setText("Registros dos pacientes");
+		txtRegistrosDosPacientes.setText("Registro do paciente");
 		txtRegistrosDosPacientes.setBackground(new Color(64, 128, 128));
-		panel.add(txtRegistrosDosPacientes, "cell 0 0 6 1,grow");
+		panel.add(txtRegistrosDosPacientes, "cell 0 0 8 1,grow");
 		txtRegistrosDosPacientes.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel.add(panel_1, "cell 1 1 4 1,grow");
+		panel.add(panel_1, "cell 0 1 6 1,grow");
 		panel_1.setLayout(new MigLayout("", "[76.00px,grow]", "[96px,grow]"));
 
 		JLabel lblNewLabel = new JLabel("");
@@ -108,46 +107,46 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldNome.setEditable(false);
 		textFieldNome.setText("Inalterável");
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldNome, "cell 0 4 5 1,growx,aligny center");
+		panel.add(textFieldNome, "cell 0 4 6 1,growx,aligny center");
 		textFieldNome.setColumns(10);
 
-		JLabel lblNewLabel_2 = new JLabel("Nome social");
-		panel.add(lblNewLabel_2, "cell 0 5,alignx left,aligny bottom");
+		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
+		panel.add(lblNewLabel_2, "cell 0 5 4 1,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo");
 		panel.add(lblNewLabel_3, "cell 0 7,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_6 = new JLabel("Nascimento");
-		panel.add(lblNewLabel_6, "cell 4 7,alignx left,aligny bottom");
+		panel.add(lblNewLabel_6, "cell 5 7,alignx left,aligny bottom");
+		
+				JLabel lblNewLabel_7 = new JLabel("E-mail");
+				panel.add(lblNewLabel_7, "cell 0 14,growx,aligny bottom");
 
 		textFieldEmail = new JTextField();
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldEmail.setText("Alterável");
-		panel.add(textFieldEmail, "cell 0 15 5 1,growx,aligny center");
+		panel.add(textFieldEmail, "cell 0 15 6 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
 		textFieldNomeSocial = new JTextField();
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNomeSocial.setText("Alterável");
-		panel.add(textFieldNomeSocial, "cell 0 6 5 1,growx,aligny center");
+		panel.add(textFieldNomeSocial, "cell 0 6 6 1,growx,aligny center");
 		textFieldNomeSocial.setColumns(10);
 
 		textFieldSexo = new JTextField();
 		textFieldSexo.setEditable(false);
 		textFieldSexo.setText("Inalterável");
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldSexo, "cell 0 8 3 1,growx,aligny center");
+		panel.add(textFieldSexo, "cell 0 8 4 1,growx,aligny center");
 		textFieldSexo.setColumns(10);
 
 		textFieldNascimento = new JTextField();
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNascimento.setText("Inalterável");
-		panel.add(textFieldNascimento, "cell 4 8 2 1,growx,aligny center");
+		panel.add(textFieldNascimento, "cell 5 8 3 1,growx,aligny center");
 		textFieldNascimento.setColumns(10);
-
-		JLabel lblNewLabel_7 = new JLabel("E-mail");
-		panel.add(lblNewLabel_7, "cell 0 13,growx,aligny bottom");
 
 		JButton btnConfirmar = new JButton("");
 		btnConfirmar.addActionListener(new ActionListener() {
@@ -157,25 +156,25 @@ public class TelaFichaPaciente extends JFrame {
 		btnConfirmar.setBackground(new Color(240, 240, 240));
 		btnConfirmar.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
 		btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel.add(btnConfirmar, "cell 5 12 1 4,alignx center,aligny bottom");
+		panel.add(btnConfirmar, "cell 7 12 1 4,alignx center,aligny bottom");
 
 		textFieldCEP = new JTextField();
 		textFieldCEP.setText("Alterável");
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
-		panel.add(textFieldCEP, "cell 0 12 5 1,growx,aligny center");
+		panel.add(textFieldCEP, "cell 0 12 6 1,growx,aligny center");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
-		panel.add(lblNewLabel_5_1, "cell 0 11 3 1,growx,aligny bottom");
+		panel.add(lblNewLabel_5_1, "cell 0 11 4 1,growx,aligny bottom");
 
 		textFieldTelefone = new JTextField();
-		panel.add(textFieldTelefone, "cell 0 10 5 1,growx,aligny center");
+		panel.add(textFieldTelefone, "cell 0 10 6 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setText("Alterável");
 		textFieldTelefone.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
-		panel.add(lblNewLabel_5, "cell 0 9 3 1,growx,aligny bottom");
+		panel.add(lblNewLabel_5, "cell 0 9 4 1,growx,aligny bottom");
 
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
 		c.add(btnHistorico, "cell 2 0,alignx right,aligny bottom");

@@ -64,6 +64,7 @@ public class TelaPadrao extends JFrame {
 		btnProfissionais.setOpaque(false);
 		btnProfissionais.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnProfissionais.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnProfissionais.setFocusPainted(false);
 		btnProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -86,6 +87,7 @@ public class TelaPadrao extends JFrame {
 		btnMarcarConsulta.setOpaque(false);
 		btnMarcarConsulta.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnMarcarConsulta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnMarcarConsulta.setFocusPainted(false);
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -105,6 +107,7 @@ public class TelaPadrao extends JFrame {
 		btnCadastrarPaciente.setForeground(new Color(255, 255, 255));
 		btnCadastrarPaciente.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnCadastrarPaciente.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCadastrarPaciente.setFocusPainted(false);
 		btnCadastrarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -124,6 +127,7 @@ public class TelaPadrao extends JFrame {
 		btnListaPaciente.setForeground(new Color(255, 255, 255));
 		btnListaPaciente.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnListaPaciente.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnListaPaciente.setFocusPainted(false);
 		btnListaPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -154,6 +158,7 @@ public class TelaPadrao extends JFrame {
 		btnConsultasPendentes.setForeground(new Color(255, 255, 255));
 		btnConsultasPendentes.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnConsultasPendentes.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnConsultasPendentes.setFocusPainted(false);
 		btnConsultasPendentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -172,6 +177,7 @@ public class TelaPadrao extends JFrame {
 		btnSair.setOpaque(false);
 		btnSair.setForeground(new Color(255, 255, 255));
 		btnSair.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 2));
+		btnSair.setFocusPainted(false);
 		panel.add(btnSair, "cell 0 12,growx,aligny bottom");
 
 		JPanel panel_1 = new JPanel();
