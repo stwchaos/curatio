@@ -93,7 +93,7 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 #### Início
   É a tela padrão do software em que o funcionário é capaz de realizar suas funções, com cada botão abrindo telas novas, com suas respectivas propriedades.
 
-![image](https://user-images.githubusercontent.com/88722088/222743789-58ec22b4-8004-425c-8f5c-6f2131af43ab.png)
+![image](https://user-images.githubusercontent.com/88722088/222929338-6b7593c6-8322-4806-b1bd-98c6ac12748a.png)
 
 
 #### Marcar Consulta
