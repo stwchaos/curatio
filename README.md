@@ -65,8 +65,11 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
       <td style="background-color:#01515a; color:#ffffff">#01515a</td>
     </tr>
     <tr>
-      <td style="background-color:#008037; color:#ffffff">#008037</td>
-      <td colspan="4"></td>
+      <td style="background-color:#008037; color:#008037">#008037</td>
+      <td style="background-color:#50a0a0; color:#50a0a0">#50a0a0</td>
+      <td style="background-color:#f1c40f; color:#f1c40f">#f1c40f</td>
+      <td style="background-color:#005151; color:#005151">#005151</td>
+      <td style="background-color: #9eff62; color: #9eff62"> #9eff62</td>
     </tr>
   </tbody>
 </table>
@@ -96,19 +99,22 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 #### Marcar Consulta
   Nesta tela é onde o usuário irá marcar a consulta de um paciente.
   
-![image](https://user-images.githubusercontent.com/88722088/222823149-e8eae593-f7be-4728-8e3f-04a1e6737dc7.png)
+![image](https://user-images.githubusercontent.com/88722088/222895880-290f42b1-03eb-47b8-b916-f8255d8a3c6d.png)
 
 
 #### Cadastrar Paciente
   Insere as informações dos pacientes, as registrando no sistema.
   
-![image](https://user-images.githubusercontent.com/88722088/222823082-5e478e26-4d0c-41ca-8d16-3f45b3d982bc.png))
+![image](https://user-images.githubusercontent.com/88722088/222895892-f3dbcf71-7fdc-4981-8b42-384d0defc28b.png)
 
 
 #### Registro do Paciente Selecionado
   
   Com ela, é possível visualizar e alterar informações do paciente.
   
-![image](https://user-images.githubusercontent.com/88722088/222823019-da95ae63-82b6-4b74-82a4-6ab1b553aa8a.png)
+![image](https://user-images.githubusercontent.com/88722088/222895906-0c20495f-a415-43c2-95bf-ece154cbd616.png)
+
+![image](https://user-images.githubusercontent.com/88722088/222895918-47d9cc17-a11b-4e34-96f8-f8e5809362f6.png)
+
 
 
