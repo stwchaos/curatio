@@ -177,7 +177,7 @@ public class TelaInicial extends JFrame {
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //					}
 				} else {
-					new Dialog("Autentificação inválida").setVisible(true);
+					new DialogMensagemErro("Autentificação inválida").setVisible(true);
 					return;
 				}
 			}

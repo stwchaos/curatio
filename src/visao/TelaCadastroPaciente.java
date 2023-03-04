@@ -104,7 +104,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/iconpeople.png")));
 		panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
 
-		JLabel lblNewLabel_1 = new JLabel("Nome");
+		JLabel lblNewLabel_1 = new JLabel("Nome *");
 		lblNewLabel_1.setBackground(new Color(0, 0, 0));
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_1, "cell 1 2,alignx left,aligny bottom");
@@ -119,7 +119,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_2, "cell 1 4 3 1,alignx left,aligny bottom");
 
-		JLabel lblNewLabel_5 = new JLabel("Telefone");
+		JLabel lblNewLabel_5 = new JLabel("Telefone *");
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5, "cell 1 6,alignx left,aligny bottom");
 
@@ -129,7 +129,7 @@ public class TelaCadastroPaciente extends JFrame {
 		txtInserir_4.setColumns(10);
 		panel.add(txtInserir_4, "cell 1 7 4 1,growx,aligny top");
 
-		JLabel lblNewLabel_5_1 = new JLabel("CEP");
+		JLabel lblNewLabel_5_1 = new JLabel("CEP *");
 		lblNewLabel_5_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5_1, "cell 1 8,alignx left,aligny bottom");
 
@@ -139,7 +139,7 @@ public class TelaCadastroPaciente extends JFrame {
 		txtInserir_5.setColumns(10);
 		panel.add(txtInserir_5, "cell 1 9 4 1,grow");
 
-		JLabel lblNewLabel_7 = new JLabel("E-mail");
+		JLabel lblNewLabel_7 = new JLabel("E-mail *");
 		lblNewLabel_7.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_7, "cell 1 10,alignx left,aligny bottom");
 
@@ -154,11 +154,11 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(panel_3, "cell 0 12 8 1,grow");
 		panel_3.setLayout(new MigLayout("", "[99px,grow][grow][156px,grow]", "[][22px][][][][]"));
 
-		JLabel lblNewLabel_3 = new JLabel("Sexo");
+		JLabel lblNewLabel_3 = new JLabel("Sexo *");
 		panel_3.add(lblNewLabel_3, "cell 0 0");
 		lblNewLabel_3.setForeground(new Color(0, 0, 0));
 
-		JLabel lblNewLabel_6 = new JLabel("Nascimento");
+		JLabel lblNewLabel_6 = new JLabel("Nascimento *");
 		panel_3.add(lblNewLabel_6, "cell 2 0");
 		lblNewLabel_6.setForeground(new Color(0, 0, 0));
 

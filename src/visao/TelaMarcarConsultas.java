@@ -84,11 +84,10 @@ public class TelaMarcarConsultas extends JFrame {
 
 		JPanel panel = new JPanel();
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]",
-				"[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][14.00px,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][14.00px,grow]"));
 
-		JLabel lblNewLabel_1 = new JLabel("Paciente");
-		panel.add(lblNewLabel_1, "cell 0 1,alignx left,aligny bottom");
+		JLabel lblNewLabel_1 = new JLabel("Paciente *");
+		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
 
 		JComboBox comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
@@ -128,19 +127,19 @@ public class TelaMarcarConsultas extends JFrame {
 		textField_1.setColumns(10);
 		panel.add(textField_1, "cell 0 13 5 1,grow");
 
-		JLabel lblNewLabel_2 = new JLabel("Profissional");
+		JLabel lblNewLabel_2 = new JLabel("Profissional *");
 		panel.add(lblNewLabel_2, "cell 0 3 3 1,growx,aligny top");
 
-		JLabel lblNewLabel_3 = new JLabel("Data da consulta");
+		JLabel lblNewLabel_3 = new JLabel("Data da consulta *");
 		panel.add(lblNewLabel_3, "cell 0 5 3 1,alignx left,aligny top");
 
-		JLabel lblNewLabel_7 = new JLabel("E-mail");
+		JLabel lblNewLabel_7 = new JLabel("Atualizar e-mail para contato");
 		panel.add(lblNewLabel_7, "cell 0 12 3 1,alignx left,aligny bottom");
 
-		JLabel lblNewLabel_5_1 = new JLabel("Forma de Pagamento");
+		JLabel lblNewLabel_5_1 = new JLabel("Forma de Pagamento *");
 		panel.add(lblNewLabel_5_1, "cell 0 9 5 1,growx,aligny top");
 
-		JLabel lblNewLabel_5 = new JLabel("Objetivo");
+		JLabel lblNewLabel_5 = new JLabel("Objetivo *");
 		panel.add(lblNewLabel_5, "cell 0 7 3 1,growx,aligny top");
 
 		txtMarcarConsulta = new JTextField();
