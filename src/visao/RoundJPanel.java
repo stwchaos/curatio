@@ -1,36 +1,34 @@
 package visao;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
-class RoundedPanel extends JPanel
+
+class RoundJPanel extends JPanel
     {
         private Color backgroundColor;
         private int cornerRadius = 15;
-        public RoundedPanel(LayoutManager layout, int radius) {
+        public RoundJPanel(LayoutManager layout, int radius) {
             super(layout);
             cornerRadius = radius;
         }
-        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+        public RoundJPanel(LayoutManager layout, int radius, Color bgColor) {
             super(layout);
             cornerRadius = radius;
             backgroundColor = bgColor;
         }
-        public RoundedPanel(int radius) {
+        public RoundJPanel(int radius) {
             super();
             cornerRadius = radius;
             
         }
-        public RoundedPanel(int radius, Color bgColor) {
+        public RoundJPanel(int radius, Color bgColor) {
             super();
             cornerRadius = radius;
             backgroundColor = bgColor;

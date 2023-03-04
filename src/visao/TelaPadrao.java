@@ -93,7 +93,7 @@ public class TelaPadrao extends JFrame {
 			}
 		});
 
-		JPanel panel_4 = new RoundedPanel(150, Color.white);
+		JPanel panel_4 = new RoundJPanel(150, Color.white);
 		panel_4.setBackground(null);
 		panel.add(panel_4, "flowx,cell 1 0,alignx center,aligny center");
 		panel_4.setLayout(new MigLayout("", "[72px]", "[72px]"));
@@ -242,12 +242,12 @@ public class TelaPadrao extends JFrame {
 			e.printStackTrace();
 		}
 
-		JPanel panel_2 = new RoundedPanel(30, new Color(240, 240, 240));
+		JPanel panel_2 = new RoundJPanel(30, new Color(240, 240, 240));
 		panel_2.setBackground(null);
 		panel_2.setBorder(null);
 		panel_2.setLayout(new MigLayout("", "[90px,grow][67.00px][80px,grow]", "[21px,grow][72px]"));
 		
-		JPanel panel_6 = new RoundedPanel(30, new Color(192, 192, 192));
+		JPanel panel_6 = new RoundJPanel(30, new Color(192, 192, 192));
 		panel_6.setBackground(new Color(240, 240, 240));
 		panel_6.setBorder(null);
 		panel_2.add(panel_6, "cell 2 0 1 2,grow");
@@ -278,7 +278,7 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_2.gridy = 0;
 		panelMeio.add(panel_2, gbc_panel_2);
 
-		JPanel panel_3 = new RoundedPanel(30, new Color(240, 240, 240));
+		JPanel panel_3 = new RoundJPanel(30, new Color(240, 240, 240));
 		panel_3.setBackground(null);
 		panel_3.setBorder(null);
 		panel_3.setLayout(new MigLayout("", "[90.00,grow][67.00px,grow][80.00px,grow]", "[22px][72px,grow]"));
@@ -303,7 +303,7 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_3.gridy = 0;
 		panelMeio.add(panel_3, gbc_panel_3);
 		
-		RoundedPanel panel_6_1_1_1 = new RoundedPanel(30, Color.LIGHT_GRAY);
+		RoundJPanel panel_6_1_1_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1_1_1.setBorder(null);
 		panel_6_1_1_1.setBackground(SystemColor.menu);
 		panel_3.add(panel_6_1_1_1, "cell 2 0 1 2,grow");
@@ -313,7 +313,7 @@ public class TelaPadrao extends JFrame {
 		panel_6_1_1_1.add(lblNewLabel_4, "cell 1 1");
 		lblNewLabel_4.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconCruz.png")));
 
-		JPanel panel_5 = new RoundedPanel(30, new Color(240, 240, 240));
+		JPanel panel_5 = new RoundJPanel(30, new Color(240, 240, 240));
 		panel_5.setBackground(null);
 		panel_5.setBorder(null);
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -338,7 +338,7 @@ public class TelaPadrao extends JFrame {
 		lblNewLabel_2_2.setBackground(Color.WHITE);
 		panel_5.add(lblNewLabel_2_2, "cell 0 1 2 1,alignx left,aligny top");
 		
-		RoundedPanel panel_6_1 = new RoundedPanel(30, Color.LIGHT_GRAY);
+		RoundJPanel panel_6_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1.setBorder(null);
 		panel_6_1.setBackground(SystemColor.menu);
 		panel_5.add(panel_6_1, "cell 2 0 1 2,grow");
@@ -348,7 +348,7 @@ public class TelaPadrao extends JFrame {
 		lblNewLabel_5.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconCalendar.png")));
 		panel_6_1.add(lblNewLabel_5, "cell 1 1");
 		
-		JPanel panel_7 = new RoundedPanel(30, new Color(240, 240, 240));
+		JPanel panel_7 = new RoundJPanel(30, new Color(240, 240, 240));
 		panel_7.setBackground(null);
 		panel_7.setBorder(null);
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
@@ -374,7 +374,7 @@ public class TelaPadrao extends JFrame {
 		lblNewLabel_2_2_1.setBackground(Color.WHITE);
 		panel_7.add(lblNewLabel_2_2_1, "cell 0 1 2 1,alignx left,aligny top");
 		
-		RoundedPanel panel_6_1_1 = new RoundedPanel(30, Color.LIGHT_GRAY);
+		RoundJPanel panel_6_1_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1_1.setBorder(null);
 		panel_6_1_1.setBackground(SystemColor.menu);
 		panel_7.add(panel_6_1_1, "cell 2 0 1 2,grow");
