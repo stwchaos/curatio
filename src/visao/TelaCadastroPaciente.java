@@ -167,6 +167,13 @@ public class TelaCadastroPaciente extends JFrame {
 		comboSexo.setBackground(new Color(255, 255, 255));
 		comboSexo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_3.add(comboSexo, "cell 0 1,growx,aligny top");
+		String[] listaSexo = {"Masculino","Feminino"};
+		comboSexo.setSelectedItem("Inserir");
+		for (String string : listaSexo) {
+			comboSexo.addItem(string);
+			
+		}
+		
 
 		JDateChooser dtNascimento = new JDateChooser();
 		dtNascimento.getCalendarButton().setBackground(new Color(210, 210, 210));
@@ -202,6 +209,10 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(txtAdicionarInformaes, "cell 0 0 8 1,grow");
 
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel.add(btnCadastrar, "cell 5 13 3 1,growx,aligny bottom");
 		btnCadastrar.setForeground(new Color(229, 229, 229));
 		btnCadastrar.setBackground(new Color(0, 81, 81));
