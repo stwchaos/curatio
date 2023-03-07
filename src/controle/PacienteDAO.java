@@ -105,6 +105,6 @@ public class PacienteDAO {
 
 		// desconectar
 		con.fecharConexao();
-		return null;
+		return pacientes;
 	}
 }
