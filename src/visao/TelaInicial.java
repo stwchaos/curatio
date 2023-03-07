@@ -167,9 +167,9 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-				//ProfissionalDAO profissionalDAO = new ProfissionalDAO();
-				//Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
-				if (/*p != null*/ (cpf==123)&&(senha.equals("123"))) {
+				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+				Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
+				if (p != null) {
 
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
