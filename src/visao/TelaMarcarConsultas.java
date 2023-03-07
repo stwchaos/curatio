@@ -92,6 +92,7 @@ public class TelaMarcarConsultas extends JFrame {
 		JComboBox comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
+		
 
 		JDateChooser dtConsulta = new JDateChooser();
 		dtConsulta.getCalendarButton().setBackground(new Color(210, 210, 210));
@@ -117,9 +118,15 @@ public class TelaMarcarConsultas extends JFrame {
 		textField_6.setColumns(10);
 		panel.add(textField_6, "cell 0 8 7 1,grow");
 
-		JComboBox comboBox = new RoundComboBox();
-		comboBox.setBackground(new Color(218, 218, 218));
-		panel.add(comboBox, "cell 0 10 5 1,growx");
+		JComboBox comboPagamento = new RoundComboBox();
+		comboPagamento.setBackground(new Color(218, 218, 218));
+		panel.add(comboPagamento, "cell 0 10 5 1,growx");
+		String[] listaPagamento = {"Débito","Crédito","Pix","Cheque","Em Espécie"};
+		comboPagamento.setSelectedItem("Inserir");
+		for (String string : listaPagamento) {
+			comboPagamento.addItem(string);
+			
+		}
 
 		textField_1 = new JTextField();
 		textField_1.setText("Inserir");
