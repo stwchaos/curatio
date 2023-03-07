@@ -79,9 +79,7 @@ public class TelaFichaPaciente extends JFrame {
 
 		JPanel panel = new JPanel();
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("",
-				"[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]",
-				"[69.00,grow][192.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]", "[69.00,grow][181.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new JTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -106,16 +104,35 @@ public class TelaFichaPaciente extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 3,alignx left,aligny bottom");
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Nome");
+		panel.add(lblNewLabel_1_1, "cell 7 3");
 
-		textFieldNome = new JTextField();
+		textFieldNome = new RoundJTextField();
 		textFieldNome.setEditable(false);
 		textFieldNome.setText("Inalterável");
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNome, "cell 0 4 6 1,growx,aligny center");
 		textFieldNome.setColumns(10);
+		
+		RoundJTextField textFieldCPF = new RoundJTextField();
+		textFieldCPF.setText("Inalterável");
+		textFieldCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		textFieldCPF.setEditable(false);
+		textFieldCPF.setColumns(10);
+		panel.add(textFieldCPF, "cell 7 4,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 5 4 1,alignx left,aligny bottom");
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Pronome");
+		lblNewLabel_2_1.setForeground(Color.BLACK);
+		panel.add(lblNewLabel_2_1, "cell 7 5");
+		
+		RoundComboBox comboPronome = new RoundComboBox();
+		comboPronome.setForeground(Color.BLACK);
+		comboPronome.setBackground(new Color(218, 218, 218));
+		panel.add(comboPronome, "cell 7 6,growx");
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo");
 		panel.add(lblNewLabel_3, "cell 0 7,alignx left,aligny bottom");
@@ -126,26 +143,26 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 14,growx,aligny bottom");
 
-		textFieldEmail = new JTextField();
+		textFieldEmail = new RoundJTextField();
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldEmail.setText("Alterável");
 		panel.add(textFieldEmail, "cell 0 15 6 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
-		textFieldNomeSocial = new JTextField();
+		textFieldNomeSocial = new RoundJTextField();
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNomeSocial.setText("Alterável");
 		panel.add(textFieldNomeSocial, "cell 0 6 6 1,growx,aligny center");
 		textFieldNomeSocial.setColumns(10);
 
-		textFieldSexo = new JTextField();
+		textFieldSexo = new RoundJTextField();
 		textFieldSexo.setEditable(false);
 		textFieldSexo.setText("Inalterável");
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldSexo, "cell 0 8 4 1,growx,aligny center");
 		textFieldSexo.setColumns(10);
 
-		textFieldNascimento = new JTextField();
+		textFieldNascimento = new RoundJTextField();
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNascimento.setText("Inalterável");
@@ -162,7 +179,7 @@ public class TelaFichaPaciente extends JFrame {
 		btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(btnConfirmar, "cell 7 12 1 4,alignx center,aligny center");
 
-		textFieldCEP = new JTextField();
+		textFieldCEP = new RoundJTextField();
 		textFieldCEP.setText("Alterável");
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
@@ -171,7 +188,7 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
 		panel.add(lblNewLabel_5_1, "cell 0 11 4 1,growx,aligny bottom");
 
-		textFieldTelefone = new JTextField();
+		textFieldTelefone = new RoundJTextField();
 		panel.add(textFieldTelefone, "cell 0 10 6 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setText("Alterável");

@@ -109,7 +109,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_1, "cell 1 3,alignx left,aligny bottom");
 
-		txtInserir = new JTextField();
+		txtInserir = new RoundJTextField();
 		txtInserir.setText("Inserir");
 		txtInserir.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir.setColumns(10);
@@ -118,12 +118,21 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_2, "cell 1 5 3 1,alignx left,aligny bottom");
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Pronome");
+		lblNewLabel_2_1.setForeground(Color.BLACK);
+		panel.add(lblNewLabel_2_1, "cell 7 5");
+		
+		RoundComboBox comboPronome = new RoundComboBox();
+		comboPronome.setForeground(Color.BLACK);
+		comboPronome.setBackground(new Color(218, 218, 218));
+		panel.add(comboPronome, "cell 7 6,growx");
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone *");
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5, "cell 1 7,alignx left,aligny bottom");
 
-		txtInserir_4 = new JTextField();
+		txtInserir_4 = new RoundJTextField();
 		txtInserir_4.setText("Inserir");
 		txtInserir_4.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_4.setColumns(10);
@@ -133,7 +142,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_5_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5_1, "cell 1 9,alignx left,aligny bottom");
 
-		txtInserir_5 = new JTextField();
+		txtInserir_5 = new RoundJTextField();
 		txtInserir_5.setText("Inserir");
 		txtInserir_5.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_5.setColumns(10);
@@ -143,7 +152,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_7.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_7, "cell 1 11,alignx left,aligny bottom");
 
-		txtInserir_6 = new JTextField();
+		txtInserir_6 = new RoundJTextField();
 		txtInserir_6.setText("Inserir");
 		txtInserir_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_6.setColumns(10);
@@ -192,7 +201,7 @@ public class TelaCadastroPaciente extends JFrame {
 		panel_3.add(dtNascimento, "cell 2 1,growx,aligny bottom");
 		dtNascimento.getDate();
 
-		txtInserir_1 = new JTextField();
+		txtInserir_1 = new RoundJTextField();
 		txtInserir_1.setText("Inserir");
 		txtInserir_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_1.setColumns(10);
