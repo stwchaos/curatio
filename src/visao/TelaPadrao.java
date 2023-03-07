@@ -14,6 +14,10 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.border.MatteBorder;
+
+import controle.PacienteDAO;
+import controle.ProfissionalDAO;
+
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -30,13 +34,13 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 
 public class TelaPadrao extends JFrame {
-
+	
 	private JPanel contentPane;
 	private JTextField txtNmeroPadrao;
-	private JTextField textField_1;
+	private JTextField txtMedDisp;
 	private JTextField txtContaLogada;
-	private JTextField textField;
-	private JTextField textField_2;
+	private JTextField txtConsultasHj;
+	private JTextField txtConsultasPend;
 
 	/**
 	 * Launch the application.
@@ -46,6 +50,8 @@ public class TelaPadrao extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPadrao() {
+		PacienteDAO pacientedao = new PacienteDAO();
+		ProfissionalDAO profissionaldao = new ProfissionalDAO();
 		setForeground(new Color(0, 51, 51));
 		setTitle("Hospital Esmeralda");
 		setBackground(new Color(0, 51, 51));
@@ -264,7 +270,7 @@ public class TelaPadrao extends JFrame {
 
 		txtNmeroPadrao = new JTextField();
 		txtNmeroPadrao.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		txtNmeroPadrao.setText("0");
+		txtNmeroPadrao.setText(String.valueOf(pacientedao.listarPacientes().size()));
 		txtNmeroPadrao.setForeground(new Color(0, 81, 81));
 		txtNmeroPadrao.setBackground(new Color(240, 240, 240));
 		txtNmeroPadrao.setEditable(false);
@@ -283,15 +289,15 @@ public class TelaPadrao extends JFrame {
 		panel_3.setBorder(null);
 		panel_3.setLayout(new MigLayout("", "[90.00,grow][67.00px,grow][80.00px,grow]", "[22px][72px,grow]"));
 
-		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(240, 240, 240));
-		textField_1.setForeground(new Color(0, 81, 81));
-		textField_1.setText("0");
-		textField_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBorder(null);
-		panel_3.add(textField_1, "cell 0 0,alignx left,growy");
+		txtMedDisp = new JTextField();
+		txtMedDisp.setBackground(new Color(240, 240, 240));
+		txtMedDisp.setForeground(new Color(0, 81, 81));
+		txtMedDisp.setText(String.valueOf(profissionaldao.listarProfissionais().size()));
+		txtMedDisp.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		txtMedDisp.setEditable(false);
+		txtMedDisp.setColumns(10);
+		txtMedDisp.setBorder(null);
+		panel_3.add(txtMedDisp, "cell 0 0,alignx left,growy");
 
 		JLabel lblNewLabel_2_1 = new JLabel("Médicos disponíveis");
 		lblNewLabel_2_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
@@ -323,15 +329,15 @@ public class TelaPadrao extends JFrame {
 		panelMeio.add(panel_5, gbc_panel_5);
 		panel_5.setLayout(new MigLayout("", "[90.00,grow][67.00][80.00,grow]", "[21.00][72.00,grow]"));
 
-		textField = new JTextField();
-		textField.setText("0");
-		textField.setForeground(new Color(0, 81, 81));
-		textField.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBackground(SystemColor.menu);
-		panel_5.add(textField, "cell 0 0,grow");
+		txtConsultasHj = new JTextField();
+		txtConsultasHj.setText("0");
+		txtConsultasHj.setForeground(new Color(0, 81, 81));
+		txtConsultasHj.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		txtConsultasHj.setEditable(false);
+		txtConsultasHj.setColumns(10);
+		txtConsultasHj.setBorder(null);
+		txtConsultasHj.setBackground(SystemColor.menu);
+		panel_5.add(txtConsultasHj, "cell 0 0,grow");
 
 		JLabel lblNewLabel_2_2 = new JLabel("Consultas hoje");
 		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
@@ -359,15 +365,15 @@ public class TelaPadrao extends JFrame {
 		panelMeio.add(panel_7, gbc_panel_7);
 		panel_7.setLayout(new MigLayout("", "[90.00,grow][67.00,grow][80.00,grow]", "[22.00][72.00,grow]"));
 		
-		textField_2 = new JTextField();
-		textField_2.setText("0");
-		textField_2.setForeground(new Color(0, 81, 81));
-		textField_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBorder(null);
-		textField_2.setBackground(SystemColor.menu);
-		panel_7.add(textField_2, "cell 0 0,growx");
+		txtConsultasPend = new JTextField();
+		txtConsultasPend.setText("0");
+		txtConsultasPend.setForeground(new Color(0, 81, 81));
+		txtConsultasPend.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		txtConsultasPend.setEditable(false);
+		txtConsultasPend.setColumns(10);
+		txtConsultasPend.setBorder(null);
+		txtConsultasPend.setBackground(SystemColor.menu);
+		panel_7.add(txtConsultasPend, "cell 0 0,growx");
 		
 		JLabel lblNewLabel_2_2_1 = new JLabel("Consultas pendentes");
 		lblNewLabel_2_2_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
