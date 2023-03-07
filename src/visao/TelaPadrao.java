@@ -299,7 +299,7 @@ public class TelaPadrao extends JFrame {
 		txtMedDisp.setBorder(null);
 		panel_3.add(txtMedDisp, "cell 0 0,alignx left,growy");
 
-		JLabel lblNewLabel_2_1 = new JLabel("Médicos disponíveis");
+		JLabel lblNewLabel_2_1 = new JLabel("Medicos disponiveis");
 		lblNewLabel_2_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		panel_3.add(lblNewLabel_2_1, "cell 0 1 2 1,growx,aligny top");
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
