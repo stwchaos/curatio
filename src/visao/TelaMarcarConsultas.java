@@ -149,7 +149,7 @@ public class TelaMarcarConsultas extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("Objetivo *");
 		panel.add(lblNewLabel_5, "cell 0 7 3 1,growx,aligny top");
 
-		txtMarcarConsulta = new JTextField();
+		txtMarcarConsulta = new RoundJTextField();
 		txtMarcarConsulta.setText("Marcar Consulta");
 		txtMarcarConsulta.setHorizontalAlignment(SwingConstants.CENTER);
 		txtMarcarConsulta.setForeground(Color.WHITE);

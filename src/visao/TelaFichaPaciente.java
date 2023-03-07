@@ -77,11 +77,11 @@ public class TelaFichaPaciente extends JFrame {
 			}
 		});
 
-		JPanel panel = new JPanel();
+		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
 		panel.setLayout(new MigLayout("", "[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]", "[69.00,grow][181.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
 
-		txtRegistrosDosPacientes = new JTextField();
+		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtRegistrosDosPacientes.setForeground(new Color(255, 255, 255));
 		txtRegistrosDosPacientes.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
@@ -105,8 +105,8 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 3,alignx left,aligny bottom");
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Nome");
-		panel.add(lblNewLabel_1_1, "cell 7 3");
+		JLabel lblCPF = new JLabel("CPF");
+		panel.add(lblCPF, "cell 7 3");
 
 		textFieldNome = new RoundJTextField();
 		textFieldNome.setEditable(false);
@@ -116,6 +116,7 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldNome.setColumns(10);
 		
 		RoundJTextField textFieldCPF = new RoundJTextField();
+		textFieldCPF.setBackground(new Color(219, 219, 219));
 		textFieldCPF.setText("Inalterável");
 		textFieldCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCPF.setEditable(false);
@@ -156,6 +157,7 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldNomeSocial.setColumns(10);
 
 		textFieldSexo = new RoundJTextField();
+		textFieldSexo.setBackground(new Color(219, 219, 219));
 		textFieldSexo.setEditable(false);
 		textFieldSexo.setText("Inalterável");
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -163,6 +165,7 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldSexo.setColumns(10);
 
 		textFieldNascimento = new RoundJTextField();
+		textFieldNascimento.setBackground(new Color(219, 219, 219));
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldNascimento.setText("Inalterável");
@@ -197,7 +200,7 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 9 4 1,growx,aligny bottom");
 
-		JButton btnDeletar = new JButton("Deletar paciente");
+		JButton btnDeletar = new JButton("Deletar Paciente");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new DialogConfirmacao("O paciente será deletado.").setVisible(true);

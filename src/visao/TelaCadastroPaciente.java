@@ -88,7 +88,7 @@ public class TelaCadastroPaciente extends JFrame {
 			}
 		});
 
-		JPanel panel = new JPanel();
+		JPanel panel = new RoundJPanel(150);
 		panel.setBackground(new Color(240, 240, 240));
 		c.add(panel, "cell 1 0,alignx center,growy");
 		panel.setLayout(new MigLayout("", "[grow][58px,grow][11px,grow][32px,grow][5px][56.00px][18.00px,grow][138.00px,grow]", "[36px,grow][][192.00px][][23.00px][bottom][19.00px][center][][][][18.00][22.00][21.00px,grow][grow]"));
@@ -207,7 +207,7 @@ public class TelaCadastroPaciente extends JFrame {
 		txtInserir_1.setColumns(10);
 		panel.add(txtInserir_1, "cell 1 6 5 1,growx,aligny bottom");
 
-		txtAdicionarInformaes = new JTextField();
+		txtAdicionarInformaes = new RoundJTextField();
 		txtAdicionarInformaes.setText("Adicionar Informações");
 		txtAdicionarInformaes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtAdicionarInformaes.setForeground(Color.WHITE);
