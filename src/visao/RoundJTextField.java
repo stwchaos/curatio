@@ -34,7 +34,6 @@ public class RoundJTextField extends JTextField {
 	}
 
 	protected void paintBorder(Graphics g) {
-		g.setColor(this.color);
 		g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radii, radii);
 
 	}

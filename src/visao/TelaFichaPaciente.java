@@ -93,10 +93,12 @@ public class TelaFichaPaciente extends JFrame {
 		panel.add(txtRegistrosDosPacientes, "cell 0 0 8 1,grow");
 		txtRegistrosDosPacientes.setColumns(10);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
+		JPanel panel_1 = new RoundJPanel(150, Color.white);
+		panel_1.setBackground(null);
+		panel_1.setBorder(null);
+		//panel_1.setBackground(Color.WHITE);
 		panel.add(panel_1, "cell 0 1 6 1,grow");
-		panel_1.setLayout(new MigLayout("", "[76.00px,grow]", "[96px,grow]"));
+		panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconpeople.png")));
