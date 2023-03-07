@@ -1,41 +1,42 @@
 package controle;
 
-import modelo.Paciente;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
+import modelo.Endereco;
+import modelo.Paciente;
+
 public class PacienteDAO {
+
 	private Conexao con;
 
-	public boolean inserir(Paciente p) {
-		// instanciar
+	public boolean inserir(Paciente paciente) {
 		con = Conexao.getInstancia();
-
-		// conectar
 		Connection c = con.conectar();
-		try {
-			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email) VALUES (?, ?, ?, ?, ?, ?, ?);";
-			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setLong(1, 123);
-			stm.setString(2, "PacienteTeste");
-			stm.setDate(3, Date.valueOf(LocalDate.of(2000, 01, 01)));
-			stm.setString(5, "Cadeira");
-			stm.setString(7, "teste@gmail.com");
+		try {
+			String query = "INSERT INTO paciente (cpf, nome, nascimento, telefone, sexo, nome_social, email, endereco_cep)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement stm = c.prepareStatement(query);
+			stm.setLong(1, paciente.getCpf());
+			stm.setString(2, paciente.getNome());
+			stm.setDate(3, Date.valueOf(paciente.getNascimento()));
+			stm.setInt(4, paciente.getTelefone());
+			stm.setString(5, paciente.getSexo());
+			stm.setString(6, paciente.getNomeSocial());
+			stm.setString(7, paciente.getEmail());
+			stm.setLong(8, paciente.getEndereco().getCep());
 
 			stm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		// desconectar
 		con.fecharConexao();
 		return false;
 	}
@@ -52,7 +53,7 @@ public class PacienteDAO {
 			stm.setLong(4, p.getTelefone());
 			stm.setString(5, p.getSexo());
 			stm.setString(6, p.getNomeSocial());
-			
+
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {

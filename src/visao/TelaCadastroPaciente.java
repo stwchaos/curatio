@@ -8,6 +8,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import controle.EnderecoDAO;
+import controle.PacienteDAO;
+import modelo.Endereco;
+import modelo.Paciente;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -37,12 +42,13 @@ import javax.swing.JComboBox;
 public class TelaCadastroPaciente extends JFrame {
 
 	private JPanel c;
-	private JTextField txtInserir;
-	private JTextField txtInserir_6;
-	private JTextField txtInserir_1;
-	private JTextField txtInserir_5;
-	private JTextField txtInserir_4;
+	private JTextField txtNome;
+	private JTextField txtEmail;
+	private JTextField txtNomeSocial;
+	private JTextField txtCEP;
+	private JTextField txtTelefone;
 	private JTextField txtAdicionarInformaes;
+	private JTextField txtCPF;
 
 	public TelaCadastroPaciente() {
 		setTitle("Hospital Esmeralda");
@@ -109,50 +115,50 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_1, "cell 1 2,alignx left,aligny bottom");
 
-		txtInserir = new JTextField();
-		txtInserir.setText("Inserir");
-		txtInserir.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtInserir.setColumns(10);
-		panel.add(txtInserir, "cell 1 3 5 1,growx,aligny bottom");
+		txtNome = new JTextField();
+		txtNome.setText("Inserir");
+		txtNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtNome.setColumns(10);
+		panel.add(txtNome, "cell 1 3 5 1,growx,aligny bottom");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_2, "cell 1 4 3 1,alignx left,aligny bottom");
 
-		JLabel lblNewLabel_5 = new JLabel("Telefone *");
+		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5, "cell 1 6,alignx left,aligny bottom");
 
-		txtInserir_4 = new JTextField();
-		txtInserir_4.setText("Inserir");
-		txtInserir_4.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtInserir_4.setColumns(10);
-		panel.add(txtInserir_4, "cell 1 7 4 1,growx,aligny top");
+		txtTelefone = new JTextField();
+		txtTelefone.setText("Inserir");
+		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtTelefone.setColumns(10);
+		panel.add(txtTelefone, "cell 1 7 4 1,growx,aligny top");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP *");
 		lblNewLabel_5_1.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_5_1, "cell 1 8,alignx left,aligny bottom");
 
-		txtInserir_5 = new JTextField();
-		txtInserir_5.setText("Inserir");
-		txtInserir_5.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtInserir_5.setColumns(10);
-		panel.add(txtInserir_5, "cell 1 9 4 1,grow");
+		txtCEP = new JTextField();
+		txtCEP.setText("Inserir");
+		txtCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCEP.setColumns(10);
+		panel.add(txtCEP, "cell 1 9 4 1,grow");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail *");
 		lblNewLabel_7.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_7, "cell 1 10,alignx left,aligny bottom");
 
-		txtInserir_6 = new JTextField();
-		txtInserir_6.setText("Inserir");
-		txtInserir_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtInserir_6.setColumns(10);
-		panel.add(txtInserir_6, "cell 1 11 5 1,growx,aligny top");
+		txtEmail = new JTextField();
+		txtEmail.setText("Inserir");
+		txtEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtEmail.setColumns(10);
+		panel.add(txtEmail, "cell 1 11 5 1,growx,aligny top");
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(240, 240, 240));
 		panel.add(panel_3, "cell 0 12 8 1,grow");
-		panel_3.setLayout(new MigLayout("", "[99px,grow][grow][156px,grow]", "[][22px][][][][]"));
+		panel_3.setLayout(new MigLayout("", "[99px,grow][grow][156px,grow]", "[][22px][][][][][]"));
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo *");
 		panel_3.add(lblNewLabel_3, "cell 0 0");
@@ -167,13 +173,12 @@ public class TelaCadastroPaciente extends JFrame {
 		comboSexo.setBackground(new Color(255, 255, 255));
 		comboSexo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_3.add(comboSexo, "cell 0 1,growx,aligny top");
-		String[] listaSexo = {"Masculino","Feminino"};
+		String[] listaSexo = { "Masculino", "Feminino" };
 		comboSexo.setSelectedItem("Inserir");
 		for (String string : listaSexo) {
 			comboSexo.addItem(string);
-			
 		}
-		
+		comboSexo.setSelectedItem(null);
 
 		JDateChooser dtNascimento = new JDateChooser();
 		dtNascimento.getCalendarButton().setBackground(new Color(210, 210, 210));
@@ -190,13 +195,17 @@ public class TelaCadastroPaciente extends JFrame {
 			}
 		});
 		panel_3.add(dtNascimento, "cell 2 1,growx,aligny bottom");
+
+		txtCPF = new JTextField();
+		panel_3.add(txtCPF, "cell 0 3,growx");
+		txtCPF.setColumns(10);
 		dtNascimento.getDate();
 
-		txtInserir_1 = new JTextField();
-		txtInserir_1.setText("Inserir");
-		txtInserir_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtInserir_1.setColumns(10);
-		panel.add(txtInserir_1, "cell 1 5 5 1,growx,aligny bottom");
+		txtNomeSocial = new JTextField();
+		txtNomeSocial.setText("Inserir");
+		txtNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtNomeSocial.setColumns(10);
+		panel.add(txtNomeSocial, "cell 1 5 5 1,growx,aligny bottom");
 
 		txtAdicionarInformaes = new JTextField();
 		txtAdicionarInformaes.setText("Adicionar Informações");
@@ -211,6 +220,62 @@ public class TelaCadastroPaciente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Long cpf = null;
+				if (!txtCPF.getText().isBlank()) {
+					cpf = Long.valueOf(txtCPF.getText());
+				}
+				String nome = null;
+				if (!txtNome.getText().isBlank()) {
+					nome = txtCPF.getText();
+				}
+
+				Date nasc = dtNascimento.getDate();
+
+				Integer telefone = null;
+				if (!txtTelefone.getText().isBlank()) {
+					telefone = Integer.valueOf(txtTelefone.getText());
+				}
+				String sexo = null;
+				if (comboSexo.getSelectedItem() == null) {
+					System.exit(ERROR);
+					new DialogMensagemErro("Sexo n�o definido").setVisible(true);
+				}
+				sexo = String.valueOf(comboSexo.getSelectedItem());
+				String nomeSocial = null;
+				if (!txtNomeSocial.getText().isBlank()) {
+					nomeSocial = txtNomeSocial.getText();
+				}
+				String email = null;
+				if (txtEmail.getText().isBlank()) {
+					email = txtEmail.getText();
+				}
+				Endereco endereco = null;
+				if(txtCEP.getText().isBlank()) {
+					endereco = Endereco.valueOf(txtCEP.getText());
+				}
+				PacienteDAO p = new PacienteDAO();
+
+				Paciente paciente = new Paciente();
+				paciente.setCpf(cpf);
+				paciente.setEmail(email);
+				EnderecoDAO en = new EnderecoDAO();
+				paciente.setEndereco(endereco);
+				for (Endereco end : en.listarEndereco()) {
+					if (end.getCep() == paciente.getEndereco().getCep()) {
+						break;
+					}
+					en.inserir(paciente.getEndereco().getCep());
+				}
+				paciente.setEndereco(cep);
+				paciente.setCpf(cpf);
+				paciente.setNascimento(nasc.toLocalDa);
+				boolean validacao = p.inserir(paciente);
+				if (validacao == true) {
+					// sucesso
+				} else {
+					// erro
+				}
+
 			}
 		});
 		panel.add(btnCadastrar, "cell 5 13 3 1,growx,aligny bottom");
