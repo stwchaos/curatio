@@ -60,13 +60,13 @@ public class TelaPadrao extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(64, 128, 128));
+		panel.setBackground(new Color(0, 81, 81));
 		contentPane.add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[][223.00,grow]",
 				"[32.00,grow][][149.00][65px][61.00][][60.00][][58.00][][57.00][]"));
 
 		JButton btnProfissionais = new JButton("Profissionais");
-		btnProfissionais.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconProfissionais.png")));
+		btnProfissionais.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com um carinha atras dele.png")));
 		btnProfissionais.setHorizontalAlignment(SwingConstants.LEFT);
 		btnProfissionais.setBackground(null);
 		btnProfissionais.setOpaque(false);
@@ -114,7 +114,7 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnProfissionais, "cell 1 3,growx,aligny center");
 
 		JButton btnMarcarConsulta = new JButton("Marcar consulta");
-		btnMarcarConsulta.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconMarcarConsulta.png")));
+		btnMarcarConsulta.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Escrevendo coisa.png")));
 		btnMarcarConsulta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMarcarConsulta.setBorder(null);
 		btnMarcarConsulta.setBackground(null);
@@ -135,7 +135,7 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnMarcarConsulta, "cell 1 4,growx,aligny center");
 
 		JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
-		btnCadastrarPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconAddPaciente.png")));
+		btnCadastrarPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com o mais do lado.png")));
 		btnCadastrarPaciente.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCadastrarPaciente.setBackground(null);
 		btnCadastrarPaciente.setOpaque(false);
@@ -157,7 +157,7 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnCadastrarPaciente, "cell 1 6,growx,aligny center");
 
 		JButton btnListaPaciente = new JButton("Pacientes");
-		btnListaPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconPacientes.png")));
+		btnListaPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Caderno Carinha.png")));
 		btnListaPaciente.setHorizontalAlignment(SwingConstants.LEFT);
 		btnListaPaciente.setBackground(null);
 		btnListaPaciente.setOpaque(false);
@@ -180,7 +180,7 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnListaPaciente, "cell 1 8,growx,aligny center");
 
 		JButton btnConsultasPendentes = new JButton("Consultas pendentes");
-		btnConsultasPendentes.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconPendentes.png")));
+		btnConsultasPendentes.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Gavetinha.png")));
 		btnConsultasPendentes.setHorizontalAlignment(SwingConstants.LEFT);
 		btnConsultasPendentes.setBackground(null);
 		btnConsultasPendentes.setOpaque(false);
@@ -211,7 +211,7 @@ public class TelaPadrao extends JFrame {
 		txtContaLogada.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 81, 81));
+		panel_1.setBackground(new Color(64, 128, 128));
 		contentPane.add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 

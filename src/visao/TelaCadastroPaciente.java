@@ -91,13 +91,13 @@ public class TelaCadastroPaciente extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 240, 240));
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("",
-				"[grow][58px,grow][11px,grow][32px,grow][5px][56.00px][18.00px,grow][138.00px,grow]",
-				"[36px,grow][192.00px][][23.00px][bottom][19.00px][center][][][][18.00][22.00][21.00px,grow][grow]"));
+		panel.setLayout(new MigLayout("", "[grow][58px,grow][11px,grow][32px,grow][5px][56.00px][18.00px,grow][138.00px,grow]", "[36px,grow][][192.00px][][23.00px][bottom][19.00px][center][][][][18.00][22.00][21.00px,grow][grow]"));
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel.add(panel_1, "cell 1 1 5 1,grow");
+		JPanel panel_1 = new RoundJPanel(150, Color.white);
+		panel_1.setBackground(null);
+		panel_1.setBorder(null);
+		//panel_1.setBackground(Color.WHITE);
+		panel.add(panel_1, "cell 1 2 5 1,grow");
 		panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
 
 		JLabel lblNewLabel = new JLabel("");
@@ -107,51 +107,51 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Nome *");
 		lblNewLabel_1.setBackground(new Color(0, 0, 0));
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_1, "cell 1 2,alignx left,aligny bottom");
+		panel.add(lblNewLabel_1, "cell 1 3,alignx left,aligny bottom");
 
 		txtInserir = new JTextField();
 		txtInserir.setText("Inserir");
 		txtInserir.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir.setColumns(10);
-		panel.add(txtInserir, "cell 1 3 5 1,growx,aligny bottom");
+		panel.add(txtInserir, "cell 1 4 5 1,growx,aligny bottom");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_2, "cell 1 4 3 1,alignx left,aligny bottom");
+		panel.add(lblNewLabel_2, "cell 1 5 3 1,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone *");
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_5, "cell 1 6,alignx left,aligny bottom");
+		panel.add(lblNewLabel_5, "cell 1 7,alignx left,aligny bottom");
 
 		txtInserir_4 = new JTextField();
 		txtInserir_4.setText("Inserir");
 		txtInserir_4.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_4.setColumns(10);
-		panel.add(txtInserir_4, "cell 1 7 4 1,growx,aligny top");
+		panel.add(txtInserir_4, "cell 1 8 4 1,growx,aligny top");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP *");
 		lblNewLabel_5_1.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_5_1, "cell 1 8,alignx left,aligny bottom");
+		panel.add(lblNewLabel_5_1, "cell 1 9,alignx left,aligny bottom");
 
 		txtInserir_5 = new JTextField();
 		txtInserir_5.setText("Inserir");
 		txtInserir_5.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_5.setColumns(10);
-		panel.add(txtInserir_5, "cell 1 9 4 1,grow");
+		panel.add(txtInserir_5, "cell 1 10 4 1,grow");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail *");
 		lblNewLabel_7.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_7, "cell 1 10,alignx left,aligny bottom");
+		panel.add(lblNewLabel_7, "cell 1 11,alignx left,aligny bottom");
 
 		txtInserir_6 = new JTextField();
 		txtInserir_6.setText("Inserir");
 		txtInserir_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_6.setColumns(10);
-		panel.add(txtInserir_6, "cell 1 11 5 1,growx,aligny top");
+		panel.add(txtInserir_6, "cell 1 12 5 1,growx,aligny top");
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(240, 240, 240));
-		panel.add(panel_3, "cell 0 12 8 1,grow");
+		panel.add(panel_3, "cell 0 13 8 1,grow");
 		panel_3.setLayout(new MigLayout("", "[99px,grow][grow][156px,grow]", "[][22px][][][][]"));
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo *");
@@ -163,8 +163,8 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_6.setForeground(new Color(0, 0, 0));
 
 		JComboBox comboSexo = new RoundComboBox();
-		comboSexo.setForeground(new Color(0, 81, 81));
-		comboSexo.setBackground(new Color(255, 255, 255));
+		comboSexo.setForeground(new Color(0, 0, 0));
+		comboSexo.setBackground(new Color(218, 218, 218));
 		comboSexo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_3.add(comboSexo, "cell 0 1,growx,aligny top");
 		String[] listaSexo = {"Masculino","Feminino"};
@@ -196,7 +196,7 @@ public class TelaCadastroPaciente extends JFrame {
 		txtInserir_1.setText("Inserir");
 		txtInserir_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtInserir_1.setColumns(10);
-		panel.add(txtInserir_1, "cell 1 5 5 1,growx,aligny bottom");
+		panel.add(txtInserir_1, "cell 1 6 5 1,growx,aligny bottom");
 
 		txtAdicionarInformaes = new JTextField();
 		txtAdicionarInformaes.setText("Adicionar Informações");
@@ -213,7 +213,7 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel.add(btnCadastrar, "cell 5 13 3 1,growx,aligny bottom");
+		panel.add(btnCadastrar, "cell 5 14 3 1,growx,aligny bottom");
 		btnCadastrar.setForeground(new Color(229, 229, 229));
 		btnCadastrar.setBackground(new Color(0, 81, 81));
 		btnCadastrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
