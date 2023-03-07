@@ -169,7 +169,7 @@ public class TelaInicial extends JFrame {
 				}
 				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
 				Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
-				if (p != null) {
+				if (p != null ) {
 
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
@@ -179,7 +179,7 @@ public class TelaInicial extends JFrame {
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //					}
 				} else {
-					new DialogMensagemErro("Autentificação inválida").setVisible(true);
+					new DialogMensagemErro("Autentificao invalida").setVisible(true);
 					return;
 				}
 			}
