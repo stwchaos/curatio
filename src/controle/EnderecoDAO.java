@@ -13,7 +13,7 @@ import modelo.Endereco;
 public class EnderecoDAO {
 	private Conexao con;
 
-	public boolean inserir(Long cep) {
+	public boolean inserir(Endereco endereco) {
 		// instanciar
 		con = Conexao.getInstancia();
 
@@ -23,7 +23,7 @@ public class EnderecoDAO {
 			String query = "INSERT INTO endereco (cep)" + "VALUES (?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setLong(1, cep);
+			stm.setLong(1, endereco.getCep());
 
 			stm.executeUpdate();
 		} catch (SQLException e) {

@@ -33,6 +33,7 @@ public class PacienteDAO {
 			stm.setLong(8, paciente.getEndereco().getCep());
 
 			stm.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

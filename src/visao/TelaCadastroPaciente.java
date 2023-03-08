@@ -1,9 +1,30 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
@@ -12,32 +33,7 @@ import controle.EnderecoDAO;
 import controle.PacienteDAO;
 import modelo.Endereco;
 import modelo.Paciente;
-
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JComboBox;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -238,7 +234,7 @@ public class TelaCadastroPaciente extends JFrame {
 				String sexo = null;
 				if (comboSexo.getSelectedItem() == null) {
 					System.exit(ERROR);
-					new DialogMensagemErro("Sexo não definido").setVisible(true);
+					new DialogMensagemErro("Sexo nao definido").setVisible(true);
 				}
 				sexo = String.valueOf(comboSexo.getSelectedItem());
 				String nomeSocial = null;
@@ -249,32 +245,36 @@ public class TelaCadastroPaciente extends JFrame {
 				if (txtEmail.getText().isBlank()) {
 					email = txtEmail.getText();
 				}
-				Endereco endereco = null;
+				Long cep = null;
 				if(txtCEP.getText().isBlank()) {
-					endereco = Endereco.valueOf(txtCEP.getText());
+					cep = Long.valueOf(txtCEP.getText());
 				}
 				PacienteDAO p = new PacienteDAO();
 
 				Paciente paciente = new Paciente();
+				EnderecoDAO en = new EnderecoDAO();
+				Endereco endereco = new Endereco();
 				paciente.setCpf(cpf);
 				paciente.setEmail(email);
-				EnderecoDAO en = new EnderecoDAO();
+				endereco.setCep(cep);
 				paciente.setEndereco(endereco);
 				for (Endereco end : en.listarEndereco()) {
 					if (end.getCep() == paciente.getEndereco().getCep()) {
 						break;
 					}
-					en.inserir(paciente.getEndereco().getCep());
+					en.inserir(paciente.getEndereco());
 				}
-				paciente.setEndereco(cep);
-				paciente.setCpf(cpf);
-				paciente.setNascimento(nasc.toLocalDa);
+				paciente.setTelefone(telefone);
+				paciente.setNascimento(convertToLocalDateViaInstant(nasc));
 				boolean validacao = p.inserir(paciente);
 				if (validacao == true) {
-					// sucesso
+					// foi
+					JOptionPane.showMessageDialog(null, "HEHEAW");
 				} else {
 					// erro
+					JOptionPane.showMessageDialog(null, "UHUHUHU");
 				}
+				
 
 			}
 		});
@@ -289,5 +289,10 @@ public class TelaCadastroPaciente extends JFrame {
 	private Color Color(int i, int j, int k) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
 	}
 }
