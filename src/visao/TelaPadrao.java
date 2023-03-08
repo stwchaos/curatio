@@ -202,10 +202,11 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnConsultasPendentes, "cell 1 10,growx,aligny center");
 
 		txtContaLogada = new JTextField();
+		txtContaLogada.setEditable(false);
 		txtContaLogada.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 13));
 		txtContaLogada.setText("Conta logada(nome)");
 		txtContaLogada.setForeground(new Color(255, 255, 255));
-		txtContaLogada.setBackground(new Color(64, 128, 128));
+		txtContaLogada.setBackground(new Color(0, 81, 81));
 		txtContaLogada.setBorder(null);
 		panel.add(txtContaLogada, "cell 1 0,growx,aligny center");
 		txtContaLogada.setColumns(10);
