@@ -119,7 +119,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_2, "cell 1 5 3 1,alignx left,aligny bottom");
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Pronome");
+		JLabel lblNewLabel_2_1 = new JLabel("Pronome *");
 		lblNewLabel_2_1.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_2_1, "cell 7 5");
 		

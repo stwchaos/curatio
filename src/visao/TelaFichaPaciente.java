@@ -109,6 +109,7 @@ public class TelaFichaPaciente extends JFrame {
 		panel.add(lblCPF, "cell 7 3");
 
 		textFieldNome = new RoundJTextField();
+		textFieldNome.setBackground(new Color(219, 219, 219));
 		textFieldNome.setEditable(false);
 		textFieldNome.setText("Inalterável");
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -126,9 +127,9 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 5 4 1,alignx left,aligny bottom");
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Pronome");
+		JLabel lblNewLabel_2_1 = new JLabel("Pronome *");
 		lblNewLabel_2_1.setForeground(Color.BLACK);
-		panel.add(lblNewLabel_2_1, "cell 7 5");
+		panel.add(lblNewLabel_2_1, "cell 7 5,alignx left,aligny bottom");
 		
 		RoundComboBox comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
