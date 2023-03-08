@@ -82,7 +82,8 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 ####  Login
   Na qual o funcionário insere seus dados(CPF e senha), para assim acessar o software.
 
-![image](https://user-images.githubusercontent.com/88722088/222848725-eeff1a4c-b407-437c-b5f8-9bd8667ee49b.png)
+![login](https://user-images.githubusercontent.com/88722088/223691254-630ec23f-40d0-401f-a716-0b26072abe0c.PNG)
+
 
 > Mensagem de aviso gerada pela validação de acesso:
 
@@ -93,28 +94,28 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 #### Início
   É a tela padrão do software em que o funcionário é capaz de realizar suas funções, com cada botão abrindo telas novas, com suas respectivas propriedades.
 
-![image](https://user-images.githubusercontent.com/88722088/222929338-6b7593c6-8322-4806-b1bd-98c6ac12748a.png)
+![image](https://user-images.githubusercontent.com/88722088/223691601-5d6fb419-eec1-4958-ba07-138a6a333acc.png)
 
 
 #### Marcar Consulta
   Nesta tela é onde o usuário irá marcar a consulta de um paciente.
-  
-![image](https://user-images.githubusercontent.com/88722088/222895880-290f42b1-03eb-47b8-b916-f8255d8a3c6d.png)
+ 
+ ![image](https://user-images.githubusercontent.com/88722088/223691860-92f66b06-401d-43a4-a934-800853a7deac.png)
 
 
 #### Cadastrar Paciente
   Insere as informações dos pacientes, as registrando no sistema.
   
-![image](https://user-images.githubusercontent.com/88722088/222895892-f3dbcf71-7fdc-4981-8b42-384d0defc28b.png)
+![image](https://user-images.githubusercontent.com/88722088/223692029-2bf98093-7cb5-4c90-b3ce-2b5fa4833b71.png)
 
 
 #### Registro do Paciente Selecionado
   
   Com ela, é possível visualizar e alterar informações do paciente.
   
-![image](https://user-images.githubusercontent.com/88722088/222895906-0c20495f-a415-43c2-95bf-ece154cbd616.png)
+![image](https://user-images.githubusercontent.com/88722088/223692129-0dd44680-8d43-49f8-9d10-37320c0f7b57.png)
 
-![image](https://user-images.githubusercontent.com/88722088/222895918-47d9cc17-a11b-4e34-96f8-f8e5809362f6.png)
+![image](https://user-images.githubusercontent.com/88722088/223692175-f5947f0f-ac29-4fda-b7dc-1b031481efb4.png)
 
 
 
