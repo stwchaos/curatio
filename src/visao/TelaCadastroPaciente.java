@@ -91,12 +91,14 @@ public class TelaCadastroPaciente extends JFrame {
 		JPanel panel = new RoundJPanel(150);
 		panel.setBackground(new Color(240, 240, 240));
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[grow][58px,grow][11px,grow][32px,grow][5px][56.00px][18.00px,grow][138.00px,grow]", "[36px,grow][][192.00px][][23.00px][bottom][19.00px][center][][][][18.00][22.00][21.00px,grow][grow]"));
+		panel.setLayout(new MigLayout("",
+				"[grow][58px,grow][11px,grow][32px,grow][5px][56.00px][18.00px,grow][138.00px,grow]",
+				"[36px,grow][][192.00px][][23.00px][bottom][19.00px][center][][][][18.00][22.00][21.00px,grow][grow]"));
 
 		JPanel panel_1 = new RoundJPanel(150, Color.white);
 		panel_1.setBackground(null);
 		panel_1.setBorder(null);
-		//panel_1.setBackground(Color.WHITE);
+		// panel_1.setBackground(Color.WHITE);
 		panel.add(panel_1, "cell 1 2 5 1,grow");
 		panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
 
@@ -118,14 +120,19 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		panel.add(lblNewLabel_2, "cell 1 5 3 1,alignx left,aligny bottom");
-		
+
 		JLabel lblNewLabel_2_1 = new JLabel("Pronome *");
 		lblNewLabel_2_1.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_2_1, "cell 7 5");
-		
+
 		RoundComboBox comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(218, 218, 218));
+		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
+		comboPronome.setSelectedItem("Inserir");
+		for (String string : listaPronome) {
+			comboPronome.addItem(string);
+		}
 		panel.add(comboPronome, "cell 7 6,growx");
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone *");
@@ -176,13 +183,12 @@ public class TelaCadastroPaciente extends JFrame {
 		comboSexo.setBackground(new Color(218, 218, 218));
 		comboSexo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_3.add(comboSexo, "cell 0 1,growx,aligny top");
-		String[] listaSexo = {"Masculino","Feminino"};
+		String[] listaSexo = { "Masculino", "Feminino" };
 		comboSexo.setSelectedItem("Inserir");
-		for (String string : listaSexo) {
-			comboSexo.addItem(string);
-			
+		for (String pronome : listaSexo) {
+			comboSexo.addItem(pronome);
+
 		}
-		
 
 		JDateChooser dtNascimento = new JDateChooser();
 		dtNascimento.getCalendarButton().setBackground(new Color(210, 210, 210));

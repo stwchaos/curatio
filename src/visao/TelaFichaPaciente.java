@@ -79,7 +79,9 @@ public class TelaFichaPaciente extends JFrame {
 
 		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]", "[69.00,grow][181.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("",
+				"[58.00px,grow][-16.00,grow][11px,grow][32px,grow][5px][56.00px][18.00,grow][138.00px,grow]",
+				"[69.00,grow][181.00px][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -94,7 +96,7 @@ public class TelaFichaPaciente extends JFrame {
 		JPanel panel_1 = new RoundJPanel(150, Color.white);
 		panel_1.setBackground(null);
 		panel_1.setBorder(null);
-		//panel_1.setBackground(Color.WHITE);
+		// panel_1.setBackground(Color.WHITE);
 		panel.add(panel_1, "cell 0 1 6 1,grow");
 		panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
 
@@ -104,7 +106,7 @@ public class TelaFichaPaciente extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 3,alignx left,aligny bottom");
-		
+
 		JLabel lblCPF = new JLabel("CPF");
 		panel.add(lblCPF, "cell 7 3");
 
@@ -115,7 +117,7 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNome, "cell 0 4 6 1,growx,aligny center");
 		textFieldNome.setColumns(10);
-		
+
 		RoundJTextField textFieldCPF = new RoundJTextField();
 		textFieldCPF.setBackground(new Color(219, 219, 219));
 		textFieldCPF.setText("Inalterável");
@@ -126,14 +128,20 @@ public class TelaFichaPaciente extends JFrame {
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 5 4 1,alignx left,aligny bottom");
-		
+
 		JLabel lblNewLabel_2_1 = new JLabel("Pronome *");
 		lblNewLabel_2_1.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_2_1, "cell 7 5,alignx left,aligny bottom");
-		
+
 		RoundComboBox comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(218, 218, 218));
+
+		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
+		comboPronome.setSelectedItem("Inserir");
+		for (String pronome : listaPronome) {
+			comboPronome.addItem(pronome);
+		}
 		panel.add(comboPronome, "cell 7 6,growx");
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo");
