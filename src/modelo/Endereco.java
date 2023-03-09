@@ -12,9 +12,4 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public static Endereco valueOf(String text) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
