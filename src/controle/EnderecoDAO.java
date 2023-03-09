@@ -13,17 +13,17 @@ import modelo.Endereco;
 public class EnderecoDAO {
 	private Conexao con;
 
-	public boolean inserir(Endereco en) {
+	public boolean inserir(Endereco endereco) {
 		// instanciar
 		con = Conexao.getInstancia();
 
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO endereco (cep) VALUES (?);";
+			String query = "INSERT INTO endereco (cep)" + "VALUES (?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setLong(1, 123456);
+			stm.setLong(1, endereco.getCep());
 
 			stm.executeUpdate();
 		} catch (SQLException e) {
@@ -57,7 +57,7 @@ public class EnderecoDAO {
 	}
 
 	public ArrayList<Endereco> listarEndereco() {
-		ArrayList<Endereco> endereco = new ArrayList<>();
+		ArrayList<Endereco> enderecos = new ArrayList<>();
 
 		// instanciar
 		con = Conexao.getInstancia();
@@ -81,6 +81,6 @@ public class EnderecoDAO {
 
 		// desconectar
 		con.fecharConexao();
-		return null;
+		return enderecos;
 	}
 }
