@@ -9,6 +9,24 @@ public class Consultas {
 	private String objetivo;
 	private Boolean encerrada;
 	private String pagamento;
+	private Paciente paciente;
+	private Profissional profissional;
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Profissional getProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
 
 	public Integer getId_consulta() {
 		return id_consulta;

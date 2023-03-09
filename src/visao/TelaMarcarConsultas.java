@@ -1,25 +1,10 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import com.toedter.calendar.JDateChooser;
-
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -27,18 +12,36 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.awt.event.ActionEvent;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
+
+import controle.PacienteDAO;
+import controle.ProfissionalDAO;
+import modelo.Consultas;
+import modelo.Paciente;
+import modelo.Profissional;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaMarcarConsultas extends JFrame {
 
 	private JPanel c;
 	private JTextField textEmail;
-	private JTextField textField_6;
+	private JTextField txtObjetivo;
 	private JTextField txtMarcarConsulta;
 
+	PacienteDAO pacienteDao = new PacienteDAO();
+	ProfissionalDAO profissionalDao = new ProfissionalDAO();
+	
 	public TelaMarcarConsultas() {
 		setTitle("Hospital Esmeralda");
 		setIconImage(
@@ -92,6 +95,9 @@ public class TelaMarcarConsultas extends JFrame {
 		JComboBox comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
+		for (Paciente p : pacienteDao.listarPacientes()) {
+			comboPaciente.addItem(p.getNome());
+		}
 		
 
 		JDateChooser dtConsulta = new JDateChooser();
@@ -111,12 +117,12 @@ public class TelaMarcarConsultas extends JFrame {
 		panel.add(dtConsulta, "cell 0 6 4 1,growx,aligny bottom");
 		dtConsulta.getDate();
 
-		textField_6 = new RoundJTextField();
-		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_6.setText("Inserir");
-		textField_6.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		panel.add(textField_6, "cell 0 8 7 1,grow");
+		txtObjetivo = new RoundJTextField();
+		txtObjetivo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtObjetivo.setText("Inserir");
+		txtObjetivo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtObjetivo.setColumns(10);
+		panel.add(txtObjetivo, "cell 0 8 7 1,grow");
 
 		JComboBox comboPagamento = new RoundComboBox();
 		comboPagamento.setBackground(new Color(218, 218, 218));
@@ -163,11 +169,23 @@ public class TelaMarcarConsultas extends JFrame {
 		comboProfissional.setForeground(new Color(255, 255, 255));
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
+		for (Profissional p : profissionalDao.listarProfissionais()) {
+			comboProfissional.addItem(p.getNomeProfissionais());
+		}
 
 		JButton btnMarcar = new JButton("Agendar");
 		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String paciente = String.valueOf(comboPaciente.getSelectedItem());
+				String profissional = String.valueOf(comboProfissional.getSelectedItem());
+				String objetivo = txtObjetivo.getText();
+				Date data = dtConsulta.getDate();
+				String pagamento = String.valueOf(comboPagamento.getSelectedItem());
+				Consultas c = new Consultas();
+				
+				c.setPagamento(pagamento);
+				
 			}
 		});
 		
