@@ -37,6 +37,7 @@ public class TelaListaPaciente extends JFrame {
 	private JButton btnSelecionar;
 	private JLabel lblNewLabel_1;
 	private JButton btnVoltar;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -57,23 +58,27 @@ public class TelaListaPaciente extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][540.00px,grow][495.00px,grow]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
+		contentPane.setLayout(new MigLayout("", "[][-12.00px][395.00px,grow][grow][18.00][][][grow,center][443.00px,grow,left]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
 		txtPesquisarPaciente = new JTextField();
 		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
 		txtPesquisarPaciente.setText("Pesquisar paciente");
 		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		contentPane.add(txtPesquisarPaciente, "cell 1 0,growx,aligny bottom");
+		contentPane.add(txtPesquisarPaciente, "cell 2 0,growx,aligny bottom");
 		txtPesquisarPaciente.setColumns(10);
 		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/iconPesquisa.png")));
+		contentPane.add(lblNewLabel, "cell 3 0");
+		
 		panel_1 = new JPanel();
-		contentPane.add(panel_1, "cell 1 2,grow");
+		contentPane.add(panel_1, "cell 2 2 2 1,grow");
 		panel_1.setBackground(new Color(64, 128, 128));
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		contentPane.add(panel, "cell 1 3,grow");
+		contentPane.add(panel, "cell 2 3 2 1,grow");
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{471, 0};
 		gbl_panel.rowHeights = new int[]{638, 0};
@@ -105,11 +110,11 @@ public class TelaListaPaciente extends JFrame {
 		btnSelecionar.setForeground(new Color(255, 255, 255));
 		btnSelecionar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
 		btnSelecionar.setBackground(new Color(64, 128, 128));
-		contentPane.add(btnSelecionar, "cell 2 4,alignx right,aligny top");
+		contentPane.add(btnSelecionar, "cell 8 4,alignx right,aligny top");
 		
 		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/iconmedicina.png")));
-		contentPane.add(lblNewLabel_1, "cell 2 0 1 4,grow");
+		contentPane.add(lblNewLabel_1, "cell 8 3,growx,aligny top");
 		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
@@ -124,7 +129,7 @@ public class TelaListaPaciente extends JFrame {
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		contentPane.add(btnVoltar, "cell 1 4,alignx left,aligny top");
+		contentPane.add(btnVoltar, "cell 2 4,alignx left,aligny top");
 		
 	}
 }
