@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Profissional;
+
 import java.awt.Color;
 import java.awt.Cursor;
 
@@ -23,7 +26,7 @@ public class TelaConsultasPendentes extends JFrame {
 	private JTable table;
 
 
-	public TelaConsultasPendentes() {
+	public TelaConsultasPendentes(Profissional usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultasPendentes.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +53,7 @@ public class TelaConsultasPendentes extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao();
+				TelaPadrao telaPadrao = new TelaPadrao(usuario);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

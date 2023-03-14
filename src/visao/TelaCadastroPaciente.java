@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import modelo.Profissional;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -44,7 +46,8 @@ public class TelaCadastroPaciente extends JFrame {
 	private JTextField txtInserir_4;
 	private JTextField txtAdicionarInformaes;
 
-	public TelaCadastroPaciente() {
+	public TelaCadastroPaciente(Profissional usuario) {
+		
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/logoHospital.png")));
@@ -81,7 +84,7 @@ public class TelaCadastroPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao();
+				TelaPadrao telaPadrao = new TelaPadrao(usuario);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -226,6 +229,7 @@ public class TelaCadastroPaciente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		panel.add(btnCadastrar, "cell 5 14 3 1,growx,aligny bottom");

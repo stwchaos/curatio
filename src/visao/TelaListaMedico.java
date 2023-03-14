@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Profissional;
+
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -24,27 +27,10 @@ public class TelaListaMedico extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisarProfissional;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaListaMedico frame = new TelaListaMedico();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaMedico() {
+	public TelaListaMedico(Profissional usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,7 +77,7 @@ public class TelaListaMedico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao();
+				TelaPadrao telaPadrao = new TelaPadrao(usuario);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

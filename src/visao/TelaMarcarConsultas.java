@@ -11,6 +11,8 @@ import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -25,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import controle.ConsultaDAO;
 import controle.PacienteDAO;
 import controle.ProfissionalDAO;
 import modelo.Consultas;
@@ -42,7 +46,7 @@ public class TelaMarcarConsultas extends JFrame {
 	PacienteDAO pacienteDao = new PacienteDAO();
 	ProfissionalDAO profissionalDao = new ProfissionalDAO();
 	
-	public TelaMarcarConsultas() {
+	public TelaMarcarConsultas(Profissional usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
@@ -78,7 +82,7 @@ public class TelaMarcarConsultas extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao();
+				TelaPadrao telaPadrao = new TelaPadrao(usuario);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -96,7 +100,7 @@ public class TelaMarcarConsultas extends JFrame {
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		for (Paciente p : pacienteDao.listarPacientes()) {
-			comboPaciente.addItem(p.getNome());
+			comboPaciente.addItem(p.getNome()+", cpf: "+p.getCpf());
 		}
 		
 
@@ -170,22 +174,38 @@ public class TelaMarcarConsultas extends JFrame {
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
 		for (Profissional p : profissionalDao.listarProfissionais()) {
-			comboProfissional.addItem(p.getNomeProfissionais());
+			comboProfissional.addItem(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais());
 		}
 
 		JButton btnMarcar = new JButton("Agendar");
 		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String paciente = String.valueOf(comboPaciente.getSelectedItem());
-				String profissional = String.valueOf(comboProfissional.getSelectedItem());
 				String objetivo = txtObjetivo.getText();
 				Date data = dtConsulta.getDate();
 				String pagamento = String.valueOf(comboPagamento.getSelectedItem());
-				Consultas c = new Consultas();
+				Consultas consultas = new Consultas();
+				ConsultaDAO consultaDAO = new ConsultaDAO();
 				
-				c.setPagamento(pagamento);
+				for (Paciente p : pacienteDao.listarPacientes()) {
+					if (comboPaciente.getSelectedItem().equals(p.getNome()+", cpf: "+p.getCpf())) {
+						consultas.setPaciente(p);
+					}
+				}
+				for (Profissional p : profissionalDao.listarProfissionais()) {
+					if (comboProfissional.getSelectedItem().equals(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais())) {
+						consultas.setProfissional(p);
+					}
+				}
 				
+				consultas.setPagamento(pagamento);
+				consultas.setObjetivo(objetivo);
+				consultas.setData(convertToLocalDateViaInstant(data));
+				if(consultaDAO.inserir(consultas)) {
+					JOptionPane.showMessageDialog(null, "Cadastrado");
+				}else {
+					JOptionPane.showMessageDialog(null, "Não cadastrado");
+				}
 			}
 		});
 		
@@ -201,5 +221,11 @@ public class TelaMarcarConsultas extends JFrame {
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
 
+	}
+	
+	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
 	}
 }

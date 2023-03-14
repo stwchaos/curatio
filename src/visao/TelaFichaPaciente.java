@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Profissional;
+
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -37,7 +40,7 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
 
-	public TelaFichaPaciente() {
+	public TelaFichaPaciente(Profissional usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
@@ -70,7 +73,7 @@ public class TelaFichaPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao();
+				TelaPadrao telaPadrao = new TelaPadrao(usuario);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -231,7 +234,7 @@ public class TelaFichaPaciente extends JFrame {
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaHistorico telaHistorico = new TelaHistorico();
+				TelaHistorico telaHistorico = new TelaHistorico(usuario);
 				telaHistorico.setLocationRelativeTo(null);
 				telaHistorico.setVisible(true);
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);

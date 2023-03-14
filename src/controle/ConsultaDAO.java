@@ -16,23 +16,28 @@ public class ConsultaDAO {
 	private Conexao con;
 
 	public boolean inserir(Consultas c) {
+		
 		// instanciar
 		con = Conexao.getInstancia();
 
 		// conectar
 		Connection co = con.conectar();
 		try {
-			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento) VALUES (?, ?, ?, ?);";
+			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento, profissionais_cpf_profissionais, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = co.prepareStatement(query);
 
-			stm.setDate(1, Date.valueOf(LocalDate.of(2000, 01, 01)));
-			stm.setString(2, "Transplante de coração");
-			stm.setBoolean(3, true);
-			stm.setString(4, "Cartão de Crédito");
+			stm.setString(2, c.getObjetivo());
+			stm.setInt(3, 0);
+			stm.setString(4, c.getPagamento());
+			stm.setLong(5, c.getProfissional().getCpfProfissionais());
+			stm.setLong(6, c.getPaciente().getCpf());
+			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+
 		}
 
 		// desconectar

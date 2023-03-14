@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Profissional;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -31,7 +34,7 @@ public class TelaHistorico extends JFrame {
 	private JLabel lblNewLabel_3;
 
 
-	public TelaHistorico() {
+	public TelaHistorico(Profissional usuario) {
 		setBackground(new Color(0, 81, 81));
 		setTitle("Hospital Esmeralda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaHistorico.class.getResource("/img/logoHospital.png")));
@@ -87,7 +90,7 @@ public class TelaHistorico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaFichaPaciente telaficha = new TelaFichaPaciente();
+				TelaFichaPaciente telaficha = new TelaFichaPaciente(usuario);
 				telaficha.setLocationRelativeTo(null);
 				telaficha.setVisible(true);
 				telaficha.setExtendedState(JFrame.MAXIMIZED_BOTH);

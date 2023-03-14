@@ -173,7 +173,7 @@ public class TelaInicial extends JFrame {
 
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
-					TelaPadrao telaPadrao = new TelaPadrao();
+					TelaPadrao telaPadrao = new TelaPadrao(p);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
