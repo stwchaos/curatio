@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaHistorico extends JFrame {
 
@@ -37,18 +38,38 @@ public class TelaHistorico extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 81, 81));
+		contentPane.setBackground(new Color(219, 219, 219));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new MigLayout("", "[174px,grow][166px,grow][139px,grow][207px,grow][100px,grow]", "[34px][388px,grow][][54.00px]"));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(64, 128, 128));
+		contentPane.add(panel_1, "cell 0 0 5 1,grow");
+		
+		lblNewLabel_1 = new JLabel("Profissional");
+		panel_1.add(lblNewLabel_1);
+		lblNewLabel_1.setBackground(new Color(0, 81, 81));
+		lblNewLabel_1.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		
+		lblNewLabel = new JLabel("Setor");
+		panel_1.add(lblNewLabel);
+		lblNewLabel.setBackground(new Color(0, 81, 81));
+		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		
+		lblNewLabel_2 = new JLabel("Data");
+		panel_1.add(lblNewLabel_2);
+		lblNewLabel_2.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(48, 112, 748, 388);
-		contentPane.add(scrollPane);
+		contentPane.add(scrollPane, "cell 0 1 5 1,grow");
 		
 		panel = new JPanel();
-		panel.setBackground(new Color(0, 81, 81));
+		panel.setBackground(new Color(255, 255, 255));
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 		
@@ -60,24 +81,6 @@ public class TelaHistorico extends JFrame {
 		lblNewLabel_3.setBounds(186, -136, 426, 511);
 		panel.add(lblNewLabel_3);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/iconmedicina.png")));
-		
-		lblNewLabel = new JLabel("Setor");
-		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(78, 80, 106, 32);
-		contentPane.add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("Profissional");
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBounds(350, 78, 139, 34);
-		contentPane.add(lblNewLabel_1);
-		
-		lblNewLabel_2 = new JLabel("Data");
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBounds(696, 79, 87, 35);
-		contentPane.add(lblNewLabel_2);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
@@ -92,7 +95,6 @@ public class TelaHistorico extends JFrame {
 		});
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBackground(new Color(0, 81, 81));
-		btnVoltar.setBounds(10, 508, 89, 23);
-		contentPane.add(btnVoltar);
+		contentPane.add(btnVoltar, "cell 0 3,alignx left,growy");
 	}
 }
