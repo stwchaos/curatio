@@ -16,7 +16,7 @@ import java.awt.Toolkit;
 import javax.swing.border.MatteBorder;
 
 import controle.PacienteDAO;
-import controle.ProfissionalDAO;
+import controle.MedicoDAO;
 import modelo.Medico;
 
 import javax.swing.JTextField;
@@ -52,7 +52,7 @@ public class TelaPadrao extends JFrame {
 	 */
 	public TelaPadrao(Medico usuario) {
 		PacienteDAO pacientedao = new PacienteDAO();
-		ProfissionalDAO profissionaldao = new ProfissionalDAO();
+		MedicoDAO profissionaldao = new MedicoDAO();
 		setForeground(new Color(0, 51, 51));
 		setTitle("Hospital Esmeralda");
 		setBackground(new Color(0, 51, 51));

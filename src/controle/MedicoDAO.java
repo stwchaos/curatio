@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import modelo.Paciente;
 import modelo.Medico;
 
-public class ProfissionalDAO {
+public class MedicoDAO {
 	private Conexao con;
 
 	public boolean inserir(Medico p) {
@@ -83,6 +83,7 @@ public class ProfissionalDAO {
 				Medico p = new Medico();
 				p.setCpfProfissionais(cpf);
 				p.setNomeProfissionais(nome);
+				p.setSenha(senha);
 				profissionais.add(p);
 			}
 
@@ -98,9 +99,9 @@ public class ProfissionalDAO {
 	public Medico efetuarLogin(Long cpf, String senha) {
 		Medico profissional = null;
 		for (Medico p : listarProfissionais()) {
-//			if ((p.getCpfProfissionais() == cpf) && p.getSenha().equals(senha)) {
-//				profissional = p;
-//			}
+			if ((p.getCpfProfissionais() == cpf) && (p.getSenha().equals(senha))) {
+				profissional = p;
+			}
 		}
 		return profissional;
 	}

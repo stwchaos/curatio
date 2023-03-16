@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controle.ProfissionalDAO;
+import controle.MedicoDAO;
 import modelo.Medico;
 
 import java.awt.Toolkit;
@@ -167,7 +167,7 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
+				MedicoDAO profissionalDAO = new MedicoDAO();
 				Medico p = profissionalDAO.efetuarLogin(cpf, senha);
 				if (p != null ) {
 

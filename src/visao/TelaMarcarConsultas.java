@@ -30,7 +30,7 @@ import com.toedter.calendar.JDateChooser;
 
 import controle.ConsultaDAO;
 import controle.PacienteDAO;
-import controle.ProfissionalDAO;
+import controle.MedicoDAO;
 import modelo.Consulta;
 import modelo.Paciente;
 import modelo.Medico;
@@ -44,7 +44,7 @@ public class TelaMarcarConsultas extends JFrame {
 	private JTextField txtMarcarConsulta;
 
 	PacienteDAO pacienteDao = new PacienteDAO();
-	ProfissionalDAO profissionalDao = new ProfissionalDAO();
+	MedicoDAO profissionalDao = new MedicoDAO();
 	
 	public TelaMarcarConsultas(Medico usuario) {
 		setTitle("Hospital Esmeralda");

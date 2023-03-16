@@ -5,6 +5,7 @@ public class Medico {
 	private Long cpfProfissionais;
 	private String nomeProfissionais;
 	private Usuario usuario;
+	private String senha;
 
 	/*
 	 * 
@@ -18,6 +19,14 @@ public class Medico {
 	 * 
 	 * SELECT = SELECT * FROM medicos INNER JOIN usuario INNER JOIN especialidade ==
 	 */
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
