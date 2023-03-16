@@ -31,9 +31,9 @@ import com.toedter.calendar.JDateChooser;
 import controle.ConsultaDAO;
 import controle.PacienteDAO;
 import controle.ProfissionalDAO;
-import modelo.Consultas;
+import modelo.Consulta;
 import modelo.Paciente;
-import modelo.Profissional;
+import modelo.Medico;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaMarcarConsultas extends JFrame {
@@ -46,7 +46,7 @@ public class TelaMarcarConsultas extends JFrame {
 	PacienteDAO pacienteDao = new PacienteDAO();
 	ProfissionalDAO profissionalDao = new ProfissionalDAO();
 	
-	public TelaMarcarConsultas(Profissional usuario) {
+	public TelaMarcarConsultas(Medico usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
@@ -173,7 +173,7 @@ public class TelaMarcarConsultas extends JFrame {
 		comboProfissional.setForeground(new Color(255, 255, 255));
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
-		for (Profissional p : profissionalDao.listarProfissionais()) {
+		for (Medico p : profissionalDao.listarProfissionais()) {
 			comboProfissional.addItem(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais());
 		}
 
@@ -184,24 +184,24 @@ public class TelaMarcarConsultas extends JFrame {
 				String objetivo = txtObjetivo.getText();
 				Date data = dtConsulta.getDate();
 				String pagamento = String.valueOf(comboPagamento.getSelectedItem());
-				Consultas consultas = new Consultas();
+				Consulta consulta = new Consulta();
 				ConsultaDAO consultaDAO = new ConsultaDAO();
 				
 				for (Paciente p : pacienteDao.listarPacientes()) {
 					if (comboPaciente.getSelectedItem().equals(p.getNome()+", cpf: "+p.getCpf())) {
-						consultas.setPaciente(p);
+						consulta.setPaciente(p);
 					}
 				}
-				for (Profissional p : profissionalDao.listarProfissionais()) {
+				for (Medico p : profissionalDao.listarProfissionais()) {
 					if (comboProfissional.getSelectedItem().equals(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais())) {
-						consultas.setProfissional(p);
+						consulta.setProfissional(p);
 					}
 				}
 				
-				consultas.setPagamento(pagamento);
-				consultas.setObjetivo(objetivo);
-				consultas.setData(convertToLocalDateViaInstant(data));
-				if(consultaDAO.inserir(consultas)) {
+				consulta.setPagamento(pagamento);
+				consulta.setObjetivo(objetivo);
+				consulta.setData(convertToLocalDateViaInstant(data));
+				if(consultaDAO.inserir(consulta)) {
 					JOptionPane.showMessageDialog(null, "Cadastrado");
 				}else {
 					JOptionPane.showMessageDialog(null, "Não cadastrado");

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Profissional;
+import modelo.Medico;
 
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -40,7 +40,7 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
 
-	public TelaFichaPaciente(Profissional usuario) {
+	public TelaFichaPaciente(Medico usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));

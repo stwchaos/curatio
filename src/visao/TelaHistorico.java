@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Profissional;
+import modelo.Medico;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -34,7 +34,7 @@ public class TelaHistorico extends JFrame {
 	private JLabel lblNewLabel_3;
 
 
-	public TelaHistorico(Profissional usuario) {
+	public TelaHistorico(Medico usuario) {
 		setBackground(new Color(0, 81, 81));
 		setTitle("Hospital Esmeralda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaHistorico.class.getResource("/img/logoHospital.png")));

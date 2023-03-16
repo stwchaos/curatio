@@ -10,12 +10,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Paciente;
-import modelo.Profissional;
+import modelo.Medico;
 
 public class ProfissionalDAO {
 	private Conexao con;
 
-	public boolean inserir(Profissional p) {
+	public boolean inserir(Medico p) {
 		// instanciar
 		con = Conexao.getInstancia();
 
@@ -41,7 +41,7 @@ public class ProfissionalDAO {
 		return false;
 	}
 
-	public boolean alterar(Profissional p) {
+	public boolean alterar(Medico p) {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
@@ -60,12 +60,12 @@ public class ProfissionalDAO {
 		return false;
 	}
 
-	public boolean deletar(Profissional p) {
+	public boolean deletar(Medico p) {
 		return false;
 	}
 
-	public ArrayList<Profissional> listarProfissionais() {
-		ArrayList<Profissional> profissionais = new ArrayList<>();
+	public ArrayList<Medico> listarProfissionais() {
+		ArrayList<Medico> profissionais = new ArrayList<>();
 
 		// instanciar
 		con = Conexao.getInstancia();
@@ -81,7 +81,7 @@ public class ProfissionalDAO {
 				Long cpf = rs.getLong("cpf_profissionais");
 				String nome = rs.getString("nome_profissionais");
 				String senha = rs.getString("senha");
-				Profissional p = new Profissional();
+				Medico p = new Medico();
 				p.setCpfProfissionais(cpf);
 				p.setNomeProfissionais(nome);
 				p.setSenha(senha);
@@ -97,9 +97,9 @@ public class ProfissionalDAO {
 		return profissionais;
 	}
 
-	public Profissional efetuarLogin(Long cpf, String senha) {
-		Profissional profissional = null;
-		for (Profissional p : listarProfissionais()) {
+	public Medico efetuarLogin(Long cpf, String senha) {
+		Medico profissional = null;
+		for (Medico p : listarProfissionais()) {
 			if ((p.getCpfProfissionais() == cpf) && p.getSenha().equals(senha)) {
 				profissional = p;
 			}

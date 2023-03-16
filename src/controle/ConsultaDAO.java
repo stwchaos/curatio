@@ -9,14 +9,14 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import modelo.Consultas;
-import modelo.Profissional;
+import modelo.Consulta;
+import modelo.Medico;
 
 public class ConsultaDAO {
 	private Conexao con;
 
-	public boolean inserir(Consultas c) {
-		
+	public boolean inserir(Consulta c) {
+
 		// instanciar
 		con = Conexao.getInstancia();
 
@@ -45,7 +45,7 @@ public class ConsultaDAO {
 		return false;
 	}
 
-	public boolean alterar(Consultas c) {
+	public boolean alterar(Consulta c) {
 		Connection co = Conexao.getInstancia().conectar();
 
 		try {
@@ -65,12 +65,12 @@ public class ConsultaDAO {
 		return false;
 	}
 
-	public boolean deletar(Consultas c) {
+	public boolean deletar(Consulta c) {
 		return false;
 	}
 
-	public ArrayList<Consultas> listarConsultas() {
-		ArrayList<Consultas> consultas = new ArrayList<>();
+	public ArrayList<Consulta> listarConsultas() {
+		ArrayList<Consulta> consultas = new ArrayList<>();
 
 		// instanciar
 		con = Conexao.getInstancia();
@@ -87,7 +87,7 @@ public class ConsultaDAO {
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String pagamento = rs.getString("pagamento");
-				Consultas c = new Consultas();
+				Consulta c = new Consulta();
 				c.setId_consulta(id_consulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Profissional;
+import modelo.Medico;
 
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -30,7 +30,7 @@ public class TelaListaMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaMedico(Profissional usuario) {
+	public TelaListaMedico(Medico usuario) {
 		setTitle("Hospital Esmeralda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

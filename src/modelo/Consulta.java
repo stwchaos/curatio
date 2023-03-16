@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class Consultas {
+public class Consulta {
 
 	private Integer id_consulta;
 	private LocalDate data;
@@ -10,7 +10,7 @@ public class Consultas {
 	private Boolean encerrada;
 	private String pagamento;
 	private Paciente paciente;
-	private Profissional profissional;
+	private Medico profissional;
 
 	public Paciente getPaciente() {
 		return paciente;
@@ -20,11 +20,11 @@ public class Consultas {
 		this.paciente = paciente;
 	}
 
-	public Profissional getProfissional() {
+	public Medico getProfissional() {
 		return profissional;
 	}
 
-	public void setProfissional(Profissional profissional) {
+	public void setProfissional(Medico profissional) {
 		this.profissional = profissional;
 	}
 

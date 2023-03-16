@@ -17,7 +17,7 @@ import javax.swing.border.MatteBorder;
 
 import controle.PacienteDAO;
 import controle.ProfissionalDAO;
-import modelo.Profissional;
+import modelo.Medico;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -50,7 +50,7 @@ public class TelaPadrao extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPadrao(Profissional usuario) {
+	public TelaPadrao(Medico usuario) {
 		PacienteDAO pacientedao = new PacienteDAO();
 		ProfissionalDAO profissionaldao = new ProfissionalDAO();
 		setForeground(new Color(0, 51, 51));

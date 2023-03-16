@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Profissional;
+import modelo.Medico;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -26,7 +26,7 @@ public class TelaConsultasPendentes extends JFrame {
 	private JTable table;
 
 
-	public TelaConsultasPendentes(Profissional usuario) {
+	public TelaConsultasPendentes(Medico usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultasPendentes.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

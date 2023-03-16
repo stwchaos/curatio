@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Profissional;
+import modelo.Medico;
 
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
@@ -49,7 +49,7 @@ public class TelaListaPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaPaciente(Profissional usuario) {
+	public TelaListaPaciente(Medico usuario) {
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda");

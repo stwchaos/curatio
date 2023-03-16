@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.Consultas;
+import modelo.Consulta;
 import modelo.Endereco;
 
 public class EnderecoDAO {
