@@ -109,7 +109,7 @@ public class TelaInicial extends JFrame {
 		c.setForeground(null);
 		c.setBackground(new Color (0,81,81));
 		panel.add(c);
-		c.setLayout(new MigLayout("", "[62.00,grow][38.00][177.00][113.00,grow]", "[][73.00,grow][17.00][][64.00][][][82.00,grow][56.00]"));
+		c.setLayout(new MigLayout("", "[62.00,grow][38.00][184.00][113.00,grow]", "[][73.00,grow][17.00][][64.00][][][82.00,grow][56.00]"));
 				
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/users_icon (3).png")));
