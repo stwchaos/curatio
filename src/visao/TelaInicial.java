@@ -77,85 +77,83 @@ public class TelaInicial extends JFrame {
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 863, 569);
-		BufferedImage bg = null;
-		;
-		try {
-			bg = ImageIO.read(new File("src/img/Background.png"));
+		setBounds(100, 100, 1008, 658);
+		
+		JPanel panelPrincipal = new JPanel();
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JPanel c = new PanelComBackgroundImage(bg);
+		panelPrincipal.setBackground(new Color(0, 81, 81));
+		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		c.setBackground(new Color(0, 81, 81));
-		c.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(c);
-		c.setLayout(new MigLayout("", "[grow][446.00px][25.00,grow]", "[grow][290.00px][grow]"));
+		setContentPane(panelPrincipal);
+		panelPrincipal.setLayout(new MigLayout("", "[grow][389.00px][25.00,grow]", "[grow][362.00px][grow]"));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(64, 128, 128));
-		c.add(panel, "cell 1 1,grow");
+		panelPrincipal.add(panel, "cell 1 1,grow");
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel2 = new JLabel("");
 		panel.add(lblNewLabel2);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 64, 64), 2, true));
-		panel_3.setBackground(new Color(0, 98, 98));
-		panel.add(panel_3);
-		panel_3.setLayout(new MigLayout("", "[109.00,grow][][grow][][113.00,grow]",
-				"[44.00][][73.00][17.00][][64.00][][][42.00][][315.00]"));
+		
+		BufferedImage bg = null;
+		;
+		try {
+			bg = ImageIO.read(new File("src/img/fundoLogin-removebg-preview (2).png"));
 
-		JLabel lblNewLabel = new JLabel("Login Secretaria");
-		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.PLAIN, 30));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_3.add(lblNewLabel, "cell 2 1");
-
-		JLabel lblNewLabel_1 = new JLabel("CPF");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Carinha Apenas.png")));
-		panel_3.add(lblNewLabel_1, "cell 2 4,alignx left,aligny center");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JPanel c = new PanelComBackgroundImage(bg);;
+		c.setForeground(null);
+		c.setBackground(new Color (0,81,81));
+		panel.add(c);
+		c.setLayout(new MigLayout("", "[62.00,grow][38.00][177.00][113.00,grow]", "[][73.00,grow][17.00][][64.00][][][82.00,grow][56.00]"));
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/users_icon (3).png")));
+				c.add(lblNewLabel, "cell 2 0");
+		
+				JLabel lblNewLabel_1 = new JLabel("CPF");
+				lblNewLabel_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Carinha Apenas.png")));
+				c.add(lblNewLabel_1, "cell 1 4,growx,aligny center");
+				lblNewLabel_1.setForeground(new Color(0, 0, 0));
 
 		txtCpf = new RoundJTextField();
 		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCpf.setBackground(new Color(0, 81, 81));
+		txtCpf.setBackground(new Color(64, 128, 128));
 		txtCpf.setForeground(new Color(255, 255, 255));
 		txtCpf.setCaretColor(Color.WHITE);
 		// txtCpf.setBorder(BorderFactory.createEmptyBorder());
-		panel_3.add(txtCpf, "cell 2 5,growx");
+		c.add(txtCpf, "cell 2 4,growx");
 
 		txtCpf.setToolTipText("");
 		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCpf.setColumns(10);
-
-		JLabel lblNewLabel_2 = new JLabel("Senha");
-		lblNewLabel_2.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Cadeado.png")));
-		panel_3.add(lblNewLabel_2, "cell 2 7");
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-
-		txtSenha = new RoundPasswordField();
-		txtSenha.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSenha.setForeground(new Color(255, 255, 255));
-		txtSenha.setBackground(new Color(0, 81, 81));
-		txtSenha.setCaretColor(Color.WHITE);
-		txtSenha.setSelectedTextColor(new Color(0, 0, 0));
-
-		panel_3.add(txtSenha, "cell 2 8,growx");
+		
+				JLabel lblNewLabel_2 = new JLabel("Senha");
+				lblNewLabel_2.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Cadeado.png")));
+				c.add(lblNewLabel_2, "cell 1 6,alignx left,aligny center");
+				lblNewLabel_2.setForeground(new Color(0, 0, 0));
+		
+				txtSenha = new RoundPasswordField();
+				txtSenha.setHorizontalAlignment(SwingConstants.CENTER);
+				txtSenha.setForeground(new Color(255, 255, 255));
+				txtSenha.setBackground(new Color(64, 128, 128));
+				txtSenha.setCaretColor(Color.WHITE);
+				txtSenha.setSelectedTextColor(new Color(0, 0, 0));
+				
+						c.add(txtSenha, "cell 2 6,growx");
 
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBackground(null);
-		btnEntrar.setOpaque(false);
-		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setBackground(new Color (0,81,81));
 		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnEntrar.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 3));
 		btnEntrar.setFocusPainted(false);
+		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
 
-		panel_3.add(btnEntrar, "cell 1 10 3 1,growx,aligny center");
+		c.add(btnEntrar, "cell 2 7,growx,aligny bottom");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -184,10 +182,7 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
-		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnEntrar.setForeground(new Color(255, 255, 255));
-		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
-		btnEntrar.setBackground(new Color(0, 81, 81));
+
 
 		URL resource = TelaPadrao.class.getResource("/img/simbolomed.png");
 		ImageIcon icon = null;
