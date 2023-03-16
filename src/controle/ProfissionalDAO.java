@@ -49,7 +49,6 @@ public class ProfissionalDAO {
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, p.getNomeProfissionais());
 			stm.setLong(2, p.getCpfProfissionais());
-			stm.setString(3, p.getSenha());
 
 			stm.executeUpdate();
 			return true;
@@ -84,7 +83,6 @@ public class ProfissionalDAO {
 				Medico p = new Medico();
 				p.setCpfProfissionais(cpf);
 				p.setNomeProfissionais(nome);
-				p.setSenha(senha);
 				profissionais.add(p);
 			}
 
@@ -100,9 +98,9 @@ public class ProfissionalDAO {
 	public Medico efetuarLogin(Long cpf, String senha) {
 		Medico profissional = null;
 		for (Medico p : listarProfissionais()) {
-			if ((p.getCpfProfissionais() == cpf) && p.getSenha().equals(senha)) {
-				profissional = p;
-			}
+//			if ((p.getCpfProfissionais() == cpf) && p.getSenha().equals(senha)) {
+//				profissional = p;
+//			}
 		}
 		return profissional;
 	}
