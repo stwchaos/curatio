@@ -181,19 +181,15 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-<<<<<<< HEAD
-				MedicoDAO profissionalDAO = new MedicoDAO();
-				Medico p = profissionalDAO.efetuarLogin(cpf, senha);
-				if (p != null ) {
-=======
-				ProfissionalDAO profissionalDAO = new ProfissionalDAO();
-                Profissional p = profissionalDAO.efetuarLogin(cpf, senha);
-                if ( p != null ) {
->>>>>>> ReformulamentoTelaLogin
+
+				MedicoDAO medicoDAO = new MedicoDAO();
+				Medico m = medicoDAO.efetuarLogin(cpf, senha);
+                if ( m != null ) {
+
 
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
-					TelaPadrao telaPadrao = new TelaPadrao(p);
+					TelaPadrao telaPadrao = new TelaPadrao(m);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
