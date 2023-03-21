@@ -31,7 +31,6 @@ public class TelaHistorico extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
 
 
 	public TelaHistorico(Medico usuario) {
@@ -79,11 +78,6 @@ public class TelaHistorico extends JFrame {
 		table = new JTable();
 		table.setBounds(746, 388, -745, -390);
 		panel.add(table);
-		
-		lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(186, -136, 426, 511);
-		panel.add(lblNewLabel_3);
-		lblNewLabel_3.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/iconmedicina.png")));
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
