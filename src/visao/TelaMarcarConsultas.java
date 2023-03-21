@@ -33,6 +33,7 @@ import controle.PacienteDAO;
 import controle.MedicoDAO;
 import modelo.Consulta;
 import modelo.Paciente;
+import modelo.Usuario;
 import modelo.Medico;
 import net.miginfocom.swing.MigLayout;
 
@@ -46,8 +47,8 @@ public class TelaMarcarConsultas extends JFrame {
 	PacienteDAO pacienteDao = new PacienteDAO();
 	MedicoDAO profissionalDao = new MedicoDAO();
 	
-	public TelaMarcarConsultas(Medico usuario) {
-		setTitle("Hospital Esmeralda - Marcar Conulta");
+	public TelaMarcarConsultas(Usuario u) {
+		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +83,7 @@ public class TelaMarcarConsultas extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuario);
+				TelaPadrao telaPadrao = new TelaPadrao(u);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

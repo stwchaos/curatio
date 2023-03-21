@@ -96,14 +96,5 @@ public class MedicoDAO {
 		return profissionais;
 	}
 
-	public Medico efetuarLogin(Long cpf, String senha) {
-		Medico profissional = null;
-		for (Medico p : listarProfissionais()) {
-			if ((p.getCpfProfissionais() == cpf) && (p.getSenha().equals(senha))) {
-				profissional = p;
-			}
-		}
-		return profissional;
-	}
 	
 }

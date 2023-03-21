@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Medico;
+import modelo.Usuario;
 
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
@@ -49,7 +50,7 @@ public class TelaListaPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaPaciente(Medico usuario) {
+	public TelaListaPaciente(Usuario u) {
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda - Pacientes");
@@ -104,7 +105,7 @@ public class TelaListaPaciente extends JFrame {
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(usuario);
+				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(u);
 				telaFichaPaciente.setLocationRelativeTo(null);
 				telaFichaPaciente.setVisible(true);
 				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -126,7 +127,7 @@ public class TelaListaPaciente extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						dispose();
-						TelaPadrao telaPadrao = new TelaPadrao(usuario);
+						TelaPadrao telaPadrao = new TelaPadrao(u);
 						telaPadrao.setLocationRelativeTo(null);
 						telaPadrao.setVisible(true);
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

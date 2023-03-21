@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Medico;
+import modelo.Usuario;
 
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -40,8 +41,13 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
 
+<<<<<<< Updated upstream
 	public TelaFichaPaciente(Medico usuario) {
 		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
+=======
+	public TelaFichaPaciente(Usuario u) {
+		setTitle("Hospital Esmeralda");
+>>>>>>> Stashed changes
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +79,7 @@ public class TelaFichaPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuario);
+				TelaPadrao telaPadrao = new TelaPadrao(u);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -234,7 +240,7 @@ public class TelaFichaPaciente extends JFrame {
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaHistorico telaHistorico = new TelaHistorico(usuario);
+				TelaHistorico telaHistorico = new TelaHistorico(u);
 				telaHistorico.setLocationRelativeTo(null);
 				telaHistorico.setVisible(true);
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);

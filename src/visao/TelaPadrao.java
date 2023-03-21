@@ -18,6 +18,7 @@ import javax.swing.border.MatteBorder;
 import controle.PacienteDAO;
 import controle.MedicoDAO;
 import modelo.Medico;
+import modelo.Usuario;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -50,7 +51,7 @@ public class TelaPadrao extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPadrao(Medico usuario) {
+	public TelaPadrao(Usuario u) {
 		PacienteDAO pacientedao = new PacienteDAO();
 		MedicoDAO profissionaldao = new MedicoDAO();
 		setForeground(new Color(0, 51, 51));
@@ -83,7 +84,7 @@ public class TelaPadrao extends JFrame {
 		btnProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaMedico telaListaMedico = new TelaListaMedico(usuario);
+				TelaListaMedico telaListaMedico = new TelaListaMedico(u);
 				telaListaMedico.setLocationRelativeTo(null);
 				telaListaMedico.setVisible(true);
 				telaListaMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -131,7 +132,7 @@ public class TelaPadrao extends JFrame {
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMarcarConsultas telaMarcarConsulta = new TelaMarcarConsultas(usuario);
+				TelaMarcarConsultas telaMarcarConsulta = new TelaMarcarConsultas(u);
 				telaMarcarConsulta.setLocationRelativeTo(null);
 				telaMarcarConsulta.setVisible(true);
 				telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -153,7 +154,7 @@ public class TelaPadrao extends JFrame {
 		btnCadastrarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente(usuario);
+				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente(u);
 				telaCadastroPaciente.setLocationRelativeTo(null);
 				telaCadastroPaciente.setVisible(true);
 				telaCadastroPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -175,7 +176,7 @@ public class TelaPadrao extends JFrame {
 		btnListaPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuario);
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente(u);
 				telaListaPaciente.setLocationRelativeTo(null);
 				telaListaPaciente.setVisible(true);
 				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -198,7 +199,7 @@ public class TelaPadrao extends JFrame {
 		btnConsultasPendentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaConsultasPendentes telaConsultasPendentes = new TelaConsultasPendentes(usuario);
+				TelaConsultasPendentes telaConsultasPendentes = new TelaConsultasPendentes(u);
 				telaConsultasPendentes.setLocationRelativeTo(null);
 				telaConsultasPendentes.setVisible(true);
 				telaConsultasPendentes.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -400,7 +401,6 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_6.gridx = 0;
 		gbc_panel_6.gridy = 2;
 		panelMeio.add(c, gbc_panel_6);
-		
-		txtContaLogada.setText(usuario.getNomeProfissionais());
+		//txtContaLogada.setText(u.getNomeProfissionais());
 	}
 }

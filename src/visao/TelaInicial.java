@@ -1,47 +1,39 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import controle.MedicoDAO;
-import modelo.Medico;
-
-import java.awt.Toolkit;
-import java.net.URL;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.FlowLayout;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import controle.UsuarioDAO;
+import modelo.Usuario;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel c;
-	private JTextField txtCpf;
+	private JTextField txtLogin;
 	private JPasswordField txtSenha;
 
 	/**
@@ -136,17 +128,17 @@ public class TelaInicial extends JFrame {
 				c.add(lblNewLabel_1, "cell 1 3 2 1,growx,aligny bottom");
 				lblNewLabel_1.setForeground(new Color(255, 255, 255));
 
-		txtCpf = new RoundJTextField();
-		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCpf.setBackground(new Color(255, 255, 255));
-		txtCpf.setForeground(new Color(0, 47, 47));
-		txtCpf.setCaretColor(Color.WHITE);
+		txtLogin = new RoundJTextField();
+		txtLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLogin.setBackground(new Color(255, 255, 255));
+		txtLogin.setForeground(new Color(0, 47, 47));
+		txtLogin.setCaretColor(Color.WHITE);
 		// txtCpf.setBorder(BorderFactory.createEmptyBorder());
-		c.add(txtCpf, "cell 1 4 3 1,grow");
+		c.add(txtLogin, "cell 1 4 3 1,grow");
 
-		txtCpf.setToolTipText("");
-		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtCpf.setColumns(10);
+		txtLogin.setToolTipText("");
+		txtLogin.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtLogin.setColumns(10);
 				
 						JLabel lblNewLabel_2 = new JLabel("Senha");
 						lblNewLabel_2.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Cadeado.png")));
@@ -173,22 +165,22 @@ public class TelaInicial extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Long cpf = null;
-				if (!txtCpf.getText().isEmpty()) {
-					cpf = Long.valueOf(txtCpf.getText());
+				String login = null;
+				if (!txtLogin.getText().isEmpty()) {
+					login = txtLogin.getText();
 				}
 				String senha = null;
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
 
-				MedicoDAO medicoDAO = new MedicoDAO();
-				Medico m = medicoDAO.efetuarLogin(cpf, senha);
-                if ( m != null ) {
+				UsuarioDAO usuarioDAO = new UsuarioDAO();
+				Usuario u = usuarioDAO.efetuarLogin(login, senha);
+                if ( u != null ) {
 
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
-					TelaPadrao telaPadrao = new TelaPadrao(m);
+					TelaPadrao telaPadrao = new TelaPadrao(u);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

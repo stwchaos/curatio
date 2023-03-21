@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Medico;
+import modelo.Usuario;
 
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -30,8 +31,8 @@ public class TelaListaMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaMedico(Medico usuario) {
-		setTitle("Hospital Esmeralda - Medicos");
+	public TelaListaMedico(Usuario u) {
+		setTitle("Hospital Esmeralda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
@@ -77,7 +78,7 @@ public class TelaListaMedico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuario);
+				TelaPadrao telaPadrao = new TelaPadrao(u);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import modelo.Medico;
+import modelo.Usuario;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -46,7 +47,7 @@ public class TelaCadastroPaciente extends JFrame {
 	private JTextField txtInserir_4;
 	private JTextField txtAdicionarInformaes;
 
-	public TelaCadastroPaciente(Medico usuario) {
+	public TelaCadastroPaciente(Usuario u) {
 
 		setTitle("Hospital Esmeralda - Cadastrar Paciente");
 		setIconImage(
@@ -84,7 +85,7 @@ public class TelaCadastroPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuario);
+				TelaPadrao telaPadrao = new TelaPadrao(u);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
