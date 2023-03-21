@@ -31,7 +31,7 @@ public class TelaListaMedico extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaListaMedico(Medico usuario) {
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Medicos");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);

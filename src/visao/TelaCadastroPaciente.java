@@ -48,7 +48,7 @@ public class TelaCadastroPaciente extends JFrame {
 
 	public TelaCadastroPaciente(Medico usuario) {
 
-		setTitle("Cadastrar paciente");
+		setTitle("Hospital Esmeralda - Cadastrar Paciente");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

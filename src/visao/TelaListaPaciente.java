@@ -52,7 +52,7 @@ public class TelaListaPaciente extends JFrame {
 	public TelaListaPaciente(Medico usuario) {
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Pacientes");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);

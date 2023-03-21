@@ -41,7 +41,7 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField txtRegistrosDosPacientes;
 
 	public TelaFichaPaciente(Medico usuario) {
-		setTitle("Ficha dos pacientes");
+		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

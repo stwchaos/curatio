@@ -54,7 +54,7 @@ public class TelaPadrao extends JFrame {
 		PacienteDAO pacientedao = new PacienteDAO();
 		MedicoDAO profissionaldao = new MedicoDAO();
 		setForeground(new Color(0, 51, 51));
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Inicio");
 		setBackground(new Color(0, 51, 51));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPadrao.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

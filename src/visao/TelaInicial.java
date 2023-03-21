@@ -66,7 +66,7 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/img/logoHospital.png")));
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Login");
 
 		URL resourceIcon = TelaInicial.class.getResource("/img/logoHospital.png");
 		if (resourceIcon != null) {
