@@ -28,7 +28,7 @@ public class TelaConsultasPendentes extends JFrame {
 
 	public TelaConsultasPendentes(Medico usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultasPendentes.class.getResource("/img/logoHospital.png")));
-		setTitle("Hospital Esmeralda");
+		setTitle("Consultas pendentes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
 		contentPane = new JPanel();

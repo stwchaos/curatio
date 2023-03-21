@@ -36,7 +36,7 @@ public class TelaHistorico extends JFrame {
 
 	public TelaHistorico(Medico usuario) {
 		setBackground(new Color(0, 81, 81));
-		setTitle("Hospital Esmeralda");
+		setTitle("Histórico de consultas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaHistorico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);

@@ -186,7 +186,6 @@ public class TelaInicial extends JFrame {
 				Medico m = medicoDAO.efetuarLogin(cpf, senha);
                 if ( m != null ) {
 
-
 //					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao(m);
@@ -195,7 +194,7 @@ public class TelaInicial extends JFrame {
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //					}
 				} else {
-					new DialogMensagemErro("Senha incorreta!").setVisible(true);
+					new DialogMensagemErro("Campo vazio detectado!").setVisible(true);
 					return;
 				}
 			}
