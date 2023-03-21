@@ -70,8 +70,7 @@ public class TelaPadrao extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 81, 81));
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[][223.00,grow]",
-				"[32.00,grow][][149.00][65px][61.00][][60.00][][58.00][][57.00][]"));
+		panel.setLayout(new MigLayout("", "[][223.00,grow]", "[grow][32.00][18.00][][149.00,grow][65px][61.00][][60.00][][58.00][][57.00][]"));
 
 		JButton btnProfissionais = new JButton("Profissionais");
 		btnProfissionais.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com um carinha atras dele.png")));
@@ -103,7 +102,7 @@ public class TelaPadrao extends JFrame {
 
 		JPanel panel_4 = new RoundJPanel(150, Color.white);
 		panel_4.setBackground(null);
-		panel.add(panel_4, "flowx,cell 1 0,alignx center,aligny center");
+		panel.add(panel_4, "flowx,cell 1 1,alignx center,aligny center");
 		panel_4.setLayout(new MigLayout("", "[72px]", "[72px]"));
 
 		JLabel lblNewLabel = new JLabel("");
@@ -116,10 +115,10 @@ public class TelaPadrao extends JFrame {
 		btnSair.setForeground(new Color(255, 255, 255));
 		btnSair.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 2));
 		btnSair.setFocusPainted(false);
-		panel.add(btnSair, "cell 0 1 2 1,growx,aligny bottom");
+		panel.add(btnSair, "cell 0 3 2 1,growx,aligny bottom");
 		btnProfissionais.setForeground(Color.WHITE);
 		btnProfissionais.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		panel.add(btnProfissionais, "cell 1 3,growx,aligny center");
+		panel.add(btnProfissionais, "cell 1 5,growx,aligny center");
 
 		JButton btnMarcarConsulta = new JButton("Marcar consulta");
 		btnMarcarConsulta.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Escrevendo coisa.png")));
@@ -140,7 +139,7 @@ public class TelaPadrao extends JFrame {
 		});
 		btnMarcarConsulta.setForeground(Color.WHITE);
 		btnMarcarConsulta.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		panel.add(btnMarcarConsulta, "cell 1 4,growx,aligny center");
+		panel.add(btnMarcarConsulta, "cell 1 6,growx,aligny center");
 
 		JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
 		btnCadastrarPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com o mais do lado.png")));
@@ -162,7 +161,7 @@ public class TelaPadrao extends JFrame {
 		});
 		btnCadastrarPaciente.setForeground(Color.WHITE);
 		btnCadastrarPaciente.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		panel.add(btnCadastrarPaciente, "cell 1 6,growx,aligny center");
+		panel.add(btnCadastrarPaciente, "cell 1 8,growx,aligny center");
 
 		JButton btnListaPaciente = new JButton("Pacientes");
 		btnListaPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Caderno Carinha.png")));
@@ -185,7 +184,7 @@ public class TelaPadrao extends JFrame {
 		btnListaPaciente.setForeground(Color.WHITE);
 		btnListaPaciente.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 
-		panel.add(btnListaPaciente, "cell 1 8,growx,aligny center");
+		panel.add(btnListaPaciente, "cell 1 10,growx,aligny center");
 
 		JButton btnConsultasPendentes = new JButton("Consultas pendentes");
 		btnConsultasPendentes.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Gavetinha.png")));
@@ -207,7 +206,7 @@ public class TelaPadrao extends JFrame {
 		});
 		btnConsultasPendentes.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		btnConsultasPendentes.setForeground(new Color(255, 255, 255));
-		panel.add(btnConsultasPendentes, "cell 1 10,growx,aligny center");
+		panel.add(btnConsultasPendentes, "cell 1 12,growx,aligny center");
 
 		txtContaLogada = new JTextField();
 		txtContaLogada.setEditable(false);
@@ -217,7 +216,7 @@ public class TelaPadrao extends JFrame {
 		txtContaLogada.setForeground(new Color(255, 255, 255));
 		txtContaLogada.setBackground(new Color(0, 81, 81));
 		txtContaLogada.setBorder(null);
-		panel.add(txtContaLogada, "cell 1 0,growx,aligny center");
+		panel.add(txtContaLogada, "cell 1 1,growx,aligny center");
 		txtContaLogada.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
