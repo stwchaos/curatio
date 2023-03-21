@@ -28,6 +28,7 @@ public class UsuarioDAO {
 			stm.setInt(3, u.getTipo());
 
 			stm.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

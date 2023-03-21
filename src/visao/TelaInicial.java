@@ -164,7 +164,7 @@ public class TelaInicial extends JFrame {
 		c.add(btnEntrar, "cell 2 9,growx,aligny center");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				String login = null;
 				if (!txtLogin.getText().isEmpty()) {
 					login = txtLogin.getText();

@@ -174,8 +174,8 @@ public class TelaMarcarConsultas extends JFrame {
 		comboProfissional.setForeground(new Color(255, 255, 255));
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
-		for (Medico p : profissionalDao.listarProfissionais()) {
-			comboProfissional.addItem(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais());
+		for (Medico m : profissionalDao.listarProfissionais()) {
+			comboProfissional.addItem(m.getNome()+", crm: "+m.getCrm());
 		}
 
 		JButton btnMarcar = new JButton("Agendar");
@@ -193,9 +193,9 @@ public class TelaMarcarConsultas extends JFrame {
 						consulta.setPaciente(p);
 					}
 				}
-				for (Medico p : profissionalDao.listarProfissionais()) {
-					if (comboProfissional.getSelectedItem().equals(p.getNomeProfissionais()+", cpf: "+p.getCpfProfissionais())) {
-						consulta.setProfissional(p);
+				for (Medico m : profissionalDao.listarProfissionais()) {
+					if (comboProfissional.getSelectedItem().equals(m.getNome()+", crm: "+m.getCrm())) {
+						consulta.setProfissional(m);
 					}
 				}
 				

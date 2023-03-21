@@ -2,54 +2,55 @@ package modelo;
 
 public class Medico {
 
-	private Long cpfProfissionais;
-	private String nomeProfissionais;
+	private Long crm;
+	private String nome;
+	private Long cpf;
+	private String sexo;
+	private String pronome;
+	private Especialidade especialidade;
 	private Usuario usuario;
-	private String senha;
-
-	/*
-	 * 
-	 * INSERT
-	 * 
-	 * Medico med = new Medico(); med.getUsuario().setLogin();
-	 * med.getUsuario().setLogin(); 
-	 * med.setSetCpf();
-	 * med.setNome();
-	 * 
-	 * 
-	 * SELECT = SELECT * FROM medicos INNER JOIN usuario INNER JOIN especialidade ==
-	 */
-
-	public String getSenha() {
-		return senha;
+	
+	public Long getCrm() {
+		return crm;
 	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setCrm(Long crm) {
+		this.crm = crm;
 	}
-
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Long getCpf() {
+		return cpf;
+	}
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	public String getPronome() {
+		return pronome;
+	}
+	public void setPronome(String pronome) {
+		this.pronome = pronome;
+	}
+	public Especialidade getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Long getCpfProfissionais() {
-		return cpfProfissionais;
-	}
-
-	public void setCpfProfissionais(Long cpfProfissionais) {
-		this.cpfProfissionais = cpfProfissionais;
-	}
-
-	public String getNomeProfissionais() {
-		return nomeProfissionais;
-	}
-
-	public void setNomeProfissionais(String nomeProfissionais) {
-		this.nomeProfissionais = nomeProfissionais;
 	}
 
 }
