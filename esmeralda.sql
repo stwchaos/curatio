@@ -1,3 +1,4 @@
+DROP DATABASE esmeralda;
 CREATE DATABASE esmeralda;
 USE esmeralda;
 
@@ -96,23 +97,18 @@ CREATE TABLE IF NOT EXISTS pagamento(
     -- -----------------------------------------------------
 -- Table `esmeralda`.`consulta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS consulta(
+CREATE TABLE IF NOT EXISTS consulta (
   id_pendentes INT NOT NULL AUTO_INCREMENT,
   data DATETIME NOT NULL,
   objetivo VARCHAR(45) NOT NULL,
   encerrada TINYINT NOT NULL,
   paciente_cpf BIGINT(12) NOT NULL,
   medico_crm BIGINT(6) NOT NULL,
+  pagamento_idpagamento INT NOT NULL,
   PRIMARY KEY (id_pendentes),
     FOREIGN KEY (paciente_cpf)
     REFERENCES paciente (cpf),
     FOREIGN KEY (medico_crm)
-    REFERENCES medico(crm),
+    REFERENCES medico (crm),
     FOREIGN KEY (pagamento_idpagamento)
     REFERENCES pagamento (idpagamento));
-
-    
-
-
-
-
