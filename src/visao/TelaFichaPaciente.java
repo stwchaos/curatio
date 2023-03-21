@@ -41,13 +41,9 @@ public class TelaFichaPaciente extends JFrame {
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
 
-<<<<<<< Updated upstream
-	public TelaFichaPaciente(Medico usuario) {
-		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
-=======
 	public TelaFichaPaciente(Usuario u) {
+		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
 		setTitle("Hospital Esmeralda");
->>>>>>> Stashed changes
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
