@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.Conexao;
 import controle.UsuarioDAO;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
@@ -51,7 +52,9 @@ public class TelaInicial extends JFrame {
 				}
 			}
 		});
-	}
+		Conexao co = Conexao.getInstancia();
+		co.criaBanco();
+}
 
 	/**
 	 * Create the frame.

@@ -19,12 +19,14 @@ public class EspecialidadeDAO {
 				// conectar
 				Connection c = con.conectar();
 				try {
-					String query = "INSERT INTO especialidade (especialidade) VALUES (?);";
+					String query = "INSERT INTO especialidade (especialidade, salario) VALUES (?, ?);";
 					PreparedStatement stm = c.prepareStatement(query);
 
-					stm.setString(1, "Cardiologista");
+					stm.setString(1, es.getEspecialidade());
+					stm.setDouble(1, es.getSalario());
 
 					stm.executeUpdate();
+					return true;
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -38,9 +40,12 @@ public class EspecialidadeDAO {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE especialidade SET especialidade = ? WHERE id_especialidade = ?";
+			String query = "UPDATE especialidade SET especialidade = ?, salario = ? WHERE id_especialidade = ?";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, es.getEspecialidade());
+			stm.setDouble(2, es.getSalario());
+			stm.setInt(1, es.getId_especialidade());
+			
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -70,9 +75,12 @@ public class EspecialidadeDAO {
 			while(rs.next()) {
 				Integer id_especialidade = rs.getInt("id_especialidade");
 				String especialidade = rs.getString("especialidade");
+				Double salario = rs.getDouble("salario");
 				Especialidade e = new Especialidade();
 				e.setId_especialidade(id_especialidade);
 				e.setEspecialidade(especialidade);
+				e.setSalario(salario);
+				especialidades.add(e);
 			}
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -80,7 +88,7 @@ public class EspecialidadeDAO {
 
 	// desconectar
 	con.fecharConexao();
-	return null;
+	return especialidades;
 			
 		}
 }

@@ -90,8 +90,13 @@ public class MedicoDAO {
 				String nome = rs.getString("nome");
 				String sexo = rs.getString("sexo");
 				String pronome = rs.getString("pronome");
-				Long especialidadeId = rs.getLong("especialidade_id_especialidade");
-				Long usuarioId = rs.getLong("usuario_id_usuario");
+				Long idUsuario = rs.getLong("id_usuario");
+				String login = rs.getString("login");
+				String senha = rs.getString("senha");
+				Integer tipoUsuario = rs.getInt("tipo_usuario");
+				Integer idEspecialidade = rs.getInt("id_especialidade");
+				String especialidade = rs.getString("especialidade");
+				Double salario = rs.getDouble("salario");
 				
 				Medico m = new Medico();
 				Especialidade e = new Especialidade();
@@ -101,7 +106,12 @@ public class MedicoDAO {
 				m.setNome(nome);
 				m.setSexo(sexo);
 				m.setPronome(pronome);
-				m.setUsuario();
+				m.getUsuario().setId(idUsuario);
+				m.getUsuario().setLogin(login);
+				m.getUsuario().setSenha(senha);
+				m.getEspecialidade().setEspecialidade(especialidade);
+				m.getEspecialidade().setId_especialidade(idEspecialidade);
+				m.getEspecialidade().setSalario(salario);
 				medicos.add(m);
 			}
 
