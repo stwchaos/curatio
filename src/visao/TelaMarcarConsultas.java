@@ -40,7 +40,6 @@ import net.miginfocom.swing.MigLayout;
 public class TelaMarcarConsultas extends JFrame {
 
 	private JPanel c;
-	private JTextField textEmail;
 	private JTextField txtObjetivo;
 	private JTextField txtMarcarConsulta;
 
@@ -139,20 +138,11 @@ public class TelaMarcarConsultas extends JFrame {
 			
 		}
 
-		textEmail = new RoundJTextField();
-		textEmail.setText("Inserir");
-		textEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textEmail.setColumns(10);
-		panel.add(textEmail, "cell 0 13 5 1,grow");
-
 		JLabel lblNewLabel_2 = new JLabel("Profissional *");
 		panel.add(lblNewLabel_2, "cell 0 3 3 1,growx,aligny top");
 
 		JLabel lblNewLabel_3 = new JLabel("Data da consulta *");
 		panel.add(lblNewLabel_3, "cell 0 5 3 1,alignx left,aligny top");
-
-		JLabel lblNewLabel_7 = new JLabel("Atualizar e-mail para contato");
-		panel.add(lblNewLabel_7, "cell 0 12 3 1,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_5_1 = new JLabel("Forma de Pagamento *");
 		panel.add(lblNewLabel_5_1, "cell 0 9 5 1,growx,aligny top");
@@ -209,15 +199,6 @@ public class TelaMarcarConsultas extends JFrame {
 				}
 			}
 		});
-		
-		JLabel lblNewLabel_7_1 = new JLabel("Observações");
-		panel.add(lblNewLabel_7_1, "cell 0 14");
-		
-		RoundJTextField textObservar = new RoundJTextField();
-		textObservar.setText("Inserir");
-		textObservar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textObservar.setColumns(10);
-		panel.add(textObservar, "cell 0 15 7 1,growx");
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
