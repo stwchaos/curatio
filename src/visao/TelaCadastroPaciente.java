@@ -118,10 +118,10 @@ public class TelaCadastroPaciente extends JFrame {
 				comboPronome.setSelectedItem("Inserir");
 				panel.add(comboPronome, "cell 3 5 2 1,growx,aligny center");
 
-		JLabel lblNewLabel_2 = new JLabel("Nome social");
+		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setToolTipText("Nome social");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel_2, "cell 0 7,alignx left,aligny bottom");
+		panel.add(lblNewLabel_2, "cell 0 7 2 1,alignx left,aligny bottom");
 				String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
 				for (String string : listaPronome) {
 					comboPronome.addItem(string);

@@ -176,20 +176,23 @@ public class TelaInicial extends JFrame {
 				if (!txtSenha.getText().isEmpty()) {
 					senha = txtSenha.getText();
 				}
-
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario u = usuarioDAO.efetuarLogin(login, senha);
-                if ( u != null ) {
-
-//					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
-					dispose();
-					TelaPadrao telaPadrao = new TelaPadrao(u);
-					telaPadrao.setLocationRelativeTo(null);
-					telaPadrao.setVisible(true);
-					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//					}
-				} else {
-					new DialogMensagemErro("Campo vazio detectado!").setVisible(true);
+				if(login!=null || senha!=null) {
+					UsuarioDAO usuarioDAO = new UsuarioDAO();
+					Usuario u = usuarioDAO.efetuarLogin(login, senha);
+	                if ( u != null ) {
+	//					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
+						dispose();
+						TelaPadrao telaPadrao = new TelaPadrao(u);
+						telaPadrao.setLocationRelativeTo(null);
+						telaPadrao.setVisible(true);
+						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	//					}
+					} else {
+						new DialogMensagemErro("Usuário Inexistente").setVisible(true);
+						return;
+					}
+				}else {
+					new DialogMensagemErro("Campos vazios").setVisible(true);
 					return;
 				}
 			}

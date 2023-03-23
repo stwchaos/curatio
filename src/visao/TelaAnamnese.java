@@ -30,8 +30,6 @@ public class TelaAnamnese extends JFrame {
 	private JTextField textSexo;
 	private JLabel lblNewLabel_4;
 	private JDateChooser dtNascimento;
-	private JLabel lblNewLabel_5;
-	private JTextField textProfissao;
 	private JLabel lblNewLabel_3;
 	private JTextField textQueixa;
 	private JButton btnVoltar;
@@ -94,7 +92,7 @@ public class TelaAnamnese extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 240, 240));
 		contentPane.add(panel, "cell 2 0 13 2,growx,aligny top");
-		panel.setLayout(new MigLayout("", "[108.00,grow][][108,grow]", "[32.00][][][][][][][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[108.00,grow][][108,grow]", "[32.00][][][][][][][][][][]"));
 		
 		txtIentificao = new RoundJTextField();
 		txtIentificao.setHorizontalAlignment(SwingConstants.CENTER);
@@ -110,6 +108,8 @@ public class TelaAnamnese extends JFrame {
 		panel.add(lblNewLabel, "cell 0 2");
 		
 		textNomeR = new RoundJTextField();
+		textNomeR.setBackground(new Color(163, 163, 163));
+		textNomeR.setEditable(false);
 		textNomeR.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textNomeR, "cell 0 3,growx");
 		textNomeR.setColumns(10);
@@ -121,11 +121,16 @@ public class TelaAnamnese extends JFrame {
 		panel.add(lblPronome, "cell 2 4");
 		
 		textNomeS = new RoundJTextField();
+		textNomeS.setBackground(new Color(163, 163, 163));
+		textNomeS.setEditable(false);
 		textNomeS.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textNomeS, "cell 0 5,growx");
 		textNomeS.setColumns(10);
 		
-		comboPronome = new JComboBox();
+		comboPronome = new RoundComboBox();
+		comboPronome.setEnabled(false);
+		comboPronome.setForeground(Color.BLACK);
+		comboPronome.setBackground(new Color(163, 163, 163));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(comboPronome, "cell 2 5,growx");
 		
@@ -133,6 +138,8 @@ public class TelaAnamnese extends JFrame {
 		panel.add(lblNewLabel_2, "cell 0 6");
 		
 		textSexo = new RoundJTextField();
+		textSexo.setBackground(new Color(163, 163, 163));
+		textSexo.setEditable(false);
 		textSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textSexo, "cell 0 7,growx");
 		textSexo.setColumns(10);
@@ -149,14 +156,6 @@ public class TelaAnamnese extends JFrame {
 		dtNascimento.setForeground(new Color(0, 81, 81));
 		dtNascimento.setBackground(new Color(229, 229, 229));
 		panel.add(dtNascimento, "cell 0 9,growx,aligny center");
-		
-		lblNewLabel_5 = new JLabel("Profissão");
-		panel.add(lblNewLabel_5, "cell 0 10");
-		
-		textProfissao = new RoundJTextField();
-		textProfissao.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textProfissao, "cell 0 11,growx");
-		textProfissao.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, "cell 16 0 14 11,grow");
