@@ -120,7 +120,7 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS consulta (\r\n"
-					+ "  id_pendentes INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  id_consulta INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  data DATETIME NOT NULL,\r\n"
 					+ "  objetivo VARCHAR(45) NOT NULL,\r\n"
 					+ "  encerrada TINYINT NOT NULL,\r\n"

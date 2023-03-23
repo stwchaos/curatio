@@ -47,7 +47,7 @@ public class UsuarioDAO {
 			stm.setString(1, u.getLogin());
 			stm.setString(2, u.getSenha());
 			stm.setInt(3, u.getTipo());
-			stm.setLong(4, u.getId());
+			stm.setLong(4, u.getIdUsuario());
 			
 			stm.executeUpdate();
 			return true;
@@ -81,7 +81,7 @@ public class UsuarioDAO {
 				String senha = rs.getString("senha");
 				Integer tipo = rs.getInt("tipo_usuario");
 				Usuario u = new Usuario();
-				u.setId(id);
+				u.setIdUsuario(id);;
 				u.setLogin(login);
 				u.setSenha(senha);
 				u.setTipo(tipo);

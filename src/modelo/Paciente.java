@@ -6,11 +6,25 @@ public class Paciente {
 	private Long cpf;
 	private String nome;
 	private LocalDate nascimento;
-	private Integer telefone;
+	private Long telefone;
 	private String sexo;
 	private String nomeSocial;
 	private String email;
+	private String pronome;
+	private Endereco endereco;
 	
+	public String getPronome() {
+		return pronome;
+	}
+	public void setPronome(String pronome) {
+		this.pronome = pronome;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	public Long getCpf() {
 		return cpf;
 	}
@@ -20,7 +34,7 @@ public class Paciente {
 	public LocalDate getNascimento() {
 		return nascimento;
 	}
-	public Integer getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 	public String getSexo() {
@@ -41,7 +55,7 @@ public class Paciente {
 	public void setNascimento(LocalDate nascimento) {
 		this.nascimento = nascimento;
 	}
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 	public void setSexo(String sexo) {

@@ -2,7 +2,7 @@ package modelo;
 
 public class Usuario {
 
-	private Long id;
+	private Long idUsuario;
 	private String login;
 	private String senha;
 	private Integer tipo;
@@ -14,6 +14,16 @@ public class Usuario {
 	 * tipo = 4 -> outros
 	 */
 	
+	
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	
 	public Integer getTipo() {
 		return tipo;
 	}
@@ -22,13 +32,6 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getLogin() {
 		return login;
