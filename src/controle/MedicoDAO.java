@@ -99,8 +99,6 @@ public class MedicoDAO {
 				Double salario = rs.getDouble("salario");
 				
 				Medico m = new Medico();
-				Especialidade e = new Especialidade();
-				Usuario u = new Usuario();
 				m.setCrm(crm);
 				m.setCpf(cpf);
 				m.setNome(nome);

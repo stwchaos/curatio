@@ -21,16 +21,21 @@ public class PacienteDAO {
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setLong(1, 123);
-			stm.setString(2, "PacienteTeste");
-			stm.setDate(3, Date.valueOf(LocalDate.of(2000, 01, 01)));
-			stm.setString(5, "Cadeira");
-			stm.setString(7, "teste@gmail.com");
+			stm.setLong(1, p.getCpf());
+			stm.setString(2, p.getNome());
+			stm.setDate(3, Date.valueOf(p.getNascimento()));
+			stm.setLong(4, p.getTelefone());
+			stm.setString(5, p.getSexo());
+			stm.setString(6, p.getNomeSocial());
+			stm.setString(7, p.getEmail());
+			stm.setString(8, p.getPronome());
+			stm.setDouble(9, p.getEndereco().getIdEndereco());
 
 			stm.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -44,14 +49,17 @@ public class PacienteDAO {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ? WHERE cpf = ?";
+			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ? WHERE cpf = ?";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, p.getNome());
-			stm.setLong(2, p.getCpf());
-			stm.setDate(3, Date.valueOf(p.getNascimento()));
-			stm.setLong(4, p.getTelefone());
-			stm.setString(5, p.getSexo());
-			stm.setString(6, p.getNomeSocial());
+			stm.setDate(2, Date.valueOf(p.getNascimento()));
+			stm.setLong(3, p.getTelefone());
+			stm.setString(4, p.getSexo());
+			stm.setString(5, p.getNomeSocial());
+			stm.setString(6, p.getEmail());
+			stm.setString(7, p.getPronome());
+			stm.setDouble(8, p.getEndereco().getIdEndereco());
+			stm.setLong(9, p.getCpf());
 			
 			stm.executeUpdate();
 			return true;
@@ -77,7 +85,7 @@ public class PacienteDAO {
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM paciente";
+			String query = "SELECT * FROM paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco;";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Long cpf = rs.getLong("cpf");
@@ -87,6 +95,14 @@ public class PacienteDAO {
 				String sexo = rs.getString("sexo");
 				String nomeSocial = rs.getString("nome_social");
 				String email = rs.getString("email");
+				String pronome = rs.getString("pronome");
+				Long idEndereco = rs.getLong("id_endereco");
+				String rua = rs.getString("rua");
+				Long cep = rs.getLong("cep");
+				Integer numCasa = rs.getInt("numero_casa");
+				String complemento = rs.getString("complemento");
+				String cidade = rs.getString("cidade");
+				String bairro = rs.getString("bairro");
 				Paciente p = new Paciente();
 				p.setCpf(cpf);
 				p.setNome(nome);
@@ -95,8 +111,15 @@ public class PacienteDAO {
 				p.setSexo(sexo);
 				p.setNomeSocial(nomeSocial);
 				p.setEmail(email);
+				p.setPronome(pronome);
+				p.getEndereco().setIdEndereco(idEndereco);
+				p.getEndereco().setRua(rua);
+				p.getEndereco().setCep(cep);
+				p.getEndereco().setNumCasa(numCasa);
+				p.getEndereco().setComplemento(complemento);
+				p.getEndereco().setCidade(cidade);
+				p.getEndereco().setBairro(bairro);
 				pacientes.add(p);
-
 			}
 
 		} catch (SQLException e) {
