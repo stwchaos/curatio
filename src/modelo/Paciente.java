@@ -10,7 +10,21 @@ public class Paciente {
 	private String sexo;
 	private String nomeSocial;
 	private String email;
+	private String pronome;
+	private Endereco endereco;
 	
+	public String getPronome() {
+		return pronome;
+	}
+	public void setPronome(String pronome) {
+		this.pronome = pronome;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	public Long getCpf() {
 		return cpf;
 	}
