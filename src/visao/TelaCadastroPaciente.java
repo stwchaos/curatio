@@ -1,42 +1,38 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import com.toedter.calendar.JDateChooser;
-
-import controle.UsuarioDAO;
-import modelo.Medico;
-import modelo.Usuario;
-
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import net.miginfocom.swing.MigLayout;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
+
+import controle.EnderecoDAO;
+import modelo.Endereco;
+import modelo.Paciente;
+import modelo.Usuario;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -190,7 +186,7 @@ public class TelaCadastroPaciente extends JFrame {
 						txtRua.setColumns(10);
 						panel.add(txtRua, "cell 3 16 2 1,grow");
 				
-				JLabel lblNewLabel_7_1 = new JLabel("Complemento *");
+				JLabel lblNewLabel_7_1 = new JLabel("Complemento");
 				lblNewLabel_7_1.setForeground(Color.BLACK);
 				panel.add(lblNewLabel_7_1, "cell 0 18");
 				
@@ -271,10 +267,32 @@ public class TelaCadastroPaciente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!txtNome.getText().isEmpty() || !txtNomeSoc.getText().isEmpty() || !txtBairro.getText().isEmpty() || !txtCEP.getText().isEmpty() || !txtCidade.getText().isEmpty() || !txtEmail.getText().isEmpty() || !txtRua.getText().isEmpty() || !txtTelefone.getText().isEmpty() ) {
-					String nome = txtNome.getText(), nomeSoc = txtNomeSoc.getText(), email = txtEmail.getText(), bairro = txtBairro.getText(), rua = txtRua.getText(), cidade = txtCidade.getText();
-					Double cep = Double.valueOf(txtCEP.getText());
-					Integer telefone = Integer.valueOf(txtTelefone.getText());
+				if (!txtCPF.getText().isEmpty() || !txtNome.getText().isEmpty() || !txtNomeSoc.getText().isEmpty() || !txtBairro.getText().isEmpty() || !txtCEP.getText().isEmpty() || !txtCidade.getText().isEmpty() || !txtEmail.getText().isEmpty() || !txtRua.getText().isEmpty() || !txtTelefone.getText().isEmpty()) {
+					String nome = txtNome.getText(), nomeSoc = txtNomeSoc.getText(), email = txtEmail.getText(), bairro = txtBairro.getText(), rua = txtRua.getText(), cidade = txtCidade.getText(), complemento = null;
+					Integer telefone = Integer.valueOf(txtTelefone.getText()), numCasa = null;
+					Long cpf = Long.valueOf(txtCPF.getText()), cep = Long.valueOf(txtCEP.getText());
+					if(!txtComplemento.getText().isBlank()) {
+						complemento = txtComplemento.getText();
+					}
+					Paciente paciente = new Paciente();
+					EnderecoDAO enderecoDao = new EnderecoDAO();
+					paciente.setCpf(cpf);
+					paciente.setEmail(email);
+					paciente.setNascimento(convertToLocalDateViaInstant(dtNascimento.getDate()));
+					paciente.setNome(nome);
+					paciente.setNomeSocial(nomeSoc);
+					paciente.setPronome(String.valueOf(comboPronome.getSelectedItem()));
+					paciente.setSexo(String.valueOf(comboSexo.getSelectedItem()));
+					paciente.setTelefone(telefone);
+					for (Endereco en : enderecoDao.listarEndereco()) {
+						if(en.getBairro().equals(bairro) && en.getCep()==cep && en.getCidade().equals(cidade) && en.getComplemento().equals(complemento) && en.getNumCasa()==numCasa && en.getRua().equals(rua)) {
+							paciente.setEndereco(en);
+						}
+					}
+					paciente.getEndereco().setBairro(bairro);
+					paciente.getEndereco().setCep(cep);
+					paciente.getEndereco().setCidade(cidade);
+					paciente.getEndereco().setComplemento(complemento);
 				}else {
 					new DialogMensagemErro("Campos vazios").setVisible(true);
 					return;		
@@ -303,5 +321,11 @@ public class TelaCadastroPaciente extends JFrame {
 	private Color Color(int i, int j, int k) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
 	}
 }
