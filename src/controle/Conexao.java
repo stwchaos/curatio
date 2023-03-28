@@ -97,7 +97,7 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS funcionario (\r\n"
-					+ "  idfuncionario INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  id_funcionario INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  nome VARCHAR(255) NOT NULL,\r\n"
 					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
 					+ "  telefone BIGINT NOT NULL,\r\n"
@@ -110,7 +110,7 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS pagamento(\r\n"
-					+ "  idpagamento INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  id_pagamento INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  forma_pagamento VARCHAR(45) NOT NULL,\r\n"
 					+ "  data_pagamento DATETIME NOT NULL,\r\n"
 					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
