@@ -193,9 +193,11 @@ public class TelaMarcarConsultas extends JFrame {
 				consulta.setObjetivo(objetivo);
 				consulta.setData(convertToLocalDateViaInstant(data));
 				if(consultaDAO.inserir(consulta)) {
-					JOptionPane.showMessageDialog(null, "Cadastrado");
+					new DialogMensagemSucesso("Consulta marcada com sucesso").setVisible(true);
+					return;
 				}else {
-					JOptionPane.showMessageDialog(null, "Não cadastrado");
+					new DialogMensagemErro("Erro em marcar consulta").setVisible(true);
+					return;
 				}
 			}
 		});

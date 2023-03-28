@@ -132,7 +132,7 @@ public class TelaFichaPaciente extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 6,alignx left,aligny bottom");
 
-		JLabel lblNewLabel_2_1 = new JLabel("Pronome *");
+		JLabel lblNewLabel_2_1 = new JLabel("Pronome");
 		lblNewLabel_2_1.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_2_1, "cell 4 6,alignx left,aligny bottom");
 
