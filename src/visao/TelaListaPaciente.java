@@ -39,9 +39,7 @@ public class TelaListaPaciente extends JFrame {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JButton btnSelecionar;
-	private JLabel lblNewLabel_1;
 	private JButton btnVoltar;
-	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -62,7 +60,7 @@ public class TelaListaPaciente extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][-12.00px][395.00px,grow][grow][18.00][][][grow,center][443.00px,grow,left]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
+		contentPane.setLayout(new MigLayout("", "[grow][-12.00px][395.00px,grow][grow][47.00px,grow,left]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
 		txtPesquisarPaciente = new JTextField();
 		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
@@ -71,10 +69,6 @@ public class TelaListaPaciente extends JFrame {
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		contentPane.add(txtPesquisarPaciente, "cell 2 0,growx,aligny bottom");
 		txtPesquisarPaciente.setColumns(10);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/iconPesquisa.png")));
-		contentPane.add(lblNewLabel, "cell 3 0");
 		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, "cell 2 2 2 1,grow");
@@ -100,26 +94,6 @@ public class TelaListaPaciente extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		btnSelecionar = new JButton("Selecionar");
-		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		btnSelecionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(u);
-				telaFichaPaciente.setLocationRelativeTo(null);
-				telaFichaPaciente.setVisible(true);
-				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
-		btnSelecionar.setForeground(new Color(255, 255, 255));
-		btnSelecionar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
-		btnSelecionar.setBackground(new Color(64, 128, 128));
-		contentPane.add(btnSelecionar, "cell 8 4,alignx right,aligny top");
-		
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/iconmedicina.png")));
-		contentPane.add(lblNewLabel_1, "cell 8 3,growx,aligny top");
-		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
 		btnVoltar.setBackground(new Color(64, 128, 128));
@@ -134,6 +108,22 @@ public class TelaListaPaciente extends JFrame {
 			}
 		});
 		contentPane.add(btnVoltar, "cell 2 4,alignx left,aligny top");
+		
+		btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(u);
+				telaFichaPaciente.setLocationRelativeTo(null);
+				telaFichaPaciente.setVisible(true);
+				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnSelecionar.setForeground(new Color(255, 255, 255));
+		btnSelecionar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
+		btnSelecionar.setBackground(new Color(64, 128, 128));
+		contentPane.add(btnSelecionar, "cell 3 4,alignx right,aligny top");
 		
 	}
 }

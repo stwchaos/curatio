@@ -82,7 +82,7 @@ public class TelaInicial extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JPanel panelPrincipal = new PanelComBackgroundImage(bg);;
+		JPanel panelPrincipal = new PanelComBackgroundImage(bg);
 		
 
 		panelPrincipal.setBackground(new Color(0, 81, 81));
@@ -109,7 +109,7 @@ public class TelaInicial extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JPanel c = new PanelComBackgroundImage(bg);;
+		JPanel c = new PanelComBackgroundImage(bg);
 		c.setForeground(null);
 		c.setBackground(new Color(0, 81, 81));
 		panel.add(c);
