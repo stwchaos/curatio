@@ -50,12 +50,13 @@ public class ConsultaDAO {
 		Connection co = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE consultas SET data = ?, objetivo = ?, encerrada = ?, pagamento = ? WHERE id_pendentes = ?";
+			String query = "UPDATE consultas SET data = ?, objetivo = ?, encerrada = ?, pagamento = ? WHERE id_consultas = ?";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setDate(1, Date.valueOf(c.getData()));
 			stm.setString(2, c.getObjetivo());
 			stm.setBoolean(3, c.getEncerrada());
-			stm.setString(4, c.getPagamento());
+			stm.setInt(4, c.getPagamento().getIdPagamento());
+			stm.setInt(5, c.getIdConsulta());
 
 			stm.executeUpdate();
 			return true;
@@ -84,12 +85,12 @@ public class ConsultaDAO {
 			String query = "SELECT * FROM consultas";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Integer id_consulta = rs.getInt("id_pendentes");
+				Integer idConsulta = rs.getInt("id_pendentes");
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String pagamento = rs.getString("pagamento");
 				Consulta c = new Consulta();
-				c.setId_consulta(id_consulta);
+				c.setIdConsulta(idConsulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(pagamento);

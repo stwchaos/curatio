@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Consulta {
 
-	private Integer id_consulta;
+	private Integer idConsulta; //TODO mudar nome banco de dados
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;
@@ -28,13 +28,14 @@ public class Consulta {
 		this.medico = medico;
 	}
 
-	public Integer getId_consulta() {
-		return id_consulta;
+	public Integer getIdConsulta() {
+		return idConsulta;
 	}
 
-	public void setId_consulta(Integer id_consulta) {
-		this.id_consulta = id_consulta;
+	public void setIdConsulta(Integer idConsulta) {
+		this.idConsulta = idConsulta;
 	}
+	
 
 	public LocalDate getData() {
 		return data;
