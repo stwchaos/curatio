@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_vhC38M8LEe2EQJXtYp2uYA" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_vhFUMM8LEe2EQJXtYp2uYA" source="codegen">
         <details xmi:id="_vhFUMc8LEe2EQJXtYp2uYA" key="codegenDirectory" value="/query/src"/>
-        <details xmi:id="_vn68AM8LEe2EQJXtYp2uYA" key="AssociatedSourceCode" value="/query/src/modelo/Anamnese.java;2637690507/1;/query/src/modelo/Consulta.java;4109898933/1;/query/src/modelo/Endereco.java;2786517225/1;/query/src/modelo/Especialidade.java;2272231203/1;/query/src/modelo/Medico.java;3221246644/1;/query/src/modelo/Paciente.java;904959640/1;/query/src/modelo/Usuario.java;1278684247/1;"/>
+        <details xmi:id="_vn68AM8LEe2EQJXtYp2uYA" key="AssociatedSourceCode" value="/query/src/modelo/Anamnese.java;1002176379/1;/query/src/modelo/Consulta.java;4109898933/1;/query/src/modelo/Endereco.java;2786517225/1;/query/src/modelo/Especialidade.java;2272231203/1;/query/src/modelo/Medico.java;3221246644/1;/query/src/modelo/Paciente.java;904959640/1;/query/src/modelo/Usuario.java;1278684247/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_vmTycM8LEe2EQJXtYp2uYA">
@@ -48,14 +48,14 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_vmVAkM8LEe2EQJXtYp2uYA" name="modelo">
       <packagedElement xmi:type="uml:Class" xmi:id="_vmf_sM8LEe2EQJXtYp2uYA" name="Anamnese">
-        <ownedAttribute xmi:id="_vm7dgM8LEe2EQJXtYp2uYA" name="queixaPrincipal" visibility="private">
+        <ownedAttribute xmi:id="_vm7dgM8LEe2EQJXtYp2uYA" name="queixaPrincipal" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_vm7dgs8LEe2EQJXtYp2uYA" name="disposicaoGeral" visibility="private">
+        <ownedAttribute xmi:id="_vm7dgs8LEe2EQJXtYp2uYA" name="disposicaoGeral" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_vm7dhM8LEe2EQJXtYp2uYA" name="alergias" visibility="private" type="_vm0v0M8LEe2EQJXtYp2uYA" association="_vnEAYM8LEe2EQJXtYp2uYA"/>
-        <ownedAttribute xmi:id="_vm8Eks8LEe2EQJXtYp2uYA" name="medicacoesEmUso" visibility="private" type="_vm0v0M8LEe2EQJXtYp2uYA" association="_vnEncM8LEe2EQJXtYp2uYA"/>
+        <ownedAttribute xmi:id="_vm7dhM8LEe2EQJXtYp2uYA" name="alergias" visibility="public" type="_vm0v0M8LEe2EQJXtYp2uYA" association="_vnEAYM8LEe2EQJXtYp2uYA"/>
+        <ownedAttribute xmi:id="_vm8Eks8LEe2EQJXtYp2uYA" name="medicacoesEmUso" visibility="public" type="_vm0v0M8LEe2EQJXtYp2uYA" association="_vnEncM8LEe2EQJXtYp2uYA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_vmgmwM8LEe2EQJXtYp2uYA" name="Consulta">
         <ownedAttribute xmi:id="_vm8roc8LEe2EQJXtYp2uYA" name="idConsulta" visibility="private">
@@ -226,12 +226,8 @@
   <UMLLabProfile:Reference xmi:id="_vm198M8LEe2EQJXtYp2uYA" base_Element="_vm1W4M8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Reference xmi:id="_vm5BQs8LEe2EQJXtYp2uYA" base_Element="_vm5BQc8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Reference xmi:id="_vm5oUc8LEe2EQJXtYp2uYA" base_Element="_vm5oUM8LEe2EQJXtYp2uYA"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_vm7dgc8LEe2EQJXtYp2uYA" base_Element="_vm7dgM8LEe2EQJXtYp2uYA"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_vm7dg88LEe2EQJXtYp2uYA" base_Element="_vm7dgs8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Generics xmi:id="_vm8EkM8LEe2EQJXtYp2uYA" genericsValue="String" base_Element="_vm7dhM8LEe2EQJXtYp2uYA"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_vm8Ekc8LEe2EQJXtYp2uYA" base_Element="_vm7dhM8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Generics xmi:id="_vm8Ek88LEe2EQJXtYp2uYA" genericsValue="String" base_Element="_vm8Eks8LEe2EQJXtYp2uYA"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_vm8roM8LEe2EQJXtYp2uYA" base_Element="_vm8Eks8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_vm8ros8LEe2EQJXtYp2uYA" base_Element="_vm8roc8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Reference xmi:id="_vnEAYs8LEe2EQJXtYp2uYA" base_Element="_vnEAYM8LEe2EQJXtYp2uYA"/>
   <UMLLabProfile:Reference xmi:id="_vnEncs8LEe2EQJXtYp2uYA" base_Element="_vnEncM8LEe2EQJXtYp2uYA"/>

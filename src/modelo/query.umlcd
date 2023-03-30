@@ -118,7 +118,9 @@
     </sourceRole>
     <targetRole xmi:id="_voMo1s8LEe2EQJXtYp2uYA" aggregationKind="NONE" name="alergias" navigable="true">
       <modelElement href="query.uml#_vm7dhM8LEe2EQJXtYp2uYA"/>
-      <visibility xmi:id="_voMo188LEe2EQJXtYp2uYA" label="-"/>
+      <stereotypes xmi:id="_FFBWwM8MEe2EQJXtYp2uYA" name="Generics"/>
+      <stereotypes xmi:id="_FFDL8M8MEe2EQJXtYp2uYA" name="Generics"/>
+      <visibility xmi:id="_voMo188LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voMo2M8LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
@@ -135,7 +137,9 @@
     </sourceRole>
     <targetRole xmi:id="_voNP5s8LEe2EQJXtYp2uYA" aggregationKind="NONE" name="medicacoesEmUso" navigable="true">
       <modelElement href="query.uml#_vm8Eks8LEe2EQJXtYp2uYA"/>
-      <visibility xmi:id="_voNP588LEe2EQJXtYp2uYA" label="-"/>
+      <stereotypes xmi:id="_FFCk4M8MEe2EQJXtYp2uYA" name="Generics"/>
+      <stereotypes xmi:id="_FFDzAM8MEe2EQJXtYp2uYA" name="Generics"/>
+      <visibility xmi:id="_voNP588LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voNP6M8LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
@@ -481,10 +485,7 @@
     <visibility xmi:id="_voNP688LEe2EQJXtYp2uYA" label="+"/>
     <attributes xmi:id="_voNP7M8LEe2EQJXtYp2uYA" name="queixaPrincipal">
       <modelElement href="query.uml#_vm7dgM8LEe2EQJXtYp2uYA"/>
-      <stereotypes xmi:id="_voNP7c8LEe2EQJXtYp2uYA" name="LegacyStyledElement">
-        <modelElement href="query.uml#_vm7dgc8LEe2EQJXtYp2uYA"/>
-      </stereotypes>
-      <visibility xmi:id="_voNP7s8LEe2EQJXtYp2uYA" label="-"/>
+      <visibility xmi:id="_voNP7s8LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voNP788LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
       <type xmi:id="_voNP8M8LEe2EQJXtYp2uYA" name="String">
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -492,10 +493,7 @@
     </attributes>
     <attributes xmi:id="_voNP8c8LEe2EQJXtYp2uYA" name="disposicaoGeral">
       <modelElement href="query.uml#_vm7dgs8LEe2EQJXtYp2uYA"/>
-      <stereotypes xmi:id="_voNP8s8LEe2EQJXtYp2uYA" name="LegacyStyledElement">
-        <modelElement href="query.uml#_vm7dg88LEe2EQJXtYp2uYA"/>
-      </stereotypes>
-      <visibility xmi:id="_voNP888LEe2EQJXtYp2uYA" label="-"/>
+      <visibility xmi:id="_voNP888LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voNP9M8LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
       <type xmi:id="_voNP9c8LEe2EQJXtYp2uYA" name="String">
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -506,10 +504,7 @@
       <stereotypes xmi:id="_voNP988LEe2EQJXtYp2uYA" name="Generics">
         <modelElement href="query.uml#_vm8EkM8LEe2EQJXtYp2uYA"/>
       </stereotypes>
-      <stereotypes xmi:id="_voNP-M8LEe2EQJXtYp2uYA" name="LegacyStyledElement">
-        <modelElement href="query.uml#_vm8Ekc8LEe2EQJXtYp2uYA"/>
-      </stereotypes>
-      <visibility xmi:id="_voNP-c8LEe2EQJXtYp2uYA" label="-"/>
+      <visibility xmi:id="_voNP-c8LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voNP-s8LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
       <type xmi:id="_voNP-88LEe2EQJXtYp2uYA" name="ArrayList">
         <modelElement href="query.uml#_vm0v0M8LEe2EQJXtYp2uYA"/>
@@ -520,10 +515,7 @@
       <stereotypes xmi:id="_voNP_c8LEe2EQJXtYp2uYA" name="Generics">
         <modelElement href="query.uml#_vm8Ek88LEe2EQJXtYp2uYA"/>
       </stereotypes>
-      <stereotypes xmi:id="_voNP_s8LEe2EQJXtYp2uYA" name="LegacyStyledElement">
-        <modelElement href="query.uml#_vm8roM8LEe2EQJXtYp2uYA"/>
-      </stereotypes>
-      <visibility xmi:id="_voNP_88LEe2EQJXtYp2uYA" label="-"/>
+      <visibility xmi:id="_voNP_88LEe2EQJXtYp2uYA" label="+"/>
       <cardinality xmi:id="_voNQAM8LEe2EQJXtYp2uYA" label="1" max="1" min="1"/>
       <type xmi:id="_voNQAc8LEe2EQJXtYp2uYA" name="ArrayList">
         <modelElement href="query.uml#_vm0v0M8LEe2EQJXtYp2uYA"/>
