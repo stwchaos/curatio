@@ -247,7 +247,6 @@ public class TelaPadrao extends JFrame {
 			bg = ImageIO.read(new File("src/img/Background.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
