@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import modelo.Consulta;
 import modelo.Medico;
+import modelo.Pagamento;
 
 public class ConsultaDAO {
 	private Conexao con;
@@ -23,14 +24,14 @@ public class ConsultaDAO {
 		// conectar
 		Connection co = con.conectar();
 		try {
-			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento, profissionais_cpf_profissionais, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO consultas (data, objetivo,encerrada, paciente_cpf,medico_crm,pagamento_idpagamento ) VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = co.prepareStatement(query);
 
 			stm.setString(2, c.getObjetivo());
 			stm.setInt(3, 0);
-			stm.setString(4, c.getPagamento());
-			stm.setLong(5, c.getProfissional().getCpfProfissionais());
-			stm.setLong(6, c.getPaciente().getCpf());
+			stm.setLong(4, c.getPaciente().getCpf());
+			stm.setLong(5, c.getMedico().getCrm());
+			stm.setInt(6, c.getPagamento().getIdPagamento());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
@@ -92,7 +93,10 @@ public class ConsultaDAO {
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(pagamento);
-				c.setPagamento(pagamento);
+				Pagamento pag = new Pagamento();
+				pag.setData_Pagamento(pagamento);
+				pag.setFormaPagamento(pagamento);
+				c.setPagamento(pag);
 
 			}
 

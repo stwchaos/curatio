@@ -8,9 +8,9 @@ public class Consulta {
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;
-	private String pagamento;
+	private Pagamento pagamento;
 	private Paciente paciente;
-	private Medico profissional;
+	private Medico medico;
 
 	public Paciente getPaciente() {
 		return paciente;
@@ -20,12 +20,12 @@ public class Consulta {
 		this.paciente = paciente;
 	}
 
-	public Medico getProfissional() {
-		return profissional;
+	public Medico getMedico() {
+		return medico;
 	}
 
-	public void setProfissional(Medico profissional) {
-		this.profissional = profissional;
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	public Integer getId_consulta() {
@@ -35,7 +35,7 @@ public class Consulta {
 	public void setId_consulta(Integer id_consulta) {
 		this.id_consulta = id_consulta;
 	}
-	
+
 	public LocalDate getData() {
 		return data;
 	}
@@ -60,11 +60,11 @@ public class Consulta {
 		this.encerrada = encerrada;
 	}
 
-	public String getPagamento() {
+	public Pagamento getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(String pagamento) {
+	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
 
