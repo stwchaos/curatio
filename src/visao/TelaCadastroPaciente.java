@@ -120,11 +120,20 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_1_1.setBackground(Color.BLACK);
 		panel.add(lblNewLabel_1_1, "cell 0 7");
 		
+		JLabel lblNewLabel_4 = new JLabel("Número da Casa *");
+		panel.add(lblNewLabel_4, "cell 3 7");
+		
 		RoundJTextField txtCPF = new RoundJTextField();
 		txtCPF.setText("Inserir");
 		txtCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCPF.setColumns(10);
 		panel.add(txtCPF, "cell 0 8 2 1,growx");
+		
+		RoundJTextField txtNumeroCasa = new RoundJTextField();
+		txtNumeroCasa.setText("Inserir");
+		txtNumeroCasa.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtNumeroCasa.setColumns(10);
+		panel.add(txtNumeroCasa, "cell 3 8 2 1,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		lblNewLabel_2.setToolTipText("Nome social");
@@ -267,9 +276,9 @@ public class TelaCadastroPaciente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!txtCPF.getText().isEmpty() || !txtNome.getText().isEmpty() || !txtNomeSoc.getText().isEmpty() || !txtBairro.getText().isEmpty() || !txtCEP.getText().isEmpty() || !txtCidade.getText().isEmpty() || !txtEmail.getText().isEmpty() || !txtRua.getText().isEmpty() || !txtTelefone.getText().isEmpty()) {
+				if (!txtCPF.getText().isEmpty() || !txtNome.getText().isEmpty() || !txtNomeSoc.getText().isEmpty() || !txtBairro.getText().isEmpty() || !txtCEP.getText().isEmpty() || !txtCidade.getText().isEmpty() || !txtEmail.getText().isEmpty() || !txtRua.getText().isEmpty() || !txtTelefone.getText().isEmpty() || !txtNumeroCasa.getText().isEmpty()) {
 					String nome = txtNome.getText(), nomeSoc = txtNomeSoc.getText(), email = txtEmail.getText(), bairro = txtBairro.getText(), rua = txtRua.getText(), cidade = txtCidade.getText(), complemento = null;
-					Integer telefone = Integer.valueOf(txtTelefone.getText()), numCasa = null;
+					Integer telefone = Integer.valueOf(txtTelefone.getText()), numCasa = Integer.valueOf(txtNumeroCasa.getText());
 					Long cpf = Long.valueOf(txtCPF.getText()), cep = Long.valueOf(txtCEP.getText());
 					if(!txtComplemento.getText().isBlank()) {
 						complemento = txtComplemento.getText();
