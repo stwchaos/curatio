@@ -103,7 +103,7 @@ public class Conexao {
 					+ "  telefone BIGINT NOT NULL,\r\n"
 					+ "  data_nascimento DATE NOT NULL,\r\n"
 					+ "  usuario_id_usuario INT NOT NULL,\r\n"
-					+ "  PRIMARY KEY (idfuncionario),\r\n"
+					+ "  PRIMARY KEY (id_funcionario),\r\n"
 					+ "  \r\n"
 					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
 					+ "    REFERENCES usuario (id_usuario));";
@@ -114,7 +114,7 @@ public class Conexao {
 					+ "  forma_pagamento VARCHAR(45) NOT NULL,\r\n"
 					+ "  data_pagamento DATETIME NOT NULL,\r\n"
 					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
-					+ "  PRIMARY KEY (idpagamento),\r\n"
+					+ "  PRIMARY KEY (id_pagamento),\r\n"
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf));\r\n";
 			stm.executeUpdate(wsql);
@@ -126,25 +126,24 @@ public class Conexao {
 					+ "  encerrada TINYINT NOT NULL,\r\n"
 					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  medico_crm BIGINT(6) NOT NULL,\r\n"
-					+ "  pagamento_idpagamento INT NOT NULL,\r\n"
+					+ "  pagamento_id_pagamento INT NOT NULL,\r\n"
 					+ "  PRIMARY KEY (id_pendentes),\r\n"
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf),\r\n"
 					+ "    FOREIGN KEY (medico_crm)\r\n"
 					+ "    REFERENCES medico (crm),\r\n"
-					+ "    FOREIGN KEY (pagamento_idpagamento)\r\n"
-					+ "    REFERENCES pagamento (idpagamento));";
+					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
+					+ "    REFERENCES pagamento (id_pagamento));";
 			stm.executeUpdate(wsql);
 			
 			Connection c = conectar();
-			String query = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (?, ?, ?);";
-			PreparedStatement pstm = c.prepareStatement(query);
-			
-			pstm.setString(1, "123");
-			pstm.setString(2, "123");
-			pstm.setInt(3, 1);
-			
-			pstm.executeUpdate();
+			wsql = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (123, 123, 1);";
+			stm.executeUpdate(wsql);
+			/*
+			 * wsql =
+			 * "INSERT INTO especialidade (especialidade, salario) VALUES (\"Urologista\", 4010.30), (\"Cardiologista\",4800.00) ;"
+			 * ; stm.executeUpdate(wsql);
+			 */
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
