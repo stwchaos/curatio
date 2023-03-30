@@ -12,59 +12,85 @@ public class Paciente {
 	private String email;
 	private String pronome;
 	private Endereco endereco;
-	
+	private Anamnese anamnese;
+
+	public Anamnese getAnamnese() {
+		return anamnese;
+	}
+
+	public void setAnamnese(Anamnese anamnese) {
+		this.anamnese = anamnese;
+	}
+
 	public String getPronome() {
 		return pronome;
 	}
+
 	public void setPronome(String pronome) {
 		this.pronome = pronome;
 	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public Long getCpf() {
 		return cpf;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public LocalDate getNascimento() {
 		return nascimento;
 	}
+
 	public Integer getTelefone() {
 		return telefone;
 	}
+
 	public String getSexo() {
 		return sexo;
 	}
+
 	public String getNomeSocial() {
 		return nomeSocial;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public void setNascimento(LocalDate nascimento) {
 		this.nascimento = nascimento;
 	}
+
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
+
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+
 	public void setNomeSocial(String nomeSocial) {
 		this.nomeSocial = nomeSocial;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
-	}	
+	}
 }

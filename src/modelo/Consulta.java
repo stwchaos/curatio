@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Consulta {
 
-	private Integer id_consulta;
+	private Integer idConsulta;
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;
@@ -29,11 +29,11 @@ public class Consulta {
 	}
 
 	public Integer getId_consulta() {
-		return id_consulta;
+		return idConsulta;
 	}
 
 	public void setId_consulta(Integer id_consulta) {
-		this.id_consulta = id_consulta;
+		this.idConsulta = id_consulta;
 	}
 	
 	public LocalDate getData() {
