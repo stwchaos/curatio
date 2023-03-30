@@ -79,7 +79,6 @@ public class TelaInicial extends JFrame {
 			bg = ImageIO.read(new File("src/img/fundoTelaLogin.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel panelPrincipal = new PanelComBackgroundImage(bg);
@@ -106,7 +105,6 @@ public class TelaInicial extends JFrame {
 			bg = ImageIO.read(new File("src/img/fundoLogin.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);

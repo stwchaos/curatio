@@ -58,7 +58,6 @@ public class TelaCadastroPaciente extends JFrame {
 			bg = ImageIO.read(new File("src/img/Background2.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);
@@ -328,7 +327,6 @@ public class TelaCadastroPaciente extends JFrame {
 	}
 
 	private Color Color(int i, int j, int k) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -50,7 +50,6 @@ public class DialogConfirmacao extends JFrame {
 			bg = ImageIO.read(new File("src/img/background.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);

@@ -20,7 +20,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -29,12 +28,12 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import controle.ConsultaDAO;
-import controle.PacienteDAO;
 import controle.MedicoDAO;
+import controle.PacienteDAO;
 import modelo.Consulta;
+import modelo.Medico;
 import modelo.Paciente;
 import modelo.Usuario;
-import modelo.Medico;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaMarcarConsultas extends JFrame {
@@ -43,10 +42,8 @@ public class TelaMarcarConsultas extends JFrame {
 	private JTextField txtObjetivo;
 	private JTextField txtMarcarConsulta;
 
-	PacienteDAO pacienteDao = new PacienteDAO();
-	MedicoDAO profissionalDao = new MedicoDAO();
-	
 	public TelaMarcarConsultas(Usuario u) {
+
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
@@ -58,7 +55,6 @@ public class TelaMarcarConsultas extends JFrame {
 			bg = ImageIO.read(new File("src/img/Background2.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);
@@ -91,18 +87,20 @@ public class TelaMarcarConsultas extends JFrame {
 
 		JPanel panel = new JPanel();
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]",
+				"[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
+
+		PacienteDAO pacienteDao = new PacienteDAO();
 
 		JComboBox comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		for (Paciente p : pacienteDao.listarPacientes()) {
-			comboPaciente.addItem(p.getNome()+", cpf: "+p.getCpf());
+			comboPaciente.addItem(p.getNome() + ", cpf: " + p.getCpf());
 		}
-		
 
 		JDateChooser dtConsulta = new JDateChooser();
 		dtConsulta.getCalendarButton().setBackground(new Color(210, 210, 210));
@@ -131,11 +129,11 @@ public class TelaMarcarConsultas extends JFrame {
 		JComboBox comboPagamento = new RoundComboBox();
 		comboPagamento.setBackground(new Color(218, 218, 218));
 		panel.add(comboPagamento, "cell 0 10 5 1,growx");
-		String[] listaPagamento = {"D�bito","Cr�dito","Pix","Cheque","Em Esp�cie"};
+		String[] listaPagamento = { "D�bito", "Cr�dito", "Pix", "Cheque", "Em Esp�cie" };
 		comboPagamento.setSelectedItem("Inserir");
 		for (String string : listaPagamento) {
 			comboPagamento.addItem(string);
-			
+
 		}
 
 		JLabel lblNewLabel_2 = new JLabel("Profissional *");
@@ -164,52 +162,60 @@ public class TelaMarcarConsultas extends JFrame {
 		comboProfissional.setForeground(new Color(255, 255, 255));
 		comboProfissional.setBackground(new Color(210, 210, 210));
 		panel.add(comboProfissional, "cell 0 4 5 1,grow");
+
+		MedicoDAO profissionalDao = new MedicoDAO();
 		for (Medico m : profissionalDao.listarProfissionais()) {
-			comboProfissional.addItem(m.getNome()+", crm: "+m.getCrm());
+			comboProfissional.addItem(m.getNome() + ", crm: " + m.getCrm());
 		}
 
 		JButton btnMarcar = new JButton("Agendar");
 		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String objetivo = txtObjetivo.getText();
-				Date data = dtConsulta.getDate();
-				String pagamento = String.valueOf(comboPagamento.getSelectedItem());
-				Consulta consulta = new Consulta();
-				ConsultaDAO consultaDAO = new ConsultaDAO();
-				
-				for (Paciente p : pacienteDao.listarPacientes()) {
-					if (comboPaciente.getSelectedItem().equals(p.getNome()+", cpf: "+p.getCpf())) {
-						consulta.setPaciente(p);
-					}
-				}
-				for (Medico m : profissionalDao.listarProfissionais()) {
-					if (comboProfissional.getSelectedItem().equals(m.getNome()+", crm: "+m.getCrm())) {
-						consulta.setProfissional(m);
-					}
-				}
-				
-				consulta.setPagamento(pagamento);
-				consulta.setObjetivo(objetivo);
-				consulta.setData(convertToLocalDateViaInstant(data));
-				if(consultaDAO.inserir(consulta)) {
-					new DialogMensagemSucesso("Consulta marcada com sucesso").setVisible(true);
-					return;
-				}else {
-					new DialogMensagemErro("Erro em marcar consulta").setVisible(true);
-					return;
+				if (!txtObjetivo.getText().isEmpty()) {
+					String obs = txtObjetivo.getText();
+//					paciente.setObjetivo(txtObjetivo); TODO descomentar
+				} else {
+					new DialogMensagemErro("Campos vazios").setVisible(true);
+					//return; TODO remover
 				}
 			}
 		});
+		String objetivo = txtObjetivo.getText();
+		Date data = dtConsulta.getDate();
+		String pagamento = String.valueOf(comboPagamento.getSelectedItem());
+		Consulta consulta = new Consulta();
+		ConsultaDAO consultaDAO = new ConsultaDAO();
+
+		for (Paciente p : pacienteDao.listarPacientes()) {
+			if (comboPaciente.getSelectedItem().equals(p.getNome() + ", cpf: " + p.getCpf())) {
+				consulta.setPaciente(p);
+			}
+		}
+		for (Medico m : profissionalDao.listarProfissionais()) {
+			if (comboProfissional.getSelectedItem().equals(m.getNome() + ", crm: " + m.getCrm())) {
+				consulta.setProfissional(m);
+			}
+		} //TODO ver porque o negócio não pega paciente e profissional
+
+		consulta.setPagamento(pagamento);
+		consulta.setObjetivo(objetivo);
+		consulta.setData(convertToLocalDateViaInstant(data));
+		if (consultaDAO.inserir(consulta)) {
+			new DialogMensagemSucesso("Consulta marcada com sucesso").setVisible(true);
+//			return; TODO remover
+		} else {
+			new DialogMensagemErro("Erro em marcar consulta").setVisible(true);
+//			return; TODO remover
+		}
+
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
 
 	}
-	
+
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
-	    return dateToConvert.toInstant()
-	      .atZone(ZoneId.systemDefault())
-	      .toLocalDate();
+		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 }

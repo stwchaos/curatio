@@ -26,11 +26,11 @@ public class ConsultaDAO {
 			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento, profissionais_cpf_profissionais, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = co.prepareStatement(query);
 
+			// TODO alterar ordem dos parametros
 			stm.setString(2, c.getObjetivo());
-			stm.setInt(3, 0);
-			stm.setString(4, c.getPagamento());
-			stm.setLong(5, c.getProfissional().getCpfProfissionais());
-			stm.setLong(6, c.getPaciente().getCpf());
+			stm.setInt(2, 0);
+			stm.setString(3, c.getPagamento());
+			stm.setLong(4, c.getPaciente().getCpf());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
