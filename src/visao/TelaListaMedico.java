@@ -125,6 +125,8 @@ public class TelaListaMedico extends JFrame {
 			}
 		});
 		
+		if(u.getTipo()==3) {
+		
 		JPanel panel_2 = new RoundJPanel(50, new Color(0, 81, 81));
 		panel_2.setBackground(null);
 		contentPane.add(panel_2, "cell 5 1 1 5,grow");
@@ -160,6 +162,6 @@ public class TelaListaMedico extends JFrame {
 		btnDeletar.setFocusPainted(false);
 		panel_2.add(btnDeletar, "cell 1 4,growx,aligny center");
 		contentPane.add(btnVoltar, "cell 2 5,alignx left,aligny top");
-		
-	}
+		}
+		}
 }
