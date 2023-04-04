@@ -137,7 +137,7 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			Connection c = conectar();
-			wsql = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (123, 123, 1);";
+			wsql = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (123, 123, 3);";
 			stm.executeUpdate(wsql);
 			/*
 			 * wsql =
