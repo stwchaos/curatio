@@ -49,7 +49,7 @@ public class PacienteDAO {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ? WHERE cpf = ?";
+			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ? WHERE cpf = ?;";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, p.getNome());
 			stm.setDate(2, Date.valueOf(p.getNascimento()));

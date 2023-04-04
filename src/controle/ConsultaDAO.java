@@ -87,7 +87,7 @@ public class ConsultaDAO {
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				Integer pagamento = rs.getInt("pagamento");
-				String objetivo = rs.getString(""
+				String objetivo = rs.getString("");
 				Consulta c = new Consulta();
 				c.setIdConsulta(id_consulta);
 				c.setData(data.toLocalDate());

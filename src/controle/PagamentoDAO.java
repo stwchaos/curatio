@@ -2,6 +2,7 @@ package controle;
 
 import modelo.Pagamento;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -19,20 +20,18 @@ public class PagamentoDAO {
 			PreparedStatement stm = c.prepareStatement(query);
 			
 			stm.setString(1,p.getFormaPagamento());
-			stm.setString(2,p.getData_Pagamento());
+			stm.setDate(2, Date.valueOf(p.getData_Pagamento()));
 			
 			stm.executeUpdate();
 			return true;
 		}catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
-		
-		
-		
-		
-		
+			
 		return false;
 	}
+		
+	}
 	
-	
-}
