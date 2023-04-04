@@ -287,66 +287,36 @@ public class TelaCadastroPaciente extends JFrame {
 				String numTel = txtTelefone.getText();
 				String cidade = txtCidade.getText();
 				String complemento = txtComplemento.getText(); // TODO cuidado
-				String nrCasa = txtNumeroCasa.getText();
+				String numCasa = txtNumeroCasa.getText();
 
 				// TODO separar um if para cada
-				if (!nome.trim().isEmpty()) {
-
-					Integer telefone = Integer.valueOf(numTel);
-					Integer numCasa = Integer.valueOf(nrCasa);
-					Long cpf = Long.valueOf(numCpf);
-					Long cep = Long.valueOf(numCep);
-
-					Paciente paciente = new Paciente();
-					paciente.setNome(nome);
-					paciente.setCpf(cpf);
-					paciente.setEmail(email);
-					paciente.setNascimento(convertToLocalDateViaInstant(dtNascimento.getDate()));
-					paciente.setNomeSocial(nomeSoc);
-					paciente.setPronome(String.valueOf(comboPronome.getSelectedItem()));
-					paciente.setSexo(String.valueOf(comboSexo.getSelectedItem()));
-					paciente.setTelefone(telefone);
-
-					EnderecoDAO enderecoDao = new EnderecoDAO();
-					Endereco end = null;
-					for (Endereco en : enderecoDao.listarEndereco()) {
-						if (en.getBairro().equals(bairro) && en.getCep() == cep && en.getCidade().equals(cidade)
-								&& en.getComplemento().equals(complemento) && en.getNumCasa() == numCasa
-								&& en.getRua().equals(rua)) {
-							end = en;
-							break;
-						}
-					}
-
-					int id = 0;
-					if (end != null) {
-						paciente.setEndereco(end);
-					} else {
-						end = new Endereco();
-						end.setBairro(bairro);
-						end.setCep(cep);
-						end.setCidade(cidade);
-						end.setComplemento(complemento); // TODO mudar p paciente
-						end.setNumCasa(numCasa); // TODO mudar p paciente
-						end.setRua(rua);
-						id = enderecoDao.inserir(end);
-						if (id == 0) {
-							new DialogMensagemErro("Endereço não localizado").setVisible(true);
-						}
-					}
-
-					PacienteDAO pacienteDao = new PacienteDAO();
-					boolean validar = pacienteDao.inserir(paciente);
-					if (validar == true) {
-						// TODO mensagem sucesso
-					} else {
-						new DialogMensagemErro("Falha na inserção de paciente").setVisible(true);
-					}
-
-				} else {
-					new DialogMensagemErro("Campos vazios").setVisible(true);
-//					return; TODO remover
-				}
+				 if(nome.trim().isEmpty()) {
+					 nome = txtNome.getText();
+				 }
+				 if(numCpf.trim().isEmpty()) {
+					 numCpf = txtCPF.getText();
+				 }
+				 if(numCep.trim().isEmpty()) {
+					 numCep = txtCEP.getText();
+				 }
+				 if(email.trim().isEmpty()) {
+					 email = txtEmail.getText();
+				 }
+				 if(bairro.trim().isEmpty()) {
+					 bairro = txtBairro.getText();
+				 }
+				 if(rua.trim().isEmpty()) {
+					 rua = txtRua.getText();
+				 }
+				 if(numTel.trim().isEmpty()) {
+					 numTel = txtTelefone.getText();
+				 }
+				 if(cidade.trim().isEmpty()) {
+					 cidade = txtCidade.getText();
+				 }
+				 if(numCasa.trim().isEmpty()) {
+					 numCasa = txtNumeroCasa.getText();
+				 }
 			}
 		});
 		panel.add(btnCadastrar, "cell 4 22,growx,aligny bottom");
