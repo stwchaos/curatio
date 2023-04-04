@@ -29,7 +29,7 @@ public class ConsultaDAO {
 			stm.setString(2, c.getObjetivo());
 			stm.setInt(3, 0);
 			stm.setString(4, c.getPagamento());
-			stm.setLong(5, c.getProfissional().getCpfProfissionais());
+			stm.setLong(5, c.getProfissional().getCrm());
 			stm.setLong(6, c.getPaciente().getCpf());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
