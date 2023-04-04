@@ -146,6 +146,15 @@ public class TelaListaMedico extends JFrame {
 		btnAdicionar.setBackground(new Color(0, 81, 81));
 		btnAdicionar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnAdicionar.setFocusPainted(false);
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaCadastrarMedico tela = new TelaCadastrarMedico();
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				
+			}}
 		panel_2.add(btnAdicionar, "cell 1 2,growx,aligny center");
 		
 		btnAlterar = new JButton("Alterar");
