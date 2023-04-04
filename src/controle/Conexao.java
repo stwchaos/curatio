@@ -141,9 +141,10 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			wsql = "INSERT INTO especialidade (especialidade, salario) VALUES (\"Urologista\", 4010.30), (\"Cardiologista\",4800.00),(\"Ginecologista\",4200.10),(\"Alergista\",3800.23),(\"Geriatra\",3200.12),(\"Otorrino\"),(\"Podologo\",3600.50),(\"Oncologista\",5000.00),(\"Neurologista\",6650.23),(\"Endocrinologista\",4323.87),(\"Fonodiologo\",8455.67), (\"Cirurgião\",9000.50);";
 			stm.executeUpdate(wsql);
-			fecharConexao();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			fecharConexao();
 		}
 	}
 	

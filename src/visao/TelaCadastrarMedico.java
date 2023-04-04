@@ -13,22 +13,12 @@ public class TelaCadastrarMedico extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCpf;
+	private JTextField txtCrm;
+	private JTextField txtSenha;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastrarMedico frame = new TelaCadastrarMedico();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -62,8 +52,25 @@ public class TelaCadastrarMedico extends JFrame {
 		comboPronome.setBounds(96, 271, 86, 22);
 		contentPane.add(comboPronome);
 		
-		JComboBox comoEspecialidade = new JComboBox();
-		comoEspecialidade.setBounds(96, 92, 86, 22);
-		contentPane.add(comoEspecialidade);
+		JComboBox comboEspecialidade = new JComboBox();
+		comboEspecialidade.setBounds(96, 92, 86, 22);
+		contentPane.add(comboEspecialidade);
+		
+		txtCrm = new JTextField();
+		txtCrm.setText("crm");
+		txtCrm.setBounds(246, 93, 86, 20);
+		contentPane.add(txtCrm);
+		txtCrm.setColumns(10);
+		
+		txtSenha = new JTextField();
+		txtSenha.setText("senha");
+		txtSenha.setBounds(246, 133, 86, 20);
+		contentPane.add(txtSenha);
+		txtSenha.setColumns(10);
+		
+		String[] listaEspecialidade = {"Urologista", "Cardiologista", "Ginecologista", "Alergista", "Geriatra", "Otorrino", "Podologo", "Oncologista", "Neurologista", "Endocrinologista", "Fonodiologo", "Cirurgião"};
+		for (String string : listaEspecialidade) {
+			comboEspecialidade.addItem(string);
+		}
 	}
 }
