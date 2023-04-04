@@ -1,15 +1,14 @@
 package controle;
 
-import modelo.Paciente;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
+
+import modelo.Paciente;
 
 public class PacienteDAO {
 	private Conexao con;
@@ -38,10 +37,11 @@ public class PacienteDAO {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			// desconectar
+			con.fecharConexao();
 		}
 
-		// desconectar
-		con.fecharConexao();
 		return false;
 	}
 
@@ -60,7 +60,7 @@ public class PacienteDAO {
 			stm.setString(7, p.getPronome());
 			stm.setDouble(8, p.getEndereco().getIdEndereco());
 			stm.setLong(9, p.getCpf());
-			
+
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {

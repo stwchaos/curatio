@@ -34,7 +34,7 @@ public class Conexao {
 			
 			Statement stm = conexao.createStatement();
 			
-			String wsql = "CREATE DATABASE esmeralda;";
+			String wsql = "CREATE DATABASE IF NOT EXISTS esmeralda;";
 			stm.executeUpdate(wsql);
 			
 			wsql = "USE esmeralda;";
@@ -145,7 +145,6 @@ public class Conexao {
 			 * ; stm.executeUpdate(wsql);
 			 */
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
