@@ -154,7 +154,8 @@ public class TelaListaMedico extends JFrame {
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				
-			}}
+			}
+		});
 		panel_2.add(btnAdicionar, "cell 1 2,growx,aligny center");
 		
 		btnAlterar = new JButton("Alterar");
