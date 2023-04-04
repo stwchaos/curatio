@@ -184,11 +184,11 @@ public class TelaMarcarConsultas extends JFrame {
 				}
 				for (Medico m : profissionalDao.listarProfissionais()) {
 					if (comboProfissional.getSelectedItem().equals(m.getNome()+", crm: "+m.getCrm())) {
-						consulta.setProfissional(m);
+						//consulta.setProfissional(m);
 					}
 				}
 				
-				consulta.setPagamento(pagamento);
+				//consulta.setPagamento(pagamento);
 				consulta.setObjetivo(objetivo);
 				consulta.setData(convertToLocalDateViaInstant(data));
 				if(consultaDAO.inserir(consulta)) {
