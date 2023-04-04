@@ -139,11 +139,8 @@ public class Conexao {
 			Connection c = conectar();
 			wsql = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (123, 123, 3);";
 			stm.executeUpdate(wsql);
-			/*
-			 * wsql =
-			 * "INSERT INTO especialidade (especialidade, salario) VALUES (\"Urologista\", 4010.30), (\"Cardiologista\",4800.00) ;"
-			 * ; stm.executeUpdate(wsql);
-			 */
+			wsql = "INSERT INTO especialidade (especialidade, salario) VALUES (\"Urologista\", 4010.30), (\"Cardiologista\",4800.00),(\"Ginecologista\",4200.10),(\"Alergista\",3800.23),(\"Geriatra\",3200.12),(\"Otorrino\"),(\"Podologo\",3600.50),(\"Oncologista\",5000.00),(\"Neurologista\",6650.23),(\"Endocrinologista\",4323.87),(\"Fonodiologo\",8455.67), (\"Cirurgião\",9000.50);";
+			stm.executeUpdate(wsql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

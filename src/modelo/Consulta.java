@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Consulta {
 
-	private Integer idConsulta;
+	private Integer idConsulta; //TODO mudar nome banco de dados
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;
-	private String pagamento;
+	private Pagamento pagamento;
 	private Paciente paciente;
-	private Medico profissional;
+	private Medico medico;
 
 	public Paciente getPaciente() {
 		return paciente;
@@ -20,22 +20,23 @@ public class Consulta {
 		this.paciente = paciente;
 	}
 
-	public Medico getProfissional() {
-		return profissional;
+	public Medico getMedico() {
+		return medico;
 	}
 
-	public void setProfissional(Medico profissional) {
-		this.profissional = profissional;
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
-	public Integer getId_consulta() {
+	public Integer getIdConsulta() {
 		return idConsulta;
 	}
 
-	public void setId_consulta(Integer id_consulta) {
-		this.idConsulta = id_consulta;
+	public void setIdConsulta(Integer idConsulta) {
+		this.idConsulta = idConsulta;
 	}
 	
+
 	public LocalDate getData() {
 		return data;
 	}
@@ -60,11 +61,11 @@ public class Consulta {
 		this.encerrada = encerrada;
 	}
 
-	public String getPagamento() {
+	public Pagamento getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(String pagamento) {
+	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
 

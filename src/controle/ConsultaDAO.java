@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import modelo.Consulta;
 import modelo.Medico;
+import modelo.Pagamento;
 
 public class ConsultaDAO {
 	private Conexao con;
@@ -23,14 +24,14 @@ public class ConsultaDAO {
 		// conectar
 		Connection co = con.conectar();
 		try {
-			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento, profissionais_cpf_profissionais, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO consultas (data, objetivo,encerrada, paciente_cpf,medico_crm,pagamento_idpagamento ) VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = co.prepareStatement(query);
 
 			stm.setString(2, c.getObjetivo());
 			stm.setInt(3, 0);
-			stm.setString(4, c.getPagamento());
-			stm.setLong(5, c.getProfissional().getCrm());
-			stm.setLong(6, c.getPaciente().getCpf());
+			stm.setLong(4, c.getPaciente().getCpf());
+			stm.setLong(5, c.getMedico().getCrm());
+			stm.setInt(6, c.getPagamento().getIdPagamento());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
@@ -49,12 +50,13 @@ public class ConsultaDAO {
 		Connection co = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE consultas SET data = ?, objetivo = ?, encerrada = ?, pagamento = ? WHERE id_pendentes = ?";
+			String query = "UPDATE consultas SET data = ?, objetivo = ?, encerrada = ?, pagamento = ? WHERE id_consultas = ?";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setDate(1, Date.valueOf(c.getData()));
 			stm.setString(2, c.getObjetivo());
 			stm.setBoolean(3, c.getEncerrada());
-			stm.setString(4, c.getPagamento());
+			stm.setInt(4, c.getPagamento().getIdPagamento());
+			stm.setInt(5, c.getIdConsulta());
 
 			stm.executeUpdate();
 			return true;
@@ -83,16 +85,19 @@ public class ConsultaDAO {
 			String query = "SELECT * FROM consultas";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Integer id_consulta = rs.getInt("id_pendentes");
+				Integer idConsulta = rs.getInt("id_pendentes");
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String pagamento = rs.getString("pagamento");
 				Consulta c = new Consulta();
-				c.setId_consulta(id_consulta);
+				c.setIdConsulta(idConsulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(pagamento);
-				c.setPagamento(pagamento);
+				Pagamento pag = new Pagamento();
+				pag.setData_Pagamento(pagamento);
+				pag.setFormaPagamento(pagamento);
+				c.setPagamento(pag);
 
 			}
 
