@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class TelaCadastrarMedico extends JFrame {
 
@@ -67,6 +68,14 @@ public class TelaCadastrarMedico extends JFrame {
 		txtSenha.setBounds(246, 133, 86, 20);
 		contentPane.add(txtSenha);
 		txtSenha.setColumns(10);
+		
+		JButton btnAdicionar = new JButton("adicionar");
+		btnAdicionar.setBounds(232, 288, 89, 23);
+		contentPane.add(btnAdicionar);
+		
+		JButton btnCancelar = new JButton("canelaaaaaaaaaa");
+		btnCancelar.setBounds(424, 288, 89, 23);
+		contentPane.add(btnCancelar);
 		
 		String[] listaEspecialidade = {"Urologista", "Cardiologista", "Ginecologista", "Alergista", "Geriatra", "Otorrino", "Podologo", "Oncologista", "Neurologista", "Endocrinologista", "Fonodiologo", "Cirurgião"};
 		for (String string : listaEspecialidade) {
