@@ -251,7 +251,7 @@ public class TelaCadastroPaciente extends JFrame {
 		dtNascimento.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-
+				
 			}
 		});
 		panel_3.add(dtNascimento, "cell 2 1,growx,aligny bottom");
@@ -288,35 +288,70 @@ public class TelaCadastroPaciente extends JFrame {
 				String cidade = txtCidade.getText();
 				String complemento = txtComplemento.getText(); // TODO cuidado
 				String numCasa = txtNumeroCasa.getText();
+				
+				Long cpf, cep;
+				Integer telefone, casa;
 
 				// TODO separar um if para cada
-				 if(nome.trim().isEmpty()) {
+				 if(!nome.trim().isEmpty()) {
 					 nome = txtNome.getText();
+				 }else{
+					 new DialogMensagemErro("Nome Vazio").setVisible(true);
 				 }
-				 if(numCpf.trim().isEmpty()) {
-					 numCpf = txtCPF.getText();
+				 
+				 if(!numCpf.trim().isEmpty()) {
+					 cpf = Long.valueOf(txtCPF.getText());
+				 }else {
+					 new DialogMensagemErro("CPF Vazio").setVisible(true);
 				 }
-				 if(numCep.trim().isEmpty()) {
-					 numCep = txtCEP.getText();
+				 
+				 if(!numCep.trim().isEmpty()) {
+					 cep = Long.valueOf(txtCEP.getText());
+				 }else {
+					 new DialogMensagemErro("CEP Vazio").setVisible(true);
 				 }
-				 if(email.trim().isEmpty()) {
+				 
+				 if(!email.trim().isEmpty()) {
 					 email = txtEmail.getText();
+				 }else {
+					 new DialogMensagemErro("Email Vazio").setVisible(true);
 				 }
-				 if(bairro.trim().isEmpty()) {
+				 
+				 if(!bairro.trim().isEmpty()) {
 					 bairro = txtBairro.getText();
+				 }else {
+					 new DialogMensagemErro("Bairro Vazio").setVisible(true);
 				 }
-				 if(rua.trim().isEmpty()) {
+				 
+				 if(!rua.trim().isEmpty()) {
 					 rua = txtRua.getText();
+				 }else {
+					 new DialogMensagemErro("Rua Vazio").setVisible(true);
 				 }
-				 if(numTel.trim().isEmpty()) {
-					 numTel = txtTelefone.getText();
+				 
+				 if(!numTel.trim().isEmpty()) {
+					 telefone = Integer.valueOf(txtTelefone.getText());
+				 }else {
+					 new DialogMensagemErro("Telefone Vazio").setVisible(true);
 				 }
-				 if(cidade.trim().isEmpty()) {
+				 
+				 if(!cidade.trim().isEmpty()) {
 					 cidade = txtCidade.getText();
+				 }else {
+					 new DialogMensagemErro("Cidade Vazio").setVisible(true);
 				 }
-				 if(numCasa.trim().isEmpty()) {
-					 numCasa = txtNumeroCasa.getText();
+				 
+				 if(!numCasa.trim().isEmpty()) {
+					 casa = Integer.valueOf(txtNumeroCasa.getText());
+				 }else {
+					 new DialogMensagemErro("Casa Vazio").setVisible(true);
 				 }
+				 
+				 Paciente p = new Paciente();
+				 p.setNome(nome);
+				 
+				 PacienteDAO dao = new PacienteDAO();
+				 
 			}
 		});
 		panel.add(btnCadastrar, "cell 4 22,growx,aligny bottom");
