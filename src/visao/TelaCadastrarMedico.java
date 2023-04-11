@@ -3,8 +3,11 @@ package visao;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -13,6 +16,9 @@ import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import controle.MedicoDAO;
+import modelo.Medico;
 
 public class TelaCadastrarMedico extends JFrame {
 
@@ -133,13 +139,35 @@ public class TelaCadastrarMedico extends JFrame {
 		btnAdicionar.setBackground(new Color(64, 128, 128));
 		btnAdicionar.setForeground(new Color(255, 255, 255));
 		panel.add(btnAdicionar, "cell 1 16,alignx center,aligny bottom");
+		JButton btnAdicionar = new JButton("adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nCpf = txtCpf.getText();
+				String nCrm = txtCrm.getText();
+				String nome = txtNome.getText();
+				String senha = txtSenha.getText();
+				
+				Long cpf = Long.valueOf(nCpf);
+				Long crm = Long.valueOf(nCrm);
+				
+				Medico m = new Medico();
+				MedicoDAO medicoDao = new MedicoDAO();
+				
+				m.setCpf(cpf);
+				m.setCrm(crm);
+				m.getEspecialidade()
+				
+			}
+		});
+		btnAdicionar.setBounds(232, 288, 89, 23);
+		contentPane.add(btnAdicionar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBackground(new Color(128, 0, 0));
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");
 		
-		String[] listaEspecialidade = {"Urologista", "Cardiologista", "Ginecologista", "Alergista", "Geriatra", "Otorrino", "Podologo", "Oncologista", "Neurologista", "Endocrinologista", "Fonodiologo", "Cirurgião"};
+		String[] listaEspecialidade = {"Urologista", "Cardiologista", "Ginecologista", "Alergista", "Geriatra", "Otorrinolaringologista", "Podologo", "Oncologista", "Neurologista", "Endocrinologista", "Fonodiologo", "Cirurgião"};
 		for (String string : listaEspecialidade) {
 			comboEspecialidade.addItem(string);
 		}
