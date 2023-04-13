@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -281,6 +282,8 @@ public class TelaCadastroPaciente extends JFrame {
 				Long cpf, cep;
 				Integer telefone, casa;
 
+				Endereco end = new Endereco();
+				
 				// TODO separar um if para cada
 				if(nome.trim().isEmpty() &&  numCpf.trim().isEmpty() && numCep.trim().isEmpty() && email.trim().isEmpty() && bairro.trim().isEmpty() && rua.trim().isEmpty() && numTel.trim().isEmpty() && cidade.trim().isEmpty() && numCasa.trim().isEmpty()) {
 					new DialogMensagemErro("Todos os campos estão vazios!").setVisible(true);
@@ -306,6 +309,7 @@ public class TelaCadastroPaciente extends JFrame {
 						 
 						 try {
 							 cep = Long.valueOf(txtCEP.getText());
+							 end.setCep(cep);
 							} catch (NumberFormatException e2) {
 								new DialogMensagemErro("Informação inválida!").setVisible(true);
 								return;
@@ -322,12 +326,14 @@ public class TelaCadastroPaciente extends JFrame {
 					 
 					 if(!bairro.trim().isEmpty()) {
 						 bairro = txtBairro.getText();
+						 end.setBairro(bairro);
 					 }else {
 						 new DialogMensagemErro("Bairro Vazio").setVisible(true);
 					 }
 					 
 					 if(!rua.trim().isEmpty()) {
 						 rua = txtRua.getText();
+						 end.setRua(rua);
 					 }else {
 						 new DialogMensagemErro("Rua Vazio").setVisible(true);
 					 }
@@ -346,6 +352,7 @@ public class TelaCadastroPaciente extends JFrame {
 					 
 					 if(!cidade.trim().isEmpty()) {
 						 cidade = txtCidade.getText();
+						 end.setCidade(cidade);
 					 }else {
 						 new DialogMensagemErro("Cidade Vazio").setVisible(true);
 					 }
@@ -353,6 +360,7 @@ public class TelaCadastroPaciente extends JFrame {
 					 if(!numCasa.trim().isEmpty()) {
 						 try {
 							casa = Integer.valueOf(txtNumeroCasa.getText());
+							end.setNumCasa(casa);
 						} catch (NumberFormatException e2) {
 							new DialogMensagemErro("Informação inválida!").setVisible(true);
 							return;
@@ -367,22 +375,13 @@ public class TelaCadastroPaciente extends JFrame {
 				
 				 Paciente p = new Paciente();
 				 p.setNome(nome);
-				 p.setCpf(cpf);
-				 p.setEndereco(null);
-				 
-				 Endereco end = new Endereco();
-				 
-				 end.setNumCasa(numCasa);
-				 
-				 p.setEndereco(end);
-				 
-				 
-				 
-				 
-				 
-				 
+				 p.setEndereco(end);	 
 				 PacienteDAO dao = new PacienteDAO();
-				 dao.inserir(p);
+				if( dao.inserir(p) == true) {
+					JOptionPane.showMessageDialog(c, "amém");
+				}else {
+					JOptionPane.showMessageDialog(c, "nãooooooooooo");
+				}
 				 
 			}
 		});
