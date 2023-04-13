@@ -292,7 +292,12 @@ public class TelaCadastroPaciente extends JFrame {
 					 }
 					 
 					 if(!numCpf.trim().isEmpty()) {
-						 cpf = Long.valueOf(txtCPF.getText());
+						 try {
+							 cpf = Long.valueOf(txtCPF.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida!").setVisible(true);
+								return;
+							}
 					 }else {
 						 new DialogMensagemErro("CPF Vazio").setVisible(true);
 					 }
@@ -362,6 +367,8 @@ public class TelaCadastroPaciente extends JFrame {
 				
 				 Paciente p = new Paciente();
 				 p.setNome(nome);
+				 p.setCpf(cpf);
+				 p.setEndereco(null);
 				 
 				 Endereco end = new Endereco();
 				 
