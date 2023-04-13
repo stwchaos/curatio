@@ -136,31 +136,10 @@ public class TelaCadastrarMedico extends JFrame {
 		txtSenha.setColumns(10);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBackground(new Color(64, 128, 128));
+		btnAdicionar.setBackground(new Color(0, 81, 81));
 		btnAdicionar.setForeground(new Color(255, 255, 255));
+		btnAdicionar.setFont(new Font("Yu Gothic Light", Font.PLAIN, 11));
 		panel.add(btnAdicionar, "cell 1 16,alignx center,aligny bottom");
-		JButton btnAdicionar = new JButton("adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nCpf = txtCpf.getText();
-				String nCrm = txtCrm.getText();
-				String nome = txtNome.getText();
-				String senha = txtSenha.getText();
-				
-				Long cpf = Long.valueOf(nCpf);
-				Long crm = Long.valueOf(nCrm);
-				
-				Medico m = new Medico();
-				MedicoDAO medicoDao = new MedicoDAO();
-				
-				m.setCpf(cpf);
-				m.setCrm(crm);
-				m.getEspecialidade()
-				
-			}
-		});
-		btnAdicionar.setBounds(232, 288, 89, 23);
-		contentPane.add(btnAdicionar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBackground(new Color(128, 0, 0));
