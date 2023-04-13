@@ -6,8 +6,9 @@ public class Anamnese {
 
 	private String queixaPrincipal;
 	private String disposicaoGeral;
-	private ArrayList<String> alergias;
-	private ArrayList<String> medicacoesEmUso;
+	private String alergia;
+	private String medicacoesEmUso;
+	
 	public String getQueixaPrincipal() {
 		return queixaPrincipal;
 	}
@@ -20,16 +21,16 @@ public class Anamnese {
 	public void setDisposicaoGeral(String disposicaoGeral) {
 		this.disposicaoGeral = disposicaoGeral;
 	}
-	public ArrayList<String> getAlergias() {
-		return alergias;
+	public String getAlergias() {
+		return alergia;
 	}
-	public void setAlergias(ArrayList<String> alergias) {
-		this.alergias = alergias;
+	public void setAlergias(String alergias) {
+		this.alergia = alergia;
 	}
-	public ArrayList<String> getMedicacoesEmUso() {
+	public String getMedicacoesEmUso() {
 		return medicacoesEmUso;
 	}
-	public void setMedicacoesEmUso(ArrayList<String> medicacoesEmUso) {
+	public void setMedicacoesEmUso(String medicacoesEmUso) {
 		this.medicacoesEmUso = medicacoesEmUso;
 	}
 
