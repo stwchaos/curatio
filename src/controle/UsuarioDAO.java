@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Medico;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 public class UsuarioDAO {
@@ -21,13 +22,20 @@ public class UsuarioDAO {
 		Connection c = con.conectar();
 		try {
 			String query = "INSERT INTO usuario (login, senha, tipo_usuario) VALUES (?, ?, ?);";
-			PreparedStatement stm = c.prepareStatement(query);
+			PreparedStatement stm = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.setString(1, u.getLogin());
 			stm.setString(2, u.getSenha());
-			stm.setInt(3, u.getTipo());
-
+			stm.setInt(3, u.getTipo().tipo);
+			System.out.println(stm);
 			stm.executeUpdate();
+			
+            ResultSet rs= stm.getGeneratedKeys();
+            if (rs.next()) 
+            {
+              u.setId(rs.getInt(1));
+            }    
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,7 +54,7 @@ public class UsuarioDAO {
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, u.getLogin());
 			stm.setString(2, u.getSenha());
-			stm.setInt(3, u.getTipo());
+			stm.setInt(3, u.getTipo().tipo);
 			stm.setLong(4, u.getId());
 			
 			stm.executeUpdate();
@@ -76,7 +84,7 @@ public class UsuarioDAO {
 			String query = "SELECT * FROM usuario";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Long id = rs.getLong("id_usuario");
+				Integer id = rs.getInt("id_usuario");
 				String login = rs.getString("login");
 				String senha = rs.getString("senha");
 				Integer tipo = rs.getInt("tipo_usuario");
@@ -84,9 +92,8 @@ public class UsuarioDAO {
 				u.setId(id);
 				u.setLogin(login);
 				u.setSenha(senha);
-				u.setTipo(tipo);
+				u.setTipo(TipoUsuario.ObterTipo(tipo));
 				usuarios.add(u);
-
 			}
 
 		} catch (SQLException e) {

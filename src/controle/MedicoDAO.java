@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import modelo.Especialidade;
 import modelo.Medico;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 public class MedicoDAO {
@@ -36,10 +37,11 @@ public class MedicoDAO {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
 
 		// desconectar
-		con.fecharConexao();
 		return false;
 	}
 
@@ -60,8 +62,9 @@ public class MedicoDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
 		return false;
 	}
 
@@ -90,7 +93,7 @@ public class MedicoDAO {
 				String nome = rs.getString("nome");
 				String sexo = rs.getString("sexo");
 				String pronome = rs.getString("pronome");
-				Long idUsuario = rs.getLong("id_usuario");
+				Integer idUsuario = rs.getInt("id_usuario");
 				String login = rs.getString("login");
 				String senha = rs.getString("senha");
 				Integer tipoUsuario = rs.getInt("tipo_usuario");
@@ -104,21 +107,29 @@ public class MedicoDAO {
 				m.setNome(nome);
 				m.setSexo(sexo);
 				m.setPronome(pronome);
-				m.getUsuario().setId(idUsuario);
-				m.getUsuario().setLogin(login);
-				m.getUsuario().setSenha(senha);
-				m.getEspecialidade().setEspecialidade(especialidade);
-				m.getEspecialidade().setId_especialidade(idEspecialidade);
-				m.getEspecialidade().setSalario(salario);
+				
+				Usuario u = new Usuario();
+				u.setId(idUsuario);
+				u.setLogin(login);
+				u.setSenha(senha);
+				u.setTipo(TipoUsuario.ObterTipo(tipoUsuario));	
+				m.setUsuario(u);
+				
+				Especialidade e = new Especialidade();
+				e.setEspecialidade(especialidade);
+				e.setId_especialidade(idEspecialidade);
+				e.setSalario(salario);
+				m.setEspecialidade(e);
 				medicos.add(m);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
 
 		// desconectar
-		con.fecharConexao();
 		return medicos;
 	}
 

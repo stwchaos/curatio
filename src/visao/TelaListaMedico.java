@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Medico;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Toolkit;
@@ -125,7 +126,7 @@ public class TelaListaMedico extends JFrame {
 			}
 		});
 		
-		if(u.getTipo()==3) {
+		if(u.getTipo()==TipoUsuario.ADMIN) {
 		
 		JPanel panel_2 = new RoundJPanel(50, new Color(0, 81, 81));
 		panel_2.setBackground(null);

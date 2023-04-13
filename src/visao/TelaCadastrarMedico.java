@@ -15,13 +15,19 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import controle.EspecialidadeDAO;
 import controle.MedicoDAO;
 import controle.UsuarioDAO;
+import modelo.Especialidade;
 import modelo.Medico;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 public class TelaCadastrarMedico extends JFrame {
@@ -31,6 +37,7 @@ public class TelaCadastrarMedico extends JFrame {
 	private JTextField txtCpf;
 	private JTextField txtCrm;
 	private JTextField txtSenha;
+	private ArrayList<Especialidade> listaEspecialidades;
 
 	/**
 	 * Launch the application.
@@ -84,6 +91,10 @@ public class TelaCadastrarMedico extends JFrame {
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(255, 255, 255));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		String[] listaPronome = {"Ele/Dele", "Ela/Dela", "Qualquer pronome"};
+		for (String string : listaPronome) {
+			comboPronome.addItem(string);;
+		}
 		panel.add(comboPronome, "cell 3 3,growx");
 		
 		JLabel lblNewLabel_2 = new JLabel("CRM");
@@ -119,6 +130,13 @@ public class TelaCadastrarMedico extends JFrame {
 		comboEspecialidade.setForeground(Color.BLACK);
 		comboEspecialidade.setBackground(new Color(255, 255, 255));
 		comboEspecialidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
+		this.listaEspecialidades=especialidadeDao.listarEspecialidade();
+		for (Especialidade e : listaEspecialidades) {
+			comboEspecialidade.addItem(e.getEspecialidade());
+		}
+		
+		
 		panel.add(comboEspecialidade, "cell 1 9,growx");
 		
 		JComboBox comboSexo =new RoundComboBox();
@@ -126,6 +144,10 @@ public class TelaCadastrarMedico extends JFrame {
 		comboSexo.setForeground(Color.BLACK);
 		comboSexo.setBackground(new Color(255, 255, 255));
 		comboSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		String[] listaSexo = {"Masculino", "Feminino"};
+		for (String string : listaSexo) {
+			comboSexo.addItem(string);;
+		}
 		panel.add(comboSexo, "cell 3 9,growx");
 		
 		JLabel lblNewLabel_4 = new JLabel("Senha");
@@ -140,6 +162,47 @@ public class TelaCadastrarMedico extends JFrame {
 		txtSenha.setColumns(10);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nCpf = txtCpf.getText();
+				String nCrm = txtCrm.getText();
+				String nome = txtNome.getText();
+				String senha = txtSenha.getText();
+				
+				Long cpf = Long.valueOf(nCpf);
+				Long crm = Long.valueOf(nCrm);
+				
+				Medico m = new Medico();
+				Usuario u = new Usuario();
+				Especialidade es = new Especialidade();
+				MedicoDAO medicoDao = new MedicoDAO();
+				UsuarioDAO usuarioDao = new UsuarioDAO();
+				EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
+				
+				
+				m.setCpf(cpf);
+				m.setCrm(crm);
+				
+				Integer posicao = comboEspecialidade.getSelectedIndex();
+				Especialidade especialidadeSelecionado = listaEspecialidades.get(posicao);
+				m.setEspecialidade(especialidadeSelecionado);
+				m.setNome(nome);
+				m.setPronome(String.valueOf(comboPronome.getSelectedItem()));
+				m.setSexo(String.valueOf(comboSexo.getSelectedItem()));
+				
+				u.setLogin(nome);
+				u.setSenha(senha);
+				u.setTipo(TipoUsuario.MEDICO);
+				usuarioDao.inserir(u);
+				m.setUsuario(u);
+				
+				if(medicoDao.inserir(m)==true) {
+					JOptionPane.showMessageDialog(btnAdicionar, "sim");
+				}else {
+					JOptionPane.showMessageDialog(btnAdicionar, "nao");
+				}
+			}
+		});
 		btnAdicionar.setBackground(new Color(0, 81, 81));
 		btnAdicionar.setForeground(new Color(255, 255, 255));
 		btnAdicionar.setFont(new Font("Yu Gothic Light", Font.PLAIN, 11));
@@ -150,9 +213,6 @@ public class TelaCadastrarMedico extends JFrame {
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");
 		
-		String[] listaEspecialidade = {"Urologista", "Cardiologista", "Ginecologista", "Alergista", "Geriatra", "Otorrinolaringologista", "Podologo", "Oncologista", "Neurologista", "Endocrinologista", "Fonodiologo", "Cirurgião"};
-		for (String string : listaEspecialidade) {
-			comboEspecialidade.addItem(string);
-		}
+		
 	}
 }
