@@ -16,9 +16,13 @@ import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import controle.MedicoDAO;
+import controle.UsuarioDAO;
 import modelo.Medico;
+import modelo.Usuario;
 
 public class TelaCadastrarMedico extends JFrame {
 
