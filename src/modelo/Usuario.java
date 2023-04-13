@@ -2,10 +2,10 @@ package modelo;
 
 public class Usuario {
 
-	private Long id;
+	private Integer id;
 	private String login;
 	private String senha;
-	private Integer tipo;
+	private TipoUsuario tipo;
 
 	/*
 	 * tipo = 1 -> medico
@@ -14,19 +14,19 @@ public class Usuario {
 	 * tipo = 4 -> outros
 	 */
 	
-	public Integer getTipo() {
+	public TipoUsuario getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoUsuario medico) {
+		this.tipo = medico;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

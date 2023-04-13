@@ -187,11 +187,9 @@ public class TelaInicial extends JFrame {
 	//					}
 					} else {
 						new DialogMensagemErro("Usuário Inexistente").setVisible(true);
-						return;
 					}
 				}else {
 					new DialogMensagemErro("Campos vazios").setVisible(true);
-					return;
 				}
 			}
 		});
