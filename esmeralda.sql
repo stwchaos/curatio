@@ -19,7 +19,15 @@ CREATE TABLE IF NOT EXISTS endereco(
 -- -----------------------------------------------------
 -- Table `esmeralda`.`paciente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS paciente (
+CREATE TABLE IF NOT EXISTS esmeralda.anamnese(
+  id_anamnese INT NOT NULL AUTO_INCREMENT,
+  queixa_principial VARCHAR(255) NOT NULL,
+  disposicao_geral VARCHAR(255) NOT NULL,
+  alergia VARCHAR(255) NOT NULL,
+  medicacoes_em_uso VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id_anamnese));
+  
+CREATE TABLE IF NOT EXISTS esmeralda.paciente (
   cpf BIGINT(12) NOT NULL,
   nome VARCHAR(45) NOT NULL,
   nascimento DATETIME NOT NULL,
@@ -29,9 +37,12 @@ CREATE TABLE IF NOT EXISTS paciente (
   email VARCHAR(45) NOT NULL,
   pronome VARCHAR(20) NOT NULL,
   endereco_id_endereco INT NOT NULL,
-  PRIMARY KEY (cpf),
+  anamnese_id_anamnese INT NOT NULL,
+  PRIMARY KEY (cpf, anamnese_id_anamnese),
     FOREIGN KEY (endereco_id_endereco)
-    REFERENCES endereco (id_endereco));
+    REFERENCES esmeralda.endereco (id_endereco),
+    FOREIGN KEY (anamnese_id_anamnese)
+    REFERENCES esmeralda.anamnese (id_anamnese));
 -- -----------------------------------------------------
 -- Table `esmeralda`.`especialidade`
 -- -----------------------------------------------------
