@@ -105,7 +105,6 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_2_1, "cell 3 4 2 1,alignx left,aligny bottom");
 
 		txtNome = new RoundJTextField();
-		txtNome.setText("Inserir");
 		txtNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtNome.setColumns(10);
 		panel.add(txtNome, "cell 0 5 2 1,growx,aligny bottom");
@@ -125,13 +124,11 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_4, "cell 3 7");
 
 		RoundJTextField txtCPF = new RoundJTextField();
-		txtCPF.setText("Inserir");
 		txtCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCPF.setColumns(10);
 		panel.add(txtCPF, "cell 0 8 2 1,growx");
 
 		RoundJTextField txtNumeroCasa = new RoundJTextField();
-		txtNumeroCasa.setText("Inserir");
 		txtNumeroCasa.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtNumeroCasa.setColumns(10);
 		panel.add(txtNumeroCasa, "cell 3 8 2 1,growx");
@@ -150,7 +147,6 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_2_1, "cell 3 9");
 
 		RoundJTextField txtBairro = new RoundJTextField();
-		txtBairro.setText("Inserir");
 		txtBairro.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtBairro.setColumns(10);
 		panel.add(txtBairro, "cell 3 10 2 1,growx");
@@ -164,13 +160,11 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_2, "cell 3 12 2 1");
 
 		txtTelefone = new RoundJTextField();
-		txtTelefone.setText("Inserir");
 		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtTelefone.setColumns(10);
 		panel.add(txtTelefone, "cell 0 13 2 1,growx,aligny top");
 
 		RoundJTextField txtCidade = new RoundJTextField();
-		txtCidade.setText("Inserir");
 		txtCidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCidade.setColumns(10);
 		panel.add(txtCidade, "cell 3 13 2 1,growx");
@@ -184,13 +178,11 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_1, "cell 3 15,alignx left,aligny bottom");
 
 		txtEmail = new RoundJTextField();
-		txtEmail.setText("Inserir");
 		txtEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtEmail.setColumns(10);
 		panel.add(txtEmail, "cell 0 16 2 1,growx,aligny top");
 
 		txtRua = new RoundJTextField();
-		txtRua.setText("Inserir");
 		txtRua.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtRua.setColumns(10);
 		panel.add(txtRua, "cell 3 16 2 1,grow");
@@ -204,13 +196,11 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_1_1, "cell 3 18");
 
 		RoundJTextField txtComplemento = new RoundJTextField();
-		txtComplemento.setText("Inserir");
 		txtComplemento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtComplemento.setColumns(10);
 		panel.add(txtComplemento, "cell 0 19 2 1,growx");
 
 		RoundJTextField txtCEP = new RoundJTextField();
-		txtCEP.setText("Inserir");
 		txtCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCEP.setColumns(10);
 		panel.add(txtCEP, "cell 3 19 2 1,growx");
@@ -258,7 +248,6 @@ public class TelaCadastroPaciente extends JFrame {
 		dtNascimento.getDate();
 
 		txtNomeSoc = new RoundJTextField();
-		txtNomeSoc.setText("Inserir");
 		txtNomeSoc.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtNomeSoc.setColumns(10);
 		panel.add(txtNomeSoc, "cell 0 10 2 1,growx,aligny bottom");
@@ -293,64 +282,100 @@ public class TelaCadastroPaciente extends JFrame {
 				Integer telefone, casa;
 
 				// TODO separar um if para cada
-				 if(!nome.trim().isEmpty()) {
-					 nome = txtNome.getText();
-				 }else{
-					 new DialogMensagemErro("Nome Vazio").setVisible(true);
-				 }
-				 
-				 if(!numCpf.trim().isEmpty()) {
-					 cpf = Long.valueOf(txtCPF.getText());
-				 }else {
-					 new DialogMensagemErro("CPF Vazio").setVisible(true);
-				 }
-				 
-				 if(!numCep.trim().isEmpty()) {
-					 cep = Long.valueOf(txtCEP.getText());
-				 }else {
-					 new DialogMensagemErro("CEP Vazio").setVisible(true);
-				 }
-				 
-				 if(!email.trim().isEmpty()) {
-					 email = txtEmail.getText();
-				 }else {
-					 new DialogMensagemErro("Email Vazio").setVisible(true);
-				 }
-				 
-				 if(!bairro.trim().isEmpty()) {
-					 bairro = txtBairro.getText();
-				 }else {
-					 new DialogMensagemErro("Bairro Vazio").setVisible(true);
-				 }
-				 
-				 if(!rua.trim().isEmpty()) {
-					 rua = txtRua.getText();
-				 }else {
-					 new DialogMensagemErro("Rua Vazio").setVisible(true);
-				 }
-				 
-				 if(!numTel.trim().isEmpty()) {
-					 telefone = Integer.valueOf(txtTelefone.getText());
-				 }else {
-					 new DialogMensagemErro("Telefone Vazio").setVisible(true);
-				 }
-				 
-				 if(!cidade.trim().isEmpty()) {
-					 cidade = txtCidade.getText();
-				 }else {
-					 new DialogMensagemErro("Cidade Vazio").setVisible(true);
-				 }
-				 
-				 if(!numCasa.trim().isEmpty()) {
-					 casa = Integer.valueOf(txtNumeroCasa.getText());
-				 }else {
-					 new DialogMensagemErro("Casa Vazio").setVisible(true);
-				 }
-				 
+				if(nome.trim().isEmpty() &&  numCpf.trim().isEmpty() && numCep.trim().isEmpty() && email.trim().isEmpty() && bairro.trim().isEmpty() && rua.trim().isEmpty() && numTel.trim().isEmpty() && cidade.trim().isEmpty() && numCasa.trim().isEmpty()) {
+					new DialogMensagemErro("Todos os campos estão vazios!").setVisible(true);
+				} else {
+					if(!nome.trim().isEmpty()) {
+						 nome = txtNome.getText();
+					 }else{
+						 new DialogMensagemErro("Nome Vazio").setVisible(true);
+					 }
+					 
+					 if(!numCpf.trim().isEmpty()) {
+						 cpf = Long.valueOf(txtCPF.getText());
+					 }else {
+						 new DialogMensagemErro("CPF Vazio").setVisible(true);
+					 }
+					 
+					 if(!numCep.trim().isEmpty()) {
+						 
+						 try {
+							 cep = Long.valueOf(txtCEP.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida!").setVisible(true);
+								return;
+							}
+					 }else {
+						 new DialogMensagemErro("CEP Vazio").setVisible(true);
+					 }
+					 
+					 if(!email.trim().isEmpty()) {
+						 email = txtEmail.getText();
+					 }else {
+						 new DialogMensagemErro("Email Vazio").setVisible(true);
+					 }
+					 
+					 if(!bairro.trim().isEmpty()) {
+						 bairro = txtBairro.getText();
+					 }else {
+						 new DialogMensagemErro("Bairro Vazio").setVisible(true);
+					 }
+					 
+					 if(!rua.trim().isEmpty()) {
+						 rua = txtRua.getText();
+					 }else {
+						 new DialogMensagemErro("Rua Vazio").setVisible(true);
+					 }
+					 
+					 if(!numTel.trim().isEmpty()) {
+						 try {
+								telefone = Integer.valueOf(txtTelefone.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida!").setVisible(true);
+								return;
+							}
+						 
+					 }else {
+						 new DialogMensagemErro("Telefone Vazio").setVisible(true);
+					 }
+					 
+					 if(!cidade.trim().isEmpty()) {
+						 cidade = txtCidade.getText();
+					 }else {
+						 new DialogMensagemErro("Cidade Vazio").setVisible(true);
+					 }
+					 
+					 if(!numCasa.trim().isEmpty()) {
+						 try {
+							casa = Integer.valueOf(txtNumeroCasa.getText());
+						} catch (NumberFormatException e2) {
+							new DialogMensagemErro("Informação inválida!").setVisible(true);
+							return;
+						}
+						 
+					 }else {
+						 new DialogMensagemErro("Casa Vazio").setVisible(true);
+					 }
+				}
+				
+				
+				
 				 Paciente p = new Paciente();
 				 p.setNome(nome);
 				 
+				 Endereco end = new Endereco();
+				 
+				 end.setNumCasa(numCasa);
+				 
+				 p.setEndereco(end);
+				 
+				 
+				 
+				 
+				 
+				 
 				 PacienteDAO dao = new PacienteDAO();
+				 dao.inserir(p);
 				 
 			}
 		});
