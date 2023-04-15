@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import modelo.Endereco;
 import modelo.Paciente;
 
 public class PacienteDAO {
@@ -112,13 +113,17 @@ public class PacienteDAO {
 				p.setNomeSocial(nomeSocial);
 				p.setEmail(email);
 				p.setPronome(pronome);
-				p.getEndereco().setIdEndereco(idEndereco);
-				p.getEndereco().setRua(rua);
-				p.getEndereco().setCep(cep);
-				p.getEndereco().setNumCasa(numCasa);
-				p.getEndereco().setComplemento(complemento);
-				p.getEndereco().setCidade(cidade);
-				p.getEndereco().setBairro(bairro);
+				
+				Endereco e = new Endereco();
+				e.setBairro(bairro);
+				e.setCep(cep);
+				e.setCidade(cidade);
+				e.setComplemento(complemento);
+				e.setIdEndereco(idEndereco);
+				e.setNumCasa(numCasa);
+				e.setRua(rua);
+				p.setEndereco(e);
+				
 				pacientes.add(p);
 			}
 
