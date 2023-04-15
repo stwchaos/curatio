@@ -13,6 +13,24 @@ public class Paciente {
 	private String pronome;
 	private Endereco endereco;
 	private Anamnese anamnese;
+	private Long cep;
+	private Integer numCasa;
+
+	public Long getCep() {
+		return cep;
+	}
+
+	public void setCep(Long cep) {
+		this.cep = cep;
+	}
+
+	public Integer getNumCasa() {
+		return numCasa;
+	}
+
+	public void setNumCasa(Integer numCasa) {
+		this.numCasa = numCasa;
+	}
 
 	public Anamnese getAnamnese() {
 		return anamnese;

@@ -8,8 +8,6 @@ USE esmeralda;
 CREATE TABLE IF NOT EXISTS endereco(
   id_endereco INT NOT NULL AUTO_INCREMENT,
   rua VARCHAR(155) NOT NULL,
-  cep BIGINT(11) NOT NULL,
-  numero_casa INT NOT NULL,
   complemento VARCHAR(155) NULL,
   cidade VARCHAR(45) NOT NULL,
   bairro VARCHAR(45) NOT NULL,
@@ -19,15 +17,16 @@ CREATE TABLE IF NOT EXISTS endereco(
 -- -----------------------------------------------------
 -- Table `esmeralda`.`paciente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS esmeralda.anamnese(
+CREATE TABLE IF NOT EXISTS anamnese(
   id_anamnese INT NOT NULL AUTO_INCREMENT,
   queixa_principial VARCHAR(255) NOT NULL,
   disposicao_geral VARCHAR(255) NOT NULL,
   alergia VARCHAR(255) NOT NULL,
   medicacoes_em_uso VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_anamnese));
-  
-CREATE TABLE IF NOT EXISTS esmeralda.paciente (
+ 
+ 
+CREATE TABLE IF NOT EXISTS paciente(
   cpf BIGINT(12) NOT NULL,
   nome VARCHAR(45) NOT NULL,
   nascimento DATETIME NOT NULL,
@@ -38,12 +37,13 @@ CREATE TABLE IF NOT EXISTS esmeralda.paciente (
   pronome VARCHAR(20) NOT NULL,
   endereco_id_endereco INT NOT NULL,
   anamnese_id_anamnese INT NOT NULL,
+  cep BIGINT(11) NOT NULL,
+  numero_casa INT NOT NULL,
   PRIMARY KEY (cpf, anamnese_id_anamnese),
-    FOREIGN KEY (endereco_id_endereco)
-    REFERENCES esmeralda.endereco (id_endereco),
+	FOREIGN KEY (endereco_id_endereco)
+    REFERENCES endereco(id_endereco),
     FOREIGN KEY (anamnese_id_anamnese)
-    REFERENCES esmeralda.anamnese (id_anamnese));
--- -----------------------------------------------------
+    REFERENCES anamnese(id_anamnese));
 -- Table `esmeralda`.`especialidade`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS especialidade(
