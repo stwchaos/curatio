@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import modelo.Medico;
 import modelo.Usuario;
@@ -12,6 +13,8 @@ import modelo.Usuario;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -92,6 +95,18 @@ public class TelaListaPaciente extends JFrame {
 		panel.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		int linha = table.getSelectedRow();
+		Long id = (Long) table.getValueAt(linha, 0);
+		}
+		});
+
+		scrollPane.setViewportView(table);
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF", "Telefone" });
+		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF", "Telefone" });
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF", "Telefone" }));
 		scrollPane.setViewportView(table);
 		
 		btnVoltar = new JButton("Voltar");
