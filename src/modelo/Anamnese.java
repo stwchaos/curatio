@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Anamnese {
 
+	private Integer idAnamnese;
 	private String queixaPrincipal;
 	private String disposicaoGeral;
 	private String alergia;
@@ -21,10 +22,10 @@ public class Anamnese {
 	public void setDisposicaoGeral(String disposicaoGeral) {
 		this.disposicaoGeral = disposicaoGeral;
 	}
-	public String getAlergias() {
+	public String getAlergia() {
 		return alergia;
 	}
-	public void setAlergias(String alergias) {
+	public void setAlergia(String alergias) {
 		this.alergia = alergia;
 	}
 	public String getMedicacoesEmUso() {
@@ -34,4 +35,12 @@ public class Anamnese {
 		this.medicacoesEmUso = medicacoesEmUso;
 	}
 
+	public Integer getIdAnamnese() {
+		return idAnamnese;
+	}
+	public void setIdAnamnese(Integer idAnamnese) {
+		this.idAnamnese = idAnamnese;
+	}
+	
+	
 }
