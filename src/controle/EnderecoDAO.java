@@ -22,12 +22,10 @@ public class EnderecoDAO {
 		Connection c = con.conectar();
 		int last_inserted_id = 0;
 		try {
-			String query = "INSERT INTO endereco (rua, cep, numero_casa, complemento, cidade, bairro) VALUES (?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO endereco (rua, complemento, cidade, bairro) VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.setString(1, en.getRua());
-			stm.setLong(2, en.getCep());
-			stm.setFloat(3, en.getNumCasa());
 			stm.setString(4, en.getComplemento());
 			stm.setString(5, en.getCidade());
 			stm.setString(6, en.getBairro());
@@ -55,11 +53,9 @@ public class EnderecoDAO {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE endereco SET rua = ?, cep = ?, numero_casa = ?, complemento = ?, cidade = ?, bairro = ? WHERE id_endereco = ?";
+			String query = "UPDATE endereco SET rua = ?, complemento = ?, cidade = ?, bairro = ? WHERE id_endereco = ?";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, en.getRua());
-			stm.setLong(2, en.getCep());
-			stm.setFloat(3, en.getNumCasa());
 			stm.setString(4, en.getComplemento());
 			stm.setString(5, en.getCidade());
 			stm.setString(6, en.getBairro());
@@ -69,8 +65,9 @@ public class EnderecoDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
 		return false;
 	}
 
@@ -93,17 +90,14 @@ public class EnderecoDAO {
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Long idEndereco = rs.getLong("id_endereco");
-				String rua = rs.getString("rua");
 				Long cep = rs.getLong("cep");
-				Integer numCasa = rs.getInt("numero_casa");
 				String complemento = rs.getString("complemento");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");
 				Endereco en = new Endereco();
 				en.setIdEndereco(idEndereco);
 				en.setRua(rua);
-				en.setCep(cep);
-				en.setNumCasa(numCasa);
 				en.setComplemento(complemento);
 				en.setCidade(cidade);
 				en.setBairro(bairro);
@@ -112,10 +106,10 @@ public class EnderecoDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
 
-		// desconectar
-		con.fecharConexao();
 		return enderecos;
 	}
 }

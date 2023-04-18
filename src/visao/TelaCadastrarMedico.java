@@ -46,7 +46,7 @@ public class TelaCadastrarMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastrarMedico() {
+	public TelaCadastrarMedico(Usuario u, Medico medicoSelecionado, Boolean editar) {
 		setTitle("Hospital Esmeralda - Cadastrar Especialista");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 938, 714);
@@ -110,6 +110,9 @@ public class TelaCadastrarMedico extends JFrame {
 		txtCrm.setCaretColor(Color.WHITE);
 		panel.add(txtCrm, "cell 1 6,growx");
 		txtCrm.setColumns(10);
+		if(editar==true) {
+			txtCrm.setEditable(false);
+		}
 		
 		txtCpf = new RoundJTextField();
 		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
@@ -118,6 +121,9 @@ public class TelaCadastrarMedico extends JFrame {
 		txtCpf.setCaretColor(Color.WHITE);
 		panel.add(txtCpf, "cell 3 6,growx");
 		txtCpf.setColumns(10);
+		if(editar==true) {
+			txtCpf.setEditable(false);
+		}
 		
 		JLabel lblNewLabel_3 = new JLabel("Especialidade médica");
 		panel.add(lblNewLabel_3, "cell 1 8");
@@ -149,6 +155,9 @@ public class TelaCadastrarMedico extends JFrame {
 			comboSexo.addItem(string);;
 		}
 		panel.add(comboSexo, "cell 3 9,growx");
+		if(editar==true) {
+			comboSexo.setEditable(false);
+		}
 		
 		JLabel lblNewLabel_4 = new JLabel("Senha");
 		panel.add(lblNewLabel_4, "cell 1 11");
@@ -179,7 +188,6 @@ public class TelaCadastrarMedico extends JFrame {
 				UsuarioDAO usuarioDao = new UsuarioDAO();
 				EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
 				
-				
 				m.setCpf(cpf);
 				m.setCrm(crm);
 				
@@ -196,11 +204,26 @@ public class TelaCadastrarMedico extends JFrame {
 				usuarioDao.inserir(u);
 				m.setUsuario(u);
 				
-				if(medicoDao.inserir(m)==true) {
-					JOptionPane.showMessageDialog(btnAdicionar, "sim");
+				
+				if(editar==true) {
+					if(medicoDao.alterar(m)==true) {
+						JOptionPane.showMessageDialog(btnAdicionar, "sim");
+					}else {
+						JOptionPane.showMessageDialog(btnAdicionar, "nao");
+					}
 				}else {
-					JOptionPane.showMessageDialog(btnAdicionar, "nao");
+					if(medicoDao.inserir(m)==true) {
+						JOptionPane.showMessageDialog(btnAdicionar, "sim");
+					}else {
+						JOptionPane.showMessageDialog(btnAdicionar, "nao");
+					}
 				}
+				
+				dispose();
+				TelaListaMedico tela = new TelaListaMedico(u);
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnAdicionar.setBackground(new Color(0, 81, 81));
@@ -209,6 +232,15 @@ public class TelaCadastrarMedico extends JFrame {
 		panel.add(btnAdicionar, "cell 1 16,alignx center,aligny bottom");
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaListaMedico tela = new TelaListaMedico(u);
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnCancelar.setBackground(new Color(128, 0, 0));
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");

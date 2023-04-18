@@ -41,30 +41,33 @@ public class Conexao {
 			wsql = "USE esmeralda;";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS endereco("
-					+ "  id_endereco INT NOT NULL AUTO_INCREMENT,"
-					+ "  rua VARCHAR(155) NOT NULL,"
-					+ "  cep BIGINT(11) NOT NULL,"
-					+ "  numero_casa INT NOT NULL,"
-					+ "  complemento VARCHAR(155) NULL,"
-					+ "  cidade VARCHAR(45) NOT NULL,"
-					+ "  bairro VARCHAR(45) NOT NULL,"
-					+ " PRIMARY KEY (id_endereco));";
+			wsql = "CREATE TABLE IF NOT EXISTS endereco(\r\n"
+					+ "  id_endereco INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  rua VARCHAR(155) NOT NULL,\r\n"
+					+ "  complemento VARCHAR(155) NULL,\r\n"
+					+ "  cidade VARCHAR(45) NOT NULL,\r\n"
+					+ "  bairro VARCHAR(45) NOT NULL,\r\n"
+					+ "  PRIMARY KEY (id_endereco));";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS paciente("
-					+ "  cpf BIGINT(12) NOT NULL,"
-					+ "  nome VARCHAR(45) NOT NULL,"
-					+ "  nascimento DATETIME NOT NULL,"
-					+ "  telefone INT NULL,"
-					+ "  sexo VARCHAR(45) NOT NULL,"
-					+ "  nome_social VARCHAR(45) NULL,"
-					+ "  email VARCHAR(45) NOT NULL,"
-					+ "  pronome VARCHAR(20) NOT NULL,"
-					+ "  endereco_id_endereco INT NOT NULL,"
-					+ "  PRIMARY KEY (cpf),"
-					+ "    FOREIGN KEY (endereco_id_endereco)"
-					+ "    REFERENCES endereco (id_endereco));";
+			wsql = "CREATE TABLE IF NOT EXISTS paciente(\r\n"
+					+ "  cpf BIGINT(12) NOT NULL,\r\n"
+					+ "  nome VARCHAR(45) NOT NULL,\r\n"
+					+ "  nascimento DATETIME NOT NULL,\r\n"
+					+ "  telefone INT NULL,\r\n"
+					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
+					+ "  nome_social VARCHAR(45) NULL,\r\n"
+					+ "  email VARCHAR(45) NOT NULL,\r\n"
+					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
+					+ "  endereco_id_endereco INT NOT NULL,\r\n"
+					+ "  anamnese_id_anamnese INT NOT NULL,\r\n"
+					+ "  cep BIGINT(11) NOT NULL,\r\n"
+					+ "  numero_casa INT NOT NULL,\r\n"
+					+ "  PRIMARY KEY (cpf, anamnese_id_anamnese),\r\n"
+					+ "	FOREIGN KEY (endereco_id_endereco)\r\n"
+					+ "    REFERENCES endereco(id_endereco),\r\n"
+					+ "    FOREIGN KEY (anamnese_id_anamnese)\r\n"
+					+ "    REFERENCES anamnese(id_anamnese));";
 			stm.executeUpdate(wsql);
 					
 			wsql = "CREATE TABLE IF NOT EXISTS especialidade(\r\n"
@@ -135,6 +138,15 @@ public class Conexao {
 					+ "    REFERENCES medico (crm),\r\n"
 					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
 					+ "    REFERENCES pagamento (id_pagamento));";
+			stm.executeUpdate(wsql);
+			
+			wsql = "CREATE TABLE IF NOT EXISTS anamnese(\r\n"
+					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  queixa_principial VARCHAR(255) NOT NULL,\r\n"
+					+ "  disposicao_geral VARCHAR(255) NOT NULL,\r\n"
+					+ "  alergia VARCHAR(255) NOT NULL,\r\n"
+					+ "  medicacoes_em_uso VARCHAR(255) NOT NULL,\r\n"
+					+ "  PRIMARY KEY (id_anamnese));";
 			stm.executeUpdate(wsql);
 			
 			String query = "SELECT * FROM usuario;";

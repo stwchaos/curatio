@@ -21,7 +21,7 @@ public class PacienteDAO {
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco, cep, numero_casa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setLong(1, p.getCpf());
@@ -33,6 +33,8 @@ public class PacienteDAO {
 			stm.setString(7, p.getEmail());
 			stm.setString(8, p.getPronome());
 			stm.setDouble(9, p.getEndereco().getIdEndereco());
+			stm.setDouble(10, p.getCep());
+			stm.setDouble(11, p.getNumCasa());
 
 			stm.executeUpdate();
 			return true;
@@ -50,7 +52,7 @@ public class PacienteDAO {
 		Connection c = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ? WHERE cpf = ?;";
+			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ?, cep = ?, numero_casa = ? WHERE cpf = ?;";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, p.getNome());
 			stm.setDate(2, Date.valueOf(p.getNascimento()));
@@ -60,14 +62,17 @@ public class PacienteDAO {
 			stm.setString(6, p.getEmail());
 			stm.setString(7, p.getPronome());
 			stm.setDouble(8, p.getEndereco().getIdEndereco());
-			stm.setLong(9, p.getCpf());
+			stm.setLong(9, p.getCep());
+			stm.setLong(10, p.getNumCasa());
+			stm.setLong(11, p.getCpf());
 
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
 		return false;
 	}
 
@@ -113,14 +118,14 @@ public class PacienteDAO {
 				p.setNomeSocial(nomeSocial);
 				p.setEmail(email);
 				p.setPronome(pronome);
+				p.setCep(cep);
+				p.setNumCasa(numCasa);
 				
 				Endereco e = new Endereco();
 				e.setBairro(bairro);
-				e.setCep(cep);
 				e.setCidade(cidade);
 				e.setComplemento(complemento);
 				e.setIdEndereco(idEndereco);
-				e.setNumCasa(numCasa);
 				e.setRua(rua);
 				p.setEndereco(e);
 				
@@ -129,10 +134,9 @@ public class PacienteDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-
-		// desconectar
-		con.fecharConexao();
 		return pacientes;
 	}
 }
