@@ -177,6 +177,11 @@ public class TelaMarcarConsultas extends JFrame {
 				Consulta consulta = new Consulta();
 				ConsultaDAO consultaDAO = new ConsultaDAO();
 				
+				if(!objetivo.trim().isEmpty()) {
+					objetivo = txtObjetivo.getText();
+				}else {
+					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
+				}
 				for (Paciente p : pacienteDao.listarPacientes()) {
 					if (comboPaciente.getSelectedItem().equals(p.getNome()+", cpf: "+p.getCpf())) {
 						consulta.setPaciente(p);
