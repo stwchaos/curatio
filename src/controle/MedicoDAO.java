@@ -46,11 +46,13 @@ public class MedicoDAO {
 	}
 
 	public boolean alterar(Medico m) {
-		Connection c = Conexao.getInstancia().conectar();
+		con = Conexao.getInstancia();
+		
+		Connection co = con.conectar();
 
 		try {
 			String query = "UPDATE medico SET nome = ?, sexo = ?, pronome = ?, usuario_id_usuario = ?, especialidade_id_especialidade = ?  WHERE crm = ?";
-			PreparedStatement stm = c.prepareStatement(query);
+			PreparedStatement stm = co.prepareStatement(query);
 			stm.setString(1, m.getNome());
 			stm.setString(2, m.getSexo());
 			stm.setString(3, m.getPronome());

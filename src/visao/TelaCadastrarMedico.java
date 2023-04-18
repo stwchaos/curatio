@@ -38,6 +38,10 @@ public class TelaCadastrarMedico extends JFrame {
 	private JTextField txtCrm;
 	private JTextField txtSenha;
 	private ArrayList<Especialidade> listaEspecialidades;
+	private JComboBox comboEspecialidade;
+	private JComboBox comboSexo;
+	private JComboBox comboPronome;
+	
 
 	/**
 	 * Launch the application.
@@ -86,7 +90,7 @@ public class TelaCadastrarMedico extends JFrame {
 		panel.add(txtNome, "cell 1 3,growx");
 		txtNome.setColumns(10);
 		
-		JComboBox comboPronome = new RoundComboBox();
+		comboPronome = new RoundComboBox();
 		comboPronome.setEditable(true);
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(255, 255, 255));
@@ -131,7 +135,7 @@ public class TelaCadastrarMedico extends JFrame {
 		JLabel lblNewLabel_6 = new JLabel("Sexo");
 		panel.add(lblNewLabel_6, "cell 3 8");
 		
-		JComboBox comboEspecialidade = new RoundComboBox();
+		comboEspecialidade = new RoundComboBox();
 		comboEspecialidade.setEditable(true);
 		comboEspecialidade.setForeground(Color.BLACK);
 		comboEspecialidade.setBackground(new Color(255, 255, 255));
@@ -145,7 +149,7 @@ public class TelaCadastrarMedico extends JFrame {
 		
 		panel.add(comboEspecialidade, "cell 1 9,growx");
 		
-		JComboBox comboSexo =new RoundComboBox();
+		comboSexo =new RoundComboBox();
 		comboSexo.setEditable(true);
 		comboSexo.setForeground(Color.BLACK);
 		comboSexo.setBackground(new Color(255, 255, 255));
@@ -170,7 +174,12 @@ public class TelaCadastrarMedico extends JFrame {
 		panel.add(txtSenha, "cell 1 12,growx");
 		txtSenha.setColumns(10);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
+		JButton btnAdicionar;
+		if(editar==true) {
+			btnAdicionar = new JButton("Alterar");
+		}else {
+			btnAdicionar = new JButton("Adicionar");
+		}
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nCpf = txtCpf.getText();
@@ -245,6 +254,16 @@ public class TelaCadastrarMedico extends JFrame {
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");
 		
-		
+		if(editar==true) {
+			receberDados(medicoSelecionado);
+		}
+	}
+	private void receberDados(Medico medicoSelecioado) {
+		txtNome.setText(medicoSelecioado.getNome());
+		txtCrm.setText(String.valueOf(medicoSelecioado.getCrm()));
+		txtCpf.setText(String.valueOf(medicoSelecioado.getCpf()));
+		comboEspecialidade.setSelectedItem(medicoSelecioado.getEspecialidade().getEspecialidade());
+		comboSexo.setSelectedItem(medicoSelecioado.getSexo());
+		comboPronome.setSelectedItem(medicoSelecioado.getPronome());
 	}
 }
