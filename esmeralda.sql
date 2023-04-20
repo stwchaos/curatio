@@ -19,10 +19,10 @@ CREATE TABLE IF NOT EXISTS endereco(
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS anamnese(
   id_anamnese INT NOT NULL AUTO_INCREMENT,
-  queixa_principial VARCHAR(255) NOT NULL,
-  disposicao_geral VARCHAR(255) NOT NULL,
-  alergia VARCHAR(255) NOT NULL,
-  medicacoes_em_uso VARCHAR(255) NOT NULL,
+  queixa_principial VARCHAR(255) ,
+  disposicao_geral VARCHAR(255) ,
+  alergia VARCHAR(255) ,
+  medicacoes_em_uso VARCHAR(255) ,
   PRIMARY KEY (id_anamnese));
  
  
