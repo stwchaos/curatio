@@ -1,9 +1,25 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,33 +27,7 @@ import controle.MedicoDAO;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
-
-import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Cursor;
-
-import javax.swing.JTextPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 public class TelaListaMedico extends JFrame {
 
@@ -121,13 +111,6 @@ public class TelaListaMedico extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			int linha = table.getSelectedRow();
-			Long id = (Long) table.getValueAt(linha, 0);
-			for (Medico medico : mDao.listarProfissionais()) {
-				if(id==medico.getCrm()) {
-					medicoSelecionado = medico;
-				}
-			}
 		}
 		});
 
@@ -150,6 +133,7 @@ public class TelaListaMedico extends JFrame {
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
+		contentPane.add(btnVoltar, "cell 2 5,alignx left,aligny top");
 		
 		if(u.getTipo()==TipoUsuario.ADMIN) {
 		
@@ -189,15 +173,24 @@ public class TelaListaMedico extends JFrame {
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!(medicoSelecionado==null)) {
+				int linha = table.getSelectedRow();
+				if(linha==-1) {
+					new DialogMensagemErro("Médico não selecionado").setVisible(true);
+					return;
+				}
+				
+				Long id = (Long) table.getValueAt(linha, 0);
+				for (Medico medico : mDao.listarProfissionais()) {
+					if(id.equals(medico.getCrm())) {
+						medicoSelecionado = medico;
+					}
+				}
+					editar = true;
 					dispose();
 					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(u, medicoSelecionado, editar);
 					telaAlterar.setLocationRelativeTo(null);
 					telaAlterar.setVisible(true);
 					telaAlterar.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				}else {
-					new DialogMensagemErro("Médico não selecionado").setVisible(true);
-				}
 			}
 		});
 		btnAlterar.setForeground(new Color(255, 255, 255));
@@ -212,7 +205,6 @@ public class TelaListaMedico extends JFrame {
 		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDeletar.setFocusPainted(false);
 		panel_2.add(btnDeletar, "cell 1 4,growx,aligny center");
-		contentPane.add(btnVoltar, "cell 2 5,alignx left,aligny top");
 		}
 		for (Medico medico : mDao.listarProfissionais()) {
 			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});

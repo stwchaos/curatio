@@ -399,6 +399,6 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_6.gridx = 0;
 		gbc_panel_6.gridy = 2;
 		panelMeio.add(c, gbc_panel_6);
-		//txtContaLogada.setText(u.getNomeProfissionais());
+		txtContaLogada.setText(u.getLogin());
 	}
 }
