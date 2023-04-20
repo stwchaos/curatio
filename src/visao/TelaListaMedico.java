@@ -47,7 +47,11 @@ public class TelaListaMedico extends JFrame {
 	private JLabel lblNewLabel_2;
 	private Medico medicoSelecionado = null;
 	private MedicoDAO mDao = new MedicoDAO();
-	Boolean editar;
+	private Boolean editar;
+	private int linha;
+	private DefaultTableModel modelo;
+	private DefaultTableModel pesquisa;
+	
 
 	/**
 	 * Launch the application.
@@ -56,7 +60,7 @@ public class TelaListaMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaMedico(Usuario u) {
+	public TelaListaMedico(Usuario usuarioAtual) {
 		
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
@@ -111,12 +115,19 @@ public class TelaListaMedico extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			linha = table.getSelectedRow();
+			Long id = (Long) table.getValueAt(linha, 0);
+			for (Medico medico : mDao.listarProfissionais()) {
+				if(id.equals(medico.getCrm())) {
+					medicoSelecionado = medico;
+				}
+			}
 		}
 		});
 
 		scrollPane.setViewportView(table);
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
-		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
+		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" }));
 		scrollPane.setViewportView(table);
 		
@@ -127,7 +138,7 @@ public class TelaListaMedico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						dispose();
-						TelaPadrao telaPadrao = new TelaPadrao(u);
+						TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 						telaPadrao.setLocationRelativeTo(null);
 						telaPadrao.setVisible(true);
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -135,7 +146,7 @@ public class TelaListaMedico extends JFrame {
 		});
 		contentPane.add(btnVoltar, "cell 2 5,alignx left,aligny top");
 		
-		if(u.getTipo()==TipoUsuario.ADMIN) {
+		if(usuarioAtual.getTipo()==TipoUsuario.ADMIN) {
 		
 		JPanel panel_2 = new RoundJPanel(50, new Color(0, 81, 81));
 		panel_2.setBackground(null);
@@ -161,7 +172,7 @@ public class TelaListaMedico extends JFrame {
 				editar = false;
 				medicoSelecionado=null;
 				dispose();
-				TelaCadastrarMedico tela = new TelaCadastrarMedico(u, medicoSelecionado, editar);
+				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -173,21 +184,13 @@ public class TelaListaMedico extends JFrame {
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int linha = table.getSelectedRow();
 				if(linha==-1) {
 					new DialogMensagemErro("Médico não selecionado").setVisible(true);
 					return;
 				}
-				
-				Long id = (Long) table.getValueAt(linha, 0);
-				for (Medico medico : mDao.listarProfissionais()) {
-					if(id.equals(medico.getCrm())) {
-						medicoSelecionado = medico;
-					}
-				}
 					editar = true;
 					dispose();
-					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(u, medicoSelecionado, editar);
+					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
 					telaAlterar.setLocationRelativeTo(null);
 					telaAlterar.setVisible(true);
 					telaAlterar.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -200,16 +203,38 @@ public class TelaListaMedico extends JFrame {
 		panel_2.add(btnAlterar, "cell 1 3,growx,aligny center");
 		
 		btnDeletar = new JButton("Deletar");
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(linha==-1) {
+					new DialogMensagemErro("Médico não selecionado").setVisible(true);
+					return;
+				}
+				MedicoDAO mDao = new MedicoDAO();
+				if(mDao.deletar(medicoSelecionado)==true) {
+					JOptionPane.showMessageDialog(null, "Sim");
+				}else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
+				listarMedicos();
+			}
+		});
+		
+
 		btnDeletar.setForeground(new Color(255, 255, 255));
 		btnDeletar.setBackground(new Color(0, 81, 81));
 		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDeletar.setFocusPainted(false);
 		panel_2.add(btnDeletar, "cell 1 4,growx,aligny center");
 		}
+		listarMedicos();
+		}
+	
+	private void listarMedicos() {
+		modelo.setRowCount(0);
 		for (Medico medico : mDao.listarProfissionais()) {
 			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
 		}
 		table.setModel(modelo);
-		}
+	}
 
 }

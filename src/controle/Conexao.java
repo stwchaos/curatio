@@ -50,6 +50,15 @@ public class Conexao {
 					+ "  PRIMARY KEY (id_endereco));";
 			stm.executeUpdate(wsql);
 			
+			wsql = "CREATE TABLE IF NOT EXISTS anamnese(\r\n"
+					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  queixa_principial VARCHAR(255) NOT NULL,\r\n"
+					+ "  disposicao_geral VARCHAR(255) NOT NULL,\r\n"
+					+ "  alergia VARCHAR(255) NOT NULL,\r\n"
+					+ "  medicacoes_em_uso VARCHAR(255) NOT NULL,\r\n"
+					+ "  PRIMARY KEY (id_anamnese));";
+			stm.executeUpdate(wsql);
+			
 			wsql = "CREATE TABLE IF NOT EXISTS paciente(\r\n"
 					+ "  cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  nome VARCHAR(45) NOT NULL,\r\n"
@@ -138,15 +147,6 @@ public class Conexao {
 					+ "    REFERENCES medico (crm),\r\n"
 					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
 					+ "    REFERENCES pagamento (id_pagamento));";
-			stm.executeUpdate(wsql);
-			
-			wsql = "CREATE TABLE IF NOT EXISTS anamnese(\r\n"
-					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "  queixa_principial VARCHAR(255) NOT NULL,\r\n"
-					+ "  disposicao_geral VARCHAR(255) NOT NULL,\r\n"
-					+ "  alergia VARCHAR(255) NOT NULL,\r\n"
-					+ "  medicacoes_em_uso VARCHAR(255) NOT NULL,\r\n"
-					+ "  PRIMARY KEY (id_anamnese));";
 			stm.executeUpdate(wsql);
 			
 			String query = "SELECT * FROM usuario;";

@@ -176,11 +176,11 @@ public class TelaInicial extends JFrame {
 				}
 				if(login!=null || senha!=null) {
 					UsuarioDAO usuarioDAO = new UsuarioDAO();
-					Usuario u = usuarioDAO.efetuarLogin(login, senha);
-	                if ( u != null ) {
+					Usuario usuarioAtual = usuarioDAO.efetuarLogin(login, senha);
+	                if ( usuarioAtual != null ) {
 	//					if (p.getCpfProfissionais().equals(cpf) && p.getSenha().equals(senha)) {
 						dispose();
-						TelaPadrao telaPadrao = new TelaPadrao(u);
+						TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 						telaPadrao.setLocationRelativeTo(null);
 						telaPadrao.setVisible(true);
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

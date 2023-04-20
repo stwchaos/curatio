@@ -70,7 +70,25 @@ public class MedicoDAO {
 		return false;
 	}
 
-	public boolean deletar(Medico p) {
+	public boolean deletar(Medico m) {
+		con = Conexao.getInstancia();
+		
+		Connection co = con.conectar();
+		
+		try {
+			String query = "DELETE FROM medico WHERE crm = ?;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.setLong(1, m.getCrm());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
 		return false;
 	}
 
