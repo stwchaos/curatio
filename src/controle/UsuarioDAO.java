@@ -27,7 +27,6 @@ public class UsuarioDAO {
 			stm.setString(1, u.getLogin());
 			stm.setString(2, u.getSenha());
 			stm.setInt(3, u.getTipo().tipo);
-			System.out.println(stm);
 			stm.executeUpdate();
 			
             ResultSet rs= stm.getGeneratedKeys();
@@ -67,6 +66,24 @@ public class UsuarioDAO {
 	}
 
 	public boolean deletar(Usuario u) {
+con = Conexao.getInstancia();
+		
+		Connection co = con.conectar();
+		
+		try {
+			String query = "DELETE FROM usuario WHERE id_usuario = ?;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.setLong(1, u.getId());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
 		return false;
 	}
 

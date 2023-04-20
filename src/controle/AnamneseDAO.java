@@ -2,7 +2,9 @@ package controle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import modelo.Anamnese;
 import modelo.Medico;
@@ -19,23 +21,22 @@ import modelo.Medico;
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO anamnese (queixa_principal,diposicao_geral,alergia,medicacoes_em_uso) VALUES (?, ?, ?, ?);";
-			PreparedStatement stm = c.prepareStatement(query);
-
-			stm.setString(1, a.getQueixaPrincipal());
-			stm.setString(2, a.getDisposicaoGeral());
-			stm.setString(3, a.getAlergia());
-			stm.setString(4, a.getMedicacoesEmUso());
+			String query = "INSERT INTO anamnese (queixa_principal, disposicao_geral, alergia, medicacoes_em_uso) VALUES (null, null, null, null);";
+			PreparedStatement stm = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.executeUpdate();
+			
+			ResultSet rs= stm.getGeneratedKeys();
+            if (rs.next()) 
+            {
+              a.setIdAnamnese(rs.getInt(1));
+            }
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
-
-		// desconectar
 		return false;
 	}
 

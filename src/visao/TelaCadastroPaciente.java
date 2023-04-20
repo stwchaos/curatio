@@ -29,8 +29,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import controle.AnamneseDAO;
 import controle.EnderecoDAO;
 import controle.PacienteDAO;
+import modelo.Anamnese;
 import modelo.Endereco;
 import modelo.Paciente;
 import modelo.Usuario;
@@ -46,7 +48,7 @@ public class TelaCadastroPaciente extends JFrame {
 	private JTextField txtTelefone;
 	private JTextField txtAdicionarInformaes;
 
-	public TelaCadastroPaciente(Usuario u) {
+	public TelaCadastroPaciente(Usuario usuarioAtual) {
 
 		setTitle("Hospital Esmeralda - Cadastrar Paciente");
 		setIconImage(
@@ -83,7 +85,7 @@ public class TelaCadastroPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(u);
+				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -242,7 +244,7 @@ public class TelaCadastroPaciente extends JFrame {
 		dtNascimento.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				
+
 			}
 		});
 		panel_3.add(dtNascimento, "cell 2 1,growx,aligny bottom");
@@ -276,113 +278,135 @@ public class TelaCadastroPaciente extends JFrame {
 				String rua = txtRua.getText();
 				String numTel = txtTelefone.getText();
 				String cidade = txtCidade.getText();
-				String complemento = txtComplemento.getText(); // TODO cuidado
+				String complemento = txtComplemento.getText();
 				String numCasa = txtNumeroCasa.getText();
-				
+
 				Long cpf, cep;
 				Integer telefone, casa;
 
-				Endereco end = new Endereco();
+				//validação
+				if (nome.trim().isEmpty()) {
+					new DialogMensagemErro("Nome Vazio").setVisible(true);
+					return;
+				}
 				
-				// TODO separar um if para cada
-				if(nome.trim().isEmpty() &&  numCpf.trim().isEmpty() && numCep.trim().isEmpty() && email.trim().isEmpty() && bairro.trim().isEmpty() && rua.trim().isEmpty() && numTel.trim().isEmpty() && cidade.trim().isEmpty() && numCasa.trim().isEmpty()) {
-					new DialogMensagemErro("Todos os campos estão vazios!").setVisible(true);
+				if (numCpf.trim().isEmpty()) {
+					new DialogMensagemErro("CPF Vazio").setVisible(true);
+					return;
 				} else {
-					if(!nome.trim().isEmpty()) {
-						 nome = txtNome.getText();
-					 }else{
-						 new DialogMensagemErro("Nome Vazio").setVisible(true);
-					 }
-					 
-					 if(!numCpf.trim().isEmpty()) {
-						 try {
-							 cpf = Long.valueOf(txtCPF.getText());
-							} catch (NumberFormatException e2) {
-								new DialogMensagemErro("Informação inválida!").setVisible(true);
-								return;
-							}
-					 }else {
-						 new DialogMensagemErro("CPF Vazio").setVisible(true);
-					 }
-					 
-					 if(!numCep.trim().isEmpty()) {
-						 
-						 try {
-							 cep = Long.valueOf(txtCEP.getText());
-							 end.setCep(cep);
-							} catch (NumberFormatException e2) {
-								new DialogMensagemErro("Informação inválida!").setVisible(true);
-								return;
-							}
-					 }else {
-						 new DialogMensagemErro("CEP Vazio").setVisible(true);
-					 }
-					 
-					 if(!email.trim().isEmpty()) {
-						 email = txtEmail.getText();
-					 }else {
-						 new DialogMensagemErro("Email Vazio").setVisible(true);
-					 }
-					 
-					 if(!bairro.trim().isEmpty()) {
-						 bairro = txtBairro.getText();
-						 end.setBairro(bairro);
-					 }else {
-						 new DialogMensagemErro("Bairro Vazio").setVisible(true);
-					 }
-					 
-					 if(!rua.trim().isEmpty()) {
-						 rua = txtRua.getText();
-						 end.setRua(rua);
-					 }else {
-						 new DialogMensagemErro("Rua Vazio").setVisible(true);
-					 }
-					 
-					 if(!numTel.trim().isEmpty()) {
-						 try {
-								telefone = Integer.valueOf(txtTelefone.getText());
-							} catch (NumberFormatException e2) {
-								new DialogMensagemErro("Informação inválida!").setVisible(true);
-								return;
-							}
-						 
-					 }else {
-						 new DialogMensagemErro("Telefone Vazio").setVisible(true);
-					 }
-					 
-					 if(!cidade.trim().isEmpty()) {
-						 cidade = txtCidade.getText();
-						 end.setCidade(cidade);
-					 }else {
-						 new DialogMensagemErro("Cidade Vazio").setVisible(true);
-					 }
-					 
-					 if(!numCasa.trim().isEmpty()) {
-						 try {
-							casa = Integer.valueOf(txtNumeroCasa.getText());
-							end.setNumCasa(casa);
-						} catch (NumberFormatException e2) {
-							new DialogMensagemErro("Informação inválida!").setVisible(true);
-							return;
-						}
-						 
-					 }else {
-						 new DialogMensagemErro("Casa Vazio").setVisible(true);
-					 }
+					try {
+						cpf = Long.valueOf(txtCPF.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
+						return;
+					}
+				}
+
+				if (numCasa.trim().isEmpty()) {
+					new DialogMensagemErro("Casa Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						casa = Integer.valueOf(txtNumeroCasa.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo numero de casa!").setVisible(true);
+						return;
+					}
 				}
 				
+				if (bairro.trim().isEmpty()) {
+					new DialogMensagemErro("Bairro Vazio").setVisible(true);
+					return;
+				}
 				
+				if (numTel.trim().isEmpty()) {
+					new DialogMensagemErro("Telefone Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						telefone = Integer.valueOf(txtTelefone.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
+						return;
+					}
+				}
 				
-				 Paciente p = new Paciente();
-				 p.setNome(nome);
-				 p.setEndereco(end);	 
-				 PacienteDAO dao = new PacienteDAO();
-				if( dao.inserir(p) == true) {
-					JOptionPane.showMessageDialog(c, "amém");
+				if (cidade.trim().isEmpty()) {
+					new DialogMensagemErro("Cidade Vazio").setVisible(true);
+					return;
+				}
+				
+				if (email.trim().isEmpty()) {
+					new DialogMensagemErro("Email Vazio").setVisible(true);
+					return;
+				}
+				
+				if (rua.trim().isEmpty()) {
+					new DialogMensagemErro("Rua Vazio").setVisible(true);
+					return;
+				}
+				
+				if (numCep.trim().isEmpty()) {
+					new DialogMensagemErro("CEP Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						cep = Long.valueOf(txtCEP.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
+						return;
+					}
+				}
+				if(complemento.trim().isEmpty()) {
+					complemento = null;
+				}
+				if(nomeSoc.trim().isEmpty()) {
+					nomeSoc = null;
+				}
+				//fimvalidacao
+				
+				Paciente p = new Paciente();
+				PacienteDAO pDao = new PacienteDAO();
+				Endereco end = new Endereco();
+				EnderecoDAO eDao = new EnderecoDAO();
+				Anamnese a = new Anamnese();
+				AnamneseDAO aDao = new AnamneseDAO();
+				
+				end.setBairro(bairro);
+				end.setCidade(cidade);
+				end.setComplemento(complemento);
+				end.setRua(rua);
+				eDao.inserir(end);
+				
+				a.setAlergia(null);
+				a.setDisposicaoGeral(null);
+				a.setMedicacoesEmUso(null);
+				a.setQueixaPrincipal(null);
+				aDao.inserir(a);
+				
+				p.setAnamnese(a);
+				p.setCep(cep);
+				p.setCpf(cpf);
+				p.setEmail(email);
+				p.setEndereco(end);
+				p.setNascimento(convertToLocalDateViaInstant(dtNascimento.getDate()));
+				p.setNome(nome);
+				p.setNomeSocial(nomeSoc);
+				p.setNumCasa(casa);
+				p.setPronome(comboPronome.getSelectedItem().toString());
+				p.setSexo(comboSexo.getSelectedItem().toString());
+				p.setTelefone(telefone);
+				
+				if(pDao.inserir(p)==true) {
+					JOptionPane.showMessageDialog(null, "sim");
+					dispose();
+					TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
+					telaPadrao.setLocationRelativeTo(null);
+					telaPadrao.setVisible(true);
+					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}else {
-					JOptionPane.showMessageDialog(c, "nãooooooooooo");
+					JOptionPane.showMessageDialog(null, "nao");
 				}
-				 
 			}
 		});
 		panel.add(btnCadastrar, "cell 4 22,growx,aligny bottom");

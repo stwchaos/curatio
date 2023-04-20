@@ -14,39 +14,36 @@ import modelo.Endereco;
 public class EnderecoDAO {
 	private Conexao con;
 
-	public int inserir(Endereco en) {
+	public boolean inserir(Endereco en) {
 		// instanciar
 		con = Conexao.getInstancia();
 
 		// conectar
 		Connection c = con.conectar();
-		int last_inserted_id = 0;
 		try {
-			String query = "INSERT INTO endereco (rua, complemento, cidade, bairro) VALUES (?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO endereco (rua, complemento, cidade, bairro) VALUES (?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.setString(1, en.getRua());
-			stm.setString(4, en.getComplemento());
-			stm.setString(5, en.getCidade());
-			stm.setString(6, en.getBairro());
+			stm.setString(2, en.getComplemento());
+			stm.setString(3, en.getCidade());
+			stm.setString(4, en.getBairro());
 
-			int retorno = stm.executeUpdate();
-
-			if (retorno == 0) {
-				
-			} else {
-				ResultSet rs = stm.getGeneratedKeys();
-				if (rs.next()) {
-					last_inserted_id = rs.getInt(1);
-				}
-			}
+			stm.executeUpdate();
+			
+			ResultSet rs= stm.getGeneratedKeys();
+            if (rs.next()) 
+            {
+              en.setIdEndereco(rs.getLong(1));;
+            }
+            return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
 		
-		return last_inserted_id;
+		return false;
 	}
 
 	public boolean alterar(Endereco en) {

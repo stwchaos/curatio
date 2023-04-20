@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.MedicoDAO;
+import controle.UsuarioDAO;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
@@ -209,9 +210,17 @@ public class TelaListaMedico extends JFrame {
 					new DialogMensagemErro("Médico não selecionado").setVisible(true);
 					return;
 				}
+				
 				MedicoDAO mDao = new MedicoDAO();
-				if(mDao.deletar(medicoSelecionado)==true) {
-					JOptionPane.showMessageDialog(null, "Sim");
+				UsuarioDAO uDao = new UsuarioDAO();
+				
+				Usuario medicoUsuario = medicoSelecionado.getUsuario();
+				if(mDao.deletar(medicoSelecionado)) {
+					if(uDao.deletar(medicoUsuario)) {
+						JOptionPane.showMessageDialog(null, "Sim");
+					}else {
+						JOptionPane.showMessageDialog(null, "Nao");
+					}
 				}else {
 					JOptionPane.showMessageDialog(null, "Nao");
 				}

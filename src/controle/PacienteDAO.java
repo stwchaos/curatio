@@ -21,7 +21,7 @@ public class PacienteDAO {
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO pessoa (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco, cep, numero_casa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO paciente (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco, cep, numero_casa, anamnese_id_anamnese) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setLong(1, p.getCpf());
@@ -35,8 +35,11 @@ public class PacienteDAO {
 			stm.setDouble(9, p.getEndereco().getIdEndereco());
 			stm.setDouble(10, p.getCep());
 			stm.setDouble(11, p.getNumCasa());
+			stm.setInt(12, p.getAnamnese().getIdAnamnese());
 
 			stm.executeUpdate();
+			
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

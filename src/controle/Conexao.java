@@ -52,10 +52,10 @@ public class Conexao {
 			
 			wsql = "CREATE TABLE IF NOT EXISTS anamnese(\r\n"
 					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "  queixa_principial VARCHAR(255) NOT NULL,\r\n"
-					+ "  disposicao_geral VARCHAR(255) NOT NULL,\r\n"
-					+ "  alergia VARCHAR(255) NOT NULL,\r\n"
-					+ "  medicacoes_em_uso VARCHAR(255) NOT NULL,\r\n"
+					+ "  queixa_principal VARCHAR(255),\r\n"
+					+ "  disposicao_geral VARCHAR(255),\r\n"
+					+ "  alergia VARCHAR(255),\r\n"
+					+ "  medicacoes_em_uso VARCHAR(255),\r\n"
 					+ "  PRIMARY KEY (id_anamnese));";
 			stm.executeUpdate(wsql);
 			
