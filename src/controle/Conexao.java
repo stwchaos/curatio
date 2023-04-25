@@ -63,7 +63,7 @@ public class Conexao {
 					+ "  cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  nome VARCHAR(45) NOT NULL,\r\n"
 					+ "  nascimento DATETIME NOT NULL,\r\n"
-					+ "  telefone INT NULL,\r\n"
+					+ "  telefone BIGINT NULL,\r\n"
 					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
 					+ "  nome_social VARCHAR(45) NULL,\r\n"
 					+ "  email VARCHAR(45) NOT NULL,\r\n"

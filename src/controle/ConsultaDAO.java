@@ -92,7 +92,7 @@ public class ConsultaDAO {
 				c.setIdConsulta(id_consulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
-				c.setObjetivo(pagamento);
+				c.setObjetivo(objetivo);
 				c.getPagamento().setIdPagamento("id_pagamento");
 
 			}

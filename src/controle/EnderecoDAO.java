@@ -87,7 +87,6 @@ public class EnderecoDAO {
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Long idEndereco = rs.getLong("id_endereco");
-				Long cep = rs.getLong("cep");
 				String complemento = rs.getString("complemento");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
@@ -108,5 +107,44 @@ public class EnderecoDAO {
 		}
 
 		return enderecos;
+	}
+
+	public Endereco BuscarEndereco(Endereco end) {
+		con = Conexao.getInstancia();
+		
+		Connection c = con.conectar();
+		
+		Endereco en = new Endereco();
+		try {
+			String query = "SELECT * FROM endereco WHERE rua=? AND complemento=? AND cidade=? AND bairro=?;";
+			PreparedStatement stm = c.prepareStatement(query);
+			
+			stm.setString(1, end.getRua());
+			stm.setString(2, end.getComplemento());
+			stm.setString(3, end.getCidade());
+			stm.setString(4, end.getBairro());
+			System.out.println(stm);
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				Long idEndereco = rs.getLong("id_endereco");
+				String complemento = rs.getString("complemento");
+				String cidade = rs.getString("cidade");
+				String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");
+				en.setIdEndereco(idEndereco);
+				en.setRua(rua);
+				en.setComplemento(complemento);
+				en.setCidade(cidade);
+				en.setBairro(bairro);
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return en;
 	}
 }

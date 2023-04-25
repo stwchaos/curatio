@@ -281,8 +281,8 @@ public class TelaCadastroPaciente extends JFrame {
 				String complemento = txtComplemento.getText();
 				String numCasa = txtNumeroCasa.getText();
 
-				Long cpf, cep;
-				Integer telefone, casa;
+				Long cpf, cep, telefone;
+				Integer casa;
 
 				//validação
 				if (nome.trim().isEmpty()) {
@@ -324,7 +324,7 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						telefone = Integer.valueOf(txtTelefone.getText());
+						telefone = Long.valueOf(txtTelefone.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
 						return;
@@ -376,7 +376,13 @@ public class TelaCadastroPaciente extends JFrame {
 				end.setCidade(cidade);
 				end.setComplemento(complemento);
 				end.setRua(rua);
-				eDao.inserir(end);
+				Endereco en = eDao.BuscarEndereco(end);
+				if(en==null) {
+					eDao.inserir(end);
+					p.setEndereco(end);
+				}else {
+					p.setEndereco(en);
+				}
 				
 				a.setAlergia(null);
 				a.setDisposicaoGeral(null);
@@ -388,7 +394,6 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setCep(cep);
 				p.setCpf(cpf);
 				p.setEmail(email);
-				p.setEndereco(end);
 				p.setNascimento(convertToLocalDateViaInstant(dtNascimento.getDate()));
 				p.setNome(nome);
 				p.setNomeSocial(nomeSoc);
@@ -398,14 +403,14 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setTelefone(telefone);
 				
 				if(pDao.inserir(p)==true) {
-					new DialogConfirmacao("Cadastrado com sucesso").setVisible(true);
+					JOptionPane.showMessageDialog(null, "sim");
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}else {
-					new DialogMensagemErro("Cadastro não realizado").setVisible(true);
+					JOptionPane.showMessageDialog(null, "nao");
 				}
 			}
 		});
