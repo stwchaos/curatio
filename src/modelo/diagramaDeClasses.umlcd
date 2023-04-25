@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_NahcgONtEe26kLQThBNGng">
+  <modelElement href="diagramaDeClasses.uml#_Ns3JsONtEe26kLQThBNGng"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Rlx8AONtEe26kLQThBNGng" target="_RlzKKONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdKsuNtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_Rlx8AeNtEe26kLQThBNGng" text=""/>
+    <sourceRole xmi:id="_Rlx8AuNtEe26kLQThBNGng" aggregationKind="NONE" name="nascimento" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvK20uNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rlx8A-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rlx8BONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_Rlx8BeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvdKs-NtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rlx8BuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rlx8B-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RlyjEONtEe26kLQThBNGng" sourceAnchor="72.0,0.0" targetAnchor="163.0,225.0" target="_RlzKKONtEe26kLQThBNGng" source="_RmbcQONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdKtONtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_RlyjEeNtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqYIIONtEe26kLQThBNGng" position="-13.000000000000021,-35.75"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RlyjEuNtEe26kLQThBNGng" aggregationKind="NONE" name="endereco" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvME8eNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqXhEONtEe26kLQThBNGng" position="-66.00000000000001,-73.0"/>
+      <visibility xmi:id="_RlyjE-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlyjFONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RlyjFeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvdKteNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqYIIeNtEe26kLQThBNGng" position="2.0,28.0"/>
+      <visibility xmi:id="_RlyjFuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlyjF-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RlzKIONtEe26kLQThBNGng" sourceAnchor="0.0,76.0" targetAnchor="178.0,210.0" target="_RlzKKONtEe26kLQThBNGng" source="_RmWjwONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdKtuNtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_RlzKIeNtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqW6AONtEe26kLQThBNGng" position="-5.0,-19.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RlzKIuNtEe26kLQThBNGng" aggregationKind="NONE" name="anamnese" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvME8uNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqWS8uNtEe26kLQThBNGng" position="-102.0,2.0"/>
+      <visibility xmi:id="_RlzKI-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKJONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RlzKJeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvdKt-NtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqW6AeNtEe26kLQThBNGng" position="13.0,-46.99999999999994"/>
+      <visibility xmi:id="_RlzKJuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKJ-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Rl6e4ONtEe26kLQThBNGng" sourceAnchor="0.0,56.0" targetAnchor="50.0,92.0" target="_Rl87IuNtEe26kLQThBNGng" source="_RlhdUONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdxxuNtEe26kLQThBNGng"/>
+    <bendpoints xmi:id="_uH21YuNtEe26kLQThBNGng" sourceX="-176" targetY="64"/>
+    <nameVisual xmi:id="_Rl7F8ONtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqT2seNtEe26kLQThBNGng" position="1.0,-58.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_Rl7tAONtEe26kLQThBNGng" aggregationKind="NONE" name="tipo" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvPIQuNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqT2sONtEe26kLQThBNGng" position="-93.0,-46.99999999999997"/>
+      <visibility xmi:id="_Rl8UEeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl8UEONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_Rl7tAeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NveY0ONtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqUdwONtEe26kLQThBNGng" position="41.0,18.00000000000003"/>
+      <visibility xmi:id="_Rl87IeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl87IONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmKWgONtEe26kLQThBNGng" target="_RmLkoONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdxwONtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_RmK9kONtEe26kLQThBNGng" text=""/>
+    <sourceRole xmi:id="_RmK9keNtEe26kLQThBNGng" aggregationKind="NONE" name="data_Pagamento" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvNTEuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmK9lONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmK9k-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmK9kuNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvdxweNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmK9luNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmK9leNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmNZ0ONtEe26kLQThBNGng" sourceAnchor="15.0,0.0" targetAnchor="118.0,111.0" target="_RmRrQ-NtEe26kLQThBNGng" source="_RmLkoONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_Nvb8kONtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_RmOn8eNtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqWS8ONtEe26kLQThBNGng" position="2.0,-12.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RmOn8uNtEe26kLQThBNGng" aggregationKind="NONE" name="pagamento" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvF-UeNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqVr4eNtEe26kLQThBNGng" position="46.0,-44.0"/>
+      <visibility xmi:id="_RmQdIeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmQdIONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmOn8-NtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_Nvb8keNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqWS8eNtEe26kLQThBNGng" position="-37.0,4.0"/>
+      <visibility xmi:id="_RmQdI-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmQdIuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmOA4ONtEe26kLQThBNGng" sourceAnchor="89.0,0.0" targetAnchor="0.0,56.0" target="_RmRrQ-NtEe26kLQThBNGng" source="_RlzKKONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_Nvb8kuNtEe26kLQThBNGng"/>
+    <bendpoints xmi:id="_uH2OUONtEe26kLQThBNGng" sourceY="-151" targetX="-164"/>
+    <nameVisual xmi:id="_RmOn9ONtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqUdwuNtEe26kLQThBNGng" position="40.999999999999986,0.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RmPPAONtEe26kLQThBNGng" aggregationKind="NONE" name="paciente" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvF-UuNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqUdweNtEe26kLQThBNGng" position="1.0,-111.0"/>
+      <visibility xmi:id="_RmQdJeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmQdJONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmPPAeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvcjoONtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqVE0ONtEe26kLQThBNGng" position="-30.0,1.0"/>
+      <visibility xmi:id="_RmQdJ-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmQdJuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmOn8ONtEe26kLQThBNGng" target="_RmRrQ-NtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvbVgONtEe26kLQThBNGng"/>
+    <nameVisual xmi:id="_RmP2EONtEe26kLQThBNGng" text=""/>
+    <sourceRole xmi:id="_RmP2EeNtEe26kLQThBNGng" aggregationKind="NONE" name="data" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvFXQeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmQdKeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmQdKONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmP2EuNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvbVgeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmREMeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmREMONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmREMuNtEe26kLQThBNGng" sourceAnchor="72.0,0.0" targetAnchor="159.0,56.0" target="_RmRrQ-NtEe26kLQThBNGng" source="_RmgUwONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvcjoeNtEe26kLQThBNGng"/>
+    <bendpoints xmi:id="_uH21YONtEe26kLQThBNGng" sourceY="-186" targetX="304"/>
+    <nameVisual xmi:id="_RmREM-NtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqZWQONtEe26kLQThBNGng" position="-157.99999999999994,-20.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RmRENONtEe26kLQThBNGng" aggregationKind="NONE" name="medico" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvF-U-NtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqYvMONtEe26kLQThBNGng" position="-57.0,-74.0"/>
+      <visibility xmi:id="_RmRENeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRENuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmRrQONtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvcjouNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqZWQeNtEe26kLQThBNGng" position="17.999999999999943,-48.0"/>
+      <visibility xmi:id="_RmRrQeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrQuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Rmd4gONtEe26kLQThBNGng" sourceAnchor="32.0,0.0" targetAnchor="12.0,130.0" target="_RmgUwONtEe26kLQThBNGng" source="_Rk4kIONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_Nvcjo-NtEe26kLQThBNGng"/>
+    <bendpoints xmi:id="_uH21Y-NtEe26kLQThBNGng" sourceY="-207" targetX="-270" targetY="140"/>
+    <bendpoints xmi:id="_uH21ZONtEe26kLQThBNGng" sourceX="270" sourceY="-207" targetY="140"/>
+    <nameVisual xmi:id="_RmfGoONtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqTPoONtEe26kLQThBNGng" position="6.0,2.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RmfGoeNtEe26kLQThBNGng" aggregationKind="NONE" name="especialidade" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvKPwONtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqSokuNtEe26kLQThBNGng" position="-87.99999999999997,-78.0"/>
+      <visibility xmi:id="_RmftseNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmftsONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmfGouNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvcjpONtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqTPoeNtEe26kLQThBNGng" position="-16.0,54.0"/>
+      <visibility xmi:id="_Rmfts-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmftsuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RmefkONtEe26kLQThBNGng" sourceAnchor="126.0,46.0" targetAnchor="42.0,130.0" target="_RmgUwONtEe26kLQThBNGng" source="_Rl87IuNtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NvdKsONtEe26kLQThBNGng"/>
+    <bendpoints xmi:id="_uH21YeNtEe26kLQThBNGng" sourceX="159" targetY="213"/>
+    <nameVisual xmi:id="_RmfGo-NtEe26kLQThBNGng" text="">
+      <visualProperties xmi:id="_RqVE0uNtEe26kLQThBNGng" position="2.0,-108.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_RmfGpONtEe26kLQThBNGng" aggregationKind="NONE" name="usuario" navigable="true">
+      <modelElement href="diagramaDeClasses.uml#_NvKPweNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqVE0eNtEe26kLQThBNGng" position="64.0,-46.0"/>
+      <visibility xmi:id="_RmftteNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmfttONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_RmfGpeNtEe26kLQThBNGng" aggregationKind="NONE" name="">
+      <modelElement href="diagramaDeClasses.uml#_NvdKseNtEe26kLQThBNGng"/>
+      <visualProperties xmi:id="_RqVr4ONtEe26kLQThBNGng" position="-17.0,34.0"/>
+      <visibility xmi:id="_Rmftt-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmfttuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RlzKKONtEe26kLQThBNGng" name="Paciente" associationsIn="_Rlx8AONtEe26kLQThBNGng _RlyjEONtEe26kLQThBNGng _RlzKIONtEe26kLQThBNGng" associationsOut="_RmOA4ONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NteNsONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RlzKKeNtEe26kLQThBNGng" position="-202.0,-590.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RlzKKuNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RlzKK-NtEe26kLQThBNGng" name="cpf">
+      <modelElement href="diagramaDeClasses.uml#_NvK20ONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKLONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKLeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKLuNtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKL-NtEe26kLQThBNGng" name="nome">
+      <modelElement href="diagramaDeClasses.uml#_NvK20eNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKMONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKMeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKMuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKM-NtEe26kLQThBNGng" name="nascimento">
+      <modelElement href="diagramaDeClasses.uml#_NvK20uNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKNONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKNeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKNuNtEe26kLQThBNGng" name="LocalDate">
+        <modelElement href="diagramaDeClasses.uml#_NuxOMONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKN-NtEe26kLQThBNGng" name="telefone">
+      <modelElement href="diagramaDeClasses.uml#_NvLd4ONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKOONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKOeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_jHJhAONtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKO-NtEe26kLQThBNGng" name="sexo">
+      <modelElement href="diagramaDeClasses.uml#_NvLd4eNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKPONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKPeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKPuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKP-NtEe26kLQThBNGng" name="nomeSocial">
+      <modelElement href="diagramaDeClasses.uml#_NvLd4uNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKQONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKQeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKQuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKQ-NtEe26kLQThBNGng" name="email">
+      <modelElement href="diagramaDeClasses.uml#_NvLd4-NtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKRONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKReNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKRuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKR-NtEe26kLQThBNGng" name="pronome">
+      <modelElement href="diagramaDeClasses.uml#_NvME8ONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKSONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKSeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKSuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKS-NtEe26kLQThBNGng" name="endereco">
+      <modelElement href="diagramaDeClasses.uml#_NvME8eNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKTONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKTeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKTuNtEe26kLQThBNGng" name="Endereco">
+        <modelElement href="diagramaDeClasses.uml#_NtYuIONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKT-NtEe26kLQThBNGng" name="anamnese">
+      <modelElement href="diagramaDeClasses.uml#_NvME8uNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKUONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKUeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKUuNtEe26kLQThBNGng" name="Anamnese">
+        <modelElement href="diagramaDeClasses.uml#_NtRZYONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKU-NtEe26kLQThBNGng" name="cep">
+      <modelElement href="diagramaDeClasses.uml#_NvMsAONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKVONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKVeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKVuNtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RlzKV-NtEe26kLQThBNGng" name="numCasa">
+      <modelElement href="diagramaDeClasses.uml#_NvMsAeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RlzKWONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RlzKWeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RlzKWuNtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RmWjwONtEe26kLQThBNGng" name="Anamnese" associationsOut="_RlzKIONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtRZYONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RmWjweNtEe26kLQThBNGng" position="143.0,-456.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RmWjwuNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RmWjw-NtEe26kLQThBNGng" name="idAnamnese">
+      <modelElement href="diagramaDeClasses.uml#_NvEJIONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWjxONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWjxeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmWjxuNtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmWjx-NtEe26kLQThBNGng" name="queixaPrincipal">
+      <modelElement href="diagramaDeClasses.uml#_NvEwMONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWjyONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWjyeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmWjyuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmWjy-NtEe26kLQThBNGng" name="disposicaoGeral">
+      <modelElement href="diagramaDeClasses.uml#_NvEwMeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWjzONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWjzeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmWjzuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmWjz-NtEe26kLQThBNGng" name="alergia">
+      <modelElement href="diagramaDeClasses.uml#_NvEwMuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWj0ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWj0eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmWj0uNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmWj0-NtEe26kLQThBNGng" name="medicacoesEmUso">
+      <modelElement href="diagramaDeClasses.uml#_NvEwM-NtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWj1ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWj1eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmWj1uNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_RmWj1-NtEe26kLQThBNGng" name="setAlergia">
+      <modelElement href="diagramaDeClasses.uml#_NtVDwONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmWj2ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmWj2eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <parameters xmi:id="_RmWj2uNtEe26kLQThBNGng" name="alergias">
+        <modelElement href="diagramaDeClasses.uml#_NtVDweNtEe26kLQThBNGng"/>
+        <cardinality xmi:id="_RmWj2-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+        <type xmi:id="_RmWj3ONtEe26kLQThBNGng" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RmLkoONtEe26kLQThBNGng" name="Pagamento" associationsIn="_RmKWgONtEe26kLQThBNGng" associationsOut="_RmNZ0ONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtifIONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RmLkoeNtEe26kLQThBNGng" position="154.0,-643.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RmLkouNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RmLko-NtEe26kLQThBNGng" name="idPagamento">
+      <modelElement href="diagramaDeClasses.uml#_NvNTEONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmLkpONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmLkpeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmLkpuNtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmLkp-NtEe26kLQThBNGng" name="formaPagamento">
+      <modelElement href="diagramaDeClasses.uml#_NvNTEeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmLkqONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmLkqeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmLkquNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmLkq-NtEe26kLQThBNGng" name="data_Pagamento">
+      <modelElement href="diagramaDeClasses.uml#_NvNTEuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmLkrONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmLkreNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmLkruNtEe26kLQThBNGng" name="LocalDate">
+        <modelElement href="diagramaDeClasses.uml#_NuxOMONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RmRrQ-NtEe26kLQThBNGng" name="Consulta" associationsIn="_RmNZ0ONtEe26kLQThBNGng _RmOA4ONtEe26kLQThBNGng _RmOn8ONtEe26kLQThBNGng _RmREMuNtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtWR4ONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RmRrRONtEe26kLQThBNGng" position="51.0,-797.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RmRrReNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RmRrRuNtEe26kLQThBNGng" name="idConsulta">
+      <modelElement href="diagramaDeClasses.uml#_NvFXQONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrR-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrSONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrSeNtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrSuNtEe26kLQThBNGng" name="data">
+      <modelElement href="diagramaDeClasses.uml#_NvFXQeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrS-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrTONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrTeNtEe26kLQThBNGng" name="LocalDate">
+        <modelElement href="diagramaDeClasses.uml#_NuxOMONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrTuNtEe26kLQThBNGng" name="objetivo">
+      <modelElement href="diagramaDeClasses.uml#_NvFXQuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrT-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrUONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrUeNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrUuNtEe26kLQThBNGng" name="encerrada">
+      <modelElement href="diagramaDeClasses.uml#_NvF-UONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrU-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrVONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrVeNtEe26kLQThBNGng" name="Boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrVuNtEe26kLQThBNGng" name="pagamento">
+      <modelElement href="diagramaDeClasses.uml#_NvF-UeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrV-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrWONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrWeNtEe26kLQThBNGng" name="Pagamento">
+        <modelElement href="diagramaDeClasses.uml#_NtifIONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrWuNtEe26kLQThBNGng" name="paciente">
+      <modelElement href="diagramaDeClasses.uml#_NvF-UuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrW-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrXONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrXeNtEe26kLQThBNGng" name="Paciente">
+        <modelElement href="diagramaDeClasses.uml#_NteNsONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmRrXuNtEe26kLQThBNGng" name="medico">
+      <modelElement href="diagramaDeClasses.uml#_NvF-U-NtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmRrX-NtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmRrYONtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmRrYeNtEe26kLQThBNGng" name="Medico">
+        <modelElement href="diagramaDeClasses.uml#_NtbxcONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RmgUwONtEe26kLQThBNGng" name="Medico" associationsIn="_Rmd4gONtEe26kLQThBNGng _RmefkONtEe26kLQThBNGng" associationsOut="_RmREMuNtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtbxcONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RmgUweNtEe26kLQThBNGng" position="442.0,-555.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RmgUwuNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RmgUw-NtEe26kLQThBNGng" name="crm">
+      <modelElement href="diagramaDeClasses.uml#_NvJBouNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgUxONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgUxeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgUxuNtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgUx-NtEe26kLQThBNGng" name="nome">
+      <modelElement href="diagramaDeClasses.uml#_NvJosONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgUyONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgUyeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgUyuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgUy-NtEe26kLQThBNGng" name="cpf">
+      <modelElement href="diagramaDeClasses.uml#_NvJoseNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgUzONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgUzeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgUzuNtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgUz-NtEe26kLQThBNGng" name="sexo">
+      <modelElement href="diagramaDeClasses.uml#_NvJosuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgU0ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgU0eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgU0uNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgU0-NtEe26kLQThBNGng" name="pronome">
+      <modelElement href="diagramaDeClasses.uml#_NvJos-NtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgU1ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgU1eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgU1uNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgU1-NtEe26kLQThBNGng" name="especialidade">
+      <modelElement href="diagramaDeClasses.uml#_NvKPwONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgU2ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgU2eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgU2uNtEe26kLQThBNGng" name="Especialidade">
+        <modelElement href="diagramaDeClasses.uml#_NtajUONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmgU2-NtEe26kLQThBNGng" name="usuario">
+      <modelElement href="diagramaDeClasses.uml#_NvKPweNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmgU3ONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmgU3eNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmgU3uNtEe26kLQThBNGng" name="Usuario">
+        <modelElement href="diagramaDeClasses.uml#_Ntn-sONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Rl87IuNtEe26kLQThBNGng" name="Usuario" associationsIn="_Rl6e4ONtEe26kLQThBNGng" associationsOut="_RmefkONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_Ntn-sONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_Rl87I-NtEe26kLQThBNGng" position="199.0,-258.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_Rl87JONtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_Rl87JeNtEe26kLQThBNGng" name="id">
+      <modelElement href="diagramaDeClasses.uml#_NvOhMuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rl87JuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl87J-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rl87KONtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Rl87KeNtEe26kLQThBNGng" name="login">
+      <modelElement href="diagramaDeClasses.uml#_NvPIQONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rl87KuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl87K-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rl87LONtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Rl87LeNtEe26kLQThBNGng" name="senha">
+      <modelElement href="diagramaDeClasses.uml#_NvPIQeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rl87LuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl87L-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rl87MONtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Rl87MeNtEe26kLQThBNGng" name="tipo">
+      <modelElement href="diagramaDeClasses.uml#_NvPIQuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rl87MuNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rl87M-NtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rl87NONtEe26kLQThBNGng" name="TipoUsuario">
+        <modelElement href="diagramaDeClasses.uml#_NtjGMONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:EnumerationVisual" xmi:id="_RlhdUONtEe26kLQThBNGng" name="TipoUsuario" associationsOut="_Rl6e4ONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtjGMONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RliEYONtEe26kLQThBNGng" position="425.0,-158.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RliEYeNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RliEYuNtEe26kLQThBNGng" name="tipo">
+      <modelElement href="diagramaDeClasses.uml#_NvOhMONtEe26kLQThBNGng"/>
+      <stereotypes xmi:id="_RliEY-NtEe26kLQThBNGng" name="LegacyStyledElement">
+        <modelElement href="diagramaDeClasses.uml#_NvOhMeNtEe26kLQThBNGng"/>
+      </stereotypes>
+      <visibility xmi:id="_RliEZONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RliEZeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RliEZuNtEe26kLQThBNGng" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_RliEZ-NtEe26kLQThBNGng" name="TipoUsuario">
+      <modelElement href="diagramaDeClasses.uml#_NtkUVONtEe26kLQThBNGng"/>
+      <keywords xmi:id="_RliEaONtEe26kLQThBNGng" keyword="create"/>
+      <visibility xmi:id="_RliEaeNtEe26kLQThBNGng" label="~"/>
+      <cardinality xmi:id="_RliEauNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_RliEa-NtEe26kLQThBNGng">
+        <modelElement href="diagramaDeClasses.uml#_Ntk7Y-NtEe26kLQThBNGng"/>
+        <type xmi:id="_RliEbONtEe26kLQThBNGng" name="TipoUsuario">
+          <modelElement href="diagramaDeClasses.uml#_NtjGMONtEe26kLQThBNGng"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_RliEbeNtEe26kLQThBNGng" name="tipo">
+        <modelElement href="diagramaDeClasses.uml#_Ntk7YONtEe26kLQThBNGng"/>
+        <cardinality xmi:id="_RliEbuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+        <type xmi:id="_RliEb-NtEe26kLQThBNGng" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_RliEcONtEe26kLQThBNGng" name="ObterTipo" staticOperation="true">
+      <modelElement href="diagramaDeClasses.uml#_NtmJgONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RliEceNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RliEcuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_RliEc-NtEe26kLQThBNGng">
+        <modelElement href="diagramaDeClasses.uml#_Nu3U0ONtEe26kLQThBNGng"/>
+        <type xmi:id="_RliEdONtEe26kLQThBNGng" name="TipoUsuario">
+          <modelElement href="diagramaDeClasses.uml#_NtjGMONtEe26kLQThBNGng"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_RliEdeNtEe26kLQThBNGng" name="i">
+        <modelElement href="diagramaDeClasses.uml#_NtmJgeNtEe26kLQThBNGng"/>
+        <cardinality xmi:id="_RliEduNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+        <type xmi:id="_RliEd-NtEe26kLQThBNGng" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <literals xmi:id="_RliEeONtEe26kLQThBNGng" name="MEDICO">
+      <modelElement href="diagramaDeClasses.uml#_NtjtQONtEe26kLQThBNGng"/>
+    </literals>
+    <literals xmi:id="_RliEeeNtEe26kLQThBNGng" name="SECRETARIA">
+      <modelElement href="diagramaDeClasses.uml#_NtjtQuNtEe26kLQThBNGng"/>
+    </literals>
+    <literals xmi:id="_RliEeuNtEe26kLQThBNGng" name="ADMIN">
+      <modelElement href="diagramaDeClasses.uml#_NtkUUONtEe26kLQThBNGng"/>
+    </literals>
+    <literals xmi:id="_RliEe-NtEe26kLQThBNGng" name="OUTROS">
+      <modelElement href="diagramaDeClasses.uml#_NtkUUuNtEe26kLQThBNGng"/>
+    </literals>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Rk4kIONtEe26kLQThBNGng" name="Especialidade" associationsOut="_Rmd4gONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtajUONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_Rk4kIeNtEe26kLQThBNGng" position="152.0,-78.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_Rk4kIuNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_Rk4kI-NtEe26kLQThBNGng" name="especialidade">
+      <modelElement href="diagramaDeClasses.uml#_NvIakuNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rk4kJONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rk4kJeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rk4kJuNtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Rk4kJ-NtEe26kLQThBNGng" name="id_especialidade">
+      <modelElement href="diagramaDeClasses.uml#_NvJBoONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rk4kKONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rk4kKeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rk4kKuNtEe26kLQThBNGng" name="Integer">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Rk4kK-NtEe26kLQThBNGng" name="salario">
+      <modelElement href="diagramaDeClasses.uml#_NvJBoeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_Rk4kLONtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_Rk4kLeNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_Rk4kLuNtEe26kLQThBNGng" name="Double">
+        <modelElement href="diagramaDeClasses.uml#_Nu9bcONtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_RmbcQONtEe26kLQThBNGng" name="Endereco" associationsOut="_RlyjEONtEe26kLQThBNGng">
+    <modelElement href="diagramaDeClasses.uml#_NtYuIONtEe26kLQThBNGng"/>
+    <visualProperties xmi:id="_RmbcQeNtEe26kLQThBNGng" position="-111.0,-237.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_RmbcQuNtEe26kLQThBNGng" label="+"/>
+    <attributes xmi:id="_RmbcQ-NtEe26kLQThBNGng" name="idEndereco">
+      <modelElement href="diagramaDeClasses.uml#_NvF-VONtEe26kLQThBNGng"/>
+      <stereotypes xmi:id="_RmbcRONtEe26kLQThBNGng" name="LegacyStyledElement">
+        <modelElement href="diagramaDeClasses.uml#_NvGlYONtEe26kLQThBNGng"/>
+      </stereotypes>
+      <visibility xmi:id="_RmbcReNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmbcRuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmbcR-NtEe26kLQThBNGng" name="Long">
+        <modelElement href="diagramaDeClasses.uml#_Nu7mQeNtEe26kLQThBNGng"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmbcSONtEe26kLQThBNGng" name="rua">
+      <modelElement href="diagramaDeClasses.uml#_NvHzgONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmbcSeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmbcSuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmbcS-NtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmbcTONtEe26kLQThBNGng" name="complemento">
+      <modelElement href="diagramaDeClasses.uml#_NvHzgeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmbcTeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmbcTuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmbcT-NtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmbcUONtEe26kLQThBNGng" name="cidade">
+      <modelElement href="diagramaDeClasses.uml#_NvIakONtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmbcUeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmbcUuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmbcU-NtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RmbcVONtEe26kLQThBNGng" name="bairro">
+      <modelElement href="diagramaDeClasses.uml#_NvIakeNtEe26kLQThBNGng"/>
+      <visibility xmi:id="_RmbcVeNtEe26kLQThBNGng" label="+"/>
+      <cardinality xmi:id="_RmbcVuNtEe26kLQThBNGng" label="1" max="1" min="1"/>
+      <type xmi:id="_RmbcV-NtEe26kLQThBNGng" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

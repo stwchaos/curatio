@@ -6,7 +6,7 @@ public class Paciente {
 	private Long cpf;
 	private String nome;
 	private LocalDate nascimento;
-	private Integer telefone;
+	private Long telefone;
 	private String sexo;
 	private String nomeSocial;
 	private String email;
@@ -68,7 +68,7 @@ public class Paciente {
 		return nascimento;
 	}
 
-	public Integer getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
@@ -96,7 +96,7 @@ public class Paciente {
 		this.nascimento = nascimento;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 

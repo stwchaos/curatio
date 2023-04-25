@@ -1,4 +1,4 @@
-DROP DATABASE esmeralda;
+
 CREATE DATABASE esmeralda;
 USE esmeralda;
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS paciente(
   cpf BIGINT(12) NOT NULL,
   nome VARCHAR(45) NOT NULL,
   nascimento DATETIME NOT NULL,
-  telefone INT NULL,
+  telefone BIGINT NULL,
   sexo VARCHAR(45) NOT NULL,
   nome_social VARCHAR(45) NULL,
   email VARCHAR(45) NOT NULL,
