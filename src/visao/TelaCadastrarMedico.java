@@ -16,12 +16,10 @@ import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import controle.EspecialidadeDAO;
 import controle.MedicoDAO;
 import controle.UsuarioDAO;
@@ -51,7 +49,6 @@ public class TelaCadastrarMedico extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastrarMedico(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar) {
-		setTitle("Hospital Esmeralda - Cadastrar Especialista");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 938, 714);
 		contentPane = new JPanel();
@@ -70,12 +67,7 @@ public class TelaCadastrarMedico extends JFrame {
 		panel_1.setBorder(null);
 		panel.add(panel_1, "cell 0 0 5 1,grow");
 		panel_1.setLayout(new MigLayout("", "[176px,grow]", "[28px,grow]"));
-		
-		JLabel lblNewLabel = new JLabel("Cadastrar Profissional");
-		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 17));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny bottom");
-		
+	
 		JLabel lblNewLabel_1 = new JLabel("Nome completo");
 		panel.add(lblNewLabel_1, "cell 1 2");
 		
@@ -176,9 +168,23 @@ public class TelaCadastrarMedico extends JFrame {
 		
 		JButton btnAdicionar;
 		if(editar==true) {
+			setTitle("Hospital Esmeralda - Editar Especialista");
 			btnAdicionar = new JButton("Alterar");
+			btnAdicionar.setBackground(new Color(64, 128, 128));
+			btnAdicionar.setForeground(new Color(255, 255, 255));
+			JLabel label = new JLabel("Alterar Profissional");
+			label.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 17));
+			label.setForeground(new Color(255, 255, 255));
+			panel_1.add(label, "cell 0 0,alignx center,aligny bottom");
 		}else {
+			setTitle("Hospital Esmeralda - Cadastrar Especialista");
 			btnAdicionar = new JButton("Adicionar");
+			btnAdicionar.setBackground(new Color(64, 128, 128));
+			btnAdicionar.setForeground(new Color(255, 255, 255));
+			JLabel label = new JLabel("Cadastrar Profissional");
+			label.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 17));
+			label.setForeground(new Color(255, 255, 255));
+			panel_1.add(label, "cell 0 0,alignx center,aligny bottom");
 		}
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -216,13 +222,13 @@ public class TelaCadastrarMedico extends JFrame {
 				
 				if(editar==true) {
 					if(medicoDao.alterar(m)==true) {
-						new DialogConfirmacao("Alterado com sucesso").setVisible(true);
+						new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
 					}else {
 						new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 					}
 				}else {
 					if(medicoDao.inserir(m)==true) {
-						new DialogConfirmacao("Cadastrado com sucesso").setVisible(true);
+						new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
 					}else {
 						new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
 					}
