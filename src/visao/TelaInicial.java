@@ -123,7 +123,7 @@ public class TelaInicial extends JFrame {
 				lblNewLabel_3.setForeground(new Color(255, 255, 255));
 				c.add(lblNewLabel_3, "cell 2 1,alignx center,aligny center");
 		
-				JLabel lblNewLabel_1 = new JLabel("CPF");
+				JLabel lblNewLabel_1 = new JLabel("Login");
 				lblNewLabel_1.setBackground(new Color(0, 47, 47));
 				lblNewLabel_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Carinha Apenas.png")));
 				c.add(lblNewLabel_1, "cell 1 3 2 1,growx,aligny bottom");

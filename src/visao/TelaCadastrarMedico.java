@@ -154,7 +154,7 @@ public class TelaCadastrarMedico extends JFrame {
 		comboSexo.setForeground(Color.BLACK);
 		comboSexo.setBackground(new Color(255, 255, 255));
 		comboSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		String[] listaSexo = {"Masculino", "Feminino"};
+		String[] listaSexo = {"Masculino", "Feminino", "Intersexo" };
 		for (String string : listaSexo) {
 			comboSexo.addItem(string);;
 		}

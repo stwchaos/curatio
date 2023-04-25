@@ -226,7 +226,7 @@ public class TelaCadastroPaciente extends JFrame {
 		comboSexo.setBackground(new Color(218, 218, 218));
 		comboSexo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel_3.add(comboSexo, "cell 0 1,growx,aligny top");
-		String[] listaSexo = { "Masculino", "Feminino" };
+		String[] listaSexo = { "Masculino", "Feminino", "Intersexo" };
 		comboSexo.setSelectedItem("Inserir");
 		for (String pronome : listaSexo) {
 			comboSexo.addItem(pronome);
