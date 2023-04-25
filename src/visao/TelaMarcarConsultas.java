@@ -127,7 +127,6 @@ public class TelaMarcarConsultas extends JFrame {
 
 		txtObjetivo = new RoundJTextField();
 		txtObjetivo.setHorizontalAlignment(SwingConstants.CENTER);
-		txtObjetivo.setText("Inserir");
 		txtObjetivo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtObjetivo.setColumns(10);
 		panel.add(txtObjetivo, "cell 0 8 7 1,grow");
@@ -165,7 +164,7 @@ public class TelaMarcarConsultas extends JFrame {
 		panel.add(txtMarcarConsulta, "cell 0 0 7 1,grow");
 
 		JComboBox comboMedico = new RoundComboBox();
-		comboMedico.setForeground(new Color(255, 255, 255));
+		comboMedico.setForeground(new Color(0, 0, 0));
 		comboMedico.setBackground(new Color(210, 210, 210));
 		panel.add(comboMedico, "cell 0 4 5 1,grow");
 		listaMedicos = mDao.listarProfissionais();
