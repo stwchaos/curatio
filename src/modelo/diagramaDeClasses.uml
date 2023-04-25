@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_NYUdEONtEe26kLQThBNGng" name="diagramaDeClasses">
+    <eAnnotations xmi:id="_NhkfsONtEe26kLQThBNGng" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_NhlGwONtEe26kLQThBNGng" source="codegen">
+        <details xmi:id="_NhlGweNtEe26kLQThBNGng" key="codegenDirectory" value="/query/src"/>
+        <details xmi:id="_RkuMEONtEe26kLQThBNGng" key="AssociatedSourceCode" value="/query/src/modelo/Anamnese.java;2361014729/1;/query/src/modelo/Consulta.java;1395288449/1;/query/src/modelo/Endereco.java;3907651410/1;/query/src/modelo/Especialidade.java;2272231203/1;/query/src/modelo/Medico.java;3221246644/1;/query/src/modelo/Paciente.java;3174474052/1;/query/src/modelo/Pagamento.java;862398557/1;/query/src/modelo/TipoUsuario.java;934117687/1;/query/src/modelo/Usuario.java;3582716567/1;"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_NswcAONtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDEONtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDEeNtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDEuNtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDE-NtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDFONtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDFeNtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDFuNtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_NsxDF-NtEe26kLQThBNGng">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Nsy4QONtEe26kLQThBNGng" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_NszfUONtEe26kLQThBNGng" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_NuvZAONtEe26kLQThBNGng" name="ArrayList"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Ns4X0ONtEe26kLQThBNGng" name="time">
+        <packagedElement xmi:type="uml:Class" xmi:id="_NuxOMONtEe26kLQThBNGng" name="LocalDate"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Nu7mQONtEe26kLQThBNGng" name="lang">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Nu7mQeNtEe26kLQThBNGng" name="Long"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Nu9bcONtEe26kLQThBNGng" name="Double"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Ns3JsONtEe26kLQThBNGng" name="modelo">
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtRZYONtEe26kLQThBNGng" name="Anamnese">
+        <ownedAttribute xmi:id="_NvEJIONtEe26kLQThBNGng" name="idAnamnese">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvEwMONtEe26kLQThBNGng" name="queixaPrincipal">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvEwMeNtEe26kLQThBNGng" name="disposicaoGeral">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvEwMuNtEe26kLQThBNGng" name="alergia" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvEwM-NtEe26kLQThBNGng" name="medicacoesEmUso">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_NvWdAONtEe26kLQThBNGng" name="setAlergia" specification="_NtVDwONtEe26kLQThBNGng">
+          <ownedParameter xmi:id="_NvWdAeNtEe26kLQThBNGng" name="alergias">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>this.alergia = alergia;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_NtVDwONtEe26kLQThBNGng" name="setAlergia" method="_NvWdAONtEe26kLQThBNGng">
+          <ownedParameter xmi:id="_NtVDweNtEe26kLQThBNGng" name="alergias">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtWR4ONtEe26kLQThBNGng" name="Consulta">
+        <ownedAttribute xmi:id="_NvFXQONtEe26kLQThBNGng" name="idConsulta">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvFXQeNtEe26kLQThBNGng" name="data" type="_NuxOMONtEe26kLQThBNGng" association="_NvbVgONtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvFXQuNtEe26kLQThBNGng" name="objetivo">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvF-UONtEe26kLQThBNGng" name="encerrada">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvF-UeNtEe26kLQThBNGng" name="pagamento" type="_NtifIONtEe26kLQThBNGng" association="_Nvb8kONtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvF-UuNtEe26kLQThBNGng" name="paciente" type="_NteNsONtEe26kLQThBNGng" association="_Nvb8kuNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvF-U-NtEe26kLQThBNGng" name="medico" type="_NtbxcONtEe26kLQThBNGng" association="_NvcjoeNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtYuIONtEe26kLQThBNGng" name="Endereco">
+        <ownedAttribute xmi:id="_NvF-VONtEe26kLQThBNGng" name="idEndereco" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvHzgONtEe26kLQThBNGng" name="rua">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvHzgeNtEe26kLQThBNGng" name="complemento">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvIakONtEe26kLQThBNGng" name="cidade">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvIakeNtEe26kLQThBNGng" name="bairro">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtajUONtEe26kLQThBNGng" name="Especialidade">
+        <ownedAttribute xmi:id="_NvIakuNtEe26kLQThBNGng" name="especialidade">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvJBoONtEe26kLQThBNGng" name="id_especialidade">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvJBoeNtEe26kLQThBNGng" name="salario" type="_Nu9bcONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtbxcONtEe26kLQThBNGng" name="Medico">
+        <ownedAttribute xmi:id="_NvJBouNtEe26kLQThBNGng" name="crm" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvJosONtEe26kLQThBNGng" name="nome">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvJoseNtEe26kLQThBNGng" name="cpf" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvJosuNtEe26kLQThBNGng" name="sexo">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvJos-NtEe26kLQThBNGng" name="pronome">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvKPwONtEe26kLQThBNGng" name="especialidade" type="_NtajUONtEe26kLQThBNGng" association="_Nvcjo-NtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvKPweNtEe26kLQThBNGng" name="usuario" type="_Ntn-sONtEe26kLQThBNGng" association="_NvdKsONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NteNsONtEe26kLQThBNGng" name="Paciente">
+        <ownedAttribute xmi:id="_NvK20ONtEe26kLQThBNGng" name="cpf" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvK20eNtEe26kLQThBNGng" name="nome">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvK20uNtEe26kLQThBNGng" name="nascimento" type="_NuxOMONtEe26kLQThBNGng" association="_NvdKsuNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvLd4ONtEe26kLQThBNGng" name="telefone" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvLd4eNtEe26kLQThBNGng" name="sexo">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvLd4uNtEe26kLQThBNGng" name="nomeSocial">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvLd4-NtEe26kLQThBNGng" name="email">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvME8ONtEe26kLQThBNGng" name="pronome">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvME8eNtEe26kLQThBNGng" name="endereco" type="_NtYuIONtEe26kLQThBNGng" association="_NvdKtONtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvME8uNtEe26kLQThBNGng" name="anamnese" type="_NtRZYONtEe26kLQThBNGng" association="_NvdKtuNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvMsAONtEe26kLQThBNGng" name="cep" type="_Nu7mQeNtEe26kLQThBNGng"/>
+        <ownedAttribute xmi:id="_NvMsAeNtEe26kLQThBNGng" name="numCasa">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NtifIONtEe26kLQThBNGng" name="Pagamento">
+        <ownedAttribute xmi:id="_NvNTEONtEe26kLQThBNGng" name="idPagamento">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvNTEeNtEe26kLQThBNGng" name="formaPagamento">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvNTEuNtEe26kLQThBNGng" name="data_Pagamento" type="_NuxOMONtEe26kLQThBNGng" association="_NvdxwONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_NtjGMONtEe26kLQThBNGng" name="TipoUsuario">
+        <ownedAttribute xmi:id="_NvOhMONtEe26kLQThBNGng" name="tipo">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_NtkUVONtEe26kLQThBNGng" name="TipoUsuario" visibility="package" method="_NvaHYeNtEe26kLQThBNGng">
+          <eAnnotations xmi:id="_Ntk7YeNtEe26kLQThBNGng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_Ntk7YuNtEe26kLQThBNGng" key="create"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_Ntk7YONtEe26kLQThBNGng" name="tipo">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Ntk7Y-NtEe26kLQThBNGng" type="_NtjGMONtEe26kLQThBNGng" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_NtmJgONtEe26kLQThBNGng" name="ObterTipo" isStatic="true" method="_NvaHZONtEe26kLQThBNGng">
+          <ownedParameter xmi:id="_NtmJgeNtEe26kLQThBNGng" name="i">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Nu3U0ONtEe26kLQThBNGng" type="_NtjGMONtEe26kLQThBNGng" direction="return"/>
+        </ownedOperation>
+        <ownedLiteral xmi:id="_NtjtQONtEe26kLQThBNGng" name="MEDICO">
+          <specification xmi:type="uml:Expression" xmi:id="_NtjtQeNtEe26kLQThBNGng">
+            <operand xmi:type="uml:LiteralString" xmi:id="_NvdxwuNtEe26kLQThBNGng" value="1"/>
+          </specification>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="_NtjtQuNtEe26kLQThBNGng" name="SECRETARIA">
+          <specification xmi:type="uml:Expression" xmi:id="_NtjtQ-NtEe26kLQThBNGng">
+            <operand xmi:type="uml:LiteralString" xmi:id="_Nvdxw-NtEe26kLQThBNGng" value="2"/>
+          </specification>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="_NtkUUONtEe26kLQThBNGng" name="ADMIN">
+          <specification xmi:type="uml:Expression" xmi:id="_NtkUUeNtEe26kLQThBNGng">
+            <operand xmi:type="uml:LiteralString" xmi:id="_NvdxxONtEe26kLQThBNGng" value="3"/>
+          </specification>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="_NtkUUuNtEe26kLQThBNGng" name="OUTROS">
+          <specification xmi:type="uml:Expression" xmi:id="_NtkUU-NtEe26kLQThBNGng">
+            <operand xmi:type="uml:LiteralString" xmi:id="_NvdxxeNtEe26kLQThBNGng" value="4"/>
+          </specification>
+        </ownedLiteral>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ntn-sONtEe26kLQThBNGng" name="Usuario">
+        <ownedAttribute xmi:id="_NvOhMuNtEe26kLQThBNGng" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvPIQONtEe26kLQThBNGng" name="login">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvPIQeNtEe26kLQThBNGng" name="senha">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NvPIQuNtEe26kLQThBNGng" name="tipo" type="_NtjGMONtEe26kLQThBNGng" association="_NvdxxuNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvbVgONtEe26kLQThBNGng" name="" memberEnd="_NvFXQeNtEe26kLQThBNGng _NvbVgeNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvbVgeNtEe26kLQThBNGng" name="" type="_NtWR4ONtEe26kLQThBNGng" association="_NvbVgONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Nvb8kONtEe26kLQThBNGng" name="" memberEnd="_NvF-UeNtEe26kLQThBNGng _Nvb8keNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_Nvb8keNtEe26kLQThBNGng" name="" type="_NtWR4ONtEe26kLQThBNGng" association="_Nvb8kONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Nvb8kuNtEe26kLQThBNGng" name="" memberEnd="_NvF-UuNtEe26kLQThBNGng _NvcjoONtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvcjoONtEe26kLQThBNGng" name="" type="_NtWR4ONtEe26kLQThBNGng" association="_Nvb8kuNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvcjoeNtEe26kLQThBNGng" name="" memberEnd="_NvF-U-NtEe26kLQThBNGng _NvcjouNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvcjouNtEe26kLQThBNGng" name="" type="_NtWR4ONtEe26kLQThBNGng" association="_NvcjoeNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Nvcjo-NtEe26kLQThBNGng" name="" memberEnd="_NvKPwONtEe26kLQThBNGng _NvcjpONtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvcjpONtEe26kLQThBNGng" name="" type="_NtbxcONtEe26kLQThBNGng" association="_Nvcjo-NtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdKsONtEe26kLQThBNGng" name="" memberEnd="_NvKPweNtEe26kLQThBNGng _NvdKseNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvdKseNtEe26kLQThBNGng" name="" type="_NtbxcONtEe26kLQThBNGng" association="_NvdKsONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdKsuNtEe26kLQThBNGng" name="" memberEnd="_NvK20uNtEe26kLQThBNGng _NvdKs-NtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvdKs-NtEe26kLQThBNGng" name="" type="_NteNsONtEe26kLQThBNGng" association="_NvdKsuNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdKtONtEe26kLQThBNGng" name="" memberEnd="_NvME8eNtEe26kLQThBNGng _NvdKteNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvdKteNtEe26kLQThBNGng" name="" type="_NteNsONtEe26kLQThBNGng" association="_NvdKtONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdKtuNtEe26kLQThBNGng" name="" memberEnd="_NvME8uNtEe26kLQThBNGng _NvdKt-NtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvdKt-NtEe26kLQThBNGng" name="" type="_NteNsONtEe26kLQThBNGng" association="_NvdKtuNtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdxwONtEe26kLQThBNGng" name="" memberEnd="_NvNTEuNtEe26kLQThBNGng _NvdxweNtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NvdxweNtEe26kLQThBNGng" name="" type="_NtifIONtEe26kLQThBNGng" association="_NvdxwONtEe26kLQThBNGng"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NvdxxuNtEe26kLQThBNGng" name="" memberEnd="_NvPIQuNtEe26kLQThBNGng _NveY0ONtEe26kLQThBNGng">
+        <ownedEnd xmi:id="_NveY0ONtEe26kLQThBNGng" name="" type="_Ntn-sONtEe26kLQThBNGng" association="_NvdxxuNtEe26kLQThBNGng"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_NhmU4ONtEe26kLQThBNGng">
+      <eAnnotations xmi:id="_NhpYMONtEe26kLQThBNGng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_NhtCkONtEe26kLQThBNGng" base_Package="_NYUdEONtEe26kLQThBNGng">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:Reference xmi:id="_NuwAEONtEe26kLQThBNGng" base_Element="_NuvZAONtEe26kLQThBNGng"/>
+  <UMLLabProfile:Reference xmi:id="_Nux1QONtEe26kLQThBNGng" base_Element="_NuxOMONtEe26kLQThBNGng"/>
+  <UMLLabProfile:Reference xmi:id="_Nu8NUONtEe26kLQThBNGng" base_Element="_Nu7mQeNtEe26kLQThBNGng"/>
+  <UMLLabProfile:Reference xmi:id="_Nu-pkONtEe26kLQThBNGng" base_Element="_Nu9bcONtEe26kLQThBNGng"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_NvGlYONtEe26kLQThBNGng" base_Element="_NvF-VONtEe26kLQThBNGng">
+    <associatedElement xmi:type="uml:Operation" xmi:id="_NvHMcONtEe26kLQThBNGng" name="getIdEndereco" method="_NvZgUONtEe26kLQThBNGng">
+      <ownedParameter xmi:id="_NvHMc-NtEe26kLQThBNGng" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+      </ownedParameter>
+    </associatedElement>
+    <associatedElement xmi:type="uml:Operation" xmi:id="_NvHMceNtEe26kLQThBNGng" name="setIdEndereco" method="_NvZgUuNtEe26kLQThBNGng">
+      <ownedParameter xmi:id="_NvHMcuNtEe26kLQThBNGng" name="idEndereco" type="_Nu7mQeNtEe26kLQThBNGng"/>
+    </associatedElement>
+  </UMLLabProfile:LegacyStyledElement>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_NvOhMeNtEe26kLQThBNGng" base_Element="_NvOhMONtEe26kLQThBNGng"/>
+  <uml:OpaqueBehavior xmi:id="_NvZgUONtEe26kLQThBNGng" name="getIdEndereco" specification="_NvHMcONtEe26kLQThBNGng">
+    <ownedParameter xmi:id="_NvZgUeNtEe26kLQThBNGng" direction="return">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </ownedParameter>
+    <language>java</language>
+    <body>return idEndereco;&#xD;
+	</body>
+  </uml:OpaqueBehavior>
+  <uml:OpaqueBehavior xmi:id="_NvZgUuNtEe26kLQThBNGng" name="setIdEndereco" specification="_NvHMceNtEe26kLQThBNGng">
+    <ownedParameter xmi:id="_NvaHYONtEe26kLQThBNGng" name="idEndereco" type="_Nu7mQeNtEe26kLQThBNGng"/>
+    <language>java</language>
+    <body>this.idEndereco = idEndereco;&#xD;
+	</body>
+  </uml:OpaqueBehavior>
+  <uml:OpaqueBehavior xmi:id="_NvaHYeNtEe26kLQThBNGng" name="TipoUsuario" specification="_NtkUVONtEe26kLQThBNGng">
+    <ownedParameter xmi:id="_NvaHYuNtEe26kLQThBNGng" name="tipo">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedParameter>
+    <ownedParameter xmi:id="_NvaHY-NtEe26kLQThBNGng" type="_NtjGMONtEe26kLQThBNGng" direction="return"/>
+    <language>java</language>
+    <body>this.tipo = tipo;&#xD;
+	</body>
+  </uml:OpaqueBehavior>
+  <uml:OpaqueBehavior xmi:id="_NvaHZONtEe26kLQThBNGng" name="ObterTipo" specification="_NtmJgONtEe26kLQThBNGng">
+    <ownedParameter xmi:id="_NvaHZeNtEe26kLQThBNGng" name="i">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedParameter>
+    <ownedParameter xmi:id="_NvaHZuNtEe26kLQThBNGng" type="_NtjGMONtEe26kLQThBNGng" direction="return"/>
+    <language>java</language>
+    <body>switch(i) {&#xD;
+		case 1:&#xD;
+			return MEDICO;&#xD;
+		case 2:&#xD;
+			return SECRETARIA;&#xD;
+		case 3:&#xD;
+			return ADMIN;&#xD;
+		default: &#xD;
+			return OUTROS;&#xD;
+		}&#xD;
+	</body>
+  </uml:OpaqueBehavior>
+</xmi:XMI>
