@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import modelo.Medico;
 import modelo.Usuario;
@@ -20,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.SwingConstants;
@@ -30,6 +33,7 @@ public class TelaHistorico extends JFrame {
 	private RoundJPanel panel_4;
 	private JButton btnVoltar;
 	private RoundJPanel panel_2_1;
+	private JTable table;
 
 
 	public TelaHistorico(Usuario u) {
@@ -43,37 +47,11 @@ public class TelaHistorico extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[150.00px,grow][258.00px,grow][207px,grow]", "[73px][388px,grow][25][60.00px]"));
+		contentPane.setLayout(new MigLayout("", "[150.00px,grow][258.00px,grow][207px,grow]", "[39][388px,grow][25][60.00px]"));
 		
-		RoundJTextField txtMarcarConsulta = new RoundJTextField();
-		txtMarcarConsulta.setText("Paciente");
-		txtMarcarConsulta.setHorizontalAlignment(SwingConstants.CENTER);
-		txtMarcarConsulta.setForeground(Color.WHITE);
-		txtMarcarConsulta.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
-		txtMarcarConsulta.setEditable(false);
-		txtMarcarConsulta.setColumns(10);
-		txtMarcarConsulta.setBackground(new Color(0, 81, 81));
-		contentPane.add(txtMarcarConsulta, "cell 0 0,grow");
-		
-		RoundJTextField rndjtxtfldSetor = new RoundJTextField();
-		rndjtxtfldSetor.setText("Setor");
-		rndjtxtfldSetor.setHorizontalAlignment(SwingConstants.CENTER);
-		rndjtxtfldSetor.setForeground(Color.WHITE);
-		rndjtxtfldSetor.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
-		rndjtxtfldSetor.setEditable(false);
-		rndjtxtfldSetor.setColumns(10);
-		rndjtxtfldSetor.setBackground(new Color(0, 81, 81));
-		contentPane.add(rndjtxtfldSetor, "cell 1 0,grow");
-		
-		RoundJTextField rndjtxtfldData = new RoundJTextField();
-		rndjtxtfldData.setText("Data");
-		rndjtxtfldData.setHorizontalAlignment(SwingConstants.CENTER);
-		rndjtxtfldData.setForeground(Color.WHITE);
-		rndjtxtfldData.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
-		rndjtxtfldData.setEditable(false);
-		rndjtxtfldData.setColumns(10);
-		rndjtxtfldData.setBackground(new Color(0, 81, 81));
-		contentPane.add(rndjtxtfldData, "cell 2 0,grow");
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(64, 128, 128));
+		contentPane.add(panel_1_1, "cell 0 0 3 1,grow");
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, "cell 0 1 3 1,grow");
@@ -81,6 +59,22 @@ public class TelaHistorico extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, "cell 0 0,grow");
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		int linha = table.getSelectedRow();
+		Long id = (Long) table.getValueAt(linha, 0);
+		}
+		});
+
+		scrollPane.setViewportView(table);
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
+		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Data" }));
+		scrollPane.setViewportView(table);
+		
 		
 		panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground((Color) null);

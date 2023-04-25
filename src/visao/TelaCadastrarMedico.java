@@ -216,15 +216,15 @@ public class TelaCadastrarMedico extends JFrame {
 				
 				if(editar==true) {
 					if(medicoDao.alterar(m)==true) {
-						JOptionPane.showMessageDialog(btnAdicionar, "sim");
+						new DialogConfirmacao("Alterado com sucesso").setVisible(true);
 					}else {
-						JOptionPane.showMessageDialog(btnAdicionar, "nao");
+						new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 					}
 				}else {
 					if(medicoDao.inserir(m)==true) {
-						JOptionPane.showMessageDialog(btnAdicionar, "sim");
+						new DialogConfirmacao("Cadastrado com sucesso").setVisible(true);
 					}else {
-						JOptionPane.showMessageDialog(btnAdicionar, "nao");
+						new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
 					}
 				}
 				
