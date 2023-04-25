@@ -157,13 +157,15 @@ public class TelaFichaPaciente extends JFrame {
 
 		textFieldEmail = new RoundJTextField();
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldEmail.setText("Alterável");
 		panel.add(textFieldEmail, "cell 0 16 3 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
 		textFieldNomeSocial = new RoundJTextField();
+		if(textFieldNomeSocial==null) {
+			textFieldNomeSocial.setText("bosta");
+		}
+		
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldNomeSocial.setText("Alterável");
 		panel.add(textFieldNomeSocial, "cell 0 7 3 1,growx,aligny center");
 		textFieldNomeSocial.setColumns(10);
 
@@ -184,7 +186,6 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldNascimento.setColumns(10);
 
 		textFieldCEP = new RoundJTextField();
-		textFieldCEP.setText("Alterável");
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
 		panel.add(textFieldCEP, "cell 0 13 3 1,growx,aligny center");
@@ -195,36 +196,78 @@ public class TelaFichaPaciente extends JFrame {
 		textFieldTelefone = new RoundJTextField();
 		panel.add(textFieldTelefone, "cell 0 11 3 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldTelefone.setText("Alterável");
 		textFieldTelefone.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 10,growx,aligny bottom");
 
 		JButton btnDeletar = new JButton("Deletar Paciente");
+		btnDeletar.setForeground(new Color(255, 255, 255));
+		btnDeletar.setBackground(new Color(240, 240, 240));
+		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new DialogConfirmacao("O paciente será deletado.").setVisible(true);
 			}
 		});
 		
-				JButton btnConfirmar = new JButton("CONFIRMAR");
+				JButton btnConfirmar = new JButton("Confirmar");
+				btnConfirmar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 				btnConfirmar.setForeground(new Color(255, 255, 255));
 				btnConfirmar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						String numCep = textFieldCEP.getText();
+						String email = textFieldEmail.getText();
+						String numTel = textFieldTelefone.getText();
+						String nomeSoc = textFieldNomeSocial.getText();
+						
+						Long cep;
+						Integer telefone;
+						
+						if (numCep.trim().isEmpty()) {
+							new DialogMensagemErro("CEP Vazio").setVisible(true);
+							return;
+						} else {
+							try {
+								cep = Long.valueOf(textFieldCEP.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
+								return;
+							}
+						}
+						if (numTel.trim().isEmpty()) {
+							new DialogMensagemErro("Telefone Vazio").setVisible(true);
+							return;
+						} else {
+							try {
+								telefone = Integer.valueOf(textFieldTelefone.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
+								return;
+							}
+						}
+						if (email.trim().isEmpty()) {
+							new DialogMensagemErro("Email Vazio").setVisible(true);
+							return;
+						}
+						if(nomeSoc.trim().isEmpty()) {
+							nomeSoc = null;
+						}
+						
 					}
 				});
 				btnConfirmar.setBackground(new Color(64, 128, 128));
-				btnConfirmar.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconCheck.png")));
+				btnConfirmar.setIcon(null);
 				btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				panel.add(btnConfirmar, "cell 0 17,alignx center,aligny center");
+				panel.add(btnConfirmar, "cell 0 17,growx,aligny center");
 		btnDeletar.setForeground(new Color(255, 255, 255));
-		btnDeletar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
+		btnDeletar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnDeletar.setBackground(new Color(191, 0, 0));
 		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDeletar.setBorderPainted(false);
 		btnDeletar.setFocusPainted(false);
-		panel.add(btnDeletar, "cell 4 17,growx");
+		panel.add(btnDeletar, "cell 4 17,growx,aligny center");
 
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
 		c.add(btnHistorico, "cell 2 0,alignx right,aligny bottom");
