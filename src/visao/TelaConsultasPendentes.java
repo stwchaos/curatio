@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.ConsultaDAO;
+import modelo.Consulta;
 import modelo.Medico;
 import modelo.Usuario;
 
@@ -30,6 +32,8 @@ public class TelaConsultasPendentes extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private DefaultTableModel modelo;
+	private ConsultaDAO cDao = new ConsultaDAO();
 
 
 	public TelaConsultasPendentes(Usuario u) {
@@ -95,5 +99,21 @@ public class TelaConsultasPendentes extends JFrame {
 		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Profissional", "Data", "Objetivo"  });
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Profissional", "Data", "Objetivo" }));
 		scrollPane.setViewportView(table);
+	}
+	
+	private void listarConsultas() {
+	    modelo.setRowCount(0);
+	    for (Consulta consulta : cDao.listarConsultas()) {
+	        if (consulta.getEncerrada()==false) {
+	            Object[] rowData;
+	            if (consulta.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade(), consulta.getMedico(), consulta.getData(), consulta.getObjetivo()};
+	            } else {
+	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade(), consulta.getMedico(), consulta.getData(), consulta.getObjetivo()};
+	            }
+	            modelo.addRow(rowData);
+	        }
+	    }
+	    table.setModel(modelo);
 	}
 }

@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.ConsultaDAO;
+import controle.PacienteDAO;
+import modelo.Consulta;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.Usuario;
 
 import java.awt.Color;
@@ -34,6 +38,8 @@ public class TelaHistorico extends JFrame {
 	private JButton btnVoltar;
 	private RoundJPanel panel_2_1;
 	private JTable table;
+	private DefaultTableModel modelo;
+	private ConsultaDAO cDao = new ConsultaDAO();
 
 
 	public TelaHistorico(Usuario u) {
@@ -91,5 +97,24 @@ public class TelaHistorico extends JFrame {
 		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setBounds(10, 11, 112, 37);
 		panel_4.add(btnVoltar);
+		listarConsultas();
 	}
+	
+	private void listarConsultas() {
+	    modelo.setRowCount(0);
+	    for (Consulta consulta : cDao.listarConsultas()) {
+	        if (consulta.getEncerrada()==true) {
+	            Object[] rowData;
+	            if (consulta.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade(), consulta.getData()};
+	            } else {
+	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade(), consulta.getData()};
+	            }
+	            modelo.addRow(rowData);
+	        }
+	    }
+	    table.setModel(modelo);
+	}
+
+
 }
