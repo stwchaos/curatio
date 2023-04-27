@@ -94,6 +94,14 @@ public class TelaHistorico extends JFrame {
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< Updated upstream
+=======
+				dispose();
+				TelaListaPaciente tela = new TelaListaPaciente(u);
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+>>>>>>> Stashed changes
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
