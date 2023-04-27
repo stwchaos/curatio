@@ -6,7 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.PacienteDAO;
+import controle.UsuarioDAO;
 import modelo.Medico;
+import modelo.Paciente;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Toolkit;
@@ -17,6 +21,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,7 +34,7 @@ import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaFichaPaciente extends JFrame {
+public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 	private JPanel c;
 	private JTextField textFieldNome;
@@ -74,7 +79,7 @@ public class TelaFichaPaciente extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(u);
+				TelaListaPaciente telaPadrao = new TelaListaPaciente(u);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -205,9 +210,10 @@ public class TelaFichaPaciente extends JFrame {
 		btnDeletar.setForeground(new Color(255, 255, 255));
 		btnDeletar.setBackground(new Color(240, 240, 240));
 		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		TelaFichaPaciente tela = this;
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new DialogConfirmacao("O paciente será deletado.").setVisible(true);
+				new DialogConfirmacao("O paciente será deletado.", tela).setVisible(true);
 			}
 		});
 		
@@ -268,12 +274,31 @@ public class TelaFichaPaciente extends JFrame {
 		btnDeletar.setBorderPainted(false);
 		btnDeletar.setFocusPainted(false);
 		panel.add(btnDeletar, "cell 4 17,growx,aligny center");
+		//}
 
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
-		c.add(btnHistorico, "cell 2 0,alignx right,aligny bottom");
+		c.add(btnHistorico, "flowx,cell 2 0,alignx right,aligny bottom");
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		if(u.getTipo()==TipoUsuario.MEDICO) {
+		JButton btnAnamnese = new JButton("Anamnese");
+		btnAnamnese.setForeground(new Color(255, 255, 255));
+		btnAnamnese.setBackground(new Color(0, 81, 81));
+		btnAnamnese.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaAnamnese telaAna = new TelaAnamnese(u);
+				telaAna.setLocationRelativeTo(null);
+				telaAna.setVisible(true);
+				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnAnamnese.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+		c.add(btnAnamnese, "cell 2 0,alignx right,aligny bottom");
+		}
+		
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -284,5 +309,33 @@ public class TelaFichaPaciente extends JFrame {
 			}
 		});
 
+	}
+
+	@Override
+	public void btnConfirmacao() {
+		/**
+		PacienteDAO pDao = new PacienteDAO();
+		UsuarioDAO uDao = new UsuarioDAO();
+		
+		Paciente paciente = pacienteSelecionado.getCpf();
+		if(pDao.deletar(pacienteSelecionado)) {
+			if(uDao.deletar(paciente)) {
+				JOptionPane.showMessageDialog(null, "Sim");
+			}else {
+				JOptionPane.showMessageDialog(null, "Nao");
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Nao");
+		}
+		
+		listarPaciente();
+		*/
+		
+	}
+
+	@Override
+	public void bntCancelar() {
+		// TODO Auto-generated method stub
+		
 	}
 }

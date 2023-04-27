@@ -11,6 +11,7 @@ import controle.MedicoDAO;
 import controle.PacienteDAO;
 import modelo.Medico;
 import modelo.Paciente;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
@@ -139,11 +141,13 @@ public class TelaListaPaciente extends JFrame {
 		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				
+				
 				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(u);
 				telaFichaPaciente.setLocationRelativeTo(null);
 				telaFichaPaciente.setVisible(true);
 				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				//dispose();
 			}
 		});
 		btnSelecionar.setForeground(new Color(255, 255, 255));
