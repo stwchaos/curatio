@@ -3,15 +3,15 @@ package modelo;
 public class Especialidade {
 
 	private String especialidade;
-	private Integer id_especialidade;
+	private Integer idEspecialidade;
 	private Double salario;
 
-	public Integer getId_especialidade() {
-		return id_especialidade;
+	public Integer getIdEspecialidade() {
+		return idEspecialidade;
 	}
 
-	public void setId_especialidade(Integer id_especialidade) {
-		this.id_especialidade = id_especialidade;
+	public void setIdEspecialidade(Integer idEspecialidade) {
+		this.idEspecialidade = idEspecialidade;
 	}
 
 	public String getEspecialidade() {

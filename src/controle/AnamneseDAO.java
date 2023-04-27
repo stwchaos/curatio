@@ -10,7 +10,6 @@ import modelo.Anamnese;
 import modelo.Medico;
 
  public class AnamneseDAO {
-
 	
 	private Conexao con;
 

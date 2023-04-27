@@ -30,7 +30,7 @@ public class MedicoDAO {
 			stm.setLong(3, m.getCpf());
 			stm.setString(4, m.getSexo());
 			stm.setString(5, m.getPronome());
-			stm.setLong(6, m.getEspecialidade().getId_especialidade());
+			stm.setLong(6, m.getEspecialidade().getIdEspecialidade());
 			stm.setLong(7, m.getUsuario().getId());
 
 			stm.executeUpdate();
@@ -57,7 +57,7 @@ public class MedicoDAO {
 			stm.setString(2, m.getSexo());
 			stm.setString(3, m.getPronome());
 			stm.setLong(4, m.getUsuario().getId());
-			stm.setLong(5, m.getEspecialidade().getId_especialidade());
+			stm.setLong(5, m.getEspecialidade().getIdEspecialidade());
 			stm.setLong(6, m.getCrm());
 
 			stm.executeUpdate();
@@ -137,7 +137,7 @@ public class MedicoDAO {
 				
 				Especialidade e = new Especialidade();
 				e.setEspecialidade(especialidade);
-				e.setId_especialidade(idEspecialidade);
+				e.setIdEspecialidade(idEspecialidade);
 				e.setSalario(salario);
 				m.setEspecialidade(e);
 				medicos.add(m);

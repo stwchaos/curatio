@@ -41,7 +41,7 @@ public class EspecialidadeDAO {
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, es.getEspecialidade());
 			stm.setDouble(2, es.getSalario());
-			stm.setInt(1, es.getId_especialidade());
+			stm.setInt(1, es.getIdEspecialidade());
 			
 			stm.executeUpdate();
 			return true;
@@ -74,7 +74,7 @@ public class EspecialidadeDAO {
 				String especialidade = rs.getString("especialidade");
 				Double salario = rs.getDouble("salario");
 				Especialidade e = new Especialidade();
-				e.setId_especialidade(id_especialidade);
+				e.setIdEspecialidade(id_especialidade);
 				e.setEspecialidade(especialidade);
 				e.setSalario(salario);
 				especialidades.add(e);
