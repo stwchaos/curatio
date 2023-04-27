@@ -193,8 +193,36 @@ public class TelaCadastrarMedico extends JFrame {
 				String nome = txtNome.getText();
 				String senha = txtSenha.getText();
 				
-				Long cpf = Long.valueOf(nCpf);
-				Long crm = Long.valueOf(nCrm);
+				Long cpf;
+				Long crm;
+				
+				
+					if (nCpf.trim().isEmpty()) {
+						new DialogMensagemErro("CPF Vazio").setVisible(true);
+						return;
+					} else {
+						try {
+							cpf = Long.valueOf(txtCpf.getText());
+						} catch (NumberFormatException e2) {
+							new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
+							return;
+						}
+					}
+					if (nCrm.trim().isEmpty()) {
+						new DialogMensagemErro("CRM Vazio").setVisible(true);
+						return;
+					} else {
+						try {
+							crm = Long.valueOf(txtCrm.getText());
+						} catch (NumberFormatException e2) {
+							new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
+							return;
+						}
+					}
+					if (nome.trim().isEmpty()) {
+						new DialogMensagemErro("Nome Vazio").setVisible(true);
+						return;
+					}
 				
 				Medico m = new Medico();
 				Usuario u = new Usuario();
@@ -214,7 +242,9 @@ public class TelaCadastrarMedico extends JFrame {
 				m.setSexo(String.valueOf(comboSexo.getSelectedItem()));
 				
 				u.setLogin(nome);
-				u.setSenha(senha);
+				if (!senha.trim().isEmpty()) {
+					u.setSenha(senha);
+				}
 				u.setTipo(TipoUsuario.MEDICO);
 				usuarioDao.inserir(u);
 				m.setUsuario(u);
