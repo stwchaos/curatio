@@ -1,25 +1,25 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
-import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
 import com.toedter.calendar.JDateChooser;
 
+import modelo.Paciente;
 import modelo.Usuario;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaAnamnese extends JFrame {
 
@@ -70,7 +70,7 @@ public class TelaAnamnese extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAnamnese(Usuario usuarioAtual) {
+	public TelaAnamnese(Usuario usuarioAtual, Paciente pacienteSelecionado) {
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -278,7 +278,7 @@ public class TelaAnamnese extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaFichaPaciente telaPadrao = new TelaFichaPaciente(usuarioAtual);
+				TelaFichaPaciente telaPadrao = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);

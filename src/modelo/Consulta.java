@@ -11,6 +11,15 @@ public class Consulta {
 	private Pagamento pagamento;
 	private Paciente paciente;
 	private Medico medico;
+	private Boolean falta;
+
+	public Boolean getFalta() {
+		return falta;
+	}
+
+	public void setFalta(Boolean falta) {
+		this.falta = falta;
+	}
 
 	public Paciente getPaciente() {
 		return paciente;

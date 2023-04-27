@@ -138,6 +138,7 @@ public class Conexao {
 					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  medico_crm BIGINT(6) NOT NULL,\r\n"
 					+ "  pagamento_id_pagamento INT NOT NULL,\r\n"
+					+ "  falta TINYINT NOT NULL,\r\n"
 					+ "  PRIMARY KEY (id_pendentes),\r\n"
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf),\r\n"

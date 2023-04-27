@@ -199,6 +199,7 @@ public class TelaMarcarConsultas extends JFrame {
 				c.setObjetivo(objetivo);
 				c.setPaciente(listaPaciente.get(comboPaciente.getSelectedIndex()));
 				c.setPagamento(p);
+				c.setFalta(false);
 
 				if(cDao.inserir(c)==true) {
 					JOptionPane.showMessageDialog(null, "Sim");

@@ -64,6 +64,9 @@ public class TelaPadrao extends JFrame {
 		ConsultaDAO consultaDao = new ConsultaDAO();
 		ArrayList<Consulta> consultas = consultaDao.listarConsultas();
 		Integer consultasHoje=0, consultasPendentes=0;
+		for (Consulta consulta : consultas) {
+			
+		}
 		setForeground(new Color(0, 51, 51));
 		setTitle("Hospital Esmeralda - Inicio");
 		setBackground(new Color(0, 51, 51));
@@ -386,7 +389,7 @@ public class TelaPadrao extends JFrame {
 		
 		txtConsultasPend = new JTextField();
 		for (Consulta consulta : consultas) {
-			if(consulta.getEncerrada()!=true) {
+			if(consulta.getEncerrada()!=true || consulta.getFalta()!=true) {
 				consultasPendentes++;
 			}
 		}

@@ -25,7 +25,7 @@ public class ConsultaDAO {
 		// conectar
 		Connection co = con.conectar();
 		try {
-			String query = "INSERT INTO consulta (data, objetivo, encerrada, pagamento_id_pagamento, medico_crm, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO consulta (data, objetivo, encerrada, pagamento_id_pagamento, medico_crm, paciente_cpf, falta) VALUES (?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = co.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.setString(2, c.getObjetivo());
@@ -33,6 +33,7 @@ public class ConsultaDAO {
 			stm.setInt(4, c.getPagamento().getIdPagamento());
 			stm.setLong(5, c.getMedico().getCrm());
 			stm.setLong(6, c.getPaciente().getCpf());
+			stm.setBoolean(7, c.getFalta());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
@@ -169,3 +170,5 @@ public class ConsultaDAO {
 		return false;
 	}
 }
+
+LEMBRAR DE USAR ALGO ASSIM = SET SQL_SAFE_UPDATES = 0; E UPDATE consulta SET falta = 1 WHERE data > now() AND encerrada = 0;

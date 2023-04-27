@@ -293,14 +293,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		if(u.getTipo()==TipoUsuario.MEDICO) {
+		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO) {
 		JButton btnAnamnese = new JButton("Anamnese");
 		btnAnamnese.setForeground(new Color(255, 255, 255));
 		btnAnamnese.setBackground(new Color(0, 81, 81));
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaAnamnese telaAna = new TelaAnamnese(u);
+				TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual, pacienteSelecionado);
 				telaAna.setLocationRelativeTo(null);
 				telaAna.setVisible(true);
 				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
