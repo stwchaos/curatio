@@ -339,7 +339,7 @@ public class TelaAnamnese extends JFrame {
 				}
 				
 				if (camposPreenchidos == 0) {
-				    new DialogMensagemErro ("Preencha pelo menos um campo para prosseguir.");
+				    new DialogMensagemErro ("Preencha pelo menos um campo para prosseguir.").setVisible(true);
 				}
 
 			}
