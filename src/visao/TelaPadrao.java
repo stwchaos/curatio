@@ -1,39 +1,39 @@
 package visao;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.JButton;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.SystemColor;
 import java.awt.Toolkit;
-import javax.swing.border.MatteBorder;
-
-import controle.PacienteDAO;
-import controle.MedicoDAO;
-import modelo.Medico;
-import modelo.Usuario;
-
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import net.miginfocom.swing.MigLayout;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.SystemColor;
+import javax.swing.border.EmptyBorder;
+
+import controle.ConsultaDAO;
+import controle.MedicoDAO;
+import controle.PacienteDAO;
+import modelo.Consulta;
+import modelo.Usuario;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaPadrao extends JFrame {
 	
@@ -54,6 +54,9 @@ public class TelaPadrao extends JFrame {
 	public TelaPadrao(Usuario usuarioAtual) {
 		PacienteDAO pacientedao = new PacienteDAO();
 		MedicoDAO profissionaldao = new MedicoDAO();
+		ConsultaDAO consultaDao = new ConsultaDAO();
+		ArrayList<Consulta> consultas = consultaDao.listarConsultas();
+		Integer consultasHoje=0, consultasPendentes=0;
 		setForeground(new Color(0, 51, 51));
 		setTitle("Hospital Esmeralda - Inicio");
 		setBackground(new Color(0, 51, 51));
@@ -332,7 +335,12 @@ public class TelaPadrao extends JFrame {
 		panel_5.setLayout(new MigLayout("", "[90.00,grow][67.00][80.00,grow]", "[21.00][72.00,grow]"));
 
 		txtConsultasHj = new JTextField();
-		txtConsultasHj.setText("0");
+		for (Consulta consulta : consultas) {
+			if(consulta.getData().equals(LocalDate.now())) {
+				consultasHoje++;
+			}
+		}
+		txtConsultasHj.setText(consultasHoje.toString());
 		txtConsultasHj.setForeground(new Color(0, 81, 81));
 		txtConsultasHj.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		txtConsultasHj.setEditable(false);
@@ -368,7 +376,12 @@ public class TelaPadrao extends JFrame {
 		panel_7.setLayout(new MigLayout("", "[90.00,grow][67.00,grow][80.00,grow]", "[22.00][72.00,grow]"));
 		
 		txtConsultasPend = new JTextField();
-		txtConsultasPend.setText("0");
+		for (Consulta consulta : consultas) {
+			if(consulta.getEncerrada()!=true) {
+				consultasPendentes++;
+			}
+		}
+		txtConsultasPend.setText(consultasPendentes.toString());
 		txtConsultasPend.setForeground(new Color(0, 81, 81));
 		txtConsultasPend.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		txtConsultasPend.setEditable(false);

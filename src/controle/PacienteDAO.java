@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import modelo.Anamnese;
 import modelo.Endereco;
 import modelo.Paciente;
 
@@ -94,7 +95,7 @@ public class PacienteDAO {
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco;";
+			String query = "SELECT * FROM ((paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco) INNER JOIN anamnese ON paciente.anamnese_id_anamnese = anamnese.id_anamnese);";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Long cpf = rs.getLong("cpf");
@@ -112,6 +113,11 @@ public class PacienteDAO {
 				String complemento = rs.getString("complemento");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
+				String alergia = rs.getString("alergia");
+				String queixaPrincipal = rs.getString("queixa_principal");
+				String disposicaoGeral = rs.getString("disposicao_geral");
+				String medicacoesUso = rs.getString("medicacoes_em_uso");
+				
 				Paciente p = new Paciente();
 				p.setCpf(cpf);
 				p.setNome(nome);
@@ -131,6 +137,13 @@ public class PacienteDAO {
 				e.setIdEndereco(idEndereco);
 				e.setRua(rua);
 				p.setEndereco(e);
+				
+				Anamnese a = new Anamnese();
+				a.setAlergia(alergia);
+				a.setDisposicaoGeral(disposicaoGeral);
+				a.setMedicacoesEmUso(medicacoesUso);
+				a.setQueixaPrincipal(queixaPrincipal);
+				p.setAnamnese(a);
 				
 				pacientes.add(p);
 			}

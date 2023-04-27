@@ -6,8 +6,15 @@ public class Pagamento {
 
 	private Integer idPagamento;
 	private String formaPagamento;
-	private LocalDate data_Pagamento;
+	private LocalDate dataPagamento;
+	private Long cpfPagante;
 	
+	public Long getCpfPagante() {
+		return cpfPagante;
+	}
+	public void setCpfPagante(Long cpfPagante) {
+		this.cpfPagante = cpfPagante;
+	}
 	public Integer getIdPagamento() {
 		return idPagamento;
 	}
@@ -21,10 +28,10 @@ public class Pagamento {
 		this.formaPagamento = formaPagamento;
 	}
 	public LocalDate getData_Pagamento() {
-		return data_Pagamento;
+		return dataPagamento;
 	}
 	public void setData_Pagamento(LocalDate data_Pagamento) {
-		this.data_Pagamento = data_Pagamento;
+		this.dataPagamento = data_Pagamento;
 	}
 
 
