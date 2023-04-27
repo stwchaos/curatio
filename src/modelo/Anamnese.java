@@ -9,28 +9,108 @@ public class Anamnese {
 	private String disposicaoGeral;
 	private String alergia;
 	private String medicacoesEmUso;
+	private String historicoDoencaAtual;
+	private String historicoPatologicoProg;
+	private String historicoPatologicoFam;
+	private String historicoSocial;
+	private String trataAnteriores;
+	private String trataAtuais;
+	private String alergias;
+	private String examesApresentados;
+	
+	
+	public String getHistoricoDoencaAtual() {
+		return historicoDoencaAtual;
+	}
+	
+	public void setHistoricoDoencaAtual(String historicoDoencaAtual) {
+		this.historicoDoencaAtual = historicoDoencaAtual;
+	}
+	
+	public String getHistoricoPatologicoProg() {
+		return historicoPatologicoProg;
+	}
+	
+	public void setHistoricoPatologicoProg(String historicoPatologicoProg) {
+		this.historicoPatologicoProg = historicoPatologicoProg;
+	}
+	
+	public String getHistoricoPatologicoFam() {
+		return historicoPatologicoFam;
+	}
+	
+	public void setHistoricoPatologicoFam(String historicoPatologicoFam) {
+		this.historicoPatologicoFam = historicoPatologicoFam;
+	}
+	
+	public String getHistoricoSocial() {
+		return historicoSocial;
+	}
+	
+	public void setHistoricoSocial(String historicoSocial) {
+		this.historicoSocial = historicoSocial;
+	}
+	
+	public String getTrataAnteriores() {
+		return trataAnteriores;
+	}
+	
+	public void setTrataAnteriores(String trataAnteriores) {
+		this.trataAnteriores = trataAnteriores;
+	}
+	
+	public String getTrataAtuais() {
+		return trataAtuais;
+	}
+	
+	public void setTrataAtuais(String trataAtuais) {
+		this.trataAtuais = trataAtuais;
+	}
+	
+	public String getAlergias() {
+		return alergias;
+	}
+	
+	public void setAlergias(String alergias) {
+		this.alergias = alergias;
+	}
+	
+	public String getExamesApresentados() {
+		return examesApresentados;
+	}
+	
+	public void setExamesApresentados(String examesApresentados) {
+		this.examesApresentados = examesApresentados;
+	}
 	
 	public String getQueixaPrincipal() {
 		return queixaPrincipal;
 	}
+	
 	public void setQueixaPrincipal(String queixaPrincipal) {
 		this.queixaPrincipal = queixaPrincipal;
 	}
+	
 	public String getDisposicaoGeral() {
 		return disposicaoGeral;
 	}
+	
 	public void setDisposicaoGeral(String disposicaoGeral) {
 		this.disposicaoGeral = disposicaoGeral;
 	}
+	
 	public String getAlergia() {
 		return alergia;
 	}
+	
 	public void setAlergia(String alergias) {
 		this.alergia = alergia;
 	}
+	
 	public String getMedicacoesEmUso() {
 		return medicacoesEmUso;
 	}
+	
 	public void setMedicacoesEmUso(String medicacoesEmUso) {
 		this.medicacoesEmUso = medicacoesEmUso;
 	}
