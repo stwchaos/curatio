@@ -100,7 +100,7 @@ public class PacienteDAO {
 				Long cpf = rs.getLong("cpf");
 				String nome = rs.getString("nome");
 				Date nascimento = rs.getDate("nascimento");
-				Integer telefone = rs.getInt("telefone");
+				Long telefone = rs.getLong("telefone");
 				String sexo = rs.getString("sexo");
 				String nomeSocial = rs.getString("nome_social");
 				String email = rs.getString("email");
