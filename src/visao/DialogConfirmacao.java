@@ -14,31 +14,31 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.MedicoDAO;
+import controle.PacienteDAO;
+import controle.UsuarioDAO;
+import modelo.Medico;
+import modelo.Paciente;
+import modelo.Usuario;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
-public class DialogConfirmacao extends JFrame {
 
+
+public class DialogConfirmacao extends JFrame {
+	
+	private Paciente pacienteSelecionado = null;
+	private PacienteDAO pDao = new PacienteDAO();
 	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DialogConfirmacao frame = new DialogConfirmacao("qualquercoisa msm");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	public DialogConfirmacao(String message) {
+	public DialogConfirmacao(String message, InterfaceConfirmacao tela) {
 		setTitle("Aviso");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(DialogConfirmacao.class.getResource("/img/sign-warning-icon_34355.png")));
@@ -79,7 +79,12 @@ public class DialogConfirmacao extends JFrame {
 		btnOk.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				tela.btnConfirmacao();
 				dispose();
+				
+	
+				
 			}
 		});
 		btnOk.setBackground(new Color(191, 0, 0));
@@ -92,6 +97,7 @@ public class DialogConfirmacao extends JFrame {
 		btnCancelar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tela.bntCancelar();
 				dispose();
 			}});
 		btnCancelar.setForeground(new Color(255, 255, 255));

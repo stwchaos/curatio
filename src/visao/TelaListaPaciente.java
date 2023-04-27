@@ -11,6 +11,7 @@ import controle.MedicoDAO;
 import controle.PacienteDAO;
 import modelo.Medico;
 import modelo.Paciente;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;

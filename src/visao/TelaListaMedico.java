@@ -30,7 +30,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaListaMedico extends JFrame {
+public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 
 	private JPanel contentPane;
 	private JTextField txtPesquisarPaciente;
@@ -204,27 +204,15 @@ public class TelaListaMedico extends JFrame {
 		panel_2.add(btnAlterar, "cell 1 3,growx,aligny center");
 		
 		btnDeletar = new JButton("Deletar");
+		TelaListaMedico tela = this;
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(linha==-1) {
 					new DialogMensagemErro("Médico não selecionado").setVisible(true);
 					return;
 				}
+				new DialogConfirmacao("O médico será deletado.", tela).setVisible(true);
 				
-				MedicoDAO mDao = new MedicoDAO();
-				UsuarioDAO uDao = new UsuarioDAO();
-				
-				Usuario medicoUsuario = medicoSelecionado.getUsuario();
-				if(mDao.deletar(medicoSelecionado)) {
-					if(uDao.deletar(medicoUsuario)) {
-						JOptionPane.showMessageDialog(null, "Sim");
-					}else {
-						JOptionPane.showMessageDialog(null, "Nao");
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Nao");
-				}
-				listarMedicos();
 			}
 		});
 		
@@ -244,6 +232,31 @@ public class TelaListaMedico extends JFrame {
 			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
 		}
 		table.setModel(modelo);
+	}
+
+	@Override
+	public void btnConfirmacao() {
+		MedicoDAO mDao = new MedicoDAO();
+				UsuarioDAO uDao = new UsuarioDAO();
+				
+				Usuario medicoUsuario = medicoSelecionado.getUsuario();
+				if(mDao.deletar(medicoSelecionado)) {
+					if(uDao.deletar(medicoUsuario)) {
+						JOptionPane.showMessageDialog(null, "Sim");
+					}else {
+						JOptionPane.showMessageDialog(null, "Nao");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
+				listarMedicos();
+		
+	}
+
+	@Override
+	public void bntCancelar() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

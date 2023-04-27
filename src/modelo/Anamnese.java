@@ -9,6 +9,7 @@ public class Anamnese {
 	private String disposicaoGeral;
 	private String alergia;
 	private String medicacoesEmUso;
+	private Usuario usuario;
 	
 	public String getQueixaPrincipal() {
 		return queixaPrincipal;
@@ -42,5 +43,12 @@ public class Anamnese {
 		this.idAnamnese = idAnamnese;
 	}
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	
 }

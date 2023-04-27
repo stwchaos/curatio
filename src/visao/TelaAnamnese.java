@@ -14,6 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
+
+import modelo.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -52,32 +55,22 @@ public class TelaAnamnese extends JFrame {
 	private RoundJTextField textExames;
 	private JLabel lblNewLabel_14;
 	private JLabel lblNewLabel_15;
-	private RoundJTextField textExames_1;
+	private RoundJTextField textDispo;
 	private JPanel panel_2;
 	private RoundJTextField rndjtxtfldObservaes;
 	private JTextField textField;
 	private JButton btnSalvar;
+	int camposPreenchidos = 0;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaAnamnese frame = new TelaAnamnese();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaAnamnese() {
+	public TelaAnamnese(Usuario usuarioAtual) {
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,6 +119,7 @@ public class TelaAnamnese extends JFrame {
 		textNomeS.setBackground(new Color(163, 163, 163));
 		textNomeS.setEditable(false);
 		textNomeS.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+	
 		panel.add(textNomeS, "cell 0 5,growx");
 		textNomeS.setColumns(10);
 
@@ -256,10 +250,10 @@ public class TelaAnamnese extends JFrame {
 		lblNewLabel_15 = new JLabel("Disposição Geral");
 		panel_1.add(lblNewLabel_15, "cell 0 21");
 
-		textExames_1 = new RoundJTextField();
-		textExames_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		textExames_1.setColumns(10);
-		panel_1.add(textExames_1, "cell 0 22,grow");
+		textDispo = new RoundJTextField();
+		textDispo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		textDispo.setColumns(10);
+		panel_1.add(textDispo, "cell 0 22,grow");
 
 		panel_2 = new JPanel();
 		contentPane.add(panel_2, "cell 3 3 11 8,grow");
@@ -283,6 +277,11 @@ public class TelaAnamnese extends JFrame {
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaFichaPaciente telaPadrao = new TelaFichaPaciente(usuarioAtual);
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnVoltar.setBackground(new Color(0, 81, 81));
@@ -293,8 +292,55 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int camposPreenchidos = 0;
+				if (!textQueixa.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+
+				if (!textHDoença.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textHPato.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textHPatoF.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+
+				if (!textHSocial.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textTAnterior.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
 				
 				
+				if (!textTAtual.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textAlergia.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textMedicacao.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+
+				if (!textExames.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (!textDispo.getText().isEmpty()) {
+				    camposPreenchidos++;
+				}
+				
+				if (camposPreenchidos == 0) {
+				    new DialogMensagemErro ("Preencha pelo menos um campo para prosseguir.");
+				}
 
 			}
 		});

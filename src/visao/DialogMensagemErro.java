@@ -63,7 +63,7 @@ public class DialogMensagemErro extends JFrame {
 		lblTexto.setBackground(new Color(0, 81, 81));
 		lblTexto.setFont(new Font("Yu Gothic UI", Font.PLAIN, 13));
 		lblTexto.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTexto.setBounds(64, 11, 185, 14);
+		lblTexto.setBounds(0, 11, 320, 14);
 		lblTexto.setForeground(new Color(255, 255, 255));
 
 		c.add(lblTexto);
