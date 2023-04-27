@@ -11,10 +11,12 @@ import java.util.ArrayList;
 
 import modelo.Consulta;
 import modelo.Medico;
+import modelo.Paciente;
+import modelo.Pagamento;
 
 public class ConsultaDAO {
 	private Conexao con;
-//TODO arrumar comandos sql
+
 	public boolean inserir(Consulta c) {
 
 		// instanciar
@@ -23,13 +25,13 @@ public class ConsultaDAO {
 		// conectar
 		Connection co = con.conectar();
 		try {
-			String query = "INSERT INTO consultas (data, objetivo, encerrada, pagamento_id_pagamento, profissionais_cpf_profissionais, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
-			PreparedStatement stm = co.prepareStatement(query);
+			String query = "INSERT INTO consulta (data, objetivo, encerrada, pagamento_id_pagamento, medico_crm, paciente_cpf) VALUES (?, ?, ?, ?, ?, ?);";
+			PreparedStatement stm = co.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			stm.setString(2, c.getObjetivo());
-			stm.setInt(3, 0);
+			stm.setBoolean(3, c.getEncerrada());
 			stm.setInt(4, c.getPagamento().getIdPagamento());
-			stm.setDouble(5, c.getMedico().getCrm());
+			stm.setLong(5, c.getMedico().getCrm());
 			stm.setLong(6, c.getPaciente().getCpf());
 			stm.setDate(1, Date.valueOf(c.getData()));
 
@@ -37,11 +39,9 @@ public class ConsultaDAO {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-
+		} finally {
+			con.fecharConexao();
 		}
-
-		// desconectar
-		con.fecharConexao();
 		return false;
 	}
 
@@ -49,23 +49,39 @@ public class ConsultaDAO {
 		Connection co = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE consultas SET data = ?, objetivo = ?, encerrada = ?, pagamento = ? WHERE id_pendentes = ?";
+			String query = "UPDATE consulta SET data = ?, objetivo = ? WHERE id_pendentes = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setDate(1, Date.valueOf(c.getData()));
 			stm.setString(2, c.getObjetivo());
-			stm.setBoolean(3, c.getEncerrada());
-			stm.setInt(4, c.getPagamento().getIdPagamento());
+			stm.setInt(3, c.getIdConsulta());
 
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
 		return false;
 	}
 
 	public boolean deletar(Consulta c) {
+		con = Conexao.getInstancia();
+		
+		Connection co = con.conectar();
+		
+		try {
+			String query = "DELETE FROM consulta WHERE id_pendentes = ?;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.setLong(1, c.getIdConsulta());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
 		return false;
 	}
 
@@ -80,30 +96,76 @@ public class ConsultaDAO {
 
 		try {
 			Statement stm = co.createStatement();
-			String query = "SELECT * FROM consultas";
+			String query = "SELECT * FROM (consulta INNER JOIN pagamento ON consulta.pagamento_id_pagamento = pagamento.id_pagamento);";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Integer id_consulta = rs.getInt("id_pendentes");
+				Integer idConsulta = rs.getInt("id_pendentes");
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
-				Integer pagamento = rs.getInt("pagamento");
-				String objetivo = rs.getString("");
+				String objetivo = rs.getString("objetivo");
+				Integer idPagamento = rs.getInt("id_pagamento");
+				String pagamento = rs.getString("forma_pagamento");
+				Date dataPagamento = rs.getDate("data_pagamento");
+				Long cpfPagante = rs.getLong("cpf_pagante");
+				Long pacienteCpf = rs.getLong("paciente_cpf");
+				Long medicoCrm = rs.getLong("medico_crm");
+				
 				Consulta c = new Consulta();
-				c.setIdConsulta(id_consulta);
+				c.setIdConsulta(idConsulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(objetivo);
-				c.getPagamento().setIdPagamento("id_pagamento");
-
+				
+				MedicoDAO mDao = new MedicoDAO();
+				ArrayList<Medico> medicos = mDao.listarProfissionais();
+				for (Medico medico : medicos) {
+					if(medico.getCrm().equals(medicoCrm)) {
+						c.setMedico(medico);
+					}
+				}
+				
+				PacienteDAO pDao = new PacienteDAO();
+				ArrayList<Paciente> pacientes = pDao.listarPacientes();
+				for (Paciente paciente : pacientes) {
+					if(paciente.getCpf().equals(pacienteCpf)) {
+						c.setPaciente(paciente);
+					}
+				}
+				
+				Pagamento p = new Pagamento();
+				p.setCpfPagante(cpfPagante);
+				p.setData_Pagamento(dataPagamento.toLocalDate());
+				p.setFormaPagamento(pagamento);
+				p.setIdPagamento(idPagamento);
+				c.setPagamento(p);
+				
+				consultas.add(c);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
-
-		// desconectar
-		con.fecharConexao();
-		return null;
+		return consultas;
 	}
 
+	public boolean consultaRealizada(Consulta c) {
+		Connection co = Conexao.getInstancia().conectar();
+
+		try {
+			String query = "UPDATE consulta SET encerrada = ? WHERE id_pendentes = ?;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.setBoolean(1, c.getEncerrada());
+			stm.setInt(2, c.getIdConsulta());
+
+			stm.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return false;
+	}
 }

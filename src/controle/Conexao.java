@@ -122,14 +122,12 @@ public class Conexao {
 					+ "    REFERENCES usuario (id_usuario));";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS pagamento(\r\n"
+			wsql = "CREATE TABLE IF NOT EXISTS pagamento (\r\n"
 					+ "  id_pagamento INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  forma_pagamento VARCHAR(45) NOT NULL,\r\n"
 					+ "  data_pagamento DATETIME NOT NULL,\r\n"
-					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
-					+ "  PRIMARY KEY (id_pagamento),\r\n"
-					+ "    FOREIGN KEY (paciente_cpf)\r\n"
-					+ "    REFERENCES paciente (cpf));\r\n";
+					+ "  cpf_pagante BIGINT NOT NULL,\r\n"
+					+ "  PRIMARY KEY (id_pagamento));";
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS consulta (\r\n"

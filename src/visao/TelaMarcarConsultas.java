@@ -189,7 +189,8 @@ public class TelaMarcarConsultas extends JFrame {
 				PagamentoDAO pDao = new PagamentoDAO();
 				
 				p.setData_Pagamento(LocalDate.now());
-				p.setFormaPagamento(comboPagamento.getSelectedItem().toString());
+				p.setFormaPagamento(String.valueOf(comboPagamento.getSelectedItem()));
+				p.setCpfPagante(listaPaciente.get(comboPaciente.getSelectedIndex()).getCpf());
 				pDao.inserir(p);
 				
 				c.setData(convertToLocalDateViaInstant(dtConsulta.getDate()));
@@ -197,7 +198,13 @@ public class TelaMarcarConsultas extends JFrame {
 				c.setMedico(listaMedicos.get(comboMedico.getSelectedIndex()));
 				c.setObjetivo(objetivo);
 				c.setPaciente(listaPaciente.get(comboPaciente.getSelectedIndex()));
+				c.setPagamento(p);
 
+				if(cDao.inserir(c)==true) {
+					JOptionPane.showMessageDialog(null, "Sim");
+				} else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
 			}
 		});
 		btnMarcar.setForeground(new Color(255, 255, 255));

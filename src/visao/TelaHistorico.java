@@ -92,6 +92,10 @@ public class TelaHistorico extends JFrame {
 		contentPane.add(panel_4, "cell 0 3 3 1,grow");
 		
 		btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setBackground(new Color(0, 81, 81));

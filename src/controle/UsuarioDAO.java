@@ -66,7 +66,7 @@ public class UsuarioDAO {
 	}
 
 	public boolean deletar(Usuario u) {
-con = Conexao.getInstancia();
+		con = Conexao.getInstancia();
 		
 		Connection co = con.conectar();
 		
