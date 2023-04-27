@@ -16,9 +16,9 @@ import modelo.Usuario;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,8 +30,19 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import modelo.Paciente;
+import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
@@ -46,7 +57,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
 
-	public TelaFichaPaciente(Usuario u) {
+	public TelaFichaPaciente(Usuario usuarioAtual, Paciente pacienteSelecionado) {
 		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
 		setTitle("Hospital Esmeralda");
 		setIconImage(
@@ -79,7 +90,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaPaciente telaPadrao = new TelaListaPaciente(u);
+				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -120,7 +131,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldNome = new RoundJTextField();
 		textFieldNome.setBackground(new Color(163, 163, 163));
 		textFieldNome.setEditable(false);
-		textFieldNome.setText("Inalterável");
+		textFieldNome.setText(pacienteSelecionado.getNome().toString());
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNome, "cell 0 5 3 1,growx,aligny center");
 		textFieldNome.setColumns(10);
@@ -302,13 +313,13 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaHistorico telaHistorico = new TelaHistorico(u);
+				TelaHistorico telaHistorico = new TelaHistorico(usuarioAtual, pacienteSelecionado);
 				telaHistorico.setLocationRelativeTo(null);
 				telaHistorico.setVisible(true);
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-
+		
 	}
 
 	@Override

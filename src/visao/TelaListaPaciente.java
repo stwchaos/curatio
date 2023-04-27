@@ -61,7 +61,7 @@ public class TelaListaPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaListaPaciente(Usuario u) {
+	public TelaListaPaciente(Usuario usuarioAtual) {
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda - Pacientes");
@@ -109,7 +109,7 @@ public class TelaListaPaciente extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		linha = table.getSelectedRow();
-		Long id = (Long) table.getValueAt(linha, 0);
+		Long id = (Long) table.getValueAt(linha, 2);
 		for (Paciente paciente : pDao.listarPacientes()) {
 			if(id.equals(paciente.getCpf())) {
 				pacienteSelecionado = paciente;
@@ -129,7 +129,7 @@ public class TelaListaPaciente extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						dispose();
-						TelaPadrao telaPadrao = new TelaPadrao(u);
+						TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 						telaPadrao.setLocationRelativeTo(null);
 						telaPadrao.setVisible(true);
 						telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -141,9 +141,8 @@ public class TelaListaPaciente extends JFrame {
 		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(u);
+				dispose();
+				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
 				telaFichaPaciente.setLocationRelativeTo(null);
 				telaFichaPaciente.setVisible(true);
 				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);

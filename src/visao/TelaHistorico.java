@@ -42,7 +42,7 @@ public class TelaHistorico extends JFrame {
 	private ConsultaDAO cDao = new ConsultaDAO();
 
 
-	public TelaHistorico(Usuario u) {
+	public TelaHistorico(Usuario u, Paciente pacienteSelecionado) {
 		setBackground(new Color(0, 81, 81));
 		setTitle("Hospital Esmeralda - Histórico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaHistorico.class.getResource("/img/logoHospital.png")));
@@ -67,17 +67,9 @@ public class TelaHistorico extends JFrame {
 		panel.add(scrollPane, "cell 0 0,grow");
 		
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-		int linha = table.getSelectedRow();
-		Long id = (Long) table.getValueAt(linha, 0);
-		}
-		});
 
 		scrollPane.setViewportView(table);
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
-		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Data" }));
 		scrollPane.setViewportView(table);
 		
@@ -94,14 +86,11 @@ public class TelaHistorico extends JFrame {
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< Updated upstream
-=======
 				dispose();
 				TelaListaPaciente tela = new TelaListaPaciente(u);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
->>>>>>> Stashed changes
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
@@ -109,13 +98,13 @@ public class TelaHistorico extends JFrame {
 		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setBounds(10, 11, 112, 37);
 		panel_4.add(btnVoltar);
-		listarConsultas();
+		listarConsultas(pacienteSelecionado);
 	}
 	
-	private void listarConsultas() {
+	private void listarConsultas(Paciente pacienteSelecionado) {
 	    modelo.setRowCount(0);
 	    for (Consulta consulta : cDao.listarConsultas()) {
-	        if (consulta.getEncerrada()==true) {
+	        if (consulta.getEncerrada()==true && consulta.getPaciente().getCpf().equals(pacienteSelecionado.getCpf())) {
 	            Object[] rowData;
 	            if (consulta.getPaciente().getNomeSocial() == null) {
 	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade(), consulta.getData()};
