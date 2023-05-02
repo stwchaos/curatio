@@ -148,6 +148,9 @@ public class Conexao {
 					+ "    REFERENCES pagamento (id_pagamento));";
 			stm.executeUpdate(wsql);
 			
+			wsql = "SET SQL_SAFE_UPDATES = 0;";
+			stm.executeUpdate(wsql);
+			
 			String query = "SELECT * FROM usuario;";
 			ResultSet rs = stm.executeQuery(query);
 			if(!rs.next()) {

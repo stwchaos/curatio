@@ -169,6 +169,19 @@ public class ConsultaDAO {
 		}
 		return false;
 	}
+	
+	public void consultaFalta() {
+		Connection co = Conexao.getInstancia().conectar();
+		
+		try {
+			String query = "UPDATE consulta SET falta = 1 WHERE data > now() AND encerrada = 0;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+	}
 }
-
-LEMBRAR DE USAR ALGO ASSIM = SET SQL_SAFE_UPDATES = 0; E UPDATE consulta SET falta = 1 WHERE data > now() AND encerrada = 0;
