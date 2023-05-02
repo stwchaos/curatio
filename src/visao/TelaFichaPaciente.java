@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.EspecialidadeDAO;
 import controle.PacienteDAO;
 import controle.UsuarioDAO;
+import modelo.Especialidade;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.TipoUsuario;
@@ -138,7 +140,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 		RoundJTextField textFieldCPF = new RoundJTextField();
 		textFieldCPF.setBackground(new Color(163, 163, 163));
-		textFieldCPF.setText("Inalterável");
+		textFieldCPF.setText(pacienteSelecionado.getCpf().toString());
 		textFieldCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCPF.setEditable(false);
 		textFieldCPF.setColumns(10);
@@ -155,8 +157,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(218, 218, 218));
 
-		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
-		comboPronome.setSelectedItem("Inserir");
+		//String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
+		//comboPronome.setSelectedItem("Inserir");
+		
+		PacienteDAO pacienteDao = new PacienteDAO();
+		this.listaPronome = pacienteDao.listaPronome();
+		for (Especialidade e : listaPronome) {
+			comboPronome.addItem(e.getEspecialidade());
+		}
 		for (String pronome : listaPronome) {
 			comboPronome.addItem(pronome);
 		}
@@ -173,12 +181,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 		textFieldEmail = new RoundJTextField();
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		textFieldEmail.setText(pacienteSelecionado.getEmail().toString());
 		panel.add(textFieldEmail, "cell 0 16 3 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
 		textFieldNomeSocial = new RoundJTextField();
+		textFieldNomeSocial.setText(pacienteSelecionado.getNomeSocial());
 		if(textFieldNomeSocial==null) {
-			textFieldNomeSocial.setText("bosta");
+			textFieldNomeSocial.setText("vazio");
 		}
 		
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -188,7 +198,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldSexo = new RoundJTextField();
 		textFieldSexo.setBackground(new Color(163, 163, 163));
 		textFieldSexo.setEditable(false);
-		textFieldSexo.setText("Inalterável");
+		textFieldSexo.setText(pacienteSelecionado.getSexo().toString());
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldSexo, "cell 0 9,growx,aligny center");
 		textFieldSexo.setColumns(10);
@@ -197,11 +207,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldNascimento.setBackground(new Color(163, 163, 163));
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldNascimento.setText("Inalterável");
+		textFieldNascimento.setText(pacienteSelecionado.getNascimento().toString());
 		panel.add(textFieldNascimento, "cell 2 9 3 1,growx,aligny center");
 		textFieldNascimento.setColumns(10);
 
 		textFieldCEP = new RoundJTextField();
+		textFieldCEP.setText(pacienteSelecionado.getCep().toString());
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
 		panel.add(textFieldCEP, "cell 0 13 3 1,growx,aligny center");
@@ -210,6 +221,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		panel.add(lblNewLabel_5_1, "cell 0 12,growx,aligny bottom");
 
 		textFieldTelefone = new RoundJTextField();
+		textFieldTelefone.setText(pacienteSelecionado.getTelefone().toString());
 		panel.add(textFieldTelefone, "cell 0 11 3 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setColumns(10);
