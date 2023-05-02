@@ -27,6 +27,8 @@ import modelo.Especialidade;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class TelaCadastrarMedico extends JFrame {
 
@@ -39,7 +41,7 @@ public class TelaCadastrarMedico extends JFrame {
 	private JComboBox comboEspecialidade;
 	private JComboBox comboSexo;
 	private JComboBox comboPronome;
-	
+	private TipoUsuario tipo;
 
 	/**
 	 * Launch the application.
@@ -60,7 +62,7 @@ public class TelaCadastrarMedico extends JFrame {
 		
 		JPanel panel =  new JPanel();
 		contentPane.add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[grow][180px][grow][180.00][grow]", "[40.00][grow][][][grow][][][grow][][][grow][][][][][][grow]"));
+		panel.setLayout(new MigLayout("", "[grow][180px][grow][180.00,grow][grow]", "[40.00][grow][][][grow][][][grow][][][grow][][][][][][grow]"));
 		
 		JPanel panel_1 =  new RoundJPanel(30, new Color(64, 128, 128));
 		panel_1.setBackground(null);
@@ -104,8 +106,8 @@ public class TelaCadastrarMedico extends JFrame {
 		txtCrm.setBackground(new Color(255, 255, 255));
 		txtCrm.setForeground(new Color(0, 47, 47));
 		txtCrm.setCaretColor(Color.WHITE);
-		panel.add(txtCrm, "cell 1 6,growx");
 		txtCrm.setColumns(10);
+		panel.add(txtCrm, "cell 1 6,growx");
 		if(editar==true) {
 			txtCrm.setEditable(false);
 		}
@@ -132,14 +134,38 @@ public class TelaCadastrarMedico extends JFrame {
 		comboEspecialidade.setForeground(Color.BLACK);
 		comboEspecialidade.setBackground(new Color(255, 255, 255));
 		comboEspecialidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(comboEspecialidade, "cell 1 9,growx");
 		EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
 		this.listaEspecialidades=especialidadeDao.listarEspecialidade();
 		for (Especialidade e : listaEspecialidades) {
 			comboEspecialidade.addItem(e.getEspecialidade());
 		}
 		
-		
-		panel.add(comboEspecialidade, "cell 1 9,growx");
+		JComboBox comboBoxTipoProfissional = new JComboBox();
+		comboBoxTipoProfissional.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex()+1);
+				System.out.println(comboBoxTipoProfissional.getSelectedIndex()+1);
+				System.out.println(tipo);
+				if(tipo==TipoUsuario.MEDICO) {
+					panel.add(txtCrm, "cell 1 6,growx");
+					panel.add(comboEspecialidade, "cell 1 9,growx");
+					panel.add(lblNewLabel_3, "cell 1 8");
+					panel.add(lblNewLabel_2, "cell 1 5");
+				}else {
+					System.out.println("teste");
+					panel.remove(txtCrm);
+					panel.remove(comboEspecialidade);
+					panel.remove(lblNewLabel_2);
+					panel.remove(lblNewLabel_3);
+				}
+			}
+		});
+		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
+		String[] tipos = {"Medico", "Secretaria", "Administrador", "Outro"};
+		for (String string : tipos) {
+			comboBoxTipoProfissional.addItem(string);
+		}
 		
 		comboSexo =new RoundComboBox();
 		comboSexo.setEditable(true);
@@ -245,10 +271,9 @@ public class TelaCadastrarMedico extends JFrame {
 				if (!senha.trim().isEmpty()) {
 					u.setSenha(senha);
 				}
-				u.setTipo(TipoUsuario.MEDICO);
+				u.setTipo(tipo);
 				usuarioDao.inserir(u);
 				m.setUsuario(u);
-				
 				
 				if(editar==true) {
 					if(medicoDao.alterar(m)==true) {
@@ -290,7 +315,7 @@ public class TelaCadastrarMedico extends JFrame {
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");
 		
-		if(editar==true) {
+		if(editar==true  && medicoSelecionado != null) {
 			receberDados(medicoSelecionado);
 		}
 	}
@@ -302,4 +327,6 @@ public class TelaCadastrarMedico extends JFrame {
 		comboSexo.setSelectedItem(medicoSelecioado.getSexo());
 		comboPronome.setSelectedItem(medicoSelecioado.getPronome());
 	}
+	
+	
 }

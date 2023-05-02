@@ -389,7 +389,7 @@ public class TelaPadrao extends JFrame {
 		
 		txtConsultasPend = new JTextField();
 		for (Consulta consulta : consultas) {
-			if(consulta.getEncerrada()!=true || consulta.getFalta()!=true) {
+			if(consulta.getEncerrada()!=true && consulta.getFalta()!=true) {
 				consultasPendentes++;
 			}
 		}
