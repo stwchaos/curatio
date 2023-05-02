@@ -55,6 +55,7 @@ public class TelaConsultasPendentes extends JFrame {
 		JPanel panel_1 = new RoundJPanel(10, new Color(0, 81, 81));
 		panel_1.setBackground(null);
 		contentPane.add(panel_1, "cell 0 3 8 1,grow");
+		panel_1.setLayout(null);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -66,18 +67,12 @@ public class TelaConsultasPendentes extends JFrame {
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		panel_1.setLayout(new MigLayout("", "[112px][grow][112px]", "[37px]"));
 		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBounds(10, 11, 112, 37);
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel_1.add(btnVoltar, "cell 0 0,grow");
-		
-		JButton btnConcluido = new JButton("Concluída");
-		btnConcluido.setForeground(Color.WHITE);
-		btnConcluido.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
-		btnConcluido.setBackground(new Color(0, 81, 81));
-		panel_1.add(btnConcluido, "cell 2 0,grow");
+		panel_1.add(btnVoltar);
 		
 		JPanel panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground(null);

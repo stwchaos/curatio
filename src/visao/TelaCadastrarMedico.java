@@ -60,7 +60,7 @@ public class TelaCadastrarMedico extends JFrame {
 		
 		JPanel panel =  new JPanel();
 		contentPane.add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[grow][180px][grow][180.00,grow][grow]", "[40.00][grow][][][grow][][][grow][][][grow][][][][][][grow]"));
+		panel.setLayout(new MigLayout("", "[grow][180px][grow][180.00][grow]", "[40.00][grow][][][grow][][][grow][][][grow][][][][][][grow]"));
 		
 		JPanel panel_1 =  new RoundJPanel(30, new Color(64, 128, 128));
 		panel_1.setBackground(null);
@@ -286,9 +286,6 @@ public class TelaCadastrarMedico extends JFrame {
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		
-		JComboBox comboBoxTipoProfissional = new JComboBox();
-		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
 		btnCancelar.setBackground(new Color(128, 0, 0));
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");

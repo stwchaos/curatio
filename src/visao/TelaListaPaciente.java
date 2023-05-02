@@ -141,11 +141,15 @@ public class TelaListaPaciente extends JFrame {
 		btnSelecionar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
-				telaFichaPaciente.setLocationRelativeTo(null);
-				telaFichaPaciente.setVisible(true);
-				telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				if(pacienteSelecionado != null) {
+					dispose();
+					TelaFichaPaciente telaFichaPaciente = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
+					telaFichaPaciente.setLocationRelativeTo(null);
+					telaFichaPaciente.setVisible(true);
+					telaFichaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				} else {
+					new DialogMensagemErro("Paciente não selecionado!").setVisible(true);
+				}
 				//dispose();
 			}
 		});
