@@ -95,10 +95,10 @@ public class TelaConsultasPendentes extends JFrame {
 		});
 
 		scrollPane.setViewportView(table);
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Profissional", "Data", "Objetivo"  });
-		DefaultTableModel pesquisa = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Profissional", "Data", "Objetivo"  });
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Profissional", "Data", "Objetivo" }));
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Médico", "Data", "Objetivo"  });
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Médico", "Data", "Objetivo" });
 		scrollPane.setViewportView(table);
+		listarConsultas();
 	}
 	
 	private void listarConsultas() {
@@ -107,9 +107,9 @@ public class TelaConsultasPendentes extends JFrame {
 	        if (consulta.getEncerrada()==false) {
 	            Object[] rowData;
 	            if (consulta.getPaciente().getNomeSocial() == null) {
-	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade(), consulta.getMedico(), consulta.getData(), consulta.getObjetivo()};
+	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData(), consulta.getObjetivo()};
 	            } else {
-	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade(), consulta.getMedico(), consulta.getData(), consulta.getObjetivo()};
+	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData(), consulta.getObjetivo()};
 	            }
 	            modelo.addRow(rowData);
 	        }
