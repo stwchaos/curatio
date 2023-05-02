@@ -50,5 +50,11 @@ class MedicoDAOTest {
 		assertTrue(dao.inserir(medico));
 		
 	}
-
+	void alterarMedicoSucessoTeste() throws Exception{
+		
+		
+	}
+	
+	
+	
 }

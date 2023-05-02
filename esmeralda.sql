@@ -90,8 +90,9 @@ CREATE TABLE IF NOT EXISTS medico(
 CREATE TABLE IF NOT EXISTS funcionario (
   idfuncionario INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(255) NOT NULL,
+  pronome VARCHAR(20) NOT NULL,
   sexo VARCHAR(45) NOT NULL,
-  telefone BIGINT NOT NULL,
+  cpf BIGINT(11) NOT NULL,
   data_nascimento DATE NOT NULL,
   usuario_id_usuario INT NOT NULL,
   PRIMARY KEY (idfuncionario,usuario_id_usuario),

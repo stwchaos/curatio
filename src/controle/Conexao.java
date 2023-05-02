@@ -109,19 +109,6 @@ public class Conexao {
 					+ "    REFERENCES usuario (id_usuario));";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS funcionario (\r\n"
-					+ "  id_funcionario INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "  nome VARCHAR(255) NOT NULL,\r\n"
-					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
-					+ "  telefone BIGINT NOT NULL,\r\n"
-					+ "  data_nascimento DATE NOT NULL,\r\n"
-					+ "  usuario_id_usuario INT NOT NULL,\r\n"
-					+ "  PRIMARY KEY (id_funcionario),\r\n"
-					+ "  \r\n"
-					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
-					+ "    REFERENCES usuario (id_usuario));";
-			stm.executeUpdate(wsql);
-			
 			wsql = "CREATE TABLE IF NOT EXISTS pagamento (\r\n"
 					+ "  id_pagamento INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  forma_pagamento VARCHAR(45) NOT NULL,\r\n"
@@ -146,6 +133,19 @@ public class Conexao {
 					+ "    REFERENCES medico (crm),\r\n"
 					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
 					+ "    REFERENCES pagamento (id_pagamento));";
+			stm.executeUpdate(wsql);
+			
+			wsql = "CREATE TABLE IF NOT EXISTS funcionario (\r\n"
+					+ "  idfuncionario INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  nome VARCHAR(255) NOT NULL,\r\n"
+					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
+					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
+					+ "  cpf BIGINT(11) NOT NULL,\r\n"
+					+ "  data_nascimento DATE NOT NULL,\r\n"
+					+ "  usuario_id_usuario INT NOT NULL,\r\n"
+					+ "  PRIMARY KEY (idfuncionario,usuario_id_usuario),\r\n"
+					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
+					+ "    REFERENCES usuario (id_usuario));";
 			stm.executeUpdate(wsql);
 			
 			wsql = "SET SQL_SAFE_UPDATES = 0;";
