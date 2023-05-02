@@ -202,9 +202,9 @@ public class TelaMarcarConsultas extends JFrame {
 				c.setFalta(false);
 
 				if(cDao.inserir(c)==true) {
-					JOptionPane.showMessageDialog(null, "Sim");
+					new DialogMensagemSucesso("Consulta marcada").setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "Nao");
+					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
 			}
 		});
