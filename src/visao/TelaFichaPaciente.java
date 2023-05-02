@@ -156,18 +156,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		RoundComboBox comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(218, 218, 218));
+		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
+		for (String string : listaPronome) {
+			comboPronome.addItem(string);
+		}
+		comboPronome.setSelectedItem(pacienteSelecionado.getPronome());
 
-		//String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
-		//comboPronome.setSelectedItem("Inserir");
-		
-		PacienteDAO pacienteDao = new PacienteDAO();
-		this.listaPronome = pacienteDao.listaPronome();
-		for (Especialidade e : listaPronome) {
-			comboPronome.addItem(e.getEspecialidade());
-		}
-		for (String pronome : listaPronome) {
-			comboPronome.addItem(pronome);
-		}
 		panel.add(comboPronome, "cell 4 7,growx");
 
 		JLabel lblNewLabel_3 = new JLabel("Sexo");
