@@ -69,8 +69,8 @@ public class TelaHistorico extends JFrame {
 		table = new JTable();
 
 		scrollPane.setViewportView(table);
-		modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Data"  });
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Data" }));
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "Paciente", "Setor", "Médico", "Data"  });
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Paciente", "Setor", "Médico", "Data" }));
 		scrollPane.setViewportView(table);
 		
 		
@@ -107,9 +107,9 @@ public class TelaHistorico extends JFrame {
 	        if (consulta.getEncerrada()==true && consulta.getPaciente().getCpf().equals(pacienteSelecionado.getCpf())) {
 	            Object[] rowData;
 	            if (consulta.getPaciente().getNomeSocial() == null) {
-	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade(), consulta.getData()};
+	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData()};
 	            } else {
-	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade(), consulta.getData()};
+	                rowData = new Object[]{consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData()};
 	            }
 	            modelo.addRow(rowData);
 	        }

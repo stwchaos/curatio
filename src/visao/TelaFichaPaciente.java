@@ -317,6 +317,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 				telaHistorico.setLocationRelativeTo(null);
 				telaHistorico.setVisible(true);
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				System.out.println(pacienteSelecionado.getNome());
 			}
 		});
 		
