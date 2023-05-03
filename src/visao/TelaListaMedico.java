@@ -33,7 +33,7 @@ import net.miginfocom.swing.MigLayout;
 public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 
 	private JPanel contentPane;
-	private JTextField txtPesquisarPaciente;
+	private JTextField txtPesquisarMedico;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JScrollPane scrollPane;
@@ -65,7 +65,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
-		setTitle("Hospital Esmeralda - Pacientes");
+		setTitle("Hospital Esmeralda - Medicos");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);
@@ -78,13 +78,13 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[][-12.00px][395.00px,grow][grow][23.00,center][238.00px,left]", "[][28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
-		txtPesquisarPaciente = new JTextField();
-		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar paciente");
-		txtPesquisarPaciente.setToolTipText("");
-		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
-		txtPesquisarPaciente.setColumns(10);
+		txtPesquisarMedico = new JTextField();
+		txtPesquisarMedico.setForeground(new Color(128, 128, 128));
+		txtPesquisarMedico.setText("Pesquisar medicos");
+		txtPesquisarMedico.setToolTipText("");
+		txtPesquisarMedico.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		contentPane.add(txtPesquisarMedico, "cell 2 1,growx,aligny bottom");
+		txtPesquisarMedico.setColumns(10);
 		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, "cell 2 3 2 1,grow");

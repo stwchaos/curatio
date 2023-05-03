@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import modelo.Anamnese;
+import modelo.Medico;
 import modelo.Paciente;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
@@ -70,7 +72,7 @@ public class TelaAnamnese extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAnamnese(Usuario usuarioAtual, Paciente pacienteSelecionado) {
+	public TelaAnamnese(Usuario usuarioAtual, Paciente pacienteSelecionado, Anamnese anaSelecionda, Boolean editar) {
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,6 +91,9 @@ public class TelaAnamnese extends JFrame {
 		contentPane.add(panel, "cell 2 0 13 2,growx,aligny top");
 		panel.setLayout(new MigLayout("", "[108.00,grow][][108,grow]", "[32.00][][][][][][][][][][]"));
 
+		//if(editar==true) {
+		//TODO acrescentar diferença de tela - alterar e visualizar.
+		
 		txtIentificao = new RoundJTextField();
 		txtIentificao.setHorizontalAlignment(SwingConstants.CENTER);
 		txtIentificao.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
