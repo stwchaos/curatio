@@ -21,7 +21,6 @@ public class Funcionario {
 	public void setPronome(String pronome) {
 		this.pronome = pronome;
 	}
-	LocalDate dataNascimento;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -41,14 +40,4 @@ public class Funcionario {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	} 
-
-
-	
 }
