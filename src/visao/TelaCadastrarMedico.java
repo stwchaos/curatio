@@ -21,9 +21,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import controle.EspecialidadeDAO;
+import controle.FuncionarioDAO;
 import controle.MedicoDAO;
 import controle.UsuarioDAO;
 import modelo.Especialidade;
+import modelo.Funcionario;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
@@ -50,7 +52,7 @@ public class TelaCadastrarMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastrarMedico(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar) {
+	public TelaCadastrarMedico(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar, Funcionario funcionarioSelecionado) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 938, 714);
 		contentPane = new JPanel();
@@ -250,44 +252,72 @@ public class TelaCadastrarMedico extends JFrame {
 						return;
 					}
 				
-				Medico m = new Medico();
-				Usuario u = new Usuario();
-				Especialidade es = new Especialidade();
-				MedicoDAO medicoDao = new MedicoDAO();
-				UsuarioDAO usuarioDao = new UsuarioDAO();
-				EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
-				
-				m.setCpf(cpf);
-				m.setCrm(crm);
-				
-				Integer posicao = comboEspecialidade.getSelectedIndex();
-				Especialidade especialidadeSelecionado = listaEspecialidades.get(posicao);
-				m.setEspecialidade(especialidadeSelecionado);
-				m.setNome(nome);
-				m.setPronome(String.valueOf(comboPronome.getSelectedItem()));
-				m.setSexo(String.valueOf(comboSexo.getSelectedItem()));
-				
-				u.setLogin(nome);
-				if (!senha.trim().isEmpty()) {
-					u.setSenha(senha);
-				}
-				u.setTipo(tipo);
-				usuarioDao.inserir(u);
-				m.setUsuario(u);
-				
-				if(editar==true) {
-					if(medicoDao.alterar(m)==true) {
-						new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
-					}else {
-						new DialogMensagemErro("Não foi possível alterar").setVisible(true);
+					Usuario u = new Usuario();
+					UsuarioDAO usuarioDao = new UsuarioDAO();
+					
+					u.setLogin(nome);
+					if (!senha.trim().isEmpty()) {
+						u.setSenha(senha);
 					}
-				}else {
-					if(medicoDao.inserir(m)==true) {
-						new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
+					u.setTipo(tipo);
+					usuarioDao.inserir(u);
+					
+					if(comboBoxTipoProfissional.getSelectedIndex()==0) {
+						Medico m = new Medico();
+						Especialidade es = new Especialidade();
+						MedicoDAO medicoDao = new MedicoDAO();
+						EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
+						
+						m.setCpf(cpf);
+						m.setCrm(crm);
+						
+						Integer posicao = comboEspecialidade.getSelectedIndex();
+						Especialidade especialidadeSelecionado = listaEspecialidades.get(posicao);
+						m.setEspecialidade(especialidadeSelecionado);
+						m.setNome(nome);
+						m.setPronome(String.valueOf(comboPronome.getSelectedItem()));
+						m.setSexo(String.valueOf(comboSexo.getSelectedItem()));
+						
+						m.setUsuario(u);
+						
+						if(editar==true) {
+							if(medicoDao.alterar(m)==true) {
+								new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
+							}else {
+								new DialogMensagemErro("Não foi possível alterar").setVisible(true);
+							}
+						}else {
+							if(medicoDao.inserir(m)==true) {
+								new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
+							}else {
+								new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
+							}
+						}
 					}else {
-						new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
+						Funcionario f = new Funcionario();
+						FuncionarioDAO fDao = new FuncionarioDAO();
+						
+						f.setCpf(cpf);
+						f.setNome(nome);
+						f.setPronome(String.valueOf(comboPronome.getSelectedItem()));
+						f.setSexo(String.valueOf(comboSexo.getSelectedItem()));
+						
+						f.setUsuario(u);
+						
+						if(editar==true) {
+							if(fDao.alterar(f)==true) {
+								new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
+							}else {
+								new DialogMensagemErro("Não foi possível alterar").setVisible(true);
+							}
+						}else {
+							if(fDao.inserir(f)==true) {
+								new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
+							}else {
+								new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
+							}
+						}
 					}
-				}
 				
 				dispose();
 				TelaListaMedico tela = new TelaListaMedico(usuarioAtual);

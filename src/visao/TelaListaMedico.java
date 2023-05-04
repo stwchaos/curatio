@@ -23,8 +23,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.FuncionarioDAO;
 import controle.MedicoDAO;
 import controle.UsuarioDAO;
+import modelo.Funcionario;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
@@ -47,7 +49,9 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private Medico medicoSelecionado = null;
+	private Funcionario funcionarioSelecionado = null;
 	private MedicoDAO mDao = new MedicoDAO();
+	private FuncionarioDAO fDao = new FuncionarioDAO();
 	private Boolean editar;
 	private int linha;
 	private DefaultTableModel modelo;
@@ -119,17 +123,24 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 			linha = table.getSelectedRow();
 			Long id = (Long) table.getValueAt(linha, 0);
 			for (Medico medico : mDao.listarProfissionais()) {
-				if(id.equals(medico.getCrm())) {
+				if(id.equals(medico.getCpf())) {
 					medicoSelecionado = medico;
+					funcionarioSelecionado=null;
+				}
+			}
+			for (Funcionario funcionario : fDao.listarFuncionarios()) {
+				if(id.equals(funcionario.getCpf())){
+					funcionarioSelecionado = funcionario;
+					medicoSelecionado=null;
 				}
 			}
 		}
 		});
 
 		scrollPane.setViewportView(table);
-		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
-		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" }));
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "CPF", "Nome", "Especialidade" });
+		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CPF", "Nome", "Especialidade" });
+		table.setModel(modelo);
 		scrollPane.setViewportView(table);
 		
 		btnVoltar = new JButton("Voltar");
@@ -173,7 +184,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				editar = false;
 				medicoSelecionado=null;
 				dispose();
-				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
+				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -191,7 +202,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				}
 					editar = true;
 					dispose();
-					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
+					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 					telaAlterar.setLocationRelativeTo(null);
 					telaAlterar.setVisible(true);
 					telaAlterar.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -229,7 +240,10 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 	private void listarMedicos() {
 		modelo.setRowCount(0);
 		for (Medico medico : mDao.listarProfissionais()) {
-			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
+			modelo.addRow(new Object[] { medico.getCpf(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
+		}
+		for (Funcionario funcionario : fDao.listarFuncionarios()) {
+			modelo.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(), funcionario.getUsuario().getTipo()});
 		}
 		table.setModel(modelo);
 	}
@@ -237,19 +251,36 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 	@Override
 	public void btnConfirmacao() {
 		MedicoDAO mDao = new MedicoDAO();
-				UsuarioDAO uDao = new UsuarioDAO();
-				
-				Usuario medicoUsuario = medicoSelecionado.getUsuario();
-				if(mDao.deletar(medicoSelecionado)) {
-					if(uDao.deletar(medicoUsuario)) {
-						JOptionPane.showMessageDialog(null, "Sim");
-					}else {
-						JOptionPane.showMessageDialog(null, "Nao");
-					}
+		UsuarioDAO uDao = new UsuarioDAO();
+		Usuario usuarioAtual=null;
+		
+		if(medicoSelecionado!=null) {
+			usuarioAtual = medicoSelecionado.getUsuario();
+			if(mDao.deletar(medicoSelecionado)) {
+				if(uDao.deletar(usuarioAtual)) {
+					JOptionPane.showMessageDialog(null, "Sim");
 				}else {
 					JOptionPane.showMessageDialog(null, "Nao");
 				}
-				listarMedicos();
+			}else {
+				JOptionPane.showMessageDialog(null, "Nao");
+			}
+		}
+				
+		if(funcionarioSelecionado!=null) {
+			usuarioAtual = funcionarioSelecionado.getUsuario();
+			if(fDao.deletar(funcionarioSelecionado)) {
+				if(uDao.deletar(usuarioAtual)) {
+					JOptionPane.showMessageDialog(null, "Sim");
+				}else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "Nao");
+			}
+		}
+
+		listarMedicos();
 		
 	}
 
