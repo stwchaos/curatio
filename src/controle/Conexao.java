@@ -148,12 +148,9 @@ public class Conexao {
 					+ "  trata_atuais VARCHAR(255) NULL,\r\n"
 					+ "  exames_apresentados VARCHAR(255) NULL,\r\n"
 					+ "  consulta_id_consulta INT NOT NULL,\r\n"
-					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  PRIMARY KEY (id_anamnese),\r\n"
 					+ "    FOREIGN KEY (consulta_id_consulta)\r\n"
-					+ "    REFERENCES consulta (id_consulta),\r\n"
-					+ "    FOREIGN KEY (paciente_cpf)\r\n"
-					+ "    REFERENCES paciente (cpf));";
+					+ "    REFERENCES consulta (id_consulta));";
 			stm.executeUpdate(wsql);
 			
 			wsql = "SET SQL_SAFE_UPDATES = 0;";
