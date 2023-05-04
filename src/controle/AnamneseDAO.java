@@ -50,7 +50,7 @@ import modelo.Usuario;
 	}
 
 	public ArrayList<Anamnese> listarAnamnese() {
-		ArrayList<Usuario> anamneses = new ArrayList<>();
+		ArrayList<Anamnese> anamneses = new ArrayList<>();
 
 		// instanciar
 		con = Conexao.getInstancia();
@@ -64,8 +64,31 @@ import modelo.Usuario;
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Integer id = rs.getInt("id_anamnese");
+				String queixaPrincipal = rs.getString("queixa_principal");
+				String disposicaoGeral = rs.getString("disposicao_geral");
+				String alergia = rs.getString("alergia");
+				String medicacoesEmUso = rs.getString("medicacoes_em_uso");
+				String historicoDoencaAtual = rs.getString("historico_doenca_atual");
+				String historicoPatoloProg = rs.getString("historico_patologico_prog");
+				String historicoPatolFam = rs.getString("historico_patologico_fam");
+				String historicoSocial = rs.getString("historico_social");
+				String trataAnteriores = rs.getString("trata_anteriores");
+				String trataAtuais = rs.getString("trata_atuais");
+				String examesApresentados = rs.getString("exames_apresentados");
 				
 				Anamnese a = new Anamnese();
+				a.setIdAnamnese(id);
+				a.setQueixaPrincipal(queixaPrincipal);
+				a.setDisposicaoGeral(disposicaoGeral);
+				a.setAlergia(alergia);
+				a.setMedicacoesEmUso(medicacoesEmUso);
+				a.setHistoricoDoencaAtual(historicoDoencaAtual);
+				a.setHistoricoPatologicoProg(historicoPatoloProg);
+				a.setHistoricoPatologicoFam(historicoPatoloProg);
+				a.setHistoricoSocial(historicoSocial);
+				a.setTrataAnteriores(trataAnteriores);
+				a.setTrataAtuais(trataAtuais);
+				a.setExamesApresentados(examesApresentados);
 				
 			}
 
@@ -75,7 +98,7 @@ import modelo.Usuario;
 
 		// desconectar
 		con.fecharConexao();
-		return null;
+		return anamneses;
 	}
 	
  

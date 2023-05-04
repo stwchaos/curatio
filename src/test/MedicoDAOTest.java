@@ -48,7 +48,7 @@ class MedicoDAOTest {
 		
 		
 		assertTrue(dao.inserir(medico));
-		
+		dao.deletar(medico);
 	}
 	void alterarMedicoSucessoTeste() throws Exception{
 		
