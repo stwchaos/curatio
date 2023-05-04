@@ -50,7 +50,7 @@ public class ConsultaDAO {
 		Connection co = Conexao.getInstancia().conectar();
 
 		try {
-			String query = "UPDATE consulta SET data = ?, objetivo = ? WHERE id_pendentes = ?;";
+			String query = "UPDATE consulta SET data = ?, objetivo = ? WHERE id_consulta = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setDate(1, Date.valueOf(c.getData()));
 			stm.setString(2, c.getObjetivo());
@@ -72,7 +72,7 @@ public class ConsultaDAO {
 		Connection co = con.conectar();
 		
 		try {
-			String query = "DELETE FROM consulta WHERE id_pendentes = ?;";
+			String query = "DELETE FROM consulta WHERE id_consulta = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setLong(1, c.getIdConsulta());
 			
@@ -100,7 +100,7 @@ public class ConsultaDAO {
 			String query = "SELECT * FROM (consulta INNER JOIN pagamento ON consulta.pagamento_id_pagamento = pagamento.id_pagamento);";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Integer idConsulta = rs.getInt("id_pendentes");
+				Integer idConsulta = rs.getInt("id_consulta");
 				Date data = rs.getDate("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String objetivo = rs.getString("objetivo");

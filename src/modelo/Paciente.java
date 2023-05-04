@@ -12,7 +12,6 @@ public class Paciente {
 	private String email;
 	private String pronome;
 	private Endereco endereco;
-	private Anamnese anamnese;
 	private Long cep;
 	private Integer numCasa;
 
@@ -30,14 +29,6 @@ public class Paciente {
 
 	public void setNumCasa(Integer numCasa) {
 		this.numCasa = numCasa;
-	}
-
-	public Anamnese getAnamnese() {
-		return anamnese;
-	}
-
-	public void setAnamnese(Anamnese anamnese) {
-		this.anamnese = anamnese;
 	}
 
 	public String getPronome() {

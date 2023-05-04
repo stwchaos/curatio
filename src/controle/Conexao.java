@@ -50,33 +50,21 @@ public class Conexao {
 					+ "  PRIMARY KEY (id_endereco));";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS anamnese(\r\n"
-					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
-					+ "  queixa_principal VARCHAR(255),\r\n"
-					+ "  disposicao_geral VARCHAR(255),\r\n"
-					+ "  alergia VARCHAR(255),\r\n"
-					+ "  medicacoes_em_uso VARCHAR(255),\r\n"
-					+ "  PRIMARY KEY (id_anamnese));";
-			stm.executeUpdate(wsql);
-			
-			wsql = "CREATE TABLE IF NOT EXISTS paciente(\r\n"
+			wsql = "CREATE TABLE IF NOT EXISTS paciente (\r\n"
 					+ "  cpf BIGINT(12) NOT NULL,\r\n"
 					+ "  nome VARCHAR(45) NOT NULL,\r\n"
 					+ "  nascimento DATETIME NOT NULL,\r\n"
-					+ "  telefone BIGINT NULL,\r\n"
+					+ "  telefone BIGINT(13) NULL,\r\n"
 					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
 					+ "  nome_social VARCHAR(45) NULL,\r\n"
 					+ "  email VARCHAR(45) NOT NULL,\r\n"
 					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
 					+ "  endereco_id_endereco INT NOT NULL,\r\n"
-					+ "  anamnese_id_anamnese INT NOT NULL,\r\n"
 					+ "  cep BIGINT(11) NOT NULL,\r\n"
 					+ "  numero_casa INT NOT NULL,\r\n"
-					+ "  PRIMARY KEY (cpf, anamnese_id_anamnese),\r\n"
-					+ "	FOREIGN KEY (endereco_id_endereco)\r\n"
-					+ "    REFERENCES endereco(id_endereco),\r\n"
-					+ "    FOREIGN KEY (anamnese_id_anamnese)\r\n"
-					+ "    REFERENCES anamnese(id_anamnese));";
+					+ "  PRIMARY KEY (cpf),\r\n"
+					+ "    FOREIGN KEY (endereco_id_endereco)\r\n"
+					+ "    REFERENCES endereco (id_endereco));";
 			stm.executeUpdate(wsql);
 					
 			wsql = "CREATE TABLE IF NOT EXISTS especialidade(\r\n"
@@ -118,7 +106,7 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS consulta (\r\n"
-					+ "  id_pendentes INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  id_consulta INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  data DATETIME NOT NULL,\r\n"
 					+ "  objetivo VARCHAR(45) NOT NULL,\r\n"
 					+ "  encerrada TINYINT NOT NULL,\r\n"
@@ -126,7 +114,7 @@ public class Conexao {
 					+ "  medico_crm BIGINT(6) NOT NULL,\r\n"
 					+ "  pagamento_id_pagamento INT NOT NULL,\r\n"
 					+ "  falta TINYINT NOT NULL,\r\n"
-					+ "  PRIMARY KEY (id_pendentes),\r\n"
+					+ "  PRIMARY KEY (id_consulta),\r\n"
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf),\r\n"
 					+ "    FOREIGN KEY (medico_crm)\r\n"
@@ -136,16 +124,36 @@ public class Conexao {
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS funcionario (\r\n"
-					+ "  idfuncionario INT NOT NULL AUTO_INCREMENT,\r\n"
 					+ "  nome VARCHAR(255) NOT NULL,\r\n"
-					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
 					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
+					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
 					+ "  cpf BIGINT(11) NOT NULL,\r\n"
-					+ "  data_nascimento DATE NOT NULL,\r\n"
 					+ "  usuario_id_usuario INT NOT NULL,\r\n"
-					+ "  PRIMARY KEY (idfuncionario,usuario_id_usuario),\r\n"
+					+ "  PRIMARY KEY (cpf),\r\n"
 					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
 					+ "    REFERENCES usuario (id_usuario));";
+			stm.executeUpdate(wsql);
+			
+			wsql = "CREATE TABLE IF NOT EXISTS anamnese (\r\n"
+					+ "  id_anamnese INT NOT NULL AUTO_INCREMENT,\r\n"
+					+ "  queixa_principal VARCHAR(255) NULL,\r\n"
+					+ "  disposicao_geral VARCHAR(255) NULL,\r\n"
+					+ "  alergia VARCHAR(255) NULL,\r\n"
+					+ "  medicacoes_em_uso VARCHAR(255) NULL,\r\n"
+					+ "  historico_doenca_atual VARCHAR(255) NULL,\r\n"
+					+ "  historico_patologico_prog VARCHAR(255) NULL,\r\n"
+					+ "  historico_patologico_fam VARCHAR(255) NULL,\r\n"
+					+ "  historico_social VARCHAR(255) NULL,\r\n"
+					+ "  trata_anteriores VARCHAR(255) NULL,\r\n"
+					+ "  trata_atuais VARCHAR(255) NULL,\r\n"
+					+ "  exames_apresentados VARCHAR(255) NULL,\r\n"
+					+ "  consulta_id_consulta INT NOT NULL,\r\n"
+					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
+					+ "  PRIMARY KEY (id_anamnese),\r\n"
+					+ "    FOREIGN KEY (consulta_id_consulta)\r\n"
+					+ "    REFERENCES consulta (id_consulta),\r\n"
+					+ "    FOREIGN KEY (paciente_cpf)\r\n"
+					+ "    REFERENCES paciente (cpf));";
 			stm.executeUpdate(wsql);
 			
 			wsql = "SET SQL_SAFE_UPDATES = 0;";

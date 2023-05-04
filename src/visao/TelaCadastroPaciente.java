@@ -369,8 +369,6 @@ public class TelaCadastroPaciente extends JFrame {
 				PacienteDAO pDao = new PacienteDAO();
 				Endereco end = new Endereco();
 				EnderecoDAO eDao = new EnderecoDAO();
-				Anamnese a = new Anamnese();
-				AnamneseDAO aDao = new AnamneseDAO();
 				
 				end.setBairro(bairro);
 				end.setCidade(cidade);
@@ -384,13 +382,6 @@ public class TelaCadastroPaciente extends JFrame {
 					p.setEndereco(en);
 				}
 				
-				a.setAlergia(null);
-				a.setDisposicaoGeral(null);
-				a.setMedicacoesEmUso(null);
-				a.setQueixaPrincipal(null);
-				aDao.inserir(a);
-				
-				p.setAnamnese(a);
 				p.setCep(cep);
 				p.setCpf(cpf);
 				p.setEmail(email);

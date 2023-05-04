@@ -22,7 +22,7 @@ public class PacienteDAO {
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO paciente (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco, cep, numero_casa, anamnese_id_anamnese) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String query = "INSERT INTO paciente (cpf, nome, nascimento, telefone, sexo, nome_social, email, pronome, endereco_id_endereco, cep, numero_casa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setLong(1, p.getCpf());
@@ -36,7 +36,6 @@ public class PacienteDAO {
 			stm.setDouble(9, p.getEndereco().getIdEndereco());
 			stm.setDouble(10, p.getCep());
 			stm.setDouble(11, p.getNumCasa());
-			stm.setInt(12, p.getAnamnese().getIdAnamnese());
 
 			stm.executeUpdate();
 			
@@ -95,7 +94,7 @@ public class PacienteDAO {
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM ((paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco) INNER JOIN anamnese ON paciente.anamnese_id_anamnese = anamnese.id_anamnese);";
+			String query = "SELECT * FROM paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco;";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Long cpf = rs.getLong("cpf");
@@ -113,10 +112,6 @@ public class PacienteDAO {
 				String complemento = rs.getString("complemento");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
-				String alergia = rs.getString("alergia");
-				String queixaPrincipal = rs.getString("queixa_principal");
-				String disposicaoGeral = rs.getString("disposicao_geral");
-				String medicacoesUso = rs.getString("medicacoes_em_uso");
 				
 				Paciente p = new Paciente();
 				p.setCpf(cpf);
@@ -137,13 +132,6 @@ public class PacienteDAO {
 				e.setIdEndereco(idEndereco);
 				e.setRua(rua);
 				p.setEndereco(e);
-				
-				Anamnese a = new Anamnese();
-				a.setAlergia(alergia);
-				a.setDisposicaoGeral(disposicaoGeral);
-				a.setMedicacoesEmUso(medicacoesUso);
-				a.setQueixaPrincipal(queixaPrincipal);
-				p.setAnamnese(a);
 				
 				pacientes.add(p);
 			}
