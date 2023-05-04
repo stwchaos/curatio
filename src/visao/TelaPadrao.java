@@ -130,6 +130,28 @@ public class TelaPadrao extends JFrame {
 		btnSair.setFocusPainted(false);
 		panel.add(btnSair, "cell 0 3 2 1,growx,aligny bottom");
 		
+		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO) {
+			JButton btnAnamneses = new JButton("Anamneses");
+			btnAnamneses.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					TelaListaAnamnese telaListaAnamnese = new TelaListaAnamnese(usuarioAtual);
+					telaListaAnamnese.setLocationRelativeTo(null);
+					telaListaAnamnese.setVisible(true);
+					telaListaAnamnese.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				}
+			});
+			btnAnamneses.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			btnAnamneses.setOpaque(false);
+			btnAnamneses.setHorizontalAlignment(SwingConstants.LEFT);
+			btnAnamneses.setForeground(Color.WHITE);
+			btnAnamneses.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
+			btnAnamneses.setFocusPainted(false);
+			btnAnamneses.setBorder(null);
+			btnProfissionais.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			btnAnamneses.setBackground((Color) null);
+			panel.add(btnAnamneses, "cell 1 5,growx,aligny center");
+		}
 		
 		btnProfissionais.setForeground(Color.WHITE);
 		btnProfissionais.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
