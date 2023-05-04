@@ -110,12 +110,14 @@ public class ConsultaDAO {
 				Long cpfPagante = rs.getLong("cpf_pagante");
 				Long pacienteCpf = rs.getLong("paciente_cpf");
 				Long medicoCrm = rs.getLong("medico_crm");
+				Boolean falta = rs.getBoolean("falta");
 				
 				Consulta c = new Consulta();
 				c.setIdConsulta(idConsulta);
 				c.setData(data.toLocalDate());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(objetivo);
+				c.setFalta(falta);
 				
 				MedicoDAO mDao = new MedicoDAO();
 				ArrayList<Medico> medicos = mDao.listarProfissionais();

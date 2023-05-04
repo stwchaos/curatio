@@ -62,11 +62,4 @@ import modelo.Medico;
 		}
 		return false;
 	}
-
-	public boolean deletar(Medico p) {
-		return false;
-	}
- 
-
- 
  }
