@@ -184,7 +184,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				editar = false;
 				medicoSelecionado=null;
 				dispose();
-				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
+				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -202,7 +202,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				}
 					editar = true;
 					dispose();
-					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar);
+					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 					telaAlterar.setLocationRelativeTo(null);
 					telaAlterar.setVisible(true);
 					telaAlterar.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -254,46 +254,33 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		UsuarioDAO uDao = new UsuarioDAO();
 		Usuario usuarioAtual=null;
 		
-		usuarioAtual = medicoSelecionado.getUsuario();
-		
-		if(mDao.deletar(medicoSelecionado)) {
-			if(uDao.deletar(usuarioAtual)) {
-				JOptionPane.showMessageDialog(null, "Sim");
+		if(medicoSelecionado!=null) {
+			usuarioAtual = medicoSelecionado.getUsuario();
+			if(mDao.deletar(medicoSelecionado)) {
+				if(uDao.deletar(usuarioAtual)) {
+					JOptionPane.showMessageDialog(null, "Sim");
+				}else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
 			}else {
 				JOptionPane.showMessageDialog(null, "Nao");
 			}
-		}else {
-			JOptionPane.showMessageDialog(null, "Nao");
 		}
-		
-//				try {
-//					usuarioAtual = medicoSelecionado.getUsuario();
-//				} finally {
-//					if(mDao.deletar(medicoSelecionado)) {
-//						if(uDao.deletar(usuarioAtual)) {
-//							JOptionPane.showMessageDialog(null, "Sim");
-//						}else {
-//							JOptionPane.showMessageDialog(null, "Nao");
-//						}
-//					}else {
-//						JOptionPane.showMessageDialog(null, "Nao");
-//					}
-//				}
-//				try {
-//					usuarioAtual = funcionarioSelecionado.getUsuario();
-//				} finally {
-//					if(fDao.deletar(funcionarioSelecionado)) {
-//						if(uDao.deletar(usuarioAtual)) {
-//							JOptionPane.showMessageDialog(null, "Sim");
-//						}else {
-//							JOptionPane.showMessageDialog(null, "Nao");
-//						}
-//					}else {
-//						JOptionPane.showMessageDialog(null, "Nao");
-//					}
-//				}
 				
-				listarMedicos();
+		if(funcionarioSelecionado!=null) {
+			usuarioAtual = funcionarioSelecionado.getUsuario();
+			if(fDao.deletar(funcionarioSelecionado)) {
+				if(uDao.deletar(usuarioAtual)) {
+					JOptionPane.showMessageDialog(null, "Sim");
+				}else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "Nao");
+			}
+		}
+
+		listarMedicos();
 		
 	}
 

@@ -104,7 +104,7 @@ public class TelaConsultasPendentes extends JFrame {
 	private void listarConsultas() {
 	    modelo.setRowCount(0);
 	    for (Consulta consulta : cDao.listarConsultas()) {
-	        if (consulta.getEncerrada()==false) {
+	        if (consulta.getEncerrada()==false && consulta.getFalta()==false) {
 	            Object[] rowData;
 	            if (consulta.getPaciente().getNomeSocial() == null) {
 	                rowData = new Object[]{consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData(), consulta.getObjetivo()};
