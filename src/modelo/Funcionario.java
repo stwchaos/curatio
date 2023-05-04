@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Funcionario {
 	
 	Usuario usuario;
-	Long idFuncionario;
 	Long cpf;
 	String nome;
 	String pronome;
@@ -24,17 +23,11 @@ public class Funcionario {
 	}
 	LocalDate dataNascimento;
 	
-	public Long getIdFuncionario() {
-		return idFuncionario;
-	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	public void setIdFuncionario(Long idFuncionario) {
-		this.idFuncionario = idFuncionario;
 	}
 	public String getNome() {
 		return nome;

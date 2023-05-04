@@ -18,14 +18,14 @@ public class FuncionarioDAO {
 		// conectar
 		Connection c = con.conectar();
 		try {
-			String query = "INSERT INTO Funcionario (nome,pronome,sexo,cpf,data_nascimento) VALUES (?, ?, ?, ?);";
+			String query = "INSERT INTO Funcionario (nome,pronome,sexo,cpf) VALUES (?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 			
 			stm.setString(1,f.getNome());
 			stm.setString(2,f.getPronome());
 			stm.setString(3,f.getSexo());
 			stm.setLong(4,f.getCpf());
-			stm.setDate(5,Date.valueOf(f.getDataNascimento()));
+		
 			
 			stm.executeUpdate();
 			return true;
@@ -45,17 +45,14 @@ public class FuncionarioDAO {
 		Connection co = con.conectar();
 
 		try {
-			String query = "UPDATE medico SET nome = ?, pronome = ?, sexo = ?, cpf = ?, data_nascimento = ?,  usuario_id_usuario = ?  WHERE id_funcionario = ?";
+			String query = "UPDATE medico SET nome = ?, pronome = ?, sexo = ?,usuario_id_usuario = ?  WHERE cpf = ?";
 			PreparedStatement stm = co.prepareStatement(query);
 			
 			stm.setString(1,f.getNome());
 			stm.setString(2,f.getPronome());
 			stm.setString(3,f.getSexo());
-			stm.setLong(4,f.getCpf());
-			stm.setDate(5,Date.valueOf(f.getDataNascimento()));
-			stm.setLong(6,f.getUsuario().getId());
-			stm.setLong(7,f.getIdFuncionario());
-
+			stm.setLong(4,f.getUsuario().getId());
+			
 			stm.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -72,9 +69,9 @@ public class FuncionarioDAO {
 		Connection co = con.conectar();
 		
 		try {
-			String query = "DELETE FROM funcionario WHERE id_funcionario = ?;";
+			String query = "DELETE FROM funcionario WHERE cpf = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
-			stm.setLong(1,f.getIdFuncionario());
+			stm.setLong(1,f.getCpf());
 			
 			stm.executeUpdate();
 			return true;
