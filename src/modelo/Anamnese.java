@@ -17,7 +17,6 @@ public class Anamnese {
 	private String historicoSocial;
 	private String trataAnteriores;
 	private String trataAtuais;
-	private String alergias;
 	private String examesApresentados;
 	private Usuario usuario;
 	
@@ -70,13 +69,6 @@ public class Anamnese {
 		this.trataAtuais = trataAtuais;
 	}
 	
-	public String getAlergias() {
-		return alergias;
-	}
-	
-	public void setAlergias(String alergias) {
-		this.alergias = alergias;
-	}
 	
 	public String getExamesApresentados() {
 		return examesApresentados;
