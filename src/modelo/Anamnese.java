@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Anamnese {
 
+	private Consulta consulta;
 	private Integer idAnamnese;
 	private String queixaPrincipal;
 	private String disposicaoGeral;
@@ -131,5 +132,12 @@ public class Anamnese {
 		this.usuario = usuario;
 	}
 
+	public Consulta getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
 	
 }
