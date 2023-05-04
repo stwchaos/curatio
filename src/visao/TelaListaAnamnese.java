@@ -115,9 +115,9 @@ public class TelaListaAnamnese extends JFrame implements InterfaceConfirmacao{
 		});
 
 		scrollPane.setViewportView(table);
-		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
-		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" });
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "CRM", "Nome", "Especialidade" }));
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Especialidade", "Paciente", "Objetivo", "Data" });
+		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Especialidade", "Paciente", "Objetivo", "Data" });
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Especialidade", "Paciente", "Objetivo", "Data" }));
 		scrollPane.setViewportView(table);
 		
 		btnVoltar = new JButton("Voltar");
@@ -217,14 +217,13 @@ public class TelaListaAnamnese extends JFrame implements InterfaceConfirmacao{
 	private void listarAnamnese() {
 		modelo.setRowCount(0);
 		for (Anamnese anamnese : aDao.listarAnamnese()) {
-			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
+			modelo.addRow(new Object[] { anamnese.medico.getCrm(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
 		}
 		table.setModel(modelo);
 	}
 
 	@Override
 	public void btnConfirmacao() {
-		AnamneseDAO aDao = new AnamneseDAO();
 		listarAnamnese();
 		
 	}
