@@ -4,26 +4,33 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+import controle.Conexao;
 import controle.MedicoDAO;
+import controle.UsuarioDAO;
 import junit.framework.Assert;
 import modelo.Especialidade;
 import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MedicoDAOTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	
 	
 	@Test
-	void inserirMedicoSucessoTeste() throws Exception{
+	@Order(1)
+	void inserirMedicoSucessoTeste() {
 		MedicoDAO dao = new MedicoDAO();
 		Especialidade e = new Especialidade();
 		Usuario usuario = new Usuario();
@@ -48,13 +55,41 @@ class MedicoDAOTest {
 		
 		
 		assertTrue(dao.inserir(medico));
-		dao.deletar(medico);
+		//dao.deletar(medico);
 	}
-	void alterarMedicoSucessoTeste() throws Exception{
+	
+	
+		@Test
+		 @Order(2) 
+	public void testAlterar() {
+		
+		//inserirMedicoSucessoTeste();
+		MedicoDAO mdao = new MedicoDAO();
+		
+		ArrayList<Medico> lm = mdao.listarProfissionais();
+		System.out.println(lm.size());
+		Medico m = lm.get(0);
+		m.setCpf(55555l);
+		System.out.println(mdao.alterar(m));
+		
+		assertTrue(mdao.alterar(m));
+		
 		
 		
 	}
 	
-	
+		
+		@Test
+		 @Order(3) 
+	public void testDeletar() {
+			
+			MedicoDAO mdao = new MedicoDAO();
+			
+			ArrayList<Medico> lm = mdao.listarProfissionais();
+			System.out.println(lm.size());
+			Medico m = lm.get(0);
+			assertTrue(mdao.deletar(m));
+		}
+		
 	
 }
