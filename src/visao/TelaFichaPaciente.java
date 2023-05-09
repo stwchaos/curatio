@@ -300,10 +300,10 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual, pacienteSelecionado);
-				telaAna.setLocationRelativeTo(null);
-				telaAna.setVisible(true);
-				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+				telaAnterior.setLocationRelativeTo(null);
+				telaAnterior.setVisible(true);
+				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnAnamnese.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
