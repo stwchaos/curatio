@@ -61,7 +61,6 @@ public class TelaConsultasPendentes extends JFrame {
 		JPanel panel_1 = new RoundJPanel(10, new Color(0, 81, 81));
 		panel_1.setBackground(null);
 		contentPane.add(panel_1, "cell 0 3 8 1,grow");
-		panel_1.setLayout(null);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -73,21 +72,21 @@ public class TelaConsultasPendentes extends JFrame {
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
+		panel_1.setLayout(new MigLayout("", "[112px][grow][138px]", "[37px]"));
 		btnVoltar.setBackground(new Color(0, 81, 81));
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setForeground(new Color(255, 255, 255));
-		btnVoltar.setBounds(10, 11, 112, 37);
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel_1.add(btnVoltar);
+		panel_1.add(btnVoltar, "cell 0 0,grow");
 		
-		/*JButton btnAnamnese = new JButton("Anamnese");
+		JButton btnAnamnese = new JButton("Anamnese");
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaMedico telaListaMedico = new TelaListaMedico(usuarioAtual);
-				telaListaMedico.setLocationRelativeTo(null);
-				telaListaMedico.setVisible(true);
-				telaListaMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaListaAnamnese telaListaAna = new TelaListaAnamnese(u);
+				telaListaAna.setLocationRelativeTo(null);
+				telaListaAna.setVisible(true);
+				telaListaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
@@ -98,9 +97,8 @@ public class TelaConsultasPendentes extends JFrame {
 		btnAnamnese.setFocusPainted(false);
 		btnAnamnese.setBorder(null);
 		btnAnamnese.setBackground((Color) null);
-		btnAnamnese.setBounds(132, 11, 138, 32);
 		btnAnamnese.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel_1.add(btnAnamnese);*/
+		panel_1.add(btnAnamnese, "cell 2 0,growx,aligny top");
 		
 		JPanel panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground(null);
@@ -117,8 +115,8 @@ public class TelaConsultasPendentes extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		int linha = table.getSelectedRow();
-		Long id = (Long) table.getValueAt(linha, 0);
+		//int linha = table.getSelectedRow();
+		//Long id = (Long) table.getValueAt(linha, 0);
 		}
 		});
 

@@ -54,9 +54,6 @@ public class TelaListaAnamnese extends JFrame implements InterfaceConfirmacao{
 	private DefaultTableModel modelo;
 	private DefaultTableModel pesquisa;
 	
-
-	//TODO arrumar lista de anamnese - fazer aparecer.
-	
 	public TelaListaAnamnese(Usuario usuarioAtual) {
 		
 		setForeground(new Color(0, 85, 85));
@@ -78,7 +75,7 @@ public class TelaListaAnamnese extends JFrame implements InterfaceConfirmacao{
 		contentPane.add(panel_1, "cell 2 3 2 1,grow");
 		panel_1.setBackground(new Color(64, 128, 128));
 		
-		lblNewLabel = new JLabel("Anamneses");
+		lblNewLabel = new JLabel("Histórico de Anamneses");
 		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		panel_1.add(lblNewLabel);
@@ -145,7 +142,7 @@ public class TelaListaAnamnese extends JFrame implements InterfaceConfirmacao{
 		lblNewLabel_1.setIcon(new ImageIcon(TelaListaAnamnese.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
 		panel_2.add(lblNewLabel_1, "cell 1 0,alignx center,aligny top");
 		
-		lblNewLabel_2 = new JLabel("Controle de Administrador");
+		lblNewLabel_2 = new JLabel("Controle de anamneses");
 		lblNewLabel_2.setFont(new Font("Yu Gothic UI", Font.PLAIN, 15));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		panel_2.add(lblNewLabel_2, "cell 1 1,growx,aligny top");
