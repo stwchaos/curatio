@@ -256,7 +256,7 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(txtNomeSoc, "cell 0 10 2 1,growx,aligny bottom");
 
 		txtAdicionarInformaes = new RoundJTextField();
-		txtAdicionarInformaes.setText("Adicionar Informações");
+		txtAdicionarInformaes.setText("Cadastrar Paciente");
 		txtAdicionarInformaes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtAdicionarInformaes.setForeground(Color.WHITE);
 		txtAdicionarInformaes.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));

@@ -31,6 +31,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Toolkit;
 
 public class TelaCadastrarMedico extends JFrame {
 
@@ -53,6 +54,7 @@ public class TelaCadastrarMedico extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastrarMedico(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar, Funcionario funcionarioSelecionado) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastrarMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 938, 714);
 		contentPane = new JPanel();

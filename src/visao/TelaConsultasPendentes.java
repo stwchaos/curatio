@@ -53,6 +53,11 @@ public class TelaConsultasPendentes extends JFrame {
 		panel_1_1.setBackground(new Color(64, 128, 128));
 		contentPane.add(panel_1_1, "cell 0 0 8 1,grow");
 		
+		JLabel lblNewLabel_1 = new JLabel("Consultas Pendentes");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 27));
+		panel_1_1.add(lblNewLabel_1);
+		
 		JPanel panel_1 = new RoundJPanel(10, new Color(0, 81, 81));
 		panel_1.setBackground(null);
 		contentPane.add(panel_1, "cell 0 3 8 1,grow");

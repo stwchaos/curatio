@@ -40,6 +40,7 @@ public class TelaHistorico extends JFrame {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private ConsultaDAO cDao = new ConsultaDAO();
+	private JLabel lblNewLabel;
 
 
 	public TelaHistorico(Usuario u, Paciente pacienteSelecionado) {
@@ -58,6 +59,11 @@ public class TelaHistorico extends JFrame {
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(64, 128, 128));
 		contentPane.add(panel_1_1, "cell 0 0 3 1,grow");
+		
+		lblNewLabel = new JLabel("Histórico");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 27));
+		panel_1_1.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, "cell 0 1 3 1,grow");
