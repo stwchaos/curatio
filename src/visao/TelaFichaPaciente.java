@@ -90,10 +90,10 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+				telaListaPaciente.setLocationRelativeTo(null);
+				telaListaPaciente.setVisible(true);
+				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 
@@ -138,7 +138,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 		RoundJTextField textFieldCPF = new RoundJTextField();
 		textFieldCPF.setBackground(new Color(163, 163, 163));
-		textFieldCPF.setText("Inalterável");
+		textFieldCPF.setText(pacienteSelecionado.getCpf().toString());
 		textFieldCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCPF.setEditable(false);
 		textFieldCPF.setColumns(10);
@@ -154,6 +154,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		RoundComboBox comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(218, 218, 218));
+		comboPronome.setSelectedItem("Inserir");
 
 		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
 		comboPronome.setSelectedItem("Inserir");
@@ -172,13 +173,16 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		panel.add(lblNewLabel_7, "cell 0 15,growx,aligny bottom");
 
 		textFieldEmail = new RoundJTextField();
+		textFieldEmail.setText(pacienteSelecionado.getEmail().toString());
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldEmail, "cell 0 16 3 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
 		textFieldNomeSocial = new RoundJTextField();
 		if(textFieldNomeSocial==null) {
-			textFieldNomeSocial.setText("bosta");
+			textFieldNomeSocial.setText(null);
+		}else {
+			textFieldNomeSocial.setText(pacienteSelecionado.getNomeSocial());
 		}
 		
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -188,7 +192,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldSexo = new RoundJTextField();
 		textFieldSexo.setBackground(new Color(163, 163, 163));
 		textFieldSexo.setEditable(false);
-		textFieldSexo.setText("Inalterável");
+		textFieldSexo.setText(pacienteSelecionado.getSexo().toString());
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldSexo, "cell 0 9,growx,aligny center");
 		textFieldSexo.setColumns(10);
@@ -197,13 +201,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldNascimento.setBackground(new Color(163, 163, 163));
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldNascimento.setText("Inalterável");
+		textFieldNascimento.setText(pacienteSelecionado.getNascimento().toString());
 		panel.add(textFieldNascimento, "cell 2 9 3 1,growx,aligny center");
 		textFieldNascimento.setColumns(10);
 
 		textFieldCEP = new RoundJTextField();
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
+		textFieldCEP.setText(pacienteSelecionado.getCep().toString());
 		panel.add(textFieldCEP, "cell 0 13 3 1,growx,aligny center");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
@@ -213,6 +218,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		panel.add(textFieldTelefone, "cell 0 11 3 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setColumns(10);
+		textFieldTelefone.setText(pacienteSelecionado.getTelefone().toString());
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 10,growx,aligny bottom");

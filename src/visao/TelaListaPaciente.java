@@ -53,6 +53,7 @@ public class TelaListaPaciente extends JFrame {
 	private DefaultTableModel modelo;
 	private PacienteDAO pDao = new PacienteDAO();
 	private Paciente pacienteSelecionado = null;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -86,6 +87,11 @@ public class TelaListaPaciente extends JFrame {
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, "cell 1 2 2 1,grow");
 		panel_1.setBackground(new Color(64, 128, 128));
+		
+		lblNewLabel = new JLabel("Pacientes");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 27));
+		panel_1.add(lblNewLabel);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
