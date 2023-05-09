@@ -79,7 +79,7 @@ public class TelaConsultasPendentes extends JFrame {
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		panel_1.add(btnVoltar, "cell 0 0,grow");
 		
-		JButton btnAnamnese = new JButton("Anamnese");
+		/*JButton btnAnamnese = new JButton("Anamnese");
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -98,7 +98,7 @@ public class TelaConsultasPendentes extends JFrame {
 		btnAnamnese.setBorder(null);
 		btnAnamnese.setBackground((Color) null);
 		btnAnamnese.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel_1.add(btnAnamnese, "cell 2 0,growx,aligny top");
+		panel_1.add(btnAnamnese, "cell 2 0,growx,aligny top");*/
 		
 		JPanel panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground(null);

@@ -281,7 +281,7 @@ public class TelaAnamnese extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaAnamnese telaAnterior = new TelaListaAnamnese(usuarioAtual);
+				TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
 				telaAnterior.setLocationRelativeTo(null);
 				telaAnterior.setVisible(true);
 				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
