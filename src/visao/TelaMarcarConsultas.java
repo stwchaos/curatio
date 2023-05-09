@@ -29,10 +29,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import controle.AnamneseDAO;
 import controle.ConsultaDAO;
 import controle.PacienteDAO;
 import controle.PagamentoDAO;
 import controle.MedicoDAO;
+import modelo.Anamnese;
 import modelo.Consulta;
 import modelo.Paciente;
 import modelo.Pagamento;
@@ -187,6 +189,8 @@ public class TelaMarcarConsultas extends JFrame {
 				ConsultaDAO cDao = new ConsultaDAO();
 				Pagamento p = new Pagamento();
 				PagamentoDAO pDao = new PagamentoDAO();
+				Anamnese a = new Anamnese();
+				AnamneseDAO aDao = new AnamneseDAO();
 				
 				p.setData_Pagamento(LocalDate.now());
 				p.setFormaPagamento(String.valueOf(comboPagamento.getSelectedItem()));
@@ -203,6 +207,19 @@ public class TelaMarcarConsultas extends JFrame {
 
 				if(cDao.inserir(c)==true) {
 					new DialogMensagemSucesso("Consulta marcada").setVisible(true);
+					a.setAlergia(null);
+					a.setDisposicaoGeral(null);
+					a.setExamesApresentados(null);
+					a.setHistoricoDoencaAtual(null);
+					a.setHistoricoPatologicoFam(null);
+					a.setHistoricoPatologicoProg(null);
+					a.setHistoricoSocial(null);
+					a.setMedicacoesEmUso(null);
+					a.setQueixaPrincipal(null);
+					a.setTrataAnteriores(null);
+					a.setTrataAtuais(null);
+					a.setConsulta(c);
+					aDao.inserir(a);
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}

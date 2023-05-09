@@ -18,7 +18,6 @@ public class Anamnese {
 	private String trataAnteriores;
 	private String trataAtuais;
 	private String examesApresentados;
-	private Usuario usuario;
 	
 	
 	public String getHistoricoDoencaAtual() {
@@ -117,13 +116,6 @@ public class Anamnese {
 		this.idAnamnese = idAnamnese;
 	}
 	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Consulta getConsulta() {
 		return consulta;
 	}
