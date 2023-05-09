@@ -394,14 +394,14 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setTelefone(telefone);
 				
 				if(pDao.inserir(p)==true) {
-					JOptionPane.showMessageDialog(null, "sim");
+					new DialogMensagemSucesso("Cadastrado com Sucesso").setVisible(true);
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}else {
-					JOptionPane.showMessageDialog(null, "nao");
+					new DialogMensagemErro("Erro ao Cadastrar").setVisible(true);
 				}
 			}
 		});

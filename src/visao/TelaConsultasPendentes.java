@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class TelaConsultasPendentes extends JFrame {
 
@@ -73,6 +74,28 @@ public class TelaConsultasPendentes extends JFrame {
 		btnVoltar.setBounds(10, 11, 112, 37);
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		panel_1.add(btnVoltar);
+		
+		/*JButton btnAnamnese = new JButton("Anamnese");
+		btnAnamnese.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaListaMedico telaListaMedico = new TelaListaMedico(usuarioAtual);
+				telaListaMedico.setLocationRelativeTo(null);
+				telaListaMedico.setVisible(true);
+				telaListaMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+		btnAnamnese.setOpaque(false);
+		btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAnamnese.setForeground(Color.WHITE);
+		btnAnamnese.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
+		btnAnamnese.setFocusPainted(false);
+		btnAnamnese.setBorder(null);
+		btnAnamnese.setBackground((Color) null);
+		btnAnamnese.setBounds(132, 11, 138, 32);
+		btnAnamnese.setCursor(new Cursor (Cursor.HAND_CURSOR));
+		panel_1.add(btnAnamnese);*/
 		
 		JPanel panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground(null);
