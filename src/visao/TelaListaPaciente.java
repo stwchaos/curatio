@@ -117,9 +117,9 @@ public class TelaListaPaciente extends JFrame {
 		}}});
 
 		scrollPane.setViewportView(table);
-		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome  social", "Nome", "CPF", "Telefone" });
-		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "Nome  social", "Nome", "CPF", "Telefone" });
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome social", "Nome", "CPF", "Telefone" }));
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] {"Nome", "CPF", "Telefone" });
+		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] {"Nome", "CPF", "Telefone" });
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {"Nome", "CPF", "Telefone" }));
 		scrollPane.setViewportView(table);
 		
 		btnVoltar = new JButton("Voltar");
@@ -163,7 +163,12 @@ public class TelaListaPaciente extends JFrame {
 	private void listarPacientes() {
 		modelo.setRowCount(0);
 		for (Paciente paciente : pDao.listarPacientes()) {
-			modelo.addRow(new Object[] {  paciente.getNomeSocial(), paciente.getNome(), paciente.getCpf(), paciente.getTelefone()});
+			if (paciente.getNomeSocial() == null) {
+				modelo.addRow(new Object[] {paciente.getNome(), paciente.getCpf(), paciente.getTelefone()});
+				}
+			else {
+				modelo.addRow(new Object[] {paciente.getNomeSocial(), paciente.getCpf(), paciente.getTelefone()});
+			}
 		}
 		table.setModel(modelo);
 	}

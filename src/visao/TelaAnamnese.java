@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import modelo.Anamnese;
 import modelo.Paciente;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
@@ -58,7 +59,7 @@ public class TelaAnamnese extends JFrame {
 	private RoundJTextField textDispo;
 	private JPanel panel_2;
 	private RoundJTextField rndjtxtfldObservaes;
-	private JTextField textField;
+	private JTextField txtObs;
 	private JButton btnSalvar;
 	int camposPreenchidos = 0;
 
@@ -70,7 +71,35 @@ public class TelaAnamnese extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAnamnese(Usuario usuarioAtual, Paciente pacienteSelecionado) {
+	public TelaAnamnese(Usuario usuarioAtual, Anamnese anaSelecionada, Boolean visualizar) {
+		
+		if(visualizar==true) {
+			txtObs.setEditable(false);
+			textQueixa.setEditable(false);
+			textHDoença.setEditable(false);
+			textHPato.setEditable(false);
+			textHPatoF.setEditable(false);
+			textHSocial.setEditable(false);
+			textTAnterior.setEditable(false);
+			textTAtual.setEditable(false);
+			textAlergia.setEditable(false);
+			textMedicacao.setEditable(false);
+			textExames.setEditable(false);
+			textDispo.setEditable(false);
+		}else if(visualizar==false) {
+			textQueixa.setEditable(true);
+			textHDoença.setEditable(true);
+			textHPato.setEditable(true);
+			textHPatoF.setEditable(true);
+			textHSocial.setEditable(true);
+			textTAnterior.setEditable(true);
+			textTAtual.setEditable(true);
+			textAlergia.setEditable(true);
+			textMedicacao.setEditable(true);
+			textExames.setEditable(true);
+			textDispo.setEditable(true);
+			txtObs.setEditable(true);
+		}
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -269,19 +298,19 @@ public class TelaAnamnese extends JFrame {
 		rndjtxtfldObservaes.setBackground(new Color(64, 128, 128));
 		panel_2.add(rndjtxtfldObservaes, "cell 0 0 2 1,growx,aligny top");
 
-		textField = new RoundJTextField();
-		textField.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		panel_2.add(textField, "cell 0 1 2 1,grow");
-		textField.setColumns(10);
+		txtObs = new RoundJTextField();
+		txtObs.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		panel_2.add(txtObs, "cell 0 1 2 1,grow");
+		txtObs.setColumns(10);
 
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaFichaPaciente telaPadrao = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+				telaAnterior.setLocationRelativeTo(null);
+				telaAnterior.setVisible(true);
+				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnVoltar.setBackground(new Color(0, 81, 81));
