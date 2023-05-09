@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 import modelo.Anamnese;
 import modelo.Medico;
-import modelo.TipoUsuario;
-import modelo.Usuario;
 
  public class AnamneseDAO {
 	
