@@ -84,7 +84,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		
 		txtPesquisarPaciente = new JTextField();
 		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar paciente");
+		txtPesquisarPaciente.setText("Pesquisar funcionário");
 		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
@@ -183,6 +183,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 			public void actionPerformed(ActionEvent e) {
 				editar = false;
 				medicoSelecionado=null;
+				funcionarioSelecionado=null;
 				dispose();
 				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 				tela.setLocationRelativeTo(null);
@@ -196,10 +197,11 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(linha==-1) {
+				if(medicoSelecionado==null && funcionarioSelecionado==null) {
 					new DialogMensagemErro("Médico não selecionado").setVisible(true);
 					return;
 				}
+					
 					editar = true;
 					dispose();
 					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
@@ -218,8 +220,8 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		TelaListaMedico tela = this;
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(linha==-1) {
-					new DialogMensagemErro("Médico não selecionado").setVisible(true);
+				if(medicoSelecionado==null && funcionarioSelecionado==null) {
+					new DialogMensagemErro("Nada selecionado!").setVisible(true);
 					return;
 				}
 				new DialogConfirmacao("O médico será deletado.", tela).setVisible(true);
