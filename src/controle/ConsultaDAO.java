@@ -37,6 +37,13 @@ public class ConsultaDAO {
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
+			
+			ResultSet rs= stm.getGeneratedKeys();
+            if (rs.next()) 
+            {
+              c.setIdConsulta(rs.getInt(1));
+            }
+            
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
