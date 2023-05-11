@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.time.ZoneId;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -61,10 +63,8 @@ public class TelaAnamnese extends JFrame {
 	private JButton btnSalvar;
 	int camposPreenchidos = 0;
 
-
 	public TelaAnamnese(Usuario usuarioAtual, Anamnese anaSelecionada, Boolean visualizar) {
-		
-		
+
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,15 +113,18 @@ public class TelaAnamnese extends JFrame {
 		textNomeS.setBackground(new Color(163, 163, 163));
 		textNomeS.setEditable(false);
 		textNomeS.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-	
+
 		panel.add(textNomeS, "cell 0 5,growx");
 		textNomeS.setColumns(10);
 
 		comboPronome = new RoundComboBox();
-		comboPronome.setEnabled(false);
 		comboPronome.setForeground(Color.BLACK);
-		comboPronome.setBackground(new Color(163, 163, 163));
+		comboPronome.setBackground(new Color(255, 255, 255));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		String[] listaPronome = {"Ele/Dele", "Ela/Dela", "Qualquer pronome"};
+		for (String string : listaPronome) {
+			comboPronome.addItem(string);
+		}
 		panel.add(comboPronome, "cell 2 5,growx");
 
 		lblNewLabel_2 = new JLabel("Sexo");
@@ -138,6 +141,7 @@ public class TelaAnamnese extends JFrame {
 		panel.add(lblNewLabel_4, "cell 0 8");
 
 		dtNascimento = new JDateChooser();
+		dtNascimento.setDateFormatString("dd/MM/yyyy");
 		dtNascimento.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -288,52 +292,51 @@ public class TelaAnamnese extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int camposPreenchidos = 0;
 				if (!textQueixa.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
 
 				if (!textHDoença.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textHPato.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textHPatoF.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
 
 				if (!textHSocial.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textTAnterior.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
-				
+
 				if (!textTAtual.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textAlergia.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textMedicacao.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
 
 				if (!textExames.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (!textDispo.getText().isEmpty()) {
-				    camposPreenchidos++;
+					camposPreenchidos++;
 				}
-				
+
 				if (camposPreenchidos == 0) {
-				    new DialogMensagemErro ("Preencha pelo menos um campo para prosseguir.").setVisible(true);
+					new DialogMensagemErro("Preencha pelo menos um campo para prosseguir.").setVisible(true);
 				}
 
 			}
@@ -342,17 +345,17 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnSalvar.setBackground(new Color(0, 81, 81));
 		contentPane.add(btnSalvar, "cell 31 11,growx");
-		
+
 		receberDados(anaSelecionada);
-	
+
 	}
-	
+
 	private void receberDados(Anamnese anaSelecionada) {
 		textNomeR.setText(anaSelecionada.getConsulta().getPaciente().getNome());
 		textNomeS.setText(anaSelecionada.getConsulta().getPaciente().getNomeSocial());
 		comboPronome.setSelectedItem(anaSelecionada.getConsulta().getPaciente().getPronome());
 		textSexo.setText(anaSelecionada.getConsulta().getPaciente().getSexo());
-		dtNascimento.setToolTipText(anaSelecionada.getConsulta().getPaciente().getNascimento().toString());
+		dtNascimento.setDate(Date.valueOf(anaSelecionada.getConsulta().getPaciente().getNascimento()));
 	}
 
 }

@@ -1,34 +1,31 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import controle.ConsultaDAO;
-import modelo.Consulta;
-import modelo.Funcionario;
-import modelo.Medico;
-import modelo.Usuario;
-
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.SwingConstants;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controle.AnamneseDAO;
+import controle.ConsultaDAO;
+import modelo.Consulta;
+import modelo.TipoUsuario;
+import modelo.Usuario;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaConsultasPendentes extends JFrame {
 
@@ -93,8 +90,11 @@ public class TelaConsultasPendentes extends JFrame {
 						return;
 					}
 					dispose();
-					System.out.println(consultaSelecionada.getAna().getIdAnamnese());
-					TelaAnamnese telaAna = new TelaAnamnese(u, consultaSelecionada.getAna(), rootPaneCheckingEnabled);
+					
+					AnamneseDAO aDao = new AnamneseDAO();
+					System.out.println(aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()));
+					System.out.println();
+					TelaAnamnese telaAna = new TelaAnamnese(u, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled);
 					telaAna.setLocationRelativeTo(null);
 					telaAna.setVisible(true);
 					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -140,6 +140,7 @@ public class TelaConsultasPendentes extends JFrame {
 				//	consultaSelecionada=null;
 				}
 			}
+		}
 		});
 
 		scrollPane.setViewportView(table);
