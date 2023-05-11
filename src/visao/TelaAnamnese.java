@@ -351,48 +351,7 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnSalvar.setBackground(new Color(0, 81, 81));
 		contentPane.add(btnSalvar, "cell 31 11,growx");
-		
-		
-		if(visualizar==true) {
-			setarNaoEditavel();
-		}else if(visualizar==false) {
-			setarEditavel();
-		}
-	}
-
-	private void setarEditavel() {
-		textQueixa.setEditable(true);
-		textHDoença.setEditable(true);
-		textHPato.setEditable(true);
-		textHPatoF.setEditable(true);
-		textHSocial.setEditable(true);
-		textTAnterior.setEditable(true);
-		textTAtual.setEditable(true);
-		textAlergia.setEditable(true);
-		textMedicacao.setEditable(true);
-		textExames.setEditable(true);
-		textDispo.setEditable(true);
-		txtObs.setEditable(true);
-		textNomeR.setBackground(new Color(163, 163, 163));
-	}
-
-	private void setarNaoEditavel() {
-		txtObs.setEditable(false);
-		textQueixa.setEditable(false);
-		textHDoença.setEditable(false);
-		textHPato.setEditable(false);
-		textHPatoF.setEditable(false);
-		textHSocial.setEditable(false);
-		textTAnterior.setEditable(false);
-		textTAtual.setEditable(false);
-		textAlergia.setEditable(false);
-		textMedicacao.setEditable(false);
-		textExames.setEditable(false);
-		textDispo.setEditable(false);
-		
-	}
 	
-	
-	
+	}
 
 }
