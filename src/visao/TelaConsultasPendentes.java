@@ -8,11 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.ConsultaDAO;
-import controle.MedicoDAO;
 import modelo.Consulta;
 import modelo.Funcionario;
 import modelo.Medico;
-import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Color;
@@ -95,7 +93,8 @@ public class TelaConsultasPendentes extends JFrame {
 						return;
 					}
 					dispose();
-					TelaAnamnese telaAna = new TelaAnamnese(u, null, rootPaneCheckingEnabled);
+					System.out.println(consultaSelecionada.getAna().getIdAnamnese());
+					TelaAnamnese telaAna = new TelaAnamnese(u, consultaSelecionada.getAna(), rootPaneCheckingEnabled);
 					telaAna.setLocationRelativeTo(null);
 					telaAna.setVisible(true);
 					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -131,45 +130,38 @@ public class TelaConsultasPendentes extends JFrame {
 			}
 		};
 		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				linha = table.getSelectedRow();
-				Long id = (Long) table.getValueAt(linha, 0);
-				for (Consulta consulta : cDao.listarConsultas()) {
-					if (id.equals(consulta.getIdConsulta())) {
-						consultaSelecionada = consulta;
-						consultaSelecionada = null;
-					}
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			linha = table.getSelectedRow();
+			Integer id = (Integer) table.getValueAt(linha, 0);
+			for (Consulta consulta : cDao.listarConsultas()) {
+				if(id.equals(consulta.getIdConsulta())) {
+					consultaSelecionada = consulta;
+				//	consultaSelecionada=null;
 				}
 			}
 		});
 
 		scrollPane.setViewportView(table);
-		modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "Paciente", "Setor", "Médico", "Data", "Objetivo" });
-		modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "Paciente", "Setor", "Médico", "Data", "Objetivo" });
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] {  "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo"  });
+		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
 		scrollPane.setViewportView(table);
 		listarConsultas();
 	}
 
 	private void listarConsultas() {
-		modelo.setRowCount(0);
-		for (Consulta consulta : cDao.listarConsultas()) {
-			if (consulta.getEncerrada() == false && consulta.getFalta() == false) {
-				Object[] rowData;
-				if (consulta.getPaciente().getNomeSocial() == null) {
-					rowData = new Object[] { consulta.getPaciente().getNome(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
-				} else {
-					rowData = new Object[] { consulta.getPaciente().getNomeSocial(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
-				}
-				modelo.addRow(rowData);
-			}
-		}
-		table.setModel(modelo);
+	    modelo.setRowCount(0);
+	    for (Consulta consulta : cDao.listarConsultas()) {
+	        if (consulta.getEncerrada()==false && consulta.getFalta()==false) {
+	            Object[] rowData;
+	            if (consulta.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[]{consulta.getIdConsulta(), consulta.getPaciente().getNome(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData(), consulta.getObjetivo()};
+	            } else {
+	                rowData = new Object[]{consulta.getIdConsulta(), consulta.getPaciente().getNomeSocial(), consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(), consulta.getData(), consulta.getObjetivo()};
+	            }
+	            modelo.addRow(rowData);
+	        }
+	    }
+	    table.setModel(modelo);
 	}
 }
