@@ -153,5 +153,67 @@ public class MedicoDAO {
 		return medicos;
 	}
 
-	
+	public ArrayList<Medico> listarPesquisa(String pesquisa){
+		ArrayList<Medico> medicos = new ArrayList<>();
+
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+
+		try {
+			System.out.println(pesquisa);
+			String query = "SELECT * FROM ((medico INNER JOIN usuario ON medico.usuario_id_usuario = usuario.id_usuario) INNER JOIN especialidade ON medico.especialidade_id_especialidade = especialidade.id_especialidade) WHERE nome LIKE ?;";
+			PreparedStatement stm = c.prepareStatement(query);
+			System.out.println(stm);
+			stm.setString(1, pesquisa+"%");
+			System.out.println(stm);
+			ResultSet rs = stm.executeQuery();
+			System.out.println("teste");
+			while (rs.next()) {
+				Long crm = rs.getLong("crm");
+				Long cpf = rs.getLong("cpf");
+				String nome = rs.getString("nome");
+				String sexo = rs.getString("sexo");
+				String pronome = rs.getString("pronome");
+				Integer idUsuario = rs.getInt("id_usuario");
+				String login = rs.getString("login");
+				String senha = rs.getString("senha");
+				Integer tipoUsuario = rs.getInt("tipo_usuario");
+				Integer idEspecialidade = rs.getInt("id_especialidade");
+				String especialidade = rs.getString("especialidade");
+				Double salario = rs.getDouble("salario");
+				
+				Medico m = new Medico();
+				m.setCrm(crm);
+				m.setCpf(cpf);
+				m.setNome(nome);
+				m.setSexo(sexo);
+				m.setPronome(pronome);
+				
+				Usuario u = new Usuario();
+				u.setId(idUsuario);
+				u.setLogin(login);
+				u.setSenha(senha);
+				u.setTipo(TipoUsuario.ObterTipo(tipoUsuario));	
+				m.setUsuario(u);
+				
+				Especialidade e = new Especialidade();
+				e.setEspecialidade(especialidade);
+				e.setIdEspecialidade(idEspecialidade);
+				e.setSalario(salario);
+				m.setEspecialidade(e);
+				medicos.add(m);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		// desconectar
+		return medicos;
+	}
 }
