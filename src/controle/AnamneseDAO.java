@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Anamnese;
-import modelo.Medico;
+import modelo.Consulta;
 
  public class AnamneseDAO {
 	
@@ -58,7 +58,7 @@ import modelo.Medico;
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM anamnese";
+			String query = "SELECT * FROM anamnese INNER JOIN consulta ON consulta_id_consulta = id_consulta;";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Integer id = rs.getInt("id_anamnese");
@@ -73,6 +73,7 @@ import modelo.Medico;
 				String trataAnteriores = rs.getString("trata_anteriores");
 				String trataAtuais = rs.getString("trata_atuais");
 				String examesApresentados = rs.getString("exames_apresentados");
+				Long consultaId = rs.getLong("id_consulta");
 				
 				Anamnese a = new Anamnese();
 				a.setIdAnamnese(id);
@@ -88,6 +89,13 @@ import modelo.Medico;
 				a.setTrataAtuais(trataAtuais);
 				a.setExamesApresentados(examesApresentados);
 				
+				ConsultaDAO cDao = new ConsultaDAO();
+				ArrayList<Consulta> consultas = cDao.listarConsultas();
+				for (Consulta consulta : consultas) {
+					if(consultaId.equals(consulta.getIdConsulta())) {
+						a.setConsulta(consulta);
+					}
+				}
 			}
 
 		} catch (SQLException e) {
@@ -98,7 +106,66 @@ import modelo.Medico;
 		con.fecharConexao();
 		return anamneses;
 	}
-	
- 
-	
+
+	public Anamnese buscarAnamnesePorIdConsulta(Integer idConsulta) {
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+				
+		String query = "SELECT * FROM anamnese INNER JOIN consulta ON consulta_id_consulta = id_consulta WHERE id_consulta=?;";
+
+		try {
+			PreparedStatement stm = c.prepareStatement(query);
+			stm.setInt(1, idConsulta);
+			ResultSet rs = stm.executeQuery();
+			if(rs.next()) {
+				Integer id = rs.getInt("id_anamnese");
+				String queixaPrincipal = rs.getString("queixa_principal");
+				String disposicaoGeral = rs.getString("disposicao_geral");
+				String alergia = rs.getString("alergia");
+				String medicacoesEmUso = rs.getString("medicacoes_em_uso");
+				String historicoDoencaAtual = rs.getString("historico_doenca_atual");
+				String historicoPatoloProg = rs.getString("historico_patologico_prog");
+				String historicoPatolFam = rs.getString("historico_patologico_fam");
+				String historicoSocial = rs.getString("historico_social");
+				String trataAnteriores = rs.getString("trata_anteriores");
+				String trataAtuais = rs.getString("trata_atuais");
+				String examesApresentados = rs.getString("exames_apresentados");
+				Integer consultaId = rs.getInt("id_consulta");
+				
+				Anamnese a = new Anamnese();
+				a.setIdAnamnese(id);
+				a.setQueixaPrincipal(queixaPrincipal);
+				a.setDisposicaoGeral(disposicaoGeral);
+				a.setAlergia(alergia);
+				a.setMedicacoesEmUso(medicacoesEmUso);
+				a.setHistoricoDoencaAtual(historicoDoencaAtual);
+				a.setHistoricoPatologicoProg(historicoPatoloProg);
+				a.setHistoricoPatologicoFam(historicoPatoloProg);
+				a.setHistoricoSocial(historicoSocial);
+				a.setTrataAnteriores(trataAnteriores);
+				a.setTrataAtuais(trataAtuais);
+				a.setExamesApresentados(examesApresentados);
+				
+				ConsultaDAO cDao = new ConsultaDAO();
+				ArrayList<Consulta> consultas = cDao.listarConsultas();
+				for (Consulta consulta : consultas) {
+					if(consultaId.equals(consulta.getIdConsulta())) {
+						a.setConsulta(consulta);
+					}
+				}
+			
+				return a;
+			}
+			
+		} catch (SQLException e) {
+			// Trate a exceção ou a propague para cima
+			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
+		}
+	return null;
+	}
  }

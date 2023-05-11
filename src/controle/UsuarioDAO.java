@@ -33,7 +33,7 @@ public class UsuarioDAO {
             if (rs.next()) 
             {
               u.setId(rs.getInt(1));
-            }    
+            }
 
 			return true;
 		} catch (SQLException e) {

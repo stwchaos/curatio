@@ -80,6 +80,23 @@ public class PacienteDAO {
 	}
 
 	public boolean deletar(Paciente p) {
+		con = Conexao.getInstancia();
+		
+		Connection co = con.conectar();
+		
+		try {
+			String query = "DELETE FROM paciente WHERE cpf = ?;";
+			PreparedStatement stm = co.prepareStatement(query);
+			stm.setLong(1, p.getCpf());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
 		return false;
 	}
 

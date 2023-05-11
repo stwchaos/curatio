@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import modelo.Anamnese;
 import modelo.Consulta;
 import modelo.Medico;
 import modelo.Paciente;
@@ -37,6 +38,13 @@ public class ConsultaDAO {
 			stm.setDate(1, Date.valueOf(c.getData()));
 
 			stm.executeUpdate();
+			
+			ResultSet rs= stm.getGeneratedKeys();
+            if (rs.next()) 
+            {
+              c.setIdConsulta(rs.getInt(1));
+            }
+            
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,6 +150,9 @@ public class ConsultaDAO {
 				p.setIdPagamento(idPagamento);
 				c.setPagamento(p);
 				
+				AnamneseDAO adao = new AnamneseDAO();
+				Anamnese ana = adao.buscarAnamnesePorIdConsulta(idConsulta);
+				c.setAna(ana);
 				consultas.add(c);
 			}
 

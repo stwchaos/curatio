@@ -56,8 +56,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 	private JTextField textFieldNascimento;
 	private JTextField textFieldCEP;
 	private JTextField txtRegistrosDosPacientes;
+	private Paciente pacienteSelecionado;
+	private Usuario usuarioAtual;
 
 	public TelaFichaPaciente(Usuario usuarioAtual, Paciente pacienteSelecionado) {
+		this.pacienteSelecionado = pacienteSelecionado;
+		this.usuarioAtual = usuarioAtual;
 		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
 		setTitle("Hospital Esmeralda");
 		setIconImage(
@@ -323,7 +327,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 				telaHistorico.setLocationRelativeTo(null);
 				telaHistorico.setVisible(true);
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				System.out.println(pacienteSelecionado.getNome());
 			}
 		});
 		
@@ -331,23 +334,18 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 	@Override
 	public void btnConfirmacao() {
-		/**
 		PacienteDAO pDao = new PacienteDAO();
-		UsuarioDAO uDao = new UsuarioDAO();
-		
-		Paciente paciente = pacienteSelecionado.getCpf();
+		System.out.println(pacienteSelecionado.getNome());
 		if(pDao.deletar(pacienteSelecionado)) {
-			if(uDao.deletar(paciente)) {
-				JOptionPane.showMessageDialog(null, "Sim");
-			}else {
-				JOptionPane.showMessageDialog(null, "Nao");
-			}
+			JOptionPane.showMessageDialog(null, "Sim");
 		}else {
 			JOptionPane.showMessageDialog(null, "Nao");
 		}
-		
-		listarPaciente();
-		*/
+		dispose();
+		TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+		telaListaPaciente.setLocationRelativeTo(null);
+		telaListaPaciente.setVisible(true);
+		telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 	}
 

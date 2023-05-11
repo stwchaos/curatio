@@ -53,7 +53,7 @@ public class TelaMarcarConsultas extends JFrame {
 	private MedicoDAO mDao = new MedicoDAO();
 	
 	public TelaMarcarConsultas(Usuario u) {
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Marcar Consultas");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

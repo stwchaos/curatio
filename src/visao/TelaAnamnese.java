@@ -342,6 +342,7 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnSalvar.setBackground(new Color(0, 81, 81));
 		contentPane.add(btnSalvar, "cell 31 11,growx");
+		
 		receberDados(anaSelecionada);
 	
 	}

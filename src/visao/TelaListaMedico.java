@@ -31,6 +31,11 @@ import modelo.Medico;
 import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 
@@ -69,7 +74,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
-		setTitle("Hospital Esmeralda - Pacientes");
+		setTitle("Hospital Esmeralda - Profissionais");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);
@@ -81,14 +86,6 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[][-12.00px][395.00px,grow][grow][23.00,center][238.00px,left]", "[][28.00px,fill][19px][49.00][342.00px,grow][31px]"));
-		
-		txtPesquisarPaciente = new JTextField();
-		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar funcionário");
-		txtPesquisarPaciente.setToolTipText("");
-		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
-		txtPesquisarPaciente.setColumns(10);
 		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, "cell 2 3 2 1,grow");
@@ -116,7 +113,11 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 		
-		table = new JTable();
+		table = new JTable() {
+	         public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	             return false;
+	          }
+	       };
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -142,6 +143,34 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		pesquisa = new DefaultTableModel(new Object[][] {}, new String[] { "CPF", "Nome", "Especialidade" });
 		table.setModel(modelo);
 		scrollPane.setViewportView(table);
+		
+		txtPesquisarPaciente = new JTextField();
+		txtPesquisarPaciente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				pesquisa.setRowCount(0);
+				ArrayList<Medico> medicos = mDao.listarPesquisa(txtPesquisarPaciente.getText());
+				if(txtPesquisarPaciente.getText().isEmpty()) {
+					txtPesquisarPaciente.setText("Pesquisar profissional");
+					txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
+					table.setModel(modelo);
+				}else {
+					if(medicos.size()!=0) {
+						for (Medico medico : medicos) {
+							pesquisa.addRow(new Object[] { medico.getCpf(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
+						}
+						table.setModel(pesquisa);
+					}
+					txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
+				}
+			}
+		});
+		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
+		txtPesquisarPaciente.setText("Pesquisar profissional");
+		txtPesquisarPaciente.setToolTipText("");
+		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
+		txtPesquisarPaciente.setColumns(10);
 		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
