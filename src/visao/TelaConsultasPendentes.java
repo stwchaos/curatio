@@ -6,12 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import controle.ConsultaDAO;
+import controle.MedicoDAO;
 import modelo.Consulta;
+import modelo.Funcionario;
 import modelo.Medico;
 import modelo.Usuario;
+
 import java.awt.Color;
 import java.awt.Cursor;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -32,6 +37,8 @@ public class TelaConsultasPendentes extends JFrame {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private ConsultaDAO cDao = new ConsultaDAO();
+	private Consulta consultaSelecionada = null;
+	private int linha;
 
 
 	public TelaConsultasPendentes(Usuario u) {
@@ -79,11 +86,15 @@ public class TelaConsultasPendentes extends JFrame {
 		JButton btnAnamnese = new JButton("Anamnese");
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaAnamnese telaAna = new TelaAnamnese(u, null, rootPaneCheckingEnabled);
-				telaAna.setLocationRelativeTo(null);
-				telaAna.setVisible(true);
-				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				if(consultaSelecionada==null && consultaSelecionada==null) {
+					new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+					return;
+				}
+					dispose();
+					TelaAnamnese telaAna = new TelaAnamnese(u, null, rootPaneCheckingEnabled);
+					telaAna.setLocationRelativeTo(null);
+					telaAna.setVisible(true);
+					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
@@ -112,8 +123,14 @@ public class TelaConsultasPendentes extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		int linha = table.getSelectedRow();
-		Long id = (Long) table.getValueAt(linha, 0);
+			linha = table.getSelectedRow();
+			Long id = (Long) table.getValueAt(linha, 0);
+			for (Consulta consulta : cDao.listarConsultas()) {
+				if(id.equals(consulta.getIdConsulta())) {
+					consultaSelecionada = consulta;
+					consultaSelecionada=null;
+				}
+			}
 		}
 		});
 
