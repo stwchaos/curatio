@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Consulta {
 
-	private Integer idConsulta; //TODO mudar nome banco de dados
+	private Integer idConsulta;
 	private LocalDate data;
 	private String objetivo;
 	private Boolean encerrada;

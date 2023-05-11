@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Anamnese;
+import modelo.Consulta;
 import modelo.Medico;
 
  public class AnamneseDAO {
@@ -58,7 +59,7 @@ import modelo.Medico;
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM anamnese";
+			String query = "SELECT * FROM anamnese INNER JOIN consulta ON consulta_id_consulta = id_consulta;";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Integer id = rs.getInt("id_anamnese");
@@ -73,6 +74,7 @@ import modelo.Medico;
 				String trataAnteriores = rs.getString("trata_anteriores");
 				String trataAtuais = rs.getString("trata_atuais");
 				String examesApresentados = rs.getString("exames_apresentados");
+				Long consultaId = rs.getLong("id_consulta");
 				
 				Anamnese a = new Anamnese();
 				a.setIdAnamnese(id);
@@ -88,6 +90,13 @@ import modelo.Medico;
 				a.setTrataAtuais(trataAtuais);
 				a.setExamesApresentados(examesApresentados);
 				
+				ConsultaDAO cDao = new ConsultaDAO();
+				ArrayList<Consulta> consultas = cDao.listarConsultas();
+				for (Consulta consulta : consultas) {
+					if(consultaId.equals(consulta.getIdConsulta())) {
+						a.setConsulta(consulta);
+					}
+				}
 			}
 
 		} catch (SQLException e) {
