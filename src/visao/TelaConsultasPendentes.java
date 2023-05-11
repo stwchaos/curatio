@@ -79,14 +79,14 @@ public class TelaConsultasPendentes extends JFrame {
 		btnVoltar.setCursor(new Cursor (Cursor.HAND_CURSOR));
 		panel_1.add(btnVoltar, "cell 0 0,grow");
 		
-		/*JButton btnAnamnese = new JButton("Anamnese");
+		JButton btnAnamnese = new JButton("Anamnese");
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaAnamnese telaListaAna = new TelaListaAnamnese(u);
-				telaListaAna.setLocationRelativeTo(null);
-				telaListaAna.setVisible(true);
-				telaListaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaAnamnese telaAna = new TelaAnamnese(u, null, rootPaneCheckingEnabled);
+				telaAna.setLocationRelativeTo(null);
+				telaAna.setVisible(true);
+				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
@@ -98,7 +98,7 @@ public class TelaConsultasPendentes extends JFrame {
 		btnAnamnese.setBorder(null);
 		btnAnamnese.setBackground((Color) null);
 		btnAnamnese.setCursor(new Cursor (Cursor.HAND_CURSOR));
-		panel_1.add(btnAnamnese, "cell 2 0,growx,aligny top");*/
+		panel_1.add(btnAnamnese, "cell 2 0,growx,aligny top");
 		
 		JPanel panel_2_1 = new RoundJPanel(10, new Color(64, 128, 128));
 		panel_2_1.setBackground(null);
@@ -115,8 +115,8 @@ public class TelaConsultasPendentes extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		//int linha = table.getSelectedRow();
-		//Long id = (Long) table.getValueAt(linha, 0);
+		int linha = table.getSelectedRow();
+		Long id = (Long) table.getValueAt(linha, 0);
 		}
 		});
 
