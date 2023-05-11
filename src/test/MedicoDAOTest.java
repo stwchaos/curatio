@@ -1,13 +1,8 @@
 package test;
 
-import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -15,10 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import controle.Conexao;
 import controle.MedicoDAO;
-import controle.UsuarioDAO;
-import junit.framework.Assert;
 import modelo.Especialidade;
 import modelo.Medico;
 import modelo.TipoUsuario;
@@ -67,6 +59,8 @@ class MedicoDAOTest {
 	    Medico primeiroMedico = lm.get(0);
 	    assertNotNull(primeiroMedico.getCrm());
 	    assertNotNull(primeiroMedico.getEspecialidade());
+	    
+	    assertEquals(primeiroMedico.getCrm(), 123456l);
 	}
 
 
