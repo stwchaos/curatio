@@ -150,9 +150,6 @@ public class ConsultaDAO {
 				p.setIdPagamento(idPagamento);
 				c.setPagamento(p);
 				
-				AnamneseDAO adao = new AnamneseDAO();
-				Anamnese ana = adao.buscarAnamnesePorIdConsulta(idConsulta);
-				c.setAna(ana);
 				consultas.add(c);
 			}
 

@@ -143,7 +143,7 @@ import modelo.Consulta;
 				a.setMedicacoesEmUso(medicacoesEmUso);
 				a.setHistoricoDoencaAtual(historicoDoencaAtual);
 				a.setHistoricoPatologicoProg(historicoPatoloProg);
-				a.setHistoricoPatologicoFam(historicoPatoloProg);
+				a.setHistoricoPatologicoFam(historicoPatolFam);
 				a.setHistoricoSocial(historicoSocial);
 				a.setTrataAnteriores(trataAnteriores);
 				a.setTrataAtuais(trataAtuais);

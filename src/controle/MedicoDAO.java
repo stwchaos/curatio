@@ -163,14 +163,14 @@ public class MedicoDAO {
 		Connection c = con.conectar();
 
 		try {
-			System.out.println(pesquisa);
 			String query = "SELECT * FROM ((medico INNER JOIN usuario ON medico.usuario_id_usuario = usuario.id_usuario) INNER JOIN especialidade ON medico.especialidade_id_especialidade = especialidade.id_especialidade) WHERE nome LIKE ?;";
+			
 			PreparedStatement stm = c.prepareStatement(query);
-			System.out.println(stm);
+
 			stm.setString(1, pesquisa+"%");
-			System.out.println(stm);
+			
 			ResultSet rs = stm.executeQuery();
-			System.out.println("teste");
+			
 			while (rs.next()) {
 				Long crm = rs.getLong("crm");
 				Long cpf = rs.getLong("cpf");

@@ -294,7 +294,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 					JOptionPane.showMessageDialog(null, "Nao");
 				}
 			}else {
-				JOptionPane.showMessageDialog(null, "Nao");
+				JOptionPane.showMessageDialog(null, "Impossível deletar, medico já possui registros cadastrados");
 			}
 		}
 				
@@ -307,7 +307,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 					JOptionPane.showMessageDialog(null, "Nao");
 				}
 			}else {
-				JOptionPane.showMessageDialog(null, "Nao");
+				JOptionPane.showMessageDialog(null, "Impossível deletar, profissional já possui registros cadastrados");
 			}
 		}
 
