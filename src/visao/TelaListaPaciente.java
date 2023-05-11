@@ -77,7 +77,7 @@ public class TelaListaPaciente extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[-12.00px][395.00px,grow][grow]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
 		txtPesquisarPaciente = new JTextField();
-		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
+		txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
 		txtPesquisarPaciente.setText("Pesquisar paciente");
 		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
@@ -110,12 +110,16 @@ public class TelaListaPaciente extends JFrame {
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 		
-		table = new JTable();
+		table = new JTable() {
+	         public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	             return false;
+	          }
+	       };
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		linha = table.getSelectedRow();
-		Long id = (Long) table.getValueAt(linha, 2);
+		Long id = (Long) table.getValueAt(linha, 1);
 		for (Paciente paciente : pDao.listarPacientes()) {
 			if(id.equals(paciente.getCpf())) {
 				pacienteSelecionado = paciente;

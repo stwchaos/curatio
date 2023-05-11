@@ -53,7 +53,7 @@ public class TelaMarcarConsultas extends JFrame {
 	private MedicoDAO mDao = new MedicoDAO();
 	
 	public TelaMarcarConsultas(Usuario u) {
-		setTitle("Hospital Esmeralda");
+		setTitle("Hospital Esmeralda - Marcar Consultas");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -179,6 +179,10 @@ public class TelaMarcarConsultas extends JFrame {
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String objetivo = txtObjetivo.getText();
+				TelaPadrao telaPadrao = new TelaPadrao(u);
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				if(objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
@@ -223,6 +227,7 @@ public class TelaMarcarConsultas extends JFrame {
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
+				dispose();
 			}
 		});
 		btnMarcar.setForeground(new Color(255, 255, 255));

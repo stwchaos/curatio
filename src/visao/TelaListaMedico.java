@@ -69,7 +69,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
-		setTitle("Hospital Esmeralda - Pacientes");
+		setTitle("Hospital Esmeralda - Profissionais");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);
@@ -83,8 +83,8 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		contentPane.setLayout(new MigLayout("", "[][-12.00px][395.00px,grow][grow][23.00,center][238.00px,left]", "[][28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
 		txtPesquisarPaciente = new JTextField();
-		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar paciente");
+		txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
+		txtPesquisarPaciente.setText("Pesquisar funcionário");
 		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
@@ -116,7 +116,11 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 		
-		table = new JTable();
+		table = new JTable() {
+	         public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	             return false;
+	          }
+	       };
 		table.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -183,6 +187,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 			public void actionPerformed(ActionEvent e) {
 				editar = false;
 				medicoSelecionado=null;
+				funcionarioSelecionado=null;
 				dispose();
 				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 				tela.setLocationRelativeTo(null);
@@ -196,10 +201,11 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(linha==-1) {
+				if(medicoSelecionado==null && funcionarioSelecionado==null) {
 					new DialogMensagemErro("Médico não selecionado").setVisible(true);
 					return;
 				}
+					
 					editar = true;
 					dispose();
 					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
@@ -218,8 +224,8 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 		TelaListaMedico tela = this;
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(linha==-1) {
-					new DialogMensagemErro("Médico não selecionado").setVisible(true);
+				if(medicoSelecionado==null && funcionarioSelecionado==null) {
+					new DialogMensagemErro("Nada selecionado!").setVisible(true);
 					return;
 				}
 				new DialogConfirmacao("O médico será deletado.", tela).setVisible(true);
