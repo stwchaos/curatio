@@ -14,9 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import com.toedter.calendar.JDateChooser;
-
 import modelo.Anamnese;
 import modelo.Paciente;
 import modelo.Usuario;
@@ -63,14 +61,7 @@ public class TelaAnamnese extends JFrame {
 	private JButton btnSalvar;
 	int camposPreenchidos = 0;
 
-	/**
-	 * Launch the application.
-	 */
 
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaAnamnese(Usuario usuarioAtual, Anamnese anaSelecionada, Boolean visualizar) {
 		
 		
@@ -351,7 +342,16 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnSalvar.setBackground(new Color(0, 81, 81));
 		contentPane.add(btnSalvar, "cell 31 11,growx");
+		receberDados(anaSelecionada);
 	
+	}
+	
+	private void receberDados(Anamnese anaSelecionada) {
+		textNomeR.setText(anaSelecionada.getConsulta().getPaciente().getNome());
+		textNomeS.setText(anaSelecionada.getConsulta().getPaciente().getNomeSocial());
+		comboPronome.setSelectedItem(anaSelecionada.getConsulta().getPaciente().getPronome());
+		textSexo.setText(anaSelecionada.getConsulta().getPaciente().getSexo());
+		dtNascimento.setToolTipText(anaSelecionada.getConsulta().getPaciente().getNascimento().toString());
 	}
 
 }

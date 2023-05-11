@@ -78,13 +78,9 @@ public class DialogConfirmacao extends JFrame {
 		btnOk.setBounds(221, 96, 89, 23);
 		btnOk.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {	
 				tela.btnConfirmacao();
-				dispose();
-				
-	
-				
+				dispose();	
 			}
 		});
 		btnOk.setBackground(new Color(191, 0, 0));
@@ -97,6 +93,8 @@ public class DialogConfirmacao extends JFrame {
 		btnCancelar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				tela.bntCancelar();
 				dispose();
 			}});
