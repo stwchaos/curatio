@@ -151,7 +151,6 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				pesquisa.setRowCount(0);
 				ArrayList<Medico> medicos = mDao.listarPesquisa(txtPesquisarPaciente.getText());
 				if(txtPesquisarPaciente.getText().isEmpty()) {
-					txtPesquisarPaciente.setText("Pesquisar profissional");
 					txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
 					table.setModel(modelo);
 				}else {
@@ -166,7 +165,6 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 			}
 		});
 		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar profissional");
 		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");

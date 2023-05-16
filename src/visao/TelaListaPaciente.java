@@ -17,8 +17,11 @@ import modelo.Usuario;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -77,9 +80,26 @@ public class TelaListaPaciente extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[-12.00px][395.00px,grow][grow]", "[28.00px,fill][19px][49.00][342.00px,grow][31px]"));
 		
 		txtPesquisarPaciente = new JTextField();
+		txtPesquisarPaciente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				pesquisa.setRowCount(0);
+				ArrayList<Medico> pacientes = pDao.listarPacientes(txtPesquisarPaciente.getText());
+				if(txtPesquisarPaciente.getText().isEmpty()) {
+					txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
+					table.setModel(modelo);
+				}else {
+					if(medicos.size()!=0) {
+						for (Medico medico : medicos) {
+							pesquisa.addRow(new Object[] { medico.getCpf(), medico.getNome(), medico.getEspecialidade().getEspecialidade()});
+						}
+						table.setModel(pesquisa);
+					}
+					txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
+				}
+			}
+		});
 		txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
-		txtPesquisarPaciente.setText("Pesquisar paciente");
-		txtPesquisarPaciente.setToolTipText("");
 		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		contentPane.add(txtPesquisarPaciente, "cell 1 0,growx,aligny bottom");
 		txtPesquisarPaciente.setColumns(10);

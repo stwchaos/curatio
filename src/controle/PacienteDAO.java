@@ -10,7 +10,11 @@ import java.util.ArrayList;
 
 import modelo.Anamnese;
 import modelo.Endereco;
+import modelo.Especialidade;
+import modelo.Medico;
 import modelo.Paciente;
+import modelo.TipoUsuario;
+import modelo.Usuario;
 
 public class PacienteDAO {
 	private Conexao con;
@@ -159,5 +163,68 @@ public class PacienteDAO {
 			con.fecharConexao();
 		}
 		return pacientes;
+	}
+	public ArrayList<Paciente> listarPesquisa(String pesquisa){
+		ArrayList<Paciente> paciente = new ArrayList<>();
+
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+
+		try {
+			String query = "SELECT * FROM ((paciente INNER JOIN usuario ON paciente.usuario_id_usuario = usuario.id_usuario) INNER JOIN especialidade ON medico.especialidade_id_especialidade = especialidade.id_especialidade) WHERE nome LIKE ?;";
+			
+			PreparedStatement stm = c.prepareStatement(query);
+
+			stm.setString(1, pesquisa+"%");
+			
+			ResultSet rs = stm.executeQuery();
+			
+			while (rs.next()) {
+				Long crm = rs.getLong("crm");
+				Long cpf = rs.getLong("cpf");
+				String nome = rs.getString("nome");
+				String sexo = rs.getString("sexo");
+				String pronome = rs.getString("pronome");
+				Integer idUsuario = rs.getInt("id_usuario");
+				String login = rs.getString("login");
+				String senha = rs.getString("senha");
+				Integer tipoUsuario = rs.getInt("tipo_usuario");
+				Integer idEspecialidade = rs.getInt("id_especialidade");
+				String especialidade = rs.getString("especialidade");
+				Double salario = rs.getDouble("salario");
+				
+				Medico m = new Medico();
+				m.setCrm(crm);
+				m.setCpf(cpf);
+				m.setNome(nome);
+				m.setSexo(sexo);
+				m.setPronome(pronome);
+				
+				Usuario u = new Usuario();
+				u.setId(idUsuario);
+				u.setLogin(login);
+				u.setSenha(senha);
+				u.setTipo(TipoUsuario.ObterTipo(tipoUsuario));	
+				m.setUsuario(u);
+				
+				Especialidade e = new Especialidade();
+				e.setEspecialidade(especialidade);
+				e.setIdEspecialidade(idEspecialidade);
+				e.setSalario(salario);
+				m.setEspecialidade(e);
+				medicos.add(m);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		// desconectar
+		return medicos;
 	}
 }
