@@ -92,8 +92,6 @@ public class TelaConsultasPendentes extends JFrame {
 					dispose();
 					
 					AnamneseDAO aDao = new AnamneseDAO();
-					System.out.println(aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()));
-					System.out.println();
 					TelaAnamnese telaAna = new TelaAnamnese(u, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled);
 					telaAna.setLocationRelativeTo(null);
 					telaAna.setVisible(true);

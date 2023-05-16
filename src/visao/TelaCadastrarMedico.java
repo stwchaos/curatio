@@ -149,15 +149,13 @@ public class TelaCadastrarMedico extends JFrame {
 		comboBoxTipoProfissional.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex()+1);
-				System.out.println(comboBoxTipoProfissional.getSelectedIndex()+1);
-				System.out.println(tipo);
 				if(tipo==TipoUsuario.MEDICO) {
 					panel.add(txtCrm, "cell 1 6,growx");
 					panel.add(comboEspecialidade, "cell 1 9,growx");
 					panel.add(lblNewLabel_3, "cell 1 8");
 					panel.add(lblNewLabel_2, "cell 1 5");
 				}else {
-					System.out.println("teste");
+					
 					panel.remove(txtCrm);
 					panel.remove(comboEspecialidade);
 					panel.remove(lblNewLabel_2);

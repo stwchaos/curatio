@@ -335,7 +335,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 	@Override
 	public void btnConfirmacao() {
 		PacienteDAO pDao = new PacienteDAO();
-		System.out.println(pacienteSelecionado.getNome());
 		if(pDao.deletar(pacienteSelecionado)) {
 			JOptionPane.showMessageDialog(null, "Sim");
 		}else {

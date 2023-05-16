@@ -123,7 +123,6 @@ public class EnderecoDAO {
 			stm.setString(2, end.getComplemento());
 			stm.setString(3, end.getCidade());
 			stm.setString(4, end.getBairro());
-			System.out.println(stm);
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {

@@ -53,7 +53,7 @@ class MedicoDAOTest {
 	public void testListar() {
 	    MedicoDAO mdao = new MedicoDAO();
 	    ArrayList<Medico> lm = mdao.listarProfissionais();
-	    System.out.println(lm.size());
+	   
 	    
 	    assertTrue(!lm.isEmpty());
 	    Medico primeiroMedico = lm.get(0);
@@ -73,7 +73,7 @@ class MedicoDAOTest {
 		MedicoDAO mdao = new MedicoDAO();
 
 		ArrayList<Medico> lm = mdao.listarProfissionais();
-		System.out.println(lm.size());
+	
 		Medico m = lm.get(0);
 		m.setCpf(55555l);
 		System.out.println(mdao.alterar(m));
@@ -89,7 +89,7 @@ class MedicoDAOTest {
 		MedicoDAO mdao = new MedicoDAO();
 
 		ArrayList<Medico> lm = mdao.listarProfissionais();
-		System.out.println(lm.size());
+		
 		Medico m = lm.get(0);
 		assertTrue(mdao.deletar(m));
 	}
