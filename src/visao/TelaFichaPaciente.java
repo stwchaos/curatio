@@ -103,7 +103,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][][][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,39 +174,39 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		panel.add(lblNewLabel_6, "cell 2 8,alignx left,aligny bottom");
 		
 		JLabel lblNewLabel_5_1_1 = new JLabel("N\u00FAmero da casa");
-		panel.add(lblNewLabel_5_1_1, "cell 2 12");
+		panel.add(lblNewLabel_5_1_1, "cell 2 12,growx,aligny bottom");
 		
 		JLabel lblNewLabel_5_1_1_1 = new JLabel("Bairro");
-		panel.add(lblNewLabel_5_1_1_1, "cell 4 12");
+		panel.add(lblNewLabel_5_1_1_1, "cell 4 12,growx,aligny bottom");
 		
 		RoundJTextField txtNumCasa = new RoundJTextField();
 		txtNumCasa.setText((String) null);
 		txtNumCasa.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtNumCasa.setColumns(10);
-		panel.add(txtNumCasa, "cell 2 13,growx");
+		panel.add(txtNumCasa, "cell 2 13,growx,aligny center");
 		
 		RoundJTextField txtBairro = new RoundJTextField();
 		txtBairro.setText((String) null);
 		txtBairro.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtBairro.setColumns(10);
-		panel.add(txtBairro, "cell 4 13,growx");
+		panel.add(txtBairro, "cell 4 13,growx,aligny center");
 		
 		JLabel lblNewLabel_5_1_2 = new JLabel("Cidade");
-		panel.add(lblNewLabel_5_1_2, "cell 0 14");
+		panel.add(lblNewLabel_5_1_2, "cell 0 14,aligny bottom");
 		
 		JLabel Rua = new JLabel("Rua");
-		panel.add(Rua, "cell 2 14");
+		panel.add(Rua, "cell 2 14,aligny bottom");
 		
 		RoundJTextField txtCidade = new RoundJTextField();
 		txtCidade.setText((String) null);
 		txtCidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtCidade.setColumns(10);
-		panel.add(txtCidade, "cell 0 15,growx");
+		panel.add(txtCidade, "cell 0 15,growx,aligny center");
 		
 		RoundJTextField txtRua = new RoundJTextField();
 		txtRua.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtRua.setColumns(10);
-		panel.add(txtRua, "cell 2 15,growx");
+		panel.add(txtRua, "cell 2 15,growx,aligny center");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 17,growx,aligny bottom");
