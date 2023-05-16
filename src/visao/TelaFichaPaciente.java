@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import controle.PacienteDAO;
 import controle.UsuarioDAO;
+import modelo.Anamnese;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.TipoUsuario;
@@ -25,11 +26,14 @@ import javax.swing.JOptionPane;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -45,7 +49,7 @@ import modelo.Paciente;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
+public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 
 	private JPanel c;
 	private JTextField textFieldNome;
@@ -55,6 +59,11 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 	private JTextField textFieldSexo;
 	private JTextField textFieldNascimento;
 	private JTextField textFieldCEP;
+	private JTextField txtNumCasa;
+	private JTextField txtBairro;
+	private JTextField txtCidade;
+	private JTextField txtRua;
+	private JComboBox comboPronome;
 	private JTextField txtRegistrosDosPacientes;
 	private Paciente pacienteSelecionado;
 	private Usuario usuarioAtual;
@@ -103,7 +112,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 
 		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -114,17 +123,17 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		txtRegistrosDosPacientes.setBackground(new Color(64, 128, 128));
 		panel.add(txtRegistrosDosPacientes, "cell 0 0 5 1,grow");
 		txtRegistrosDosPacientes.setColumns(10);
-				
-						JPanel panel_1 = new RoundJPanel(150, Color.white);
-						panel_1.setBackground(null);
-						panel_1.setBorder(null);
-						// panel_1.setBackground(Color.WHITE);
-						panel.add(panel_1, "cell 2 2 2 1,grow");
-						panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
-		
-				JLabel lblNewLabel = new JLabel("");
-				panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
-				lblNewLabel.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconpeople.png")));
+
+		JPanel panel_1 = new RoundJPanel(150, Color.white);
+		panel_1.setBackground(null);
+		panel_1.setBorder(null);
+		// panel_1.setBackground(Color.WHITE);
+		panel.add(panel_1, "cell 2 2 2 1,grow");
+		panel_1.setLayout(new MigLayout("", "[73.00px,grow]", "[96px,grow]"));
+
+		JLabel lblNewLabel = new JLabel("");
+		panel_1.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
+		lblNewLabel.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/iconpeople.png")));
 
 		JLabel lblNewLabel_1 = new JLabel("Nome");
 		panel.add(lblNewLabel_1, "cell 0 4,alignx left,aligny bottom");
@@ -135,7 +144,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldNome = new RoundJTextField();
 		textFieldNome.setBackground(new Color(163, 163, 163));
 		textFieldNome.setEditable(false);
-		textFieldNome.setText(pacienteSelecionado.getNome().toString());
 		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNome, "cell 0 5 3 1,growx,aligny center");
 		textFieldNome.setColumns(10);
@@ -155,15 +163,13 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		lblNewLabel_2_1.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_2_1, "cell 4 6,alignx left,aligny bottom");
 
-		RoundComboBox comboPronome = new RoundComboBox();
+		comboPronome = new RoundComboBox();
 		comboPronome.setForeground(Color.BLACK);
-		comboPronome.setBackground(new Color(218, 218, 218));
-		comboPronome.setSelectedItem("Inserir");
-
-		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
-		comboPronome.setSelectedItem("Inserir");
-		for (String pronome : listaPronome) {
-			comboPronome.addItem(pronome);
+		comboPronome.setBackground(new Color(255, 255, 255));
+		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		String[] listaPronome = {"Ele/Dele", "Ela/Dela", "Qualquer pronome"};
+		for (String string : listaPronome) {
+			comboPronome.addItem(string);
 		}
 		panel.add(comboPronome, "cell 4 7,growx");
 
@@ -173,22 +179,50 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		JLabel lblNewLabel_6 = new JLabel("Nascimento");
 		panel.add(lblNewLabel_6, "cell 2 8,alignx left,aligny bottom");
 
+		JLabel lblNewLabel_5_1_1 = new JLabel("N\u00FAmero da casa");
+		panel.add(lblNewLabel_5_1_1, "cell 2 12");
+
+		JLabel lblNewLabel_5_1_1_1 = new JLabel("Bairro");
+		panel.add(lblNewLabel_5_1_1_1, "cell 4 12");
+
+		txtNumCasa = new RoundJTextField();
+		txtNumCasa.setText((String) null);
+		txtNumCasa.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtNumCasa.setColumns(10);
+		panel.add(txtNumCasa, "cell 2 13,growx");
+
+		txtBairro = new RoundJTextField();
+		txtBairro.setText((String) null);
+		txtBairro.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtBairro.setColumns(10);
+		panel.add(txtBairro, "cell 4 13,growx");
+
+		JLabel lblNewLabel_5_1_2 = new JLabel("Cidade");
+		panel.add(lblNewLabel_5_1_2, "cell 0 14");
+
+		JLabel Rua = new JLabel("Rua");
+		panel.add(Rua, "cell 2 14");
+
+		txtCidade = new RoundJTextField();
+		txtCidade.setText((String) null);
+		txtCidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCidade.setColumns(10);
+		panel.add(txtCidade, "cell 0 15,growx");
+
+		txtRua = new RoundJTextField();
+		txtRua.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtRua.setColumns(10);
+		panel.add(txtRua, "cell 2 15,growx,aligny center");
+
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
-		panel.add(lblNewLabel_7, "cell 0 15,growx,aligny bottom");
+		panel.add(lblNewLabel_7, "cell 0 17,growx,aligny bottom");
 
 		textFieldEmail = new RoundJTextField();
-		textFieldEmail.setText(pacienteSelecionado.getEmail().toString());
 		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldEmail, "cell 0 16 3 1,growx,aligny center");
+		panel.add(textFieldEmail, "cell 0 18 3 1,growx,aligny center");
 		textFieldEmail.setColumns(10);
 
 		textFieldNomeSocial = new RoundJTextField();
-		if(textFieldNomeSocial==null) {
-			textFieldNomeSocial.setText(null);
-		}else {
-			textFieldNomeSocial.setText(pacienteSelecionado.getNomeSocial());
-		}
-		
 		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldNomeSocial, "cell 0 7 3 1,growx,aligny center");
 		textFieldNomeSocial.setColumns(10);
@@ -196,7 +230,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldSexo = new RoundJTextField();
 		textFieldSexo.setBackground(new Color(163, 163, 163));
 		textFieldSexo.setEditable(false);
-		textFieldSexo.setText(pacienteSelecionado.getSexo().toString());
 		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		panel.add(textFieldSexo, "cell 0 9,growx,aligny center");
 		textFieldSexo.setColumns(10);
@@ -205,15 +238,13 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		textFieldNascimento.setBackground(new Color(163, 163, 163));
 		textFieldNascimento.setEditable(false);
 		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldNascimento.setText(pacienteSelecionado.getNascimento().toString());
 		panel.add(textFieldNascimento, "cell 2 9 3 1,growx,aligny center");
 		textFieldNascimento.setColumns(10);
 
 		textFieldCEP = new RoundJTextField();
 		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldCEP.setColumns(10);
-		textFieldCEP.setText(pacienteSelecionado.getCep().toString());
-		panel.add(textFieldCEP, "cell 0 13 3 1,growx,aligny center");
+		panel.add(textFieldCEP, "cell 0 13 2 1,growx,aligny center");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
 		panel.add(lblNewLabel_5_1, "cell 0 12,growx,aligny bottom");
@@ -222,7 +253,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		panel.add(textFieldTelefone, "cell 0 11 3 1,growx,aligny center");
 		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		textFieldTelefone.setColumns(10);
-		textFieldTelefone.setText(pacienteSelecionado.getTelefone().toString());
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 10,growx,aligny bottom");
@@ -237,89 +267,96 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 				new DialogConfirmacao("O paciente será deletado.", tela).setVisible(true);
 			}
 		});
-		
-				JButton btnConfirmar = new JButton("Confirmar");
-				btnConfirmar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-				btnConfirmar.setForeground(new Color(255, 255, 255));
-				btnConfirmar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						String numCep = textFieldCEP.getText();
-						String email = textFieldEmail.getText();
-						String numTel = textFieldTelefone.getText();
-						String nomeSoc = textFieldNomeSocial.getText();
-						
-						Long cep;
-						Integer telefone;
-						
-						if (numCep.trim().isEmpty()) {
-							new DialogMensagemErro("CEP Vazio").setVisible(true);
-							return;
-						} else {
-							try {
-								cep = Long.valueOf(textFieldCEP.getText());
-							} catch (NumberFormatException e2) {
-								new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
-								return;
-							}
-						}
-						if (numTel.trim().isEmpty()) {
-							new DialogMensagemErro("Telefone Vazio").setVisible(true);
-							return;
-						} else {
-							try {
-								telefone = Integer.valueOf(textFieldTelefone.getText());
-							} catch (NumberFormatException e2) {
-								new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
-								return;
-							}
-						}
-						if (email.trim().isEmpty()) {
-							new DialogMensagemErro("Email Vazio").setVisible(true);
-							return;
-						}
-						if(nomeSoc.trim().isEmpty()) {
-							nomeSoc = null;
-						}
-						
+
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		btnConfirmar.setForeground(new Color(255, 255, 255));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String numCep = textFieldCEP.getText();
+				String email = textFieldEmail.getText();
+				String numTel = textFieldTelefone.getText();
+				String nomeSoc = textFieldNomeSocial.getText();
+
+				Long cep;
+				Integer telefone;
+
+				Paciente p = new Paciente();
+				PacienteDAO pDao = new PacienteDAO();
+
+				if (numCep.trim().isEmpty()) {
+					new DialogMensagemErro("CEP Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						cep = Long.valueOf(textFieldCEP.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
+						return;
 					}
-				});
-				btnConfirmar.setBackground(new Color(64, 128, 128));
-				btnConfirmar.setIcon(null);
-				btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				panel.add(btnConfirmar, "cell 0 17,growx,aligny center");
+				}
+				if (numTel.trim().isEmpty()) {
+					new DialogMensagemErro("Telefone Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						telefone = Integer.valueOf(textFieldTelefone.getText());
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
+						return;
+					}
+				}
+				if (email.trim().isEmpty()) {
+					new DialogMensagemErro("Email Vazio").setVisible(true);
+					return;
+				}
+				if (nomeSoc.trim().isEmpty()) {
+					nomeSoc = null;
+				}
+
+				p.setPronome(comboPronome.getSelectedItem().toString());
+				p.setCep(cep);
+
+			}
+		});
+		btnConfirmar.setBackground(new Color(64, 128, 128));
+		btnConfirmar.setIcon(null);
+		btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel.add(btnConfirmar, "cell 0 19,growx,aligny center");
 		btnDeletar.setForeground(new Color(255, 255, 255));
 		btnDeletar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		btnDeletar.setBackground(new Color(191, 0, 0));
 		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDeletar.setBorderPainted(false);
 		btnDeletar.setFocusPainted(false);
-		panel.add(btnDeletar, "cell 4 17,growx,aligny center");
-		//}
+		panel.add(btnDeletar, "cell 4 19,growx,aligny center");
+		// }
 
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
 		c.add(btnHistorico, "flowx,cell 2 0,alignx right,aligny bottom");
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
-		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO) {
-		JButton btnAnamnese = new JButton("Anamnese");
-		btnAnamnese.setForeground(new Color(255, 255, 255));
-		btnAnamnese.setBackground(new Color(0, 81, 81));
-		btnAnamnese.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
-				telaAnterior.setLocationRelativeTo(null);
-				telaAnterior.setVisible(true);
-				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
-		btnAnamnese.setIcon(new ImageIcon(TelaFichaPaciente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
-		c.add(btnAnamnese, "cell 2 0,alignx right,aligny bottom");
+
+		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO) {
+			JButton btnAnamnese = new JButton("Anamnese");
+			btnAnamnese.setForeground(new Color(255, 255, 255));
+			btnAnamnese.setBackground(new Color(0, 81, 81));
+			btnAnamnese.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+					telaAnterior.setLocationRelativeTo(null);
+					telaAnterior.setVisible(true);
+					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				}
+			});
+			btnAnamnese.setIcon(
+					new ImageIcon(TelaFichaPaciente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			c.add(btnAnamnese, "cell 2 0,alignx right,aligny bottom");
 		}
-		
+
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -329,16 +366,31 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 				telaHistorico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-		
+		receberDados(pacienteSelecionado);
+	}
+
+	private void receberDados(Paciente pacienteSelecionado) {
+		textFieldNome.setText(pacienteSelecionado.getNome());
+		textFieldNomeSocial.setText(pacienteSelecionado.getNomeSocial());
+		comboPronome.setSelectedItem(pacienteSelecionado.getPronome());
+		textFieldSexo.setText(pacienteSelecionado.getSexo());
+		textFieldNascimento.setText(Date.valueOf(pacienteSelecionado.getNascimento()).toString());
+		textFieldTelefone.setText(String.valueOf(pacienteSelecionado.getTelefone()));
+		textFieldCEP.setText(String.valueOf(pacienteSelecionado.getCep()));
+		txtNumCasa.setText(String.valueOf(pacienteSelecionado.getNumCasa()));
+		txtBairro.setText(pacienteSelecionado.getEndereco().getBairro());
+		txtCidade.setText(pacienteSelecionado.getEndereco().getCidade());
+		txtRua.setText(pacienteSelecionado.getEndereco().getRua());
+		textFieldEmail.setText(pacienteSelecionado.getEmail());
 	}
 
 	@Override
 	public void btnConfirmacao() {
 		PacienteDAO pDao = new PacienteDAO();
 		System.out.println(pacienteSelecionado.getNome());
-		if(pDao.deletar(pacienteSelecionado)) {
+		if (pDao.deletar(pacienteSelecionado)) {
 			JOptionPane.showMessageDialog(null, "Sim");
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Impossível deletar, paciente já possui registros cadastrados");
 		}
 		dispose();
@@ -346,12 +398,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao{
 		telaListaPaciente.setLocationRelativeTo(null);
 		telaListaPaciente.setVisible(true);
 		telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+
 	}
 
 	@Override
 	public void bntCancelar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
