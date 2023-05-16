@@ -112,8 +112,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 
 		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]",
-				"[69.00,grow][][116.00px,grow][][][32px][grow][33px][grow][33px,bottom][14px,grow][20px][14px,grow][20px,grow][][][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -213,7 +212,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		txtRua = new RoundJTextField();
 		txtRua.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtRua.setColumns(10);
-		panel.add(txtRua, "cell 2 15,growx");
+		panel.add(txtRua, "cell 2 15,growx,aligny center");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 17,growx,aligny bottom");
