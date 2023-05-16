@@ -10,7 +10,11 @@ import java.util.ArrayList;
 
 import modelo.Anamnese;
 import modelo.Endereco;
+import modelo.Especialidade;
+import modelo.Medico;
 import modelo.Paciente;
+import modelo.TipoUsuario;
+import modelo.Usuario;
 
 public class PacienteDAO {
 	private Conexao con;
@@ -160,4 +164,72 @@ public class PacienteDAO {
 		}
 		return pacientes;
 	}
+	public ArrayList<Paciente> listarPesquisa(String pesquisa){
+		ArrayList<Paciente> pacientes = new ArrayList<>();
+
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+
+		try {
+			String query = "SELECT * FROM (paciente INNER JOIN endereco ON paciente.endereco_id_endereco = endereco.id_endereco) WHERE nome LIKE ? or nome_social LIKE ?;";
+			
+			PreparedStatement stm = c.prepareStatement(query);
+
+			stm.setString(1, "%"+pesquisa+"%");
+			stm.setString(2, "%"+pesquisa+"%");
+
+			ResultSet rs = stm.executeQuery();
+			
+			while (rs.next()) {
+				Long cpf = rs.getLong("cpf");
+				String nome = rs.getString("nome");
+				Date nascimento = rs.getDate("nascimento");
+				Long telefone = rs.getLong("telefone");
+				String sexo = rs.getString("sexo");
+				String nomeSocial = rs.getString("nome_social");
+				String email = rs.getString("email");
+				String pronome = rs.getString("pronome");
+				Long idEndereco = rs.getLong("id_endereco");
+				String rua = rs.getString("rua");
+				Long cep = rs.getLong("cep");
+				Integer numCasa = rs.getInt("numero_casa");
+				String complemento = rs.getString("complemento");
+				String cidade = rs.getString("cidade");
+				String bairro = rs.getString("bairro");
+				
+				Paciente p = new Paciente();
+				p.setCpf(cpf);
+				p.setNome(nome);
+				p.setNascimento(nascimento.toLocalDate());
+				p.setTelefone(telefone);
+				p.setSexo(sexo);
+				p.setNomeSocial(nomeSocial);
+				p.setEmail(email);
+				p.setPronome(pronome);
+				p.setCep(cep);
+				p.setNumCasa(numCasa);
+				
+				Endereco e = new Endereco();
+				e.setBairro(bairro);
+				e.setCidade(cidade);
+				e.setComplemento(complemento);
+				e.setIdEndereco(idEndereco);
+				e.setRua(rua);
+				p.setEndereco(e);
+				
+				pacientes.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return pacientes;
+	}
 }
+
+
