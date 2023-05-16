@@ -45,7 +45,7 @@ class MedicoDAOTest {
 		medico.setUsuario(usuario);
 
 		assertTrue(dao.inserir(medico));
-		// dao.deletar(medico);
+	
 	}
 
 	@Test
@@ -69,7 +69,6 @@ class MedicoDAOTest {
 	@Order(3)
 	public void testAlterar() {
 
-		// inserirMedicoSucessoTeste();
 		MedicoDAO mdao = new MedicoDAO();
 
 		ArrayList<Medico> lm = mdao.listarProfissionais();
