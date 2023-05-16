@@ -37,7 +37,7 @@ public class TelaAnamnese extends JFrame {
 	private JLabel lblNewLabel_3;
 	private JTextField textQueixa;
 	private JButton btnVoltar;
-	private JTextField textHDoença;
+	private JTextField textHDoenca;
 	private JLabel lblNewLabel_6;
 	private RoundJTextField textHPato;
 	private RoundJTextField textHPatoF;
@@ -176,10 +176,10 @@ public class TelaAnamnese extends JFrame {
 		lblNewLabel_6 = new JLabel("Histórico de Doença Atual");
 		panel_1.add(lblNewLabel_6, "cell 0 3");
 
-		textHDoença = new RoundJTextField();
-		textHDoença.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		panel_1.add(textHDoença, "cell 0 4,grow");
-		textHDoença.setColumns(10);
+		textHDoenca = new RoundJTextField();
+		textHDoenca.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		panel_1.add(textHDoenca, "cell 0 4,grow");
+		textHDoenca.setColumns(10);
 
 		lblNewLabel_7 = new JLabel("Histórico Patológico Progresso");
 		panel_1.add(lblNewLabel_7, "cell 0 5,aligny top");
@@ -295,7 +295,7 @@ public class TelaAnamnese extends JFrame {
 					camposPreenchidos++;
 				}
 
-				if (!textHDoença.getText().isEmpty()) {
+				if (!textHDoenca.getText().isEmpty()) {
 					camposPreenchidos++;
 				}
 
