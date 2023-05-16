@@ -20,6 +20,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import controle.EspecialidadeDAO;
 import controle.FuncionarioDAO;
 import controle.MedicoDAO;
@@ -44,6 +46,7 @@ public class TelaCadastrarMedico extends JFrame {
 	private JComboBox comboEspecialidade;
 	private JComboBox comboSexo;
 	private JComboBox comboPronome;
+	private JComboBox comboBoxTipoProfissional;
 	private TipoUsuario tipo;
 
 	/**
@@ -134,7 +137,6 @@ public class TelaCadastrarMedico extends JFrame {
 		panel.add(lblNewLabel_6, "cell 3 8");
 		
 		comboEspecialidade = new RoundComboBox();
-		comboEspecialidade.setEditable(true);
 		comboEspecialidade.setForeground(Color.BLACK);
 		comboEspecialidade.setBackground(new Color(255, 255, 255));
 		comboEspecialidade.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -145,7 +147,7 @@ public class TelaCadastrarMedico extends JFrame {
 			comboEspecialidade.addItem(e.getEspecialidade());
 		}
 		
-		JComboBox comboBoxTipoProfissional = new JComboBox();
+		comboBoxTipoProfissional = new JComboBox();
 		comboBoxTipoProfissional.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex()+1);
@@ -224,8 +226,10 @@ public class TelaCadastrarMedico extends JFrame {
 				String senha = txtSenha.getText();
 				
 				Long cpf;
-				Long crm;
+				Long crm=null;
 				
+				Usuario u = new Usuario();
+				UsuarioDAO usuarioDao = new UsuarioDAO();
 				
 					if (nCpf.trim().isEmpty()) {
 						new DialogMensagemErro("CPF Vazio").setVisible(true);
@@ -238,31 +242,42 @@ public class TelaCadastrarMedico extends JFrame {
 							return;
 						}
 					}
-					if (nCrm.trim().isEmpty()) {
-						new DialogMensagemErro("CRM Vazio").setVisible(true);
-						return;
-					} else {
-						try {
-							crm = Long.valueOf(txtCrm.getText());
-						} catch (NumberFormatException e2) {
-							new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
+					if(comboBoxTipoProfissional.getSelectedIndex()==0) {
+						if (nCrm.trim().isEmpty()) {
+							new DialogMensagemErro("CRM Vazio").setVisible(true);
 							return;
+						} else {
+							try {
+								crm = Long.valueOf(txtCrm.getText());
+							} catch (NumberFormatException e2) {
+								new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
+								return;
+							}
 						}
 					}
 					if (nome.trim().isEmpty()) {
 						new DialogMensagemErro("Nome Vazio").setVisible(true);
 						return;
 					}
-				
-					Usuario u = new Usuario();
-					UsuarioDAO usuarioDao = new UsuarioDAO();
-					
-					u.setLogin(nome);
-					if (!senha.trim().isEmpty()) {
-						u.setSenha(senha);
+					if(editar==false) {
+						if (senha.trim().isEmpty()) {
+							new DialogMensagemErro("Senha Vazia").setVisible(true);
+							return;
+						}
+					}else {
+						if (!senha.trim().isEmpty()) {
+							u.setSenha(senha);
+						}
 					}
-					u.setTipo(tipo);
-					usuarioDao.inserir(u);
+					
+					if(editar==false) {
+						u.setLogin(nome);
+						if (!senha.trim().isEmpty()) {
+							u.setSenha(senha);
+						}
+						u.setTipo(tipo);
+						usuarioDao.inserir(u);
+					}
 					
 					if(comboBoxTipoProfissional.getSelectedIndex()==0) {
 						Medico m = new Medico();
@@ -280,7 +295,11 @@ public class TelaCadastrarMedico extends JFrame {
 						m.setPronome(String.valueOf(comboPronome.getSelectedItem()));
 						m.setSexo(String.valueOf(comboSexo.getSelectedItem()));
 						
-						m.setUsuario(u);
+						if(editar!=true) {
+							m.setUsuario(u);
+						}else {
+							m.setUsuario(medicoSelecionado.getUsuario());
+						}
 						
 						if(editar==true) {
 							if(medicoDao.alterar(m)==true) {
@@ -304,7 +323,11 @@ public class TelaCadastrarMedico extends JFrame {
 						f.setPronome(String.valueOf(comboPronome.getSelectedItem()));
 						f.setSexo(String.valueOf(comboSexo.getSelectedItem()));
 						
-						f.setUsuario(u);
+						if(editar!=true) {
+							f.setUsuario(u);
+						}else {
+							f.setUsuario(funcionarioSelecionado.getUsuario());
+						}
 						
 						if(editar==true) {
 							if(fDao.alterar(f)==true) {
@@ -347,18 +370,28 @@ public class TelaCadastrarMedico extends JFrame {
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		panel.add(btnCancelar, "cell 3 16,alignx center,aligny bottom");
 		
-		if(editar==true  && medicoSelecionado != null) {
-			receberDados(medicoSelecionado);
+		if(editar==true  && medicoSelecionado == null) {
+			receberDadosF(funcionarioSelecionado);
+		}
+		if(editar==true && funcionarioSelecionado == null) {
+			receberDadosM(medicoSelecionado);
 		}
 	}
-	private void receberDados(Medico medicoSelecioado) {
+	private void receberDadosM(Medico medicoSelecioado) {
 		txtNome.setText(medicoSelecioado.getNome());
 		txtCrm.setText(String.valueOf(medicoSelecioado.getCrm()));
 		txtCpf.setText(String.valueOf(medicoSelecioado.getCpf()));
-		comboEspecialidade.setSelectedItem(medicoSelecioado.getEspecialidade().getEspecialidade());
+		comboEspecialidade.setSelectedIndex(medicoSelecioado.getEspecialidade().getIdEspecialidade()-1);
 		comboSexo.setSelectedItem(medicoSelecioado.getSexo());
 		comboPronome.setSelectedItem(medicoSelecioado.getPronome());
+		comboBoxTipoProfissional.setSelectedItem(medicoSelecioado.getUsuario().getTipo());
 	}
 	
-	
+	private void receberDadosF(Funcionario funcionarioSelecionado) {
+		txtNome.setText(funcionarioSelecionado.getNome());
+		txtCpf.setText(String.valueOf(funcionarioSelecionado.getCpf()));
+		comboSexo.setSelectedItem(funcionarioSelecionado.getSexo());
+		comboPronome.setSelectedItem(funcionarioSelecionado.getPronome());
+		comboBoxTipoProfissional.setSelectedIndex(funcionarioSelecionado.getUsuario().getTipo().tipo-1);
+	}
 }

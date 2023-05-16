@@ -167,7 +167,7 @@ public class MedicoDAO {
 			
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setString(1, pesquisa+"%");
+			stm.setString(1, "%"+pesquisa+"%");
 			
 			ResultSet rs = stm.executeQuery();
 			
