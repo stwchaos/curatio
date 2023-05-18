@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Consulta {
 
@@ -12,6 +13,15 @@ public class Consulta {
 	private Paciente paciente;
 	private Medico medico;
 	private Boolean falta;
+	private LocalTime horario;
+
+	public LocalTime getHorario() {
+		return horario;
+	}
+
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
 
 	public Boolean getFalta() {
 		return falta;

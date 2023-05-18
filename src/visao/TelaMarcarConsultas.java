@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -31,16 +31,16 @@ import com.toedter.calendar.JDateChooser;
 
 import controle.AnamneseDAO;
 import controle.ConsultaDAO;
+import controle.MedicoDAO;
 import controle.PacienteDAO;
 import controle.PagamentoDAO;
-import controle.MedicoDAO;
 import modelo.Anamnese;
 import modelo.Consulta;
+import modelo.Medico;
 import modelo.Paciente;
 import modelo.Pagamento;
 import modelo.TipoUsuario;
 import modelo.Usuario;
-import modelo.Medico;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaMarcarConsultas extends JFrame {
@@ -52,6 +52,7 @@ public class TelaMarcarConsultas extends JFrame {
 	private ArrayList<Medico> listaMedicos;
 	private PacienteDAO pDao = new PacienteDAO();
 	private MedicoDAO mDao = new MedicoDAO();
+	private JTextField txtHora;
 	
 	public TelaMarcarConsultas(Usuario u) {
 		if (u.getTipo() == TipoUsuario.MEDICO || u.getTipo() == TipoUsuario.SECRETARIA){
@@ -99,7 +100,7 @@ public class TelaMarcarConsultas extends JFrame {
 
 		JPanel panel = new JPanel();
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px,grow][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
@@ -134,6 +135,10 @@ public class TelaMarcarConsultas extends JFrame {
 		});
 		panel.add(dtConsulta, "cell 0 6 4 1,growx,aligny bottom");
 		dtConsulta.getDate();
+		
+		txtHora = new JTextField();
+		panel.add(txtHora, "cell 4 6,growx");
+		txtHora.setColumns(10);
 
 		txtObjetivo = new RoundJTextField();
 		txtObjetivo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -216,6 +221,7 @@ public class TelaMarcarConsultas extends JFrame {
 				c.setPaciente(listaPaciente.get(comboPaciente.getSelectedIndex()));
 				c.setPagamento(p);
 				c.setFalta(false);
+				c.setHorario(LocalTime.parse(txtHora.getText()));
 
 				if(cDao.inserir(c)==true) {
 					new DialogMensagemSucesso("Consulta marcada").setVisible(true);
