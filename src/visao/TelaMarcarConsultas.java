@@ -106,7 +106,7 @@ public class TelaMarcarConsultas extends JFrame {
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		listaPaciente = pDao.listarPacientes();
 		for (Paciente p : listaPaciente) {
-			if (p.getNomeSocial().isEmpty()) {
+			if (p.getNomeSocial()==null) {
 				comboPaciente.addItem(p.getNome()+" - "+p.getCpf());
 			} else {
 				comboPaciente.addItem(p.getNomeSocial()+" - "+p.getCpf());
