@@ -1,34 +1,10 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import controle.PacienteDAO;
-import controle.UsuarioDAO;
-import modelo.Anamnese;
-import modelo.Medico;
-import modelo.Paciente;
-import modelo.TipoUsuario;
-import modelo.Usuario;
-
-import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -38,14 +14,20 @@ import java.sql.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.EnderecoDAO;
+import controle.PacienteDAO;
+import modelo.Endereco;
 import modelo.Paciente;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
@@ -67,6 +49,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	private JTextField txtRegistrosDosPacientes;
 	private Paciente pacienteSelecionado;
 	private Usuario usuarioAtual;
+	private RoundJTextField txtComplemento;
 
 	public TelaFichaPaciente(Usuario usuarioAtual, Paciente pacienteSelecionado) {
 		this.pacienteSelecionado = pacienteSelecionado;
@@ -164,6 +147,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		panel.add(lblNewLabel_2_1, "cell 4 6,alignx left,aligny bottom");
 
 		comboPronome = new RoundComboBox();
+		comboPronome.setEditable(true);
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(255, 255, 255));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -202,6 +186,9 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 
 		JLabel Rua = new JLabel("Rua");
 		panel.add(Rua, "cell 2 14");
+		
+		JLabel complemento = new JLabel("Complemento");
+		panel.add(complemento, "cell 4 14");
 
 		txtCidade = new RoundJTextField();
 		txtCidade.setText((String) null);
@@ -213,6 +200,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		txtRua.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtRua.setColumns(10);
 		panel.add(txtRua, "cell 2 15,growx,aligny center");
+		
+		txtComplemento = new RoundJTextField();
+		txtComplemento.setText((String) null);
+		txtComplemento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtComplemento.setColumns(10);
+		panel.add(txtComplemento, "cell 4 15,growx");
 
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 17,growx,aligny bottom");
@@ -278,12 +271,19 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 				String email = textFieldEmail.getText();
 				String numTel = textFieldTelefone.getText();
 				String nomeSoc = textFieldNomeSocial.getText();
+				String numCasa = txtNumCasa.getText();
+				String bairro = txtBairro.getText();
+				String cidade = txtCidade.getText();
+				String rua = txtRua.getText();
+				String complemento = txtComplemento.getText();
 
-				Long cep;
-				Integer telefone;
+				Long cep, telefone;
+				Integer casa;
 
-				Paciente p = new Paciente();
+				Paciente p = pacienteSelecionado;
 				PacienteDAO pDao = new PacienteDAO();
+				Endereco en = pacienteSelecionado.getEndereco();
+				EnderecoDAO eDao = new EnderecoDAO();
 
 				if (numCep.trim().isEmpty()) {
 					new DialogMensagemErro("CEP Vazio").setVisible(true);
@@ -301,7 +301,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					return;
 				} else {
 					try {
-						telefone = Integer.valueOf(textFieldTelefone.getText());
+						telefone = Long.valueOf(textFieldTelefone.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
 						return;
@@ -311,13 +311,67 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					new DialogMensagemErro("Email Vazio").setVisible(true);
 					return;
 				}
+				
 				if (nomeSoc.trim().isEmpty()) {
 					nomeSoc = null;
+				}
+				
+				if (complemento.trim().isEmpty()) {
+					complemento = null;
+				}
+				
+				if (numCasa.trim().isEmpty()) {
+					new DialogMensagemErro("Numero d/ Casa Vazio").setVisible(true);
+					return;
+				} else {
+					try {
+						casa = Integer.valueOf(numCasa);
+					} catch (NumberFormatException e2) {
+						new DialogMensagemErro("Informação inválida no campo numero d/ casa!").setVisible(true);
+						return;
+					}
+				}
+				
+				if (bairro.trim().isEmpty()) {
+					new DialogMensagemErro("Bairro Vazio").setVisible(true);
+					return;
+				}
+				
+				if (cidade.trim().isEmpty()) {
+					new DialogMensagemErro("Cidade Vazio").setVisible(true);
+					return;
+				}
+				
+				if (rua.trim().isEmpty()) {
+					new DialogMensagemErro("Rua Vazio").setVisible(true);
+					return;
 				}
 
 				p.setPronome(comboPronome.getSelectedItem().toString());
 				p.setCep(cep);
-
+				p.setEmail(email);
+				p.setNomeSocial(nomeSoc);
+				p.setNumCasa(casa);
+				p.setTelefone(telefone);
+				
+				en.setBairro(bairro);
+				en.setCidade(cidade);
+				en.setComplemento(rua);
+				en.setComplemento(complemento);
+				en.setRua(rua);
+				eDao.alterar(en);
+				p.setEndereco(en);
+				
+				if(pDao.alterar(p)) {
+					JOptionPane.showMessageDialog(null, "Sim");
+					dispose();
+					TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+					telaListaPaciente.setLocationRelativeTo(null);
+					telaListaPaciente.setVisible(true);
+					telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
 			}
 		});
 		btnConfirmar.setBackground(new Color(64, 128, 128));
@@ -382,6 +436,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		txtCidade.setText(pacienteSelecionado.getEndereco().getCidade());
 		txtRua.setText(pacienteSelecionado.getEndereco().getRua());
 		textFieldEmail.setText(pacienteSelecionado.getEmail());
+		txtComplemento.setText(pacienteSelecionado.getEndereco().getComplemento());
 	}
 
 	@Override

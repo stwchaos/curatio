@@ -151,8 +151,6 @@ public class TelaCadastrarMedico extends JFrame {
 		comboBoxTipoProfissional.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex()+1);
-				System.out.println(comboBoxTipoProfissional.getSelectedIndex()+1);
-				System.out.println(tipo);
 				if(tipo==TipoUsuario.MEDICO) {
 					panel.add(txtCrm, "cell 1 6,growx");
 					panel.add(comboEspecialidade, "cell 1 9,growx");
@@ -229,7 +227,7 @@ public class TelaCadastrarMedico extends JFrame {
 				Long crm=null;
 				
 				Usuario u = new Usuario();
-				UsuarioDAO usuarioDao = new UsuarioDAO();
+				UsuarioDAO uDao = new UsuarioDAO();
 				
 					if (nCpf.trim().isEmpty()) {
 						new DialogMensagemErro("CPF Vazio").setVisible(true);
@@ -264,10 +262,6 @@ public class TelaCadastrarMedico extends JFrame {
 							new DialogMensagemErro("Senha Vazia").setVisible(true);
 							return;
 						}
-					}else {
-						if (!senha.trim().isEmpty()) {
-							u.setSenha(senha);
-						}
 					}
 					
 					if(editar==false) {
@@ -276,18 +270,19 @@ public class TelaCadastrarMedico extends JFrame {
 							u.setSenha(senha);
 						}
 						u.setTipo(tipo);
-						usuarioDao.inserir(u);
+						uDao.inserir(u);
 					}
 					
 					if(comboBoxTipoProfissional.getSelectedIndex()==0) {
 						Medico m = new Medico();
-						Especialidade es = new Especialidade();
 						MedicoDAO medicoDao = new MedicoDAO();
-						EspecialidadeDAO especialidadeDao = new EspecialidadeDAO();
+						
+						if(editar==true) {
+							m = medicoSelecionado;
+						}
 						
 						m.setCpf(cpf);
 						m.setCrm(crm);
-						
 						Integer posicao = comboEspecialidade.getSelectedIndex();
 						Especialidade especialidadeSelecionado = listaEspecialidades.get(posicao);
 						m.setEspecialidade(especialidadeSelecionado);
@@ -298,12 +293,18 @@ public class TelaCadastrarMedico extends JFrame {
 						if(editar!=true) {
 							m.setUsuario(u);
 						}else {
-							m.setUsuario(medicoSelecionado.getUsuario());
+							u = medicoSelecionado.getUsuario();
+							u.setLogin(nome);
+							u.setTipo(tipo);
+							if (!senha.trim().isEmpty()) {
+								u.setSenha(senha);
+							}
 						}
 						
 						if(editar==true) {
 							if(medicoDao.alterar(m)==true) {
 								new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
+								uDao.alterar(u);
 							}else {
 								new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 							}
@@ -318,6 +319,10 @@ public class TelaCadastrarMedico extends JFrame {
 						Funcionario f = new Funcionario();
 						FuncionarioDAO fDao = new FuncionarioDAO();
 						
+						if(editar==true) {
+							f = funcionarioSelecionado;
+						}
+						
 						f.setCpf(cpf);
 						f.setNome(nome);
 						f.setPronome(String.valueOf(comboPronome.getSelectedItem()));
@@ -326,12 +331,18 @@ public class TelaCadastrarMedico extends JFrame {
 						if(editar!=true) {
 							f.setUsuario(u);
 						}else {
-							f.setUsuario(funcionarioSelecionado.getUsuario());
+							u = funcionarioSelecionado.getUsuario();
+							u.setLogin(nome);
+							u.setTipo(tipo);
+							if (!senha.trim().isEmpty()) {
+								u.setSenha(senha);
+							}
 						}
 						
 						if(editar==true) {
 							if(fDao.alterar(f)==true) {
 								new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
+								uDao.alterar(u);
 							}else {
 								new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 							}

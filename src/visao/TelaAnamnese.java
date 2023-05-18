@@ -6,19 +6,22 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.time.ZoneId;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 import com.toedter.calendar.JDateChooser;
+
+import controle.AnamneseDAO;
+import controle.ConsultaDAO;
 import modelo.Anamnese;
-import modelo.Paciente;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
@@ -117,6 +120,7 @@ public class TelaAnamnese extends JFrame {
 		textNomeS.setColumns(10);
 
 		comboPronome = new RoundComboBox();
+		comboPronome.setEditable(true);
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(255, 255, 255));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -257,7 +261,7 @@ public class TelaAnamnese extends JFrame {
 		panel_2.setLayout(new MigLayout("", "[139.00px,grow][162.00,grow]", "[][27px,grow]"));
 
 		rndjtxtfldObservaes = new RoundJTextField();
-		rndjtxtfldObservaes.setText("Observações");
+		rndjtxtfldObservaes.setText("Objetivo");
 		rndjtxtfldObservaes.setHorizontalAlignment(SwingConstants.CENTER);
 		rndjtxtfldObservaes.setForeground(Color.WHITE);
 		rndjtxtfldObservaes.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
@@ -267,6 +271,7 @@ public class TelaAnamnese extends JFrame {
 		panel_2.add(rndjtxtfldObservaes, "cell 0 0 2 1,growx,aligny top");
 
 		txtObs = new RoundJTextField();
+		txtObs.setEditable(false);
 		txtObs.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
 		panel_2.add(txtObs, "cell 0 1 2 1,grow");
 		txtObs.setColumns(10);
@@ -290,54 +295,93 @@ public class TelaAnamnese extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int camposPreenchidos = 0;
-				if (!textQueixa.getText().isEmpty()) {
+				String queixa = textQueixa.getText();
+				String historicoDoenca = textHDoenca.getText();
+				String historicoPatoProg = textHPato.getText();
+				String historicoPatoFam = textHPatoF.getText();
+				String historicoSocial = textHSocial.getText();
+				String tratamentoAnterior = textTAnterior.getText();
+				String tratamentoAtual = textTAtual.getText();
+				String alergias = textAlergia.getText();
+				String medicacoes = textMedicacao.getText();
+				String exames = textExames.getText();
+				String disposicao = textDispo.getText();
+				
+				if (!queixa.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textHDoenca.getText().isEmpty()) {
+				if (!historicoDoenca.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textHPato.getText().isEmpty()) {
+				if (!historicoPatoProg.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textHPatoF.getText().isEmpty()) {
+				if (!historicoPatoFam.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textHSocial.getText().isEmpty()) {
+				if (!historicoSocial.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textTAnterior.getText().isEmpty()) {
+				if (!tratamentoAnterior.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textTAtual.getText().isEmpty()) {
+				if (!tratamentoAtual.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textAlergia.getText().isEmpty()) {
+				if (!alergias.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textMedicacao.getText().isEmpty()) {
+				if (!medicacoes.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textExames.getText().isEmpty()) {
+				if (!exames.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
-				if (!textDispo.getText().isEmpty()) {
+				if (!disposicao.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
 
 				if (camposPreenchidos == 0) {
 					new DialogMensagemErro("Preencha pelo menos um campo para prosseguir.").setVisible(true);
+					return;
 				}
-
+				
+				AnamneseDAO aDao = new AnamneseDAO();
+				ConsultaDAO cDao = new ConsultaDAO();
+				
+				anaSelecionada.setAlergia(alergias);
+				anaSelecionada.setDisposicaoGeral(disposicao);
+				anaSelecionada.setExamesApresentados(exames);
+				anaSelecionada.setHistoricoDoencaAtual(historicoDoenca);
+				anaSelecionada.setHistoricoPatologicoFam(historicoPatoFam);
+				anaSelecionada.setHistoricoPatologicoProg(historicoPatoProg);
+				anaSelecionada.setHistoricoSocial(historicoSocial);
+				anaSelecionada.setMedicacoesEmUso(medicacoes);
+				anaSelecionada.setQueixaPrincipal(queixa);
+				anaSelecionada.setTrataAnteriores(tratamentoAnterior);
+				anaSelecionada.setTrataAtuais(tratamentoAtual);
+				
+				if(aDao.alterar(anaSelecionada)) {
+					JOptionPane.showMessageDialog(null, "Sim");
+					cDao.consultaRealizada(anaSelecionada.getConsulta());
+					dispose();
+					TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+					telaAnterior.setLocationRelativeTo(null);
+					telaAnterior.setVisible(true);
+					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nao");
+				}
 			}
 		});
 		btnSalvar.setForeground(Color.WHITE);
@@ -355,6 +399,18 @@ public class TelaAnamnese extends JFrame {
 		comboPronome.setSelectedItem(anaSelecionada.getConsulta().getPaciente().getPronome());
 		textSexo.setText(anaSelecionada.getConsulta().getPaciente().getSexo());
 		dtNascimento.setDate(Date.valueOf(anaSelecionada.getConsulta().getPaciente().getNascimento()));
+		textAlergia.setText(anaSelecionada.getAlergia());
+		textDispo.setText(anaSelecionada.getDisposicaoGeral());
+		textExames.setText(anaSelecionada.getExamesApresentados());
+		textHDoenca.setText(anaSelecionada.getHistoricoDoencaAtual());
+		textHPato.setText(anaSelecionada.getHistoricoPatologicoProg());
+		textHPatoF.setText(anaSelecionada.getHistoricoPatologicoFam());
+		textMedicacao.setText(anaSelecionada.getMedicacoesEmUso());
+		textQueixa.setText(anaSelecionada.getQueixaPrincipal());
+		textTAtual.setText(anaSelecionada.getTrataAtuais());
+		textTAnterior.setText(anaSelecionada.getTrataAnteriores());
+		textHSocial.setText(anaSelecionada.getHistoricoSocial());
+		txtObs.setText(anaSelecionada.getConsulta().getObjetivo());
 	}
 
 }

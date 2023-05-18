@@ -47,16 +47,20 @@ public class EnderecoDAO {
 	}
 
 	public boolean alterar(Endereco en) {
-		Connection c = Conexao.getInstancia().conectar();
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
 
 		try {
 			String query = "UPDATE endereco SET rua = ?, complemento = ?, cidade = ?, bairro = ? WHERE id_endereco = ?";
 			PreparedStatement stm = c.prepareStatement(query);
 			stm.setString(1, en.getRua());
-			stm.setString(4, en.getComplemento());
-			stm.setString(5, en.getCidade());
-			stm.setString(6, en.getBairro());
-			stm.setLong(7, en.getIdEndereco());
+			stm.setString(2, en.getComplemento());
+			stm.setString(3, en.getCidade());
+			stm.setString(4, en.getBairro());
+			stm.setLong(5, en.getIdEndereco());
 
 			stm.executeUpdate();
 			return true;

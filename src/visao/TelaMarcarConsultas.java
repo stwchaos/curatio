@@ -241,20 +241,11 @@ public class TelaMarcarConsultas extends JFrame {
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
-		receberDados(consulta);
 	}
 	
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
-	}
-	
-	private void receberDados(Consulta consulta) {
-		comboPaciente.setSelectedItem(consulta.getPaciente().getNome());
-		comboMedico.setSelectedItem(consulta.getPaciente().getNomeSocial());
-		comboPronome.setSelectedItem(consulta.getPaciente().getPronome());
-		txtObjetivo.setText(consulta.getPaciente().getConsulta().getObjetivo());
-		dtConsulta.setDate(Date.valueOf(consulta.getPaciente().getConsulta().getData()));
 	}
 }

@@ -49,7 +49,8 @@ public class UsuarioDAO {
 
 	public boolean alterar(Usuario u) {
 		Connection c = Conexao.getInstancia().conectar();
-
+		con = Conexao.getInstancia();
+		
 		try {
 			String query = "UPDATE usuario SET login = ?, senha = ?, tipo_usuario = ? WHERE id_usuario = ?";
 			PreparedStatement stm = c.prepareStatement(query);

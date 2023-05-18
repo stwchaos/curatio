@@ -52,7 +52,7 @@ public class FuncionarioDAO {
 		Connection co = con.conectar();
 
 		try {
-			String query = "UPDATE funcionario SET nome = ?, pronome = ?, sexo = ?,usuario_id_usuario = ?  WHERE cpf = ?;";
+			String query = "UPDATE funcionario SET nome = ?, pronome = ?, sexo = ?, usuario_id_usuario = ?  WHERE cpf = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
 			
 			stm.setString(1,f.getNome());
@@ -104,7 +104,7 @@ public class FuncionarioDAO {
 
 		try {
 			Statement stm = c.createStatement();
-			String query = "SELECT * FROM funcionario INNER JOIN usuario ON funcionario.usuario_id_usuario = usuario.id_usuario";
+			String query = "SELECT * FROM funcionario INNER JOIN usuario ON funcionario.usuario_id_usuario = usuario.id_usuario;";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				String nome = rs.getString("nome");

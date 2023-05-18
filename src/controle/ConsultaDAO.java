@@ -161,30 +161,35 @@ public class ConsultaDAO {
 		return consultas;
 	}
 
-	public boolean consultaRealizada(Consulta c) {
-		Connection co = Conexao.getInstancia().conectar();
+	public void consultaRealizada(Consulta c) {
+		// instanciar
+		con = Conexao.getInstancia();
+		
+		// conectar
+		Connection co = con.conectar();
 
 		try {
-			String query = "UPDATE consulta SET encerrada = ? WHERE id_pendentes = ?;";
+			String query = "UPDATE consulta SET encerrada = true WHERE id_consulta = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
-			stm.setBoolean(1, c.getEncerrada());
-			stm.setInt(2, c.getIdConsulta());
+			stm.setInt(1, c.getIdConsulta());
 
 			stm.executeUpdate();
-			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
-		return false;
 	}
 	
 	public void consultaFalta() {
-		Connection co = Conexao.getInstancia().conectar();
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection co = con.conectar();
 		
 		try {
-			String query = "UPDATE consulta SET falta = 1 WHERE data > now() AND encerrada = 0;";
+			String query = "UPDATE consulta SET falta = 1 WHERE data < now() AND encerrada = 0;";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.executeUpdate();
 		} catch (SQLException e) {

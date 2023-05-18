@@ -56,7 +56,11 @@ public class PacienteDAO {
 	}
 
 	public boolean alterar(Paciente p) {
-		Connection c = Conexao.getInstancia().conectar();
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
 
 		try {
 			String query = "UPDATE paciente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, nome_social = ?, email = ?, pronome = ?, endereco_id_endereco = ?, cep = ?, numero_casa = ? WHERE cpf = ?;";

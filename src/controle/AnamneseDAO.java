@@ -46,6 +46,39 @@ import modelo.Consulta;
 		}
 		return false;
 	}
+	
+	public boolean alterar(Anamnese a) {
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+		try {
+			String query = "UPDATE anamnese SET queixa_principal = ?, disposicao_geral = ?, alergia = ?, medicacoes_em_uso = ?, historico_doenca_atual = ?, historico_patologico_prog = ?, historico_patologico_fam = ?, historico_social = ?, trata_anteriores = ?, trata_atuais = ?, exames_apresentados = ? WHERE id_anamnese = ?;";
+			PreparedStatement stm = c.prepareStatement(query);
+			
+			stm.setString(1,a.getQueixaPrincipal());
+			stm.setString(2,a.getDisposicaoGeral());
+			stm.setString(3,a.getAlergia());
+			stm.setString(4,a.getMedicacoesEmUso());
+			stm.setString(5,a.getHistoricoDoencaAtual());
+			stm.setString(6,a.getHistoricoPatologicoProg());
+			stm.setString(7,a.getHistoricoPatologicoFam());
+			stm.setString(8,a.getHistoricoSocial());
+			stm.setString(9,a.getTrataAnteriores());
+			stm.setString(10,a.getTrataAtuais());
+			stm.setString(11,a.getExamesApresentados());
+			stm.setLong(12, a.getIdAnamnese());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return false;
+	}
 
 	public ArrayList<Anamnese> listarAnamnese() {
 		ArrayList<Anamnese> anamneses = new ArrayList<>();

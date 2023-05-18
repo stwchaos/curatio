@@ -97,7 +97,7 @@ public class Anamnese {
 		return alergia;
 	}
 	
-	public void setAlergia(String alergias) {
+	public void setAlergia(String alergia) {
 		this.alergia = alergia;
 	}
 	
