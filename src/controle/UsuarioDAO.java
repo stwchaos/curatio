@@ -38,10 +38,12 @@ public class UsuarioDAO {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
 
 		// desconectar
-		con.fecharConexao();
+	
 		return false;
 	}
 
@@ -60,8 +62,10 @@ public class UsuarioDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
+
 		return false;
 	}
 
@@ -115,10 +119,11 @@ public class UsuarioDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
 
 		// desconectar
-		con.fecharConexao();
 		return usuarios;
 	}
 	

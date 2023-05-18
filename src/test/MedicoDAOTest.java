@@ -45,38 +45,32 @@ class MedicoDAOTest {
 		medico.setUsuario(usuario);
 
 		assertTrue(dao.inserir(medico));
-		// dao.deletar(medico);
 	}
 
 	@Test
 	@Order(2)
 	public void testListar() {
-	    MedicoDAO mdao = new MedicoDAO();
-	    ArrayList<Medico> lm = mdao.listarProfissionais();
-	    System.out.println(lm.size());
-	    
-	    assertTrue(!lm.isEmpty());
-	    Medico primeiroMedico = lm.get(0);
-	    assertNotNull(primeiroMedico.getCrm());
-	    assertNotNull(primeiroMedico.getEspecialidade());
-	    
-	    assertEquals(primeiroMedico.getCrm(), 123456l);
+		MedicoDAO mdao = new MedicoDAO();
+		ArrayList<Medico> lm = mdao.listarProfissionais();
+
+		assertTrue(!lm.isEmpty());
+		Medico primeiroMedico = lm.get(0);
+		assertNotNull(primeiroMedico.getCrm());
+		assertNotNull(primeiroMedico.getEspecialidade());
+
+		assertEquals(primeiroMedico.getCrm(), 123456l);
 	}
-
-
 
 	@Test
 	@Order(3)
 	public void testAlterar() {
 
-		// inserirMedicoSucessoTeste();
 		MedicoDAO mdao = new MedicoDAO();
 
 		ArrayList<Medico> lm = mdao.listarProfissionais();
-		System.out.println(lm.size());
+
 		Medico m = lm.get(0);
 		m.setCpf(55555l);
-		System.out.println(mdao.alterar(m));
 
 		assertTrue(mdao.alterar(m));
 

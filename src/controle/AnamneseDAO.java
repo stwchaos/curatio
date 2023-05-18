@@ -100,10 +100,12 @@ import modelo.Consulta;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
 		}
 
 		// desconectar
-		con.fecharConexao();
+		
 		return anamneses;
 	}
 
