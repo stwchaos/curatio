@@ -147,7 +147,7 @@ public class TelaCadastrarMedico extends JFrame {
 			comboEspecialidade.addItem(e.getEspecialidade());
 		}
 		
-		comboBoxTipoProfissional = new JComboBox();
+		comboBoxTipoProfissional = new RoundComboBox();
 		comboBoxTipoProfissional.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex()+1);
@@ -165,6 +165,9 @@ public class TelaCadastrarMedico extends JFrame {
 				}
 			}
 		});
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Função");
+		panel.add(lblNewLabel_4_1, "cell 3 11");
 		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
 		String[] tipos = {"Medico", "Secretaria", "Administrador", "Outro"};
 		for (String string : tipos) {

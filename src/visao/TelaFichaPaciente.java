@@ -54,7 +54,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	public TelaFichaPaciente(Usuario usuarioAtual, Paciente pacienteSelecionado) {
 		this.pacienteSelecionado = pacienteSelecionado;
 		this.usuarioAtual = usuarioAtual;
-		setTitle("Hospital Esmeralda - Ficha dos Pacientes");
+		setTitle("Hospital Esmeralda - Ficha dos Paciente");
 		setTitle("Hospital Esmeralda");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaFichaPaciente.class.getResource("/img/logoHospital.png")));
