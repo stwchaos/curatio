@@ -2,8 +2,6 @@
 <h1 align="center"> Projeto Integrador - Curatio  </h1>
 
 
-![logoHospital](https://user-images.githubusercontent.com/88722088/222734463-5cc2c349-a82c-4742-8e9b-4ed890cc390a.png)
-
 ---
 ### Progresso do projeto
 ▓▓▓▓▓▓▓▓░░ 80%
@@ -42,9 +40,9 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 
 ## :busts_in_silhouette: Equipe de desenvolvimento do projeto
 - [@Misomania]
+- [@stwchaos]
 - [@BernardoDB1]
 - [@Gabrielrb68]
-- [@stwchaos]
 
 ## Paleta de cores utilizada no projeto
 
@@ -80,44 +78,70 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 <span style="color:red;">![AVISO]</span> As telas ainda estão em andamento e nem todas constam neste documento. :warning:
 
 ####  Login
-  Na qual o funcionário insere seus dados(CPF e senha), para assim acessar o software.
-  
-![image](https://user-images.githubusercontent.com/88722088/228864958-9bd0928f-d42f-4ed5-837d-abec79c893f5.png)
-
+  Em que o funcionário insere seus dados(Nome e senha), para assim acessar o software.
+Caso digite informações inválidas, o sistema avisará o usuário para que assim o corrija.
+  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial1.png)
 
 > Mensagem de aviso gerada pela validação de acesso:
-
-![image](https://user-images.githubusercontent.com/88722088/228865118-8f4c400b-abea-41d1-ae4b-88b7c18803c0.png)
-
-
+  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial2.png)
+  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial3.png)
 
 #### Início
-  É a tela padrão do software em que o funcionário é capaz de realizar suas funções, com cada botão abrindo telas novas, com suas respectivas propriedades.
+É a tela padrão do software em que o funcionário é capaz de realizar suas funções,com cada botão abrindo telas novas com suas respectivas propriedades.
 
-![image](https://user-images.githubusercontent.com/88722088/228865272-286c79b1-9453-4a21-a507-eb1cb3e457e2.png)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaPadrao.png)
 
 
 #### Marcar Consulta
-  Nesta tela é onde o usuário irá marcar a consulta de um paciente.
+Nesta tela é possível marcar uma consulta preenchendo os campos pendentes e selecionando o paciente e o médico que irá atender, assim como formas de pagamento e a data da consulta.
  
- ![image](https://user-images.githubusercontent.com/88722088/228865413-eda1e60d-f760-4d61-af1b-fa9c670307e9.png)
+ ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaMarcarConsulta.png)
+
+#### Consultas Pendentes
+Exibe as consultas que foram marcadas, onde é exibido o setor do profissional, nome do profissional, além da data prevista. A opção de controle de consultas pendentes 
+
+ ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultasPendentes.png)
 
 
 #### Cadastrar Paciente
   Insere as informações dos pacientes, as registrando no sistema.
   
-![image](https://user-images.githubusercontent.com/88722088/228865543-6e6440f3-b2d5-4b9b-8534-d54dced7a2c9.png)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaCadastroPaciente.png)
 
 
-#### Registro do Paciente Selecionado
-  
-  Com ela, é possível visualizar e alterar informações do paciente.
-  
-![image](https://user-images.githubusercontent.com/88722088/228865672-bd34744a-6610-4532-a3dc-25a858dcb373.png)
+#### Lista pacientes
+Exibe todos os pacientes já registrados, caso clique em determinado paciente, revelará suas informações gerais.
+
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaListaPaciente.png)
+
+#### Ficha paciente
+Nesta tela as informações já registradas no sistema do paciente serão exibidas permitindo apenas alteração de campos que poderão mudar com o tempo.
+
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaFichaPaciente.png)
 
 
+#### Tela cadastrar profissional
+Nesta tela, o usuário (adm) poderá registrar um profissional no sistema, sendo ele: médico, secretário, administrador, outro.
 
-#### Tela Anamnese (visão do médico)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaCadastrarProfissional-Medico.png)
 
-![image](https://user-images.githubusercontent.com/88722088/228866391-bf08c0cc-b2b2-480d-b4e5-bb4d9f406aa7.png)
 
+#### Tela alterar profissional
+Nesta tela, é possível alterar informações já registradas do profissional.
+
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaAlterarProfissional.png)
+
+#### Tela Lista Profissional
+Nesta tela a lista dos profissionais cadastrados no sistema é evidenciada, contendo um campo de texto para pesquisa por nome. A visão controle de administrador aparece apenas na visão do adm.
+
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaListaProfissionais.png)
+
+
+#### Tela Anamnese
+A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre durante a consulta. Nela é exibida informação já cadastrada do paciente e informações a serem preenchidas pelo médico durante a realização da consulta.
+
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaAnamnese.png)
+
+#### Tela Histórico:
+
+#### Tela Informaçõe da Consulta:
