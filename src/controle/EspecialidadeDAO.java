@@ -29,7 +29,10 @@ public class EspecialidadeDAO {
 					return true;
 				} catch (SQLException e) {
 					e.printStackTrace();
+				}finally {
+					con.fecharConexao();
 				}
+				
 				return false;
 	}
 	
@@ -47,8 +50,9 @@ public class EspecialidadeDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
-		con.fecharConexao();
 		return false;
 	}
 	
@@ -81,6 +85,8 @@ public class EspecialidadeDAO {
 			}
 	} catch (SQLException e) {
 		e.printStackTrace();
+	}finally {
+		con.fecharConexao();
 	}
 
 	// desconectar
