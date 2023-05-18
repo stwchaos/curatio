@@ -389,9 +389,9 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		PacienteDAO pDao = new PacienteDAO();
 		System.out.println(pacienteSelecionado.getNome());
 		if (pDao.deletar(pacienteSelecionado)) {
-			JOptionPane.showMessageDialog(null, "Sim");
+			new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
 		} else {
-			JOptionPane.showMessageDialog(null, "Impossível deletar, paciente já possui registros cadastrados");
+			new DialogMensagemErro("Paciente já possui registros cadastrados!").setVisible(true);
 		}
 		dispose();
 		TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);

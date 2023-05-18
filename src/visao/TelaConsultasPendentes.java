@@ -158,8 +158,7 @@ public class TelaConsultasPendentes extends JFrame {
 					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
-			btnAnamnese.setIcon(
-					new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
 			btnAnamnese.setOpaque(false);
 			btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
 			btnAnamnese.setForeground(Color.WHITE);

@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.AnamneseDAO;
 import controle.ConsultaDAO;
 import controle.PacienteDAO;
 import modelo.Consulta;
 import modelo.Medico;
 import modelo.Paciente;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 
 import java.awt.Color;
@@ -41,6 +43,7 @@ public class TelaHistorico extends JFrame {
 	private DefaultTableModel modelo;
 	private ConsultaDAO cDao = new ConsultaDAO();
 	private JLabel lblNewLabel;
+	private Consulta consultaSelecionada = null;
 
 
 	public TelaHistorico(Usuario u, Paciente pacienteSelecionado) {
@@ -105,6 +108,37 @@ public class TelaHistorico extends JFrame {
 		btnVoltar.setBounds(10, 11, 112, 37);
 		panel_4.add(btnVoltar);
 		listarConsultas(pacienteSelecionado);
+		
+		if (u.getTipo() == TipoUsuario.MEDICO) {
+			JButton btnAnamnese = new JButton("Anamnese Preenchida");
+			btnAnamnese.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (consultaSelecionada == null && consultaSelecionada == null) {
+						new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+						return;
+					}
+					dispose();
+					
+					AnamneseDAO aDao = new AnamneseDAO();
+					System.out.println(aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()));
+					System.out.println();
+					TelaAnamnese telaAna = new TelaAnamnese(u, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled);
+					telaAna.setLocationRelativeTo(null);
+					telaAna.setVisible(true);
+					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);		
+				}
+			});
+			btnAnamnese.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			btnAnamnese.setOpaque(false);
+			btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
+			btnAnamnese.setForeground(Color.WHITE);
+			btnAnamnese.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
+			btnAnamnese.setFocusPainted(false);
+			btnAnamnese.setBorder(null);
+			btnAnamnese.setBackground((Color) null);
+			btnAnamnese.setBounds(675, 11, 138, 32);
+			panel_4.add(btnAnamnese);
+		}
 	}
 	
 	private void listarConsultas(Paciente pacienteSelecionado) {
@@ -122,6 +156,4 @@ public class TelaHistorico extends JFrame {
 	    }
 	    table.setModel(modelo);
 	}
-
-
 }
