@@ -48,8 +48,7 @@ public class TelaConsultasPendentes extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(
-				new MigLayout("", "[118px,grow][73px,grow][70px][86px,grow][70px][106px,grow][88px,grow][166px,grow]",
-						"[39.00][294px,grow][25px][60px]"));
+				new MigLayout("", "[118px,grow][73px,grow][70px][86px,grow][70px][106px,grow][88px,grow][166px,grow][230.00,grow]", "[39.00][294px,grow][25px][60px]"));
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(64, 128, 128));
@@ -59,6 +58,65 @@ public class TelaConsultasPendentes extends JFrame {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 27));
 		panel_1_1.add(lblNewLabel_1);
+		
+		
+		if(u.getTipo()==TipoUsuario.MEDICO || u.getTipo()==TipoUsuario.SECRETARIA) {
+		JPanel panel = new RoundJPanel(50, new Color(0, 81, 81));
+		panel.setBackground(null);
+		contentPane.add(panel, "cell 8 0 1 4,grow");
+		panel.setLayout(new MigLayout("", "[grow]", "[][grow][][][][][][][grow]"));
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
+		panel.add(lblNewLabel_2, "cell 0 0,alignx center,aligny center");
+		
+		JLabel lblNewLabel = new JLabel("Controle de Consultas Pendentes");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.PLAIN, 15));
+		panel.add(lblNewLabel, "cell 0 1,alignx center,aligny top");
+		
+		JButton btnDesmarcar = new JButton("Desmarcar");
+		btnDesmarcar.setForeground(new Color(255, 255, 255));
+		btnDesmarcar.setBackground(new Color(0, 81, 81));
+		btnDesmarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnDesmarcar.setFocusPainted(false);
+		btnDesmarcar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO confirmaçao
+			}
+		});
+		panel.add(btnDesmarcar, "cell 0 3,growx,aligny center");
+		
+		JButton btnRemarcar = new JButton("Remarcar");
+		btnRemarcar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsultaDAO cDAO = new ConsultaDAO();
+				dispose();
+				TelaMarcarConsultas tela = new TelaMarcarConsultas(u);
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		btnRemarcar.setForeground(new Color(255, 255, 255));
+		btnRemarcar.setBackground(new Color(0, 81, 81));
+		btnRemarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnRemarcar.setFocusPainted(false);
+		panel.add(btnRemarcar, "cell 0 5,growx,aligny center");
+		
+		JButton btnConsultaConluida = new JButton("Consulta Concluída");
+		btnConsultaConluida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO concluida
+			}
+		});
+		btnConsultaConluida.setForeground(new Color(255, 255, 255));
+		btnConsultaConluida.setBackground(new Color(0, 81, 81));
+		btnConsultaConluida.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnConsultaConluida.setFocusPainted(false);
+		panel.add(btnConsultaConluida, "cell 0 7,growx,aligny center");
+		
+		}
 
 		JPanel panel_1 = new RoundJPanel(10, new Color(0, 81, 81));
 		panel_1.setBackground(null);
@@ -166,3 +224,5 @@ public class TelaConsultasPendentes extends JFrame {
 	    table.setModel(modelo);
 	}
 }
+
+

@@ -77,7 +77,6 @@ public class TelaAnamnese extends JFrame {
 		contentPane.setLayout(new MigLayout("",
 				"[80.00][grow][-19.00][grow][][][][][][][][][][][][103.00][20.00,grow][][][][][][][][][][][][][][grow][80]",
 				"[grow][][grow][][][][][][][][grow][]"));
-
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 240, 240));
 		contentPane.add(panel, "cell 2 0 13 2,growx,aligny top");
