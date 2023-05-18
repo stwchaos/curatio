@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import modelo.Anamnese;
 import modelo.Consulta;
 import modelo.Medico;
 import modelo.Paciente;
@@ -35,8 +37,26 @@ public class ConsultaDAO {
 			stm.setLong(5, c.getMedico().getCrm());
 			stm.setLong(6, c.getPaciente().getCpf());
 			stm.setBoolean(7, c.getFalta());
-			stm.setDate(1, Date.valueOf(c.getData()));
+			String dateFormat = "yyyy-MM-dd'T'HH:mm:ss";
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+			SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+			java.util.Date dataHora = null;
+			try {
+				dataHora = sdf.parse(c.getData().atTime(c.getHorario()).format(dtf));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+					//Date.valueOf(c.getData().atTime(c.getHorario()));
+			//dataHora.setHours(c.getHorario().getHours());
+			//dataHora.setMinutes(c.getHorario().getMinutes());
+		
 
+			System.out.println(dataHora);
+			System.out.println("Data: "+c.getData()+", Hora:"+c.getHorario());
+			stm.setTimestamp(1, new Timestamp(dataHora.getTime()));
+			System.out.println(stm);
 			stm.executeUpdate();
 			
 			ResultSet rs= stm.getGeneratedKeys();
@@ -109,7 +129,7 @@ public class ConsultaDAO {
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				Integer idConsulta = rs.getInt("id_consulta");
-				Date data = rs.getDate("data");
+				Timestamp data = rs.getTimestamp("data");
 				Boolean encerrada = rs.getBoolean("encerrada");
 				String objetivo = rs.getString("objetivo");
 				Integer idPagamento = rs.getInt("id_pagamento");
@@ -122,7 +142,8 @@ public class ConsultaDAO {
 				
 				Consulta c = new Consulta();
 				c.setIdConsulta(idConsulta);
-				c.setData(data.toLocalDate());
+				c.setData(data.toLocalDateTime().toLocalDate());
+				c.setHorario(data.toLocalDateTime().toLocalTime());
 				c.setEncerrada(encerrada);
 				c.setObjetivo(objetivo);
 				c.setFalta(falta);
