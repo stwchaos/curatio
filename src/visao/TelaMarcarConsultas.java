@@ -38,6 +38,7 @@ import modelo.Anamnese;
 import modelo.Consulta;
 import modelo.Paciente;
 import modelo.Pagamento;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 import modelo.Medico;
 import net.miginfocom.swing.MigLayout;
@@ -53,7 +54,11 @@ public class TelaMarcarConsultas extends JFrame {
 	private MedicoDAO mDao = new MedicoDAO();
 	
 	public TelaMarcarConsultas(Usuario u) {
-		setTitle("Hospital Esmeralda - Marcar Consultas");
+		if (u.getTipo() == TipoUsuario.MEDICO || u.getTipo() == TipoUsuario.SECRETARIA){
+			setTitle("Hospital Esmeralda - Remarcar Consulta");
+		} else {
+			setTitle("Hospital Esmeralda - Marcar Consultas");
+		}
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,8 +72,6 @@ public class TelaMarcarConsultas extends JFrame {
 			e.printStackTrace();
 		}
 		JPanel c = new PanelComBackgroundImage(bg);
-
-		// c = new JPanel();
 
 		c.setBackground(new Color(0, 81, 81));
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -233,12 +236,20 @@ public class TelaMarcarConsultas extends JFrame {
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
-
+		receberDados(consulta);
 	}
 	
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
+	}
+	
+	private void receberDados(Consulta consulta) {
+		comboPaciente.setSelectedItem(consulta.getPaciente().getNome());
+		comboMedico.setSelectedItem(consulta.getPaciente().getNomeSocial());
+		comboPronome.setSelectedItem(consulta.getPaciente().getPronome());
+		txtObjetivo.setText(consulta.getPaciente().getConsulta().getObjetivo());
+		dtConsulta.setDate(Date.valueOf(consulta.getPaciente().getConsulta().getData()));
 	}
 }

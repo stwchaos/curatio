@@ -63,13 +63,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 	private DefaultTableModel pesquisa;
 	
 
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaListaMedico(Usuario usuarioAtual) {
 		
 		setForeground(new Color(0, 85, 85));
