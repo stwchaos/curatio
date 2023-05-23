@@ -80,6 +80,28 @@ import modelo.Consulta;
 		return false;
 	}
 
+	public boolean deletar(Consulta co) {
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection c = con.conectar();
+		
+		try {
+			String query = "DELETE FROM anamnese WHERE consulta_id_consulta = ?;";
+			PreparedStatement stm = c.prepareStatement(query);
+			stm.setLong(1, co.getIdConsulta());
+			
+			stm.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			con.fecharConexao();
+		}
+		return false;
+	}
+	
 	public ArrayList<Anamnese> listarAnamnese() {
 		ArrayList<Anamnese> anamneses = new ArrayList<>();
 

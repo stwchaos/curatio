@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,6 +36,7 @@ public class TelaConsultaPendente extends JFrame {
 	private ConsultaDAO cDao = new ConsultaDAO();
 	private Consulta consultaSelecionada = null;
 	private int linha;
+	private AnamneseDAO aDao = new AnamneseDAO();
 
 	public TelaConsultaPendente(Usuario u) {
 		setIconImage(Toolkit.getDefaultToolkit()
@@ -83,6 +85,19 @@ public class TelaConsultaPendente extends JFrame {
 		btnDesmarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO confirmaçao
+				JOptionPane.showConfirmDialog(btnDesmarcar, "Deletar?");
+				if (consultaSelecionada == null) {
+					new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+					return;
+				}
+				aDao.deletar(consultaSelecionada);
+				if(cDao.deletar(consultaSelecionada)==true) {
+					JOptionPane.showMessageDialog(btnDesmarcar, "sim");
+				}else {
+					JOptionPane.showMessageDialog(btnDesmarcar, "nao");
+				}
+				listarConsultas();
+				consultaSelecionada=null;
 			}
 		});
 		panel.add(btnDesmarcar, "cell 0 3,growx,aligny center");
@@ -141,9 +156,6 @@ public class TelaConsultaPendente extends JFrame {
 					}
 					dispose();
 					
-					AnamneseDAO aDao = new AnamneseDAO();
-					System.out.println(aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()));
-					System.out.println();
 					TelaAnamnese telaAna = new TelaAnamnese(u, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled);
 					telaAna.setLocationRelativeTo(null);
 					telaAna.setVisible(true);
