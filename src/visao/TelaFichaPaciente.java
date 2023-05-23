@@ -34,13 +34,13 @@ import net.miginfocom.swing.MigLayout;
 public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 
 	private JPanel c;
-	private JTextField textFieldNome;
-	private JTextField textFieldTelefone;
-	private JTextField textFieldEmail;
-	private JTextField textFieldNomeSocial;
-	private JTextField textFieldSexo;
-	private JTextField textFieldNascimento;
-	private JTextField textFieldCEP;
+	private JTextField txtNome;
+	private JTextField txtTelefone;
+	private JTextField txtEmail;
+	private JTextField txtNomeSocial;
+	private JTextField txtSexo;
+	private JTextField txtNascimento;
+	private JTextField txtCEP;
 	private JTextField txtNumCasa;
 	private JTextField txtBairro;
 	private JTextField txtCidade;
@@ -124,20 +124,20 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JLabel lblCPF = new JLabel("CPF");
 		panel.add(lblCPF, "cell 4 4");
 
-		textFieldNome = new RoundJTextField();
-		textFieldNome.setBackground(new Color(163, 163, 163));
-		textFieldNome.setEditable(false);
-		textFieldNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldNome, "cell 0 5 3 1,growx,aligny center");
-		textFieldNome.setColumns(10);
+		txtNome = new RoundJTextField();
+		txtNome.setBackground(new Color(163, 163, 163));
+		txtNome.setEditable(false);
+		txtNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(txtNome, "cell 0 5 3 1,growx,aligny center");
+		txtNome.setColumns(10);
 
-		RoundJTextField textFieldCPF = new RoundJTextField();
-		textFieldCPF.setBackground(new Color(163, 163, 163));
-		textFieldCPF.setText(pacienteSelecionado.getCpf().toString());
-		textFieldCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldCPF.setEditable(false);
-		textFieldCPF.setColumns(10);
-		panel.add(textFieldCPF, "cell 4 5,growx");
+		RoundJTextField txtCPF = new RoundJTextField();
+		txtCPF.setBackground(new Color(163, 163, 163));
+		txtCPF.setText(pacienteSelecionado.getCpf().toString());
+		txtCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCPF.setEditable(false);
+		txtCPF.setColumns(10);
+		panel.add(txtCPF, "cell 4 5,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 6,alignx left,aligny bottom");
@@ -210,42 +210,42 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JLabel lblNewLabel_7 = new JLabel("E-mail");
 		panel.add(lblNewLabel_7, "cell 0 17,growx,aligny bottom");
 
-		textFieldEmail = new RoundJTextField();
-		textFieldEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldEmail, "cell 0 18 3 1,growx,aligny center");
-		textFieldEmail.setColumns(10);
+		txtEmail = new RoundJTextField();
+		txtEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(txtEmail, "cell 0 18 3 1,growx,aligny center");
+		txtEmail.setColumns(10);
 
-		textFieldNomeSocial = new RoundJTextField();
-		textFieldNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldNomeSocial, "cell 0 7 3 1,growx,aligny center");
-		textFieldNomeSocial.setColumns(10);
+		txtNomeSocial = new RoundJTextField();
+		txtNomeSocial.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(txtNomeSocial, "cell 0 7 3 1,growx,aligny center");
+		txtNomeSocial.setColumns(10);
 
-		textFieldSexo = new RoundJTextField();
-		textFieldSexo.setBackground(new Color(163, 163, 163));
-		textFieldSexo.setEditable(false);
-		textFieldSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldSexo, "cell 0 9,growx,aligny center");
-		textFieldSexo.setColumns(10);
+		txtSexo = new RoundJTextField();
+		txtSexo.setBackground(new Color(163, 163, 163));
+		txtSexo.setEditable(false);
+		txtSexo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(txtSexo, "cell 0 9,growx,aligny center");
+		txtSexo.setColumns(10);
 
-		textFieldNascimento = new RoundJTextField();
-		textFieldNascimento.setBackground(new Color(163, 163, 163));
-		textFieldNascimento.setEditable(false);
-		textFieldNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		panel.add(textFieldNascimento, "cell 2 9 3 1,growx,aligny center");
-		textFieldNascimento.setColumns(10);
+		txtNascimento = new RoundJTextField();
+		txtNascimento.setBackground(new Color(163, 163, 163));
+		txtNascimento.setEditable(false);
+		txtNascimento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		panel.add(txtNascimento, "cell 2 9 3 1,growx,aligny center");
+		txtNascimento.setColumns(10);
 
-		textFieldCEP = new RoundJTextField();
-		textFieldCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldCEP.setColumns(10);
-		panel.add(textFieldCEP, "cell 0 13 2 1,growx,aligny center");
+		txtCEP = new RoundJTextField();
+		txtCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCEP.setColumns(10);
+		panel.add(txtCEP, "cell 0 13 2 1,growx,aligny center");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
 		panel.add(lblNewLabel_5_1, "cell 0 12,growx,aligny bottom");
 
-		textFieldTelefone = new RoundJTextField();
-		panel.add(textFieldTelefone, "cell 0 11 3 1,growx,aligny center");
-		textFieldTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		textFieldTelefone.setColumns(10);
+		txtTelefone = new RoundJTextField();
+		panel.add(txtTelefone, "cell 0 11 3 1,growx,aligny center");
+		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtTelefone.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 10,growx,aligny bottom");
@@ -267,10 +267,10 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String numCep = textFieldCEP.getText();
-				String email = textFieldEmail.getText();
-				String numTel = textFieldTelefone.getText();
-				String nomeSoc = textFieldNomeSocial.getText();
+				String numCep = txtCEP.getText();
+				String email = txtEmail.getText();
+				String numTel = txtTelefone.getText();
+				String nomeSoc = txtNomeSocial.getText();
 				String numCasa = txtNumCasa.getText();
 				String bairro = txtBairro.getText();
 				String cidade = txtCidade.getText();
@@ -290,7 +290,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					return;
 				} else {
 					try {
-						cep = Long.valueOf(textFieldCEP.getText());
+						cep = Long.valueOf(txtCEP.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
 						return;
@@ -301,7 +301,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					return;
 				} else {
 					try {
-						telefone = Long.valueOf(textFieldTelefone.getText());
+						telefone = Long.valueOf(txtTelefone.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
 						return;
@@ -392,25 +392,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		btnHistorico.setForeground(new Color(255, 255, 255));
 		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO) {
-			JButton btnAnamnese = new JButton("Anamnese");
-			btnAnamnese.setForeground(new Color(255, 255, 255));
-			btnAnamnese.setBackground(new Color(0, 81, 81));
-			btnAnamnese.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
-					telaAnterior.setLocationRelativeTo(null);
-					telaAnterior.setVisible(true);
-					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				}
-			});
-			btnAnamnese.setIcon(
-					new ImageIcon(TelaFichaPaciente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
-			c.add(btnAnamnese, "cell 2 0,alignx right,aligny bottom");
-		}
-
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -424,18 +405,18 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	}
 
 	private void receberDados(Paciente pacienteSelecionado) {
-		textFieldNome.setText(pacienteSelecionado.getNome());
-		textFieldNomeSocial.setText(pacienteSelecionado.getNomeSocial());
+		txtNome.setText(pacienteSelecionado.getNome());
+		txtNomeSocial.setText(pacienteSelecionado.getNomeSocial());
 		comboPronome.setSelectedItem(pacienteSelecionado.getPronome());
-		textFieldSexo.setText(pacienteSelecionado.getSexo());
-		textFieldNascimento.setText(Date.valueOf(pacienteSelecionado.getNascimento()).toString());
-		textFieldTelefone.setText(String.valueOf(pacienteSelecionado.getTelefone()));
-		textFieldCEP.setText(String.valueOf(pacienteSelecionado.getCep()));
+		txtSexo.setText(pacienteSelecionado.getSexo());
+		txtNascimento.setText(Date.valueOf(pacienteSelecionado.getNascimento()).toString());
+		txtTelefone.setText(String.valueOf(pacienteSelecionado.getTelefone()));
+		txtCEP.setText(String.valueOf(pacienteSelecionado.getCep()));
 		txtNumCasa.setText(String.valueOf(pacienteSelecionado.getNumCasa()));
 		txtBairro.setText(pacienteSelecionado.getEndereco().getBairro());
 		txtCidade.setText(pacienteSelecionado.getEndereco().getCidade());
 		txtRua.setText(pacienteSelecionado.getEndereco().getRua());
-		textFieldEmail.setText(pacienteSelecionado.getEmail());
+		txtEmail.setText(pacienteSelecionado.getEmail());
 		txtComplemento.setText(pacienteSelecionado.getEndereco().getComplemento());
 	}
 

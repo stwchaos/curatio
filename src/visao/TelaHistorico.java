@@ -88,7 +88,6 @@ public class TelaHistorico extends JFrame {
 		contentPane.add(panel_2_1, "cell 0 2 3 1,grow");
 		
 		panel_4 = new RoundJPanel(10, new Color(0, 81, 81));
-		panel_4.setLayout(null);
 		panel_4.setBackground((Color) null);
 		contentPane.add(panel_4, "cell 0 3 3 1,grow");
 		
@@ -102,14 +101,14 @@ public class TelaHistorico extends JFrame {
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
+		panel_4.setLayout(new MigLayout("", "[112px][grow][234.00px]", "[37px]"));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 13));
 		btnVoltar.setBackground(new Color(0, 81, 81));
-		btnVoltar.setBounds(10, 11, 112, 37);
-		panel_4.add(btnVoltar);
+		panel_4.add(btnVoltar, "cell 0 0,grow");
 		listarConsultas(pacienteSelecionado);
 		
-		if (u.getTipo() == TipoUsuario.MEDICO) {
+		//if (u.getTipo() == TipoUsuario.MEDICO) {
 			JButton btnAnamnese = new JButton("Anamnese Preenchida");
 			btnAnamnese.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -136,10 +135,9 @@ public class TelaHistorico extends JFrame {
 			btnAnamnese.setFocusPainted(false);
 			btnAnamnese.setBorder(null);
 			btnAnamnese.setBackground((Color) null);
-			btnAnamnese.setBounds(675, 11, 138, 32);
-			panel_4.add(btnAnamnese);
+			panel_4.add(btnAnamnese, "cell 2 0,growx,aligny top");
 		}
-	}
+	//}
 	
 	private void listarConsultas(Paciente pacienteSelecionado) {
 	    modelo.setRowCount(0);

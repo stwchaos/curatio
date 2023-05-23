@@ -58,13 +58,7 @@ public class TelaListaPaciente extends JFrame {
 	private Paciente pacienteSelecionado = null;
 	private JLabel lblNewLabel;
 
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaListaPaciente(Usuario usuarioAtual) {
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
