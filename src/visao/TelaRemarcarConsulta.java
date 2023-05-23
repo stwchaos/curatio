@@ -49,7 +49,7 @@ public class TelaRemarcarConsulta extends JFrame {
 
 	private JPanel c;
 	private JTextField txtObjetivo;
-	private JTextField txtMarcarConsulta;
+	private JTextField label;
 	private ArrayList<Paciente> listaPaciente;
 	private ArrayList<Medico> listaMedicos;
 	private PacienteDAO pDao = new PacienteDAO();
@@ -57,6 +57,8 @@ public class TelaRemarcarConsulta extends JFrame {
 	private JTextField txtHora;
 	private JTextField txtPaciente;
 	private JTextField txtPagamento;
+	private JDateChooser dtConsulta;
+	private JComboBox comboMedico;
 	
 	public TelaRemarcarConsulta(Usuario u, Consulta consultaSelecionada) {
 		setTitle("Hospital Esmeralda - Remarcar Consulta");
@@ -109,15 +111,8 @@ public class TelaRemarcarConsulta extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
-		listaPaciente = pDao.listarPacientes();
-		if(consultaSelecionada.getPaciente().getNomeSocial()==null){
-			txtPaciente.setText(consultaSelecionada.getPaciente().getNome());
-		}else {
-			txtPaciente.setText(consultaSelecionada.getPaciente().getNomeSocial());
-		}
 		
-
-		JDateChooser dtConsulta = new JDateChooser();
+		dtConsulta = new JDateChooser();
 		dtConsulta.getCalendarButton().setBackground(new Color(210, 210, 210));
 		dtConsulta.setForeground(new Color(0, 81, 81));
 		dtConsulta.setBackground(new Color(229, 229, 229));
@@ -158,7 +153,6 @@ public class TelaRemarcarConsulta extends JFrame {
 		txtObjetivo.setColumns(10);
 		panel.add(txtObjetivo, "cell 0 8 7 1,grow");
 		String[] listaPagamento = {"Debito","Credito","Pix","Cheque","Em Especie"};
-		txtPagamento.setText(consultaSelecionada.getPagamento().getFormaPagamento());
 
 		JLabel lblNewLabel_2 = new JLabel("Profissional *");
 		panel.add(lblNewLabel_2, "cell 0 3 3 1,growx,aligny top");
@@ -172,17 +166,17 @@ public class TelaRemarcarConsulta extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("Objetivo *");
 		panel.add(lblNewLabel_5, "cell 0 7 3 1,growx,aligny top");
 
-		txtMarcarConsulta = new RoundJTextField();
-		txtMarcarConsulta.setText("Remarcar Consulta");
-		txtMarcarConsulta.setHorizontalAlignment(SwingConstants.CENTER);
-		txtMarcarConsulta.setForeground(Color.WHITE);
-		txtMarcarConsulta.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
-		txtMarcarConsulta.setEditable(false);
-		txtMarcarConsulta.setColumns(10);
-		txtMarcarConsulta.setBackground(new Color(64, 128, 128));
-		panel.add(txtMarcarConsulta, "cell 0 0 7 1,grow");
+		label = new RoundJTextField();
+		label.setText("Remarcar Consulta");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
+		label.setEditable(false);
+		label.setColumns(10);
+		label.setBackground(new Color(64, 128, 128));
+		panel.add(label, "cell 0 0 7 1,grow");
 
-		JComboBox comboMedico = new RoundComboBox();
+		comboMedico = new RoundComboBox();
 		comboMedico.setForeground(new Color(0, 0, 0));
 		comboMedico.setBackground(new Color(210, 210, 210));
 		panel.add(comboMedico, "cell 0 4 5 1,grow");
@@ -196,55 +190,32 @@ public class TelaRemarcarConsulta extends JFrame {
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String objetivo = txtObjetivo.getText();
-				TelaPadrao telaPadrao = new TelaPadrao(u);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				
 
 				if(objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
 					return;
 				}
 
-				Consulta c = new Consulta();
+				Consulta c = consultaSelecionada;
 				ConsultaDAO cDao = new ConsultaDAO();
-				Pagamento p = new Pagamento();
-				PagamentoDAO pDao = new PagamentoDAO();
-				Anamnese a = new Anamnese();
-				AnamneseDAO aDao = new AnamneseDAO();
-				
-				p.setData_Pagamento(LocalDate.now());
-				p.setFormaPagamento(String.valueOf(txtPagamento.getSelectedItem()));
-				p.setCpfPagante(listaPaciente.get(txtPaciente.getSelectedIndex()).getCpf());
-				pDao.inserir(p);
 				
 				c.setData(convertToLocalDateViaInstant(dtConsulta.getDate()));
 				c.setEncerrada(false);
 				c.setMedico(listaMedicos.get(comboMedico.getSelectedIndex()));
 				c.setObjetivo(objetivo);
-				c.setPaciente(listaPaciente.get(comboPaciente.getSelectedIndex()));
-				c.setPagamento(p);
 				c.setFalta(false);
 				c.setHorario(LocalTime.parse(txtHora.getText()));
 
-				if(cDao.inserir(c)==true) {
-					new DialogMensagemSucesso("Consulta marcada").setVisible(true);
-					a.setAlergia(null);
-					a.setDisposicaoGeral(null);
-					a.setExamesApresentados(null);
-					a.setHistoricoDoencaAtual(null);
-					a.setHistoricoPatologicoFam(null);
-					a.setHistoricoPatologicoProg(null);
-					a.setHistoricoSocial(null);
-					a.setMedicacoesEmUso(null);
-					a.setQueixaPrincipal(null);
-					a.setTrataAnteriores(null);
-					a.setTrataAtuais(null);
-					a.setConsulta(c);
-					aDao.inserir(a);
+				if(cDao.alterar(c)==true) {
+					new DialogMensagemSucesso("Consulta alterada!").setVisible(true);
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
+				TelaPadrao telaPadrao = new TelaPadrao(u);
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
 			}
 		});
@@ -256,6 +227,7 @@ public class TelaRemarcarConsulta extends JFrame {
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
+		receberDados(consultaSelecionada);
 	}
 	
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
@@ -264,8 +236,21 @@ public class TelaRemarcarConsulta extends JFrame {
 	      .toLocalDate();
 	}
 	
-	private void receberDados(Consulta consutaSelecionada) {
-		
+	private void receberDados(Consulta c) {
+		if(c.getPaciente().getNomeSocial()==null){
+			txtPaciente.setText(c.getPaciente().getNome());
+		}else {
+			txtPaciente.setText(c.getPaciente().getNomeSocial());
+		}
+		txtHora.setText(c.getHorario().toString());
+		txtObjetivo.setText(c.getObjetivo());
+		txtPagamento.setText(c.getPagamento().getFormaPagamento());
+		dtConsulta.setDate(Date.from(c.getData().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+		ArrayList<Medico> listaMed = mDao.listarProfissionais();
+		for (int i=0; i < listaMed.size(); i++) {
+			if(c.getMedico().getCrm()==listaMed.get(i).getCrm()) {
+				comboMedico.setSelectedIndex(i);
+			}
+		}
 	}
-	
 }

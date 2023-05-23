@@ -44,7 +44,6 @@ public class ConsultaDAO {
 			try {
 				dataHora = sdf.parse(c.getData().atTime(c.getHorario()).format(dtf));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 					
@@ -52,9 +51,6 @@ public class ConsultaDAO {
 			//dataHora.setHours(c.getHorario().getHours());
 			//dataHora.setMinutes(c.getHorario().getMinutes());
 		
-
-			System.out.println(dataHora);
-			System.out.println("Data: "+c.getData()+", Hora:"+c.getHorario());
 			stm.setTimestamp(1, new Timestamp(dataHora.getTime()));
 			System.out.println(stm);
 			stm.executeUpdate();
@@ -75,14 +71,28 @@ public class ConsultaDAO {
 	}
 
 	public boolean alterar(Consulta c) {
-		Connection co = Conexao.getInstancia().conectar();
+		// instanciar
+		con = Conexao.getInstancia();
+
+		// conectar
+		Connection co = con.conectar();
 
 		try {
-			String query = "UPDATE consulta SET data = ?, objetivo = ? WHERE id_consulta = ?;";
+			String query = "UPDATE consulta SET data = ?, objetivo = ?, medico_crm = ?, falta = false WHERE id_consulta = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
-			stm.setDate(1, Date.valueOf(c.getData()));
+			String dateFormat = "yyyy-MM-dd'T'HH:mm:ss";
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+			SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+			java.util.Date dataHora = null;
+			try {
+				dataHora = sdf.parse(c.getData().atTime(c.getHorario()).format(dtf));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			stm.setTimestamp(1, new Timestamp(dataHora.getTime()));
 			stm.setString(2, c.getObjetivo());
-			stm.setInt(3, c.getIdConsulta());
+			stm.setLong(3, c.getMedico().getCrm());
+			stm.setInt(4, c.getIdConsulta());
 
 			stm.executeUpdate();
 			return true;
