@@ -35,7 +35,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Toolkit;
 
-public class TelaCadastrarMedico extends JFrame {
+public class TelaCadastrarProfisional extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
@@ -56,8 +56,8 @@ public class TelaCadastrarMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastrarMedico(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar, Funcionario funcionarioSelecionado) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastrarMedico.class.getResource("/img/logoHospital.png")));
+	public TelaCadastrarProfisional(Usuario usuarioAtual, Medico medicoSelecionado, Boolean editar, Funcionario funcionarioSelecionado) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastrarProfisional.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 938, 714);
 		contentPane = new JPanel();
@@ -77,10 +77,10 @@ public class TelaCadastrarMedico extends JFrame {
 		panel.add(panel_1, "cell 0 0 5 1,grow");
 		panel_1.setLayout(new MigLayout("", "[176px,grow]", "[28px,grow]"));
 	
-		JLabel lblNewLabel_1 = new JLabel("Nome completo");
+		JLabel lblNewLabel_1 = new JLabel("Nome completo*");
 		panel.add(lblNewLabel_1, "cell 1 2");
 		
-		JLabel lblNewLabel_7 = new JLabel("Pronome");
+		JLabel lblNewLabel_7 = new JLabel("Pronome*");
 		panel.add(lblNewLabel_7, "cell 3 2");
 		
 		txtNome = new RoundJTextField();
@@ -102,10 +102,10 @@ public class TelaCadastrarMedico extends JFrame {
 		}
 		panel.add(comboPronome, "cell 3 3,growx");
 		
-		JLabel lblNewLabel_2 = new JLabel("CRM");
+		JLabel lblNewLabel_2 = new JLabel("CRM*");
 		panel.add(lblNewLabel_2, "cell 1 5");
 		
-		JLabel lblNewLabel_5 = new JLabel("CPF");
+		JLabel lblNewLabel_5 = new JLabel("CPF*");
 		panel.add(lblNewLabel_5, "cell 3 5");
 		
 		txtCrm = new RoundJTextField();
@@ -130,7 +130,7 @@ public class TelaCadastrarMedico extends JFrame {
 			txtCpf.setEditable(false);
 		}
 		
-		JLabel lblNewLabel_3 = new JLabel("Especialidade médica");
+		JLabel lblNewLabel_3 = new JLabel("Especialidade médica*");
 		panel.add(lblNewLabel_3, "cell 1 8");
 		
 		JLabel lblNewLabel_6 = new JLabel("Sexo");
@@ -166,7 +166,7 @@ public class TelaCadastrarMedico extends JFrame {
 			}
 		});
 		
-		JLabel lblNewLabel_4_1 = new JLabel("Função");
+		JLabel lblNewLabel_4_1 = new JLabel("Função*");
 		panel.add(lblNewLabel_4_1, "cell 3 11");
 		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
 		String[] tipos = {"Medico", "Secretaria", "Administrador", "Outro"};
@@ -188,7 +188,7 @@ public class TelaCadastrarMedico extends JFrame {
 			comboSexo.setEditable(false);
 		}
 		
-		JLabel lblNewLabel_4 = new JLabel("Senha");
+		JLabel lblNewLabel_4 = new JLabel("Senha*");
 		panel.add(lblNewLabel_4, "cell 1 11");
 		
 		txtSenha = new RoundJTextField();
