@@ -92,7 +92,7 @@ public class TelaConsultaPendente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ConsultaDAO cDAO = new ConsultaDAO();
 				dispose();
-				TelaMarcarConsulta tela = new TelaMarcarConsulta(u);
+				TelaRemarcarConsulta tela = new TelaRemarcarConsulta(u);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);

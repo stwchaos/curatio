@@ -45,7 +45,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaMarcarConsulta extends JFrame {
+public class TelaRemarcarConsulta extends JFrame {
 
 	private JPanel c;
 	private JTextField txtObjetivo;
@@ -55,16 +55,18 @@ public class TelaMarcarConsulta extends JFrame {
 	private PacienteDAO pDao = new PacienteDAO();
 	private MedicoDAO mDao = new MedicoDAO();
 	private JTextField txtHora;
+	private JTextField txtPaciente;
+	private JTextField txtPagamento;
 	
-	public TelaMarcarConsulta(Usuario u) {
-		setTitle("Hospital Esmeralda - Marcar Consulta");
+	public TelaRemarcarConsulta(Usuario u, Consulta consultaSelecionada) {
+		setTitle("Hospital Esmeralda - Remarcar Consulta");
 		if (u.getTipo() == TipoUsuario.MEDICO || u.getTipo() == TipoUsuario.SECRETARIA){
 			setTitle("Hospital Esmeralda - Remarcar Consulta");
 		} else {
 			setTitle("Hospital Esmeralda - Marcar Consultas");
 		}
 		setIconImage(
-				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsulta.class.getResource("/img/logoHospital.png")));
+				Toolkit.getDefaultToolkit().getImage(TelaRemarcarConsulta.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 713);
 		BufferedImage bg = null;
@@ -107,18 +109,11 @@ public class TelaMarcarConsulta extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
-
-		JComboBox comboPaciente = new RoundComboBox();
-		comboPaciente.setBackground(new Color(210, 210, 210));
-		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		listaPaciente = pDao.listarPacientes();
-		for (Paciente p : listaPaciente) {
-			if (p.getNomeSocial()==null) {
-				comboPaciente.addItem(p.getNome()+" - "+p.getCpf());
-			} else {
-				comboPaciente.addItem(p.getNomeSocial()+" - "+p.getCpf());
-			}
-			
+		if(consultaSelecionada.getPaciente().getNomeSocial()==null){
+			txtPaciente.setText(consultaSelecionada.getPaciente().getNome());
+		}else {
+			txtPaciente.setText(consultaSelecionada.getPaciente().getNomeSocial());
 		}
 		
 
@@ -136,6 +131,11 @@ public class TelaMarcarConsulta extends JFrame {
 
 			}
 		});
+		
+		txtPaciente = new JTextField();
+		txtPaciente.setEditable(false);
+		panel.add(txtPaciente, "cell 0 2 5 1,growx");
+		txtPaciente.setColumns(10);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Horário da consulta *");
 		panel.add(lblNewLabel_3_1, "cell 4 5");
@@ -157,16 +157,8 @@ public class TelaMarcarConsulta extends JFrame {
 		txtObjetivo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtObjetivo.setColumns(10);
 		panel.add(txtObjetivo, "cell 0 8 7 1,grow");
-
-		JComboBox comboPagamento = new RoundComboBox();
-		comboPagamento.setBackground(new Color(218, 218, 218));
-		panel.add(comboPagamento, "cell 0 10 5 1,growx");
 		String[] listaPagamento = {"Debito","Credito","Pix","Cheque","Em Especie"};
-		comboPagamento.setSelectedItem("Inserir");
-		for (String string : listaPagamento) {
-			comboPagamento.addItem(string);
-			
-		}
+		txtPagamento.setText(consultaSelecionada.getPagamento().getFormaPagamento());
 
 		JLabel lblNewLabel_2 = new JLabel("Profissional *");
 		panel.add(lblNewLabel_2, "cell 0 3 3 1,growx,aligny top");
@@ -181,7 +173,7 @@ public class TelaMarcarConsulta extends JFrame {
 		panel.add(lblNewLabel_5, "cell 0 7 3 1,growx,aligny top");
 
 		txtMarcarConsulta = new RoundJTextField();
-		txtMarcarConsulta.setText("Marcar Consulta");
+		txtMarcarConsulta.setText("Remarcar Consulta");
 		txtMarcarConsulta.setHorizontalAlignment(SwingConstants.CENTER);
 		txtMarcarConsulta.setForeground(Color.WHITE);
 		txtMarcarConsulta.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
@@ -199,7 +191,7 @@ public class TelaMarcarConsulta extends JFrame {
 			comboMedico.addItem(m.getNome()+" - "+m.getCrm());
 		}
 
-		JButton btnMarcar = new JButton("Agendar");
+		JButton btnMarcar = new JButton("Remarcar");
 		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,8 +214,8 @@ public class TelaMarcarConsulta extends JFrame {
 				AnamneseDAO aDao = new AnamneseDAO();
 				
 				p.setData_Pagamento(LocalDate.now());
-				p.setFormaPagamento(String.valueOf(comboPagamento.getSelectedItem()));
-				p.setCpfPagante(listaPaciente.get(comboPaciente.getSelectedIndex()).getCpf());
+				p.setFormaPagamento(String.valueOf(txtPagamento.getSelectedItem()));
+				p.setCpfPagante(listaPaciente.get(txtPaciente.getSelectedIndex()).getCpf());
 				pDao.inserir(p);
 				
 				c.setData(convertToLocalDateViaInstant(dtConsulta.getDate()));
@@ -256,6 +248,11 @@ public class TelaMarcarConsulta extends JFrame {
 				dispose();
 			}
 		});
+		
+		txtPagamento = new JTextField();
+		txtPagamento.setEditable(false);
+		panel.add(txtPagamento, "cell 0 10 5 1,growx");
+		txtPagamento.setColumns(10);
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
@@ -266,4 +263,9 @@ public class TelaMarcarConsulta extends JFrame {
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
 	}
+	
+	private void receberDados(Consulta consutaSelecionada) {
+		
+	}
+	
 }
