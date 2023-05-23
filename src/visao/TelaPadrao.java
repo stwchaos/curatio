@@ -11,18 +11,12 @@ import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import javax.swing.border.MatteBorder;
-import controle.PacienteDAO;
-import controle.MedicoDAO;
-import modelo.Medico;
-import modelo.TipoUsuario;
-import modelo.Usuario;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -348,7 +342,7 @@ public class TelaPadrao extends JFrame {
 
 		txtConsultasHj = new JTextField();
 		for (Consulta consulta : consultas) {
-			if(consulta.getData().equals(LocalDate.now())) {
+			if((consulta.getData().equals(LocalDate.now())) && (consulta.getHorario().isBefore(LocalTime.now())) && (consulta.getEncerrada()==false)) {
 				consultasHoje++;
 			}
 		}
