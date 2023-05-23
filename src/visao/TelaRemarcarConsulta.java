@@ -190,10 +190,26 @@ public class TelaRemarcarConsulta extends JFrame {
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String objetivo = txtObjetivo.getText();
-				
+				String hora = txtHora.getText();
 
 				if(objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
+					return;
+				}
+				
+				try {
+					Integer.valueOf(firstNChars(hora, 2));
+					Integer.valueOf(getLastN(hora, 2));
+				} catch (Exception e2) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
+					return;
+				}
+				if(Integer.valueOf(firstNChars(hora, 2))>23) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
+					return;
+				}
+				if(Integer.valueOf(getLastN(hora, 2)) > 59) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
 					return;
 				}
 
@@ -235,7 +251,20 @@ public class TelaRemarcarConsulta extends JFrame {
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
 	}
+	public static String firstNChars(String str, int n) {
+        if (str == null) {
+            return null;
+        }
+ 
+        return str.length() < n ? str : str.substring(0, n);
+    }
 	
+	public static String getLastN(String s, int n) {
+        if (s == null) {
+            return null;
+        }
+        return s.substring(Math.max(0, s.length() - n));
+    }
 	private void receberDados(Consulta c) {
 		if(c.getPaciente().getNomeSocial()==null){
 			txtPaciente.setText(c.getPaciente().getNome());

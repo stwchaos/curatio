@@ -210,7 +210,6 @@ public class TelaMarcarConsulta extends JFrame {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
 					return;
 				}
-				System.out.println(hora);
 				
 				try {
 					Integer.valueOf(firstNChars(hora, 2));
