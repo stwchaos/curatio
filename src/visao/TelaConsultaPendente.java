@@ -90,9 +90,13 @@ public class TelaConsultaPendente extends JFrame {
 		JButton btnRemarcar = new JButton("Remarcar");
 		btnRemarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (consultaSelecionada == null) {
+					new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+					return;
+				}
 				ConsultaDAO cDAO = new ConsultaDAO();
 				dispose();
-				TelaMarcarConsulta tela = new TelaMarcarConsulta(u);
+				TelaRemarcarConsulta tela = new TelaRemarcarConsulta(u, consultaSelecionada);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -131,7 +135,7 @@ public class TelaConsultaPendente extends JFrame {
 			JButton btnAnamnese = new JButton("Anamnese");
 			btnAnamnese.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (consultaSelecionada == null && consultaSelecionada == null) {
+					if (consultaSelecionada == null) {
 						new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
 						return;
 					}
