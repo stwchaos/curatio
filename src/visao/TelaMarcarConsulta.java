@@ -203,16 +203,30 @@ public class TelaMarcarConsulta extends JFrame {
 		btnMarcar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String objetivo = txtObjetivo.getText();
-				TelaPadrao telaPadrao = new TelaPadrao(u);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				String hora = txtHora.getText();
 
 				if(objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
 					return;
 				}
-
+				System.out.println(hora);
+				
+				try {
+					Integer.valueOf(firstNChars(hora, 2));
+					Integer.valueOf(getLastN(hora, 2));
+				} catch (Exception e2) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
+					return;
+				}
+				if(Integer.valueOf(firstNChars(hora, 2))>23) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
+					return;
+				}
+				if(Integer.valueOf(getLastN(hora, 2)) > 59) {
+					new DialogMensagemErro("Horário Invalido").setVisible(true);
+					return;
+				}
+				
 				Consulta c = new Consulta();
 				ConsultaDAO cDao = new ConsultaDAO();
 				Pagamento p = new Pagamento();
@@ -252,6 +266,11 @@ public class TelaMarcarConsulta extends JFrame {
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
+				
+				TelaPadrao telaPadrao = new TelaPadrao(u);
+				telaPadrao.setLocationRelativeTo(null);
+				telaPadrao.setVisible(true);
+				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
 			}
 		});
@@ -265,4 +284,19 @@ public class TelaMarcarConsulta extends JFrame {
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
 	}
+	
+	public static String firstNChars(String str, int n) {
+        if (str == null) {
+            return null;
+        }
+ 
+        return str.length() < n ? str : str.substring(0, n);
+    }
+	
+	public static String getLastN(String s, int n) {
+        if (s == null) {
+            return null;
+        }
+        return s.substring(Math.max(0, s.length() - n));
+    }
 }

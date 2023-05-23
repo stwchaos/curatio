@@ -190,7 +190,7 @@ public class ConsultaDAO {
 		Connection co = con.conectar();
 
 		try {
-			String query = "UPDATE consulta SET encerrada = true WHERE id_consulta = ?;";
+			String query = "UPDATE consulta SET encerrada = true, falta = 0 WHERE id_consulta = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
 			stm.setInt(1, c.getIdConsulta());
 
