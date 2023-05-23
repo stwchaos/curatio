@@ -27,7 +27,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaConsultasPendentes extends JFrame {
+public class TelaConsultaPendente extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -36,9 +36,9 @@ public class TelaConsultasPendentes extends JFrame {
 	private Consulta consultaSelecionada = null;
 	private int linha;
 
-	public TelaConsultasPendentes(Usuario u) {
+	public TelaConsultaPendente(Usuario u) {
 		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(TelaConsultasPendentes.class.getResource("/img/logoHospital.png")));
+				.getImage(TelaConsultaPendente.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda - Consultas Pendentes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 569);
@@ -67,7 +67,7 @@ public class TelaConsultasPendentes extends JFrame {
 		panel.setLayout(new MigLayout("", "[grow]", "[][grow][][][][][][][grow]"));
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(TelaConsultaPendente.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
 		panel.add(lblNewLabel_2, "cell 0 0,alignx center,aligny center");
 		
 		JLabel lblNewLabel = new JLabel("Controle de Consultas Pendentes");
@@ -92,7 +92,7 @@ public class TelaConsultasPendentes extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ConsultaDAO cDAO = new ConsultaDAO();
 				dispose();
-				TelaMarcarConsultas tela = new TelaMarcarConsultas(u);
+				TelaMarcarConsulta tela = new TelaMarcarConsulta(u);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -103,18 +103,6 @@ public class TelaConsultasPendentes extends JFrame {
 		btnRemarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnRemarcar.setFocusPainted(false);
 		panel.add(btnRemarcar, "cell 0 5,growx,aligny center");
-		
-		JButton btnConsultaConluida = new JButton("Consulta Concluída");
-		btnConsultaConluida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO concluida
-			}
-		});
-		btnConsultaConluida.setForeground(new Color(255, 255, 255));
-		btnConsultaConluida.setBackground(new Color(0, 81, 81));
-		btnConsultaConluida.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnConsultaConluida.setFocusPainted(false);
-		panel.add(btnConsultaConluida, "cell 0 7,growx,aligny center");
 		
 		}
 
@@ -158,7 +146,7 @@ public class TelaConsultasPendentes extends JFrame {
 					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
-			btnAnamnese.setIcon(new ImageIcon(TelaConsultasPendentes.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			btnAnamnese.setIcon(new ImageIcon(TelaConsultaPendente.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
 			btnAnamnese.setOpaque(false);
 			btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
 			btnAnamnese.setForeground(Color.WHITE);

@@ -280,7 +280,7 @@ public class TelaAnamnese extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+				TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
 				telaAnterior.setLocationRelativeTo(null);
 				telaAnterior.setVisible(true);
 				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -375,7 +375,7 @@ public class TelaAnamnese extends JFrame {
 					JOptionPane.showMessageDialog(null, "Sim");
 					cDao.consultaRealizada(anaSelecionada.getConsulta());
 					dispose();
-					TelaConsultasPendentes telaAnterior = new TelaConsultasPendentes(usuarioAtual);
+					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
 					telaAnterior.setLocationRelativeTo(null);
 					telaAnterior.setVisible(true);
 					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);

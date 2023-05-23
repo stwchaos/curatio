@@ -214,7 +214,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 				medicoSelecionado=null;
 				funcionarioSelecionado=null;
 				dispose();
-				TelaCadastrarMedico tela = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
+				TelaCadastrarProfisional tela = new TelaCadastrarProfisional(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -233,7 +233,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao{
 					
 					editar = true;
 					dispose();
-					TelaCadastrarMedico telaAlterar = new TelaCadastrarMedico(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
+					TelaCadastrarProfisional telaAlterar = new TelaCadastrarProfisional(usuarioAtual, medicoSelecionado, editar, funcionarioSelecionado);
 					telaAlterar.setLocationRelativeTo(null);
 					telaAlterar.setVisible(true);
 					telaAlterar.setExtendedState(JFrame.MAXIMIZED_BOTH);

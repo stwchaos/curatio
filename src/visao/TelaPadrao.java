@@ -146,7 +146,7 @@ public class TelaPadrao extends JFrame {
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMarcarConsultas telaMarcarConsulta = new TelaMarcarConsultas(usuarioAtual);
+				TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta(usuarioAtual);
 				telaMarcarConsulta.setLocationRelativeTo(null);
 				telaMarcarConsulta.setVisible(true);
 				telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -213,7 +213,7 @@ public class TelaPadrao extends JFrame {
 		btnConsultasPendentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaConsultasPendentes telaConsultasPendentes = new TelaConsultasPendentes(usuarioAtual);
+				TelaConsultaPendente telaConsultasPendentes = new TelaConsultaPendente(usuarioAtual);
 				telaConsultasPendentes.setLocationRelativeTo(null);
 				telaConsultasPendentes.setVisible(true);
 				telaConsultasPendentes.setExtendedState(JFrame.MAXIMIZED_BOTH);

@@ -20,12 +20,14 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -43,7 +45,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaMarcarConsultas extends JFrame {
+public class TelaMarcarConsulta extends JFrame {
 
 	private JPanel c;
 	private JTextField txtObjetivo;
@@ -54,14 +56,14 @@ public class TelaMarcarConsultas extends JFrame {
 	private MedicoDAO mDao = new MedicoDAO();
 	private JTextField txtHora;
 	
-	public TelaMarcarConsultas(Usuario u) {
+	public TelaMarcarConsulta(Usuario u) {
 		if (u.getTipo() == TipoUsuario.MEDICO || u.getTipo() == TipoUsuario.SECRETARIA){
 			setTitle("Hospital Esmeralda - Remarcar Consulta");
 		} else {
 			setTitle("Hospital Esmeralda - Marcar Consultas");
 		}
 		setIconImage(
-				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsultas.class.getResource("/img/logoHospital.png")));
+				Toolkit.getDefaultToolkit().getImage(TelaMarcarConsulta.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 713);
 		BufferedImage bg = null;
@@ -133,13 +135,22 @@ public class TelaMarcarConsultas extends JFrame {
 
 			}
 		});
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Horário da consulta *");
+		panel.add(lblNewLabel_3_1, "cell 4 5");
 		panel.add(dtConsulta, "cell 0 6 4 1,growx,aligny bottom");
 		dtConsulta.getDate();
 		
-		txtHora = new JTextField();
-		panel.add(txtHora, "cell 4 6,growx");
-		txtHora.setColumns(10);
-
+		txtHora = new JFormattedTextField();
+        panel.add(txtHora, "cell 4 6,growx");
+        txtHora.setColumns(10);
+        try {
+            MaskFormatter mascaraHora = new MaskFormatter("##:##");
+            mascaraHora.setPlaceholderCharacter('_');
+            mascaraHora.install((JFormattedTextField) txtHora);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 		txtObjetivo = new RoundJTextField();
 		txtObjetivo.setHorizontalAlignment(SwingConstants.CENTER);
 		txtObjetivo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
