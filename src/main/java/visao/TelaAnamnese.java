@@ -32,7 +32,6 @@ public class TelaAnamnese extends JFrame {
 	private JTextField txtAnamneseOriental;
 	private JTextField textNomeR;
 	private JTextField textNomeS;
-	private JComboBox comboPronome;
 	private JLabel lblNewLabel_2;
 	private JTextField textSexo;
 	private JLabel lblNewLabel_4;
@@ -65,8 +64,9 @@ public class TelaAnamnese extends JFrame {
 	private JTextField txtObs;
 	private JButton btnSalvar;
 	int camposPreenchidos = 0;
+	private RoundJTextField txtPronome;
 
-	public TelaAnamnese(final Usuario usuarioAtual, final Anamnese anaSelecionada, Boolean visualizar) {
+	public TelaAnamnese(final Usuario usuarioAtual, final Anamnese anaSelecionada, Boolean visualizar, Boolean encerrado) {
 
 		setTitle("Hospital Esmeralda - Anamnese");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAnamnese.class.getResource("/img/logoHospital.png")));
@@ -118,17 +118,15 @@ public class TelaAnamnese extends JFrame {
 
 		panel.add(textNomeS, "cell 0 5,growx");
 		textNomeS.setColumns(10);
-
-		comboPronome = new RoundComboBox();
-		comboPronome.setEditable(true);
-		comboPronome.setForeground(Color.BLACK);
-		comboPronome.setBackground(new Color(255, 255, 255));
-		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
-		for (String string : listaPronome) {
-			comboPronome.addItem(string);
-		}
-		panel.add(comboPronome, "cell 2 5,growx");
+		
+		txtPronome = new RoundJTextField();
+		txtPronome.setText((String) null);
+		txtPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtPronome.setEditable(false);
+		txtPronome.setColumns(10);
+		txtPronome.setBackground(new Color(163, 163, 163));
+		panel.add(txtPronome, "cell 2 5,growx");
+		txtPronome.setText(anaSelecionada.getConsulta().getPaciente().getPronome());
 
 		lblNewLabel_2 = new JLabel("Sexo");
 		panel.add(lblNewLabel_2, "cell 0 6");
@@ -279,11 +277,19 @@ public class TelaAnamnese extends JFrame {
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
-				telaAnterior.setLocationRelativeTo(null);
-				telaAnterior.setVisible(true);
-				telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				if(encerrado==false) {
+					dispose();
+					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
+					telaAnterior.setLocationRelativeTo(null);
+					telaAnterior.setVisible(true);
+					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				} else {
+					dispose();
+					TelaHistorico telaAnterior = new TelaHistorico(usuarioAtual, anaSelecionada.getConsulta().getPaciente());
+					telaAnterior.setLocationRelativeTo(null);
+					telaAnterior.setVisible(true);
+					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				}
 			}
 		});
 		btnVoltar.setBackground(new Color(0, 81, 81));
@@ -390,13 +396,34 @@ public class TelaAnamnese extends JFrame {
 		contentPane.add(btnSalvar, "cell 31 11,growx");
 
 		receberDados(anaSelecionada);
-
+		if(encerrado==true) {
+			blockEdit();
+		}
+	}
+	
+	private void blockEdit() {
+		textNomeR.setEditable(false);
+		textNomeS.setEditable(false);
+		textSexo.setEditable(false);
+		dtNascimento.setEnabled(false);
+		textAlergia.setEditable(false);
+		textDispo.setEditable(false);
+		textExames.setEditable(false);
+		textHDoenca.setEditable(false);
+		textHPato.setEditable(false);
+		textHPatoF.setEditable(false);
+		textMedicacao.setEditable(false);
+		textQueixa.setEditable(false);
+		textTAtual.setEditable(false);
+		textTAnterior.setEditable(false);
+		textHSocial.setEditable(false);
+		txtObs.setEditable(false);
+		contentPane.remove(btnSalvar);
 	}
 
 	private void receberDados(Anamnese anaSelecionada) {
 		textNomeR.setText(anaSelecionada.getConsulta().getPaciente().getNome());
 		textNomeS.setText(anaSelecionada.getConsulta().getPaciente().getNomeSocial());
-		comboPronome.setSelectedItem(anaSelecionada.getConsulta().getPaciente().getPronome());
 		textSexo.setText(anaSelecionada.getConsulta().getPaciente().getSexo());
 		dtNascimento.setDate(Date.valueOf(anaSelecionada.getConsulta().getPaciente().getNascimento()));
 		textAlergia.setText(anaSelecionada.getAlergia());

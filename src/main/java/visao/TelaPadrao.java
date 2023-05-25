@@ -33,6 +33,7 @@ import controle.ConsultaDAO;
 import controle.MedicoDAO;
 import controle.PacienteDAO;
 import modelo.Consulta;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
@@ -142,7 +143,9 @@ public class TelaPadrao extends JFrame {
 		});
 		btnMarcarConsulta.setForeground(Color.WHITE);
 		btnMarcarConsulta.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		panel.add(btnMarcarConsulta, "cell 1 7,growx,aligny center");
+		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO || usuarioAtual.getTipo()==TipoUsuario.SECRETARIA) {
+			panel.add(btnMarcarConsulta, "cell 1 7,growx,aligny center");
+		}
 
 		JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
 		btnCadastrarPaciente
@@ -165,7 +168,9 @@ public class TelaPadrao extends JFrame {
 		});
 		btnCadastrarPaciente.setForeground(Color.WHITE);
 		btnCadastrarPaciente.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		panel.add(btnCadastrarPaciente, "cell 1 9,growx,aligny center");
+		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO || usuarioAtual.getTipo()==TipoUsuario.SECRETARIA) {
+			panel.add(btnCadastrarPaciente, "cell 1 9,growx,aligny center");
+		}
 
 		JButton btnListaPaciente = new JButton("Pacientes");
 		btnListaPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Caderno Carinha.png")));
@@ -337,8 +342,7 @@ public class TelaPadrao extends JFrame {
 
 		txtConsultasHj = new JTextField();
 		for (Consulta consulta : consultas) {
-			if ((consulta.getData().equals(LocalDate.now())) && (consulta.getHorario().isBefore(LocalTime.now()))
-					&& (consulta.getEncerrada() == false)) {
+			if(consulta.getData().equals(LocalDate.now()) && consulta.getHorario().isAfter(LocalTime.now()) && consulta.getEncerrada()==false) {
 				consultasHoje++;
 			}
 		}

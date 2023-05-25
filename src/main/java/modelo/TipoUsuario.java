@@ -1,7 +1,7 @@
 package modelo;
 
 public enum TipoUsuario {
-	MEDICO(1), SECRETARIA(2), ADMIN(3), OUTROS(4);
+	MEDICO(1), SECRETARIA(2), ADMIN(3);
 	
 	TipoUsuario(int tipo) {
 		this.tipo = tipo;
@@ -13,12 +13,10 @@ public enum TipoUsuario {
 		switch(i) {
 		case 1:
 			return MEDICO;
-		case 2:
-			return SECRETARIA;
 		case 3:
 			return ADMIN;
-		default: 
-			return OUTROS;
+		default:
+			return SECRETARIA;
 		}
 	}
 }

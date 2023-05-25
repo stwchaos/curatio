@@ -74,7 +74,7 @@ public class TelaRemarcarConsulta extends JFrame {
 		BufferedImage bg = null;
 		;
 		try {
-			bg = ImageIO.read(new File("src/img/Background2.png"));
+			bg = ImageIO.read(new File("src/main/resources/img/Background2.png"));
 
 		} catch (IOException e) {
 			e.printStackTrace();

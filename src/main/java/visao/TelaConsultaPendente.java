@@ -37,6 +37,7 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	private Consulta consultaSelecionada = null;
 	private int linha;
 	private AnamneseDAO aDao = new AnamneseDAO();
+	private Boolean encerrado = false;
 
 	public TelaConsultaPendente(final Usuario usuarioAtual) {
 		setIconImage(
@@ -83,7 +84,7 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 			btnDesmarcar.setBackground(new Color(0, 81, 81));
 			btnDesmarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			btnDesmarcar.setFocusPainted(false);
-			TelaConsultaPendente tela = this;
+			final TelaConsultaPendente tela = this;
 			btnDesmarcar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// TODO confirmaçao
@@ -148,7 +149,7 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 					TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual,
 							aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()),
-							rootPaneCheckingEnabled);
+							rootPaneCheckingEnabled, encerrado);
 					telaAna.setLocationRelativeTo(null);
 					telaAna.setVisible(true);
 					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);

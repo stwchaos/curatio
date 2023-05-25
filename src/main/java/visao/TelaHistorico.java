@@ -1,37 +1,31 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.AnamneseDAO;
 import controle.ConsultaDAO;
-import controle.PacienteDAO;
 import modelo.Consulta;
-import modelo.Medico;
 import modelo.Paciente;
 import modelo.TipoUsuario;
 import modelo.Usuario;
-
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Toolkit;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.awt.Font;
-import javax.swing.border.CompoundBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.SwingConstants;
 
 public class TelaHistorico extends JFrame {
 
@@ -44,8 +38,10 @@ public class TelaHistorico extends JFrame {
 	private ConsultaDAO cDao = new ConsultaDAO();
 	private JLabel lblNewLabel;
 	private Consulta consultaSelecionada = null;
+	private int linha;
+	private Boolean encerrado = true;
 
-	public TelaHistorico(final Usuario usuarioAtual, Paciente pacienteSelecionado) {
+	public TelaHistorico(final Usuario usuarioAtual, final Paciente pacienteSelecionado) {
 		setBackground(new Color(0, 81, 81));
 		setTitle("Hospital Esmeralda - Histórico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaHistorico.class.getResource("/img/logoHospital.png")));
@@ -112,17 +108,14 @@ public class TelaHistorico extends JFrame {
 		JButton btnAnamnese = new JButton("Anamnese Preenchida");
 		btnAnamnese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (consultaSelecionada == null && consultaSelecionada == null) {
+				if (consultaSelecionada == null) {
 					new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
 					return;
 				}
 				dispose();
 
 				AnamneseDAO aDao = new AnamneseDAO();
-				System.out.println(aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()));
-				System.out.println();
-				TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual,
-						aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled);
+				TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled, encerrado);
 				telaAna.setLocationRelativeTo(null);
 				telaAna.setVisible(true);
 				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -136,7 +129,23 @@ public class TelaHistorico extends JFrame {
 		btnAnamnese.setFocusPainted(false);
 		btnAnamnese.setBorder(null);
 		btnAnamnese.setBackground((Color) null);
-		panel_4.add(btnAnamnese, "cell 2 0,growx,aligny top");
+		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO) {
+			panel_4.add(btnAnamnese, "cell 2 0,growx,aligny top");
+		}
+		
+		table.addMouseListener(new MouseAdapter() {	
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			linha = table.getSelectedRow();
+			Integer id = (Integer) table.getValueAt(linha, 0);
+			for (Consulta consulta : cDao.listarConsultas()) {
+				if (id.equals(consulta.getIdConsulta())) {
+					consultaSelecionada = consulta;
+					// consultaSelecionada=null;
+				}
+			}
+		}
+	});
 	}
 	// }
 
