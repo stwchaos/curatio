@@ -55,6 +55,8 @@ public class TelaMarcarConsulta extends JFrame {
 	private PacienteDAO pDao = new PacienteDAO();
 	private MedicoDAO mDao = new MedicoDAO();
 	private JTextField txtHora;
+	private JComboBox comboPaciente;
+	private JComboBox comboMedico;
 	
 	public TelaMarcarConsulta(final Usuario usuarioAtual) {
 		setTitle("Hospital Esmeralda - Marcar Consulta");
@@ -108,19 +110,11 @@ public class TelaMarcarConsulta extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
 
-		final JComboBox comboPaciente = new RoundComboBox();
+		comboPaciente = new RoundComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		listaPaciente = pDao.listarPacientes();
-		for (Paciente p : listaPaciente) {
-			if (p.getNomeSocial()==null) {
-				comboPaciente.addItem(p.getNome()+" - "+p.getCpf());
-			} else {
-				comboPaciente.addItem(p.getNomeSocial()+" - "+p.getCpf());
-			}
-			
-		}
-		
+		listarPacientes();
 
 		final JDateChooser dtConsulta = new JDateChooser();
 		dtConsulta.getCalendarButton().setBackground(new Color(210, 210, 210));
@@ -165,7 +159,6 @@ public class TelaMarcarConsulta extends JFrame {
 		comboPagamento.setSelectedItem("Inserir");
 		for (String string : listaPagamento) {
 			comboPagamento.addItem(string);
-			
 		}
 
 		JLabel lblNewLabel_2 = new JLabel("Profissional *");
@@ -190,14 +183,12 @@ public class TelaMarcarConsulta extends JFrame {
 		txtMarcarConsulta.setBackground(new Color(64, 128, 128));
 		panel.add(txtMarcarConsulta, "cell 0 0 7 1,grow");
 
-		final JComboBox comboMedico = new RoundComboBox();
+		comboMedico = new RoundComboBox();
 		comboMedico.setForeground(new Color(0, 0, 0));
 		comboMedico.setBackground(new Color(210, 210, 210));
 		panel.add(comboMedico, "cell 0 4 5 1,grow");
 		listaMedicos = mDao.listarProfissionais();
-		for (Medico m : listaMedicos) {
-			comboMedico.addItem(m.getNome()+" - "+m.getCrm());
-		}
+		listarMedicos();
 
 		JButton btnMarcar = new JButton("Agendar");
 		btnMarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -299,4 +290,20 @@ public class TelaMarcarConsulta extends JFrame {
         }
         return s.substring(Math.max(0, s.length() - n));
     }
+	
+	private void listarPacientes() {
+		for (Paciente p : listaPaciente) {
+			if (p.getNomeSocial()==null) {
+				comboPaciente.addItem(p.getNome()+" - "+p.getCpf());
+			} else {
+				comboPaciente.addItem(p.getNomeSocial()+" - "+p.getCpf());
+			}
+		}
+	}
+	
+	private void listarMedicos() {
+		for (Medico m : listaMedicos) {
+			comboMedico.addItem(m.getNome()+" - "+m.getCrm());
+		}
+	}
 }
