@@ -284,12 +284,12 @@ public class TelaCadastroPaciente extends JFrame {
 				Long cpf, cep, telefone;
 				Integer casa;
 
-				//validação
+				// validação
 				if (nome.trim().isEmpty()) {
 					new DialogMensagemErro("Nome Vazio").setVisible(true);
 					return;
 				}
-				
+
 				if (numCpf.trim().isEmpty()) {
 					new DialogMensagemErro("CPF Vazio").setVisible(true);
 					return;
@@ -313,12 +313,12 @@ public class TelaCadastroPaciente extends JFrame {
 						return;
 					}
 				}
-				
+
 				if (bairro.trim().isEmpty()) {
 					new DialogMensagemErro("Bairro Vazio").setVisible(true);
 					return;
 				}
-				
+
 				if (numTel.trim().isEmpty()) {
 					new DialogMensagemErro("Telefone Vazio").setVisible(true);
 					return;
@@ -330,22 +330,22 @@ public class TelaCadastroPaciente extends JFrame {
 						return;
 					}
 				}
-				
+
 				if (cidade.trim().isEmpty()) {
 					new DialogMensagemErro("Cidade Vazio").setVisible(true);
 					return;
 				}
-				
+
 				if (email.trim().isEmpty()) {
 					new DialogMensagemErro("Email Vazio").setVisible(true);
 					return;
 				}
-				
+
 				if (rua.trim().isEmpty()) {
 					new DialogMensagemErro("Rua Vazio").setVisible(true);
 					return;
 				}
-				
+
 				if (numCep.trim().isEmpty()) {
 					new DialogMensagemErro("CEP Vazio").setVisible(true);
 					return;
@@ -357,31 +357,31 @@ public class TelaCadastroPaciente extends JFrame {
 						return;
 					}
 				}
-				if(complemento.trim().isEmpty()) {
+				if (complemento.trim().isEmpty()) {
 					complemento = null;
 				}
-				if(nomeSoc.trim().isEmpty()) {
+				if (nomeSoc.trim().isEmpty()) {
 					nomeSoc = null;
 				}
-				//fimvalidacao
-				
+				// fimvalidacao
+
 				Paciente p = new Paciente();
 				PacienteDAO pDao = new PacienteDAO();
 				Endereco end = new Endereco();
 				EnderecoDAO eDao = new EnderecoDAO();
-				
+
 				end.setBairro(bairro);
 				end.setCidade(cidade);
 				end.setComplemento(complemento);
 				end.setRua(rua);
 				Endereco en = eDao.BuscarEndereco(end);
-				if(en==null) {
+				if (en == null) {
 					eDao.inserir(end);
 					p.setEndereco(end);
-				}else {
+				} else {
 					p.setEndereco(en);
 				}
-				
+
 				p.setCep(cep);
 				p.setCpf(cpf);
 				p.setEmail(email);
@@ -392,15 +392,15 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setPronome(comboPronome.getSelectedItem().toString());
 				p.setSexo(comboSexo.getSelectedItem().toString());
 				p.setTelefone(telefone);
-				
-				if(pDao.inserir(p)==true) {
+
+				if (pDao.inserir(p) == true) {
 					new DialogMensagemSucesso("Cadastrado com Sucesso").setVisible(true);
 					dispose();
 					TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 					telaPadrao.setLocationRelativeTo(null);
 					telaPadrao.setVisible(true);
 					telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				}else {
+				} else {
 					new DialogMensagemErro("Erro ao Cadastrar").setVisible(true);
 				}
 			}

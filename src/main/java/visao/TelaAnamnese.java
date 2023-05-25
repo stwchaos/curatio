@@ -124,7 +124,7 @@ public class TelaAnamnese extends JFrame {
 		comboPronome.setForeground(Color.BLACK);
 		comboPronome.setBackground(new Color(255, 255, 255));
 		comboPronome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		String[] listaPronome = {"Ele/Dele", "Ela/Dela", "Qualquer pronome"};
+		String[] listaPronome = { "Ele/Dele", "Ela/Dela", "Qualquer pronome" };
 		for (String string : listaPronome) {
 			comboPronome.addItem(string);
 		}
@@ -306,7 +306,7 @@ public class TelaAnamnese extends JFrame {
 				String medicacoes = textMedicacao.getText();
 				String exames = textExames.getText();
 				String disposicao = textDispo.getText();
-				
+
 				if (!queixa.trim().isEmpty()) {
 					camposPreenchidos++;
 				}
@@ -355,10 +355,10 @@ public class TelaAnamnese extends JFrame {
 					new DialogMensagemErro("Preencha pelo menos um campo para prosseguir.").setVisible(true);
 					return;
 				}
-				
+
 				AnamneseDAO aDao = new AnamneseDAO();
 				ConsultaDAO cDao = new ConsultaDAO();
-				
+
 				anaSelecionada.setAlergia(alergias);
 				anaSelecionada.setDisposicaoGeral(disposicao);
 				anaSelecionada.setExamesApresentados(exames);
@@ -370,9 +370,9 @@ public class TelaAnamnese extends JFrame {
 				anaSelecionada.setQueixaPrincipal(queixa);
 				anaSelecionada.setTrataAnteriores(tratamentoAnterior);
 				anaSelecionada.setTrataAtuais(tratamentoAtual);
-				
-				if(aDao.alterar(anaSelecionada)) {
-					JOptionPane.showMessageDialog(null, "Sim");
+
+				if (aDao.alterar(anaSelecionada)) {
+					new DialogMensagemSucesso("a Anamnese foi realizada!").setVisible(true);
 					cDao.consultaRealizada(anaSelecionada.getConsulta());
 					dispose();
 					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
@@ -380,7 +380,7 @@ public class TelaAnamnese extends JFrame {
 					telaAnterior.setVisible(true);
 					telaAnterior.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} else {
-					JOptionPane.showMessageDialog(null, "Nao");
+					new DialogMensagemErro("Ocorreu um erro ao salvar anamnese.").setVisible(true);
 				}
 			}
 		});

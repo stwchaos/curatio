@@ -364,14 +364,15 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 				p.setEndereco(en);
 
 				if (pDao.alterar(p)) {
-					JOptionPane.showMessageDialog(null, "Sim");
+					new DialogMensagemSucesso("Alterado com sucesso!").setVisible(true);
 					dispose();
 					TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
 					telaListaPaciente.setLocationRelativeTo(null);
 					telaListaPaciente.setVisible(true);
 					telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} else {
-					JOptionPane.showMessageDialog(null, "Nao");
+					new DialogMensagemErro("Erro ao alterar.").setVisible(true);
+
 				}
 			}
 		});

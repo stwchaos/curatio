@@ -29,19 +29,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
-
-
 public class DialogConfirmacao extends JFrame {
-	
+
 	private Paciente pacienteSelecionado = null;
 	private PacienteDAO pDao = new PacienteDAO();
 	private static final long serialVersionUID = 1L;
 
-
 	public DialogConfirmacao(String message, final InterfaceConfirmacao tela) {
 		setTitle("Aviso");
-		setIconImage(
-				Toolkit.getDefaultToolkit().getImage(DialogConfirmacao.class.getResource("/img/sign-warning-icon_34355.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(DialogConfirmacao.class.getResource("/img/sign-warning-icon_34355.png")));
 
 		setBounds(0, 0, 320, 130);
 		BufferedImage bg = null;
@@ -78,9 +75,9 @@ public class DialogConfirmacao extends JFrame {
 		btnOk.setBounds(221, 96, 89, 23);
 		btnOk.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
 				tela.btnConfirmacao();
-				dispose();	
+				dispose();
 			}
 		});
 		btnOk.setBackground(new Color(191, 0, 0));
@@ -88,28 +85,27 @@ public class DialogConfirmacao extends JFrame {
 		btnOk.setBorderPainted(false);
 		btnOk.setFocusPainted(false);
 		c.add(btnOk);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 				tela.bntCancelar();
 				dispose();
-			}});
+			}
+		});
 		btnCancelar.setForeground(new Color(255, 255, 255));
 		btnCancelar.setBackground(new Color(64, 128, 128));
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setFocusPainted(false);
 		btnCancelar.setBounds(10, 97, 89, 23);
 		c.add(btnCancelar);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(DialogConfirmacao.class.getResource("/img/sign-warning-icon_34355.png")));
 		lblNewLabel_1.setBounds(10, 12, 39, 45);
 		c.add(lblNewLabel_1);
-		
 
 		setLocationRelativeTo(null);
 		setUndecorated(true);

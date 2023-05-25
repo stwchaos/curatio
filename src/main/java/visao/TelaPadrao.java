@@ -37,7 +37,7 @@ import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
 public class TelaPadrao extends JFrame {
-	
+
 	private JPanel contentPane;
 	private JTextField txtNmeroPadrao;
 	private JTextField txtMedDisp;
@@ -45,22 +45,15 @@ public class TelaPadrao extends JFrame {
 	private JTextField txtConsultasHj;
 	private JTextField txtConsultasPend;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaPadrao(final Usuario usuarioAtual) {
-		
+
 		PacienteDAO pacientedao = new PacienteDAO();
 		MedicoDAO profissionaldao = new MedicoDAO();
 		ConsultaDAO consultaDao = new ConsultaDAO();
 		ArrayList<Consulta> consultas = consultaDao.listarConsultas();
-		Integer consultasHoje=0, consultasPendentes=0;
+		Integer consultasHoje = 0, consultasPendentes = 0;
 		consultaDao.consultaFalta();
-		
+
 		setForeground(new Color(0, 51, 51));
 		setTitle("Hospital Esmeralda - Inicio");
 		setBackground(new Color(0, 51, 51));
@@ -77,10 +70,12 @@ public class TelaPadrao extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 81, 81));
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[][223.00,grow]", "[grow][32.00][18.00][][149.00,grow][][65px][61.00][][60.00][][58.00][][57.00][]"));
+		panel.setLayout(new MigLayout("", "[][223.00,grow]",
+				"[grow][32.00][18.00][][149.00,grow][][65px][61.00][][60.00][][58.00][][57.00][]"));
 
 		JButton btnProfissionais = new JButton("Profissionais");
-		btnProfissionais.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com um carinha atras dele.png")));
+		btnProfissionais
+				.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com um carinha atras dele.png")));
 		btnProfissionais.setHorizontalAlignment(SwingConstants.LEFT);
 		btnProfissionais.setBackground(null);
 		btnProfissionais.setOpaque(false);
@@ -123,8 +118,7 @@ public class TelaPadrao extends JFrame {
 		btnSair.setBorder(new RoundBorder(new Color(210, 210, 210), 1, 2));
 		btnSair.setFocusPainted(false);
 		panel.add(btnSair, "cell 0 3 2 1,growx,aligny bottom");
-		
-		
+
 		btnProfissionais.setForeground(Color.WHITE);
 		btnProfissionais.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
 		panel.add(btnProfissionais, "cell 1 6,growx,aligny center");
@@ -151,7 +145,8 @@ public class TelaPadrao extends JFrame {
 		panel.add(btnMarcarConsulta, "cell 1 7,growx,aligny center");
 
 		JButton btnCadastrarPaciente = new JButton("Cadastrar paciente");
-		btnCadastrarPaciente.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com o mais do lado.png")));
+		btnCadastrarPaciente
+				.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/Carinha com o mais do lado.png")));
 		btnCadastrarPaciente.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCadastrarPaciente.setBackground(null);
 		btnCadastrarPaciente.setOpaque(false);
@@ -263,13 +258,13 @@ public class TelaPadrao extends JFrame {
 		panel_2.setBackground(null);
 		panel_2.setBorder(null);
 		panel_2.setLayout(new MigLayout("", "[90px,grow][67.00px][80px,grow]", "[21px,grow][72px]"));
-		
+
 		JPanel panel_6 = new RoundJPanel(30, new Color(192, 192, 192));
 		panel_6.setBackground(new Color(240, 240, 240));
 		panel_6.setBorder(null);
 		panel_2.add(panel_6, "cell 2 0 1 2,grow");
 		panel_6.setLayout(new MigLayout("", "[grow][][grow]", "[grow][][grow]"));
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconBatimento.png")));
 		panel_6.add(lblNewLabel_3, "cell 1 1");
@@ -319,13 +314,13 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_3.gridx = 2;
 		gbc_panel_3.gridy = 0;
 		panelMeio.add(panel_3, gbc_panel_3);
-		
+
 		RoundJPanel panel_6_1_1_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1_1_1.setBorder(null);
 		panel_6_1_1_1.setBackground(SystemColor.menu);
 		panel_3.add(panel_6_1_1_1, "cell 2 0 1 2,grow");
 		panel_6_1_1_1.setLayout(new MigLayout("", "[grow][grow][grow]", "[grow][grow][grow]"));
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		panel_6_1_1_1.add(lblNewLabel_4, "cell 1 1");
 		lblNewLabel_4.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconCruz.png")));
@@ -342,7 +337,8 @@ public class TelaPadrao extends JFrame {
 
 		txtConsultasHj = new JTextField();
 		for (Consulta consulta : consultas) {
-			if((consulta.getData().equals(LocalDate.now())) && (consulta.getHorario().isBefore(LocalTime.now())) && (consulta.getEncerrada()==false)) {
+			if ((consulta.getData().equals(LocalDate.now())) && (consulta.getHorario().isBefore(LocalTime.now()))
+					&& (consulta.getEncerrada() == false)) {
 				consultasHoje++;
 			}
 		}
@@ -359,17 +355,17 @@ public class TelaPadrao extends JFrame {
 		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_2_2.setBackground(Color.WHITE);
 		panel_5.add(lblNewLabel_2_2, "cell 0 1 2 1,alignx left,aligny top");
-		
+
 		RoundJPanel panel_6_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1.setBorder(null);
 		panel_6_1.setBackground(SystemColor.menu);
 		panel_5.add(panel_6_1, "cell 2 0 1 2,grow");
 		panel_6_1.setLayout(new MigLayout("", "[grow][grow][grow]", "[grow][grow][grow]"));
-		
+
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconCalendar.png")));
 		panel_6_1.add(lblNewLabel_5, "cell 1 1");
-		
+
 		JPanel panel_7 = new RoundJPanel(30, new Color(240, 240, 240));
 		panel_7.setBackground(null);
 		panel_7.setBorder(null);
@@ -380,10 +376,10 @@ public class TelaPadrao extends JFrame {
 		gbc_panel_7.gridy = 1;
 		panelMeio.add(panel_7, gbc_panel_7);
 		panel_7.setLayout(new MigLayout("", "[90.00,grow][67.00,grow][80.00,grow]", "[22.00][72.00,grow]"));
-		
+
 		txtConsultasPend = new JTextField();
 		for (Consulta consulta : consultas) {
-			if(consulta.getEncerrada()!=true && consulta.getFalta()!=true) {
+			if (consulta.getEncerrada() != true && consulta.getFalta() != true) {
 				consultasPendentes++;
 			}
 		}
@@ -395,18 +391,18 @@ public class TelaPadrao extends JFrame {
 		txtConsultasPend.setBorder(null);
 		txtConsultasPend.setBackground(SystemColor.menu);
 		panel_7.add(txtConsultasPend, "cell 0 0,growx");
-		
+
 		JLabel lblNewLabel_2_2_1 = new JLabel("Consultas pendentes");
 		lblNewLabel_2_2_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
 		lblNewLabel_2_2_1.setBackground(Color.WHITE);
 		panel_7.add(lblNewLabel_2_2_1, "cell 0 1 2 1,alignx left,aligny top");
-		
+
 		RoundJPanel panel_6_1_1 = new RoundJPanel(30, Color.LIGHT_GRAY);
 		panel_6_1_1.setBorder(null);
 		panel_6_1_1.setBackground(SystemColor.menu);
 		panel_7.add(panel_6_1_1, "cell 2 0 1 2,grow");
 		panel_6_1_1.setLayout(new MigLayout("", "[grow][grow][grow]", "[grow][grow][grow]"));
-		
+
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/iconClipBoard.png")));
 		panel_6_1_1.add(lblNewLabel_6, "cell 1 1");

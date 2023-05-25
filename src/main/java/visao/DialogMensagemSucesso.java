@@ -39,8 +39,8 @@ public class DialogMensagemSucesso extends JFrame {
 
 	public DialogMensagemSucesso(String message) {
 		setTitle("Aviso");
-		setIconImage(
-				Toolkit.getDefaultToolkit().getImage(DialogMensagemSucesso.class.getResource("/img/sign-warning-icon_34355.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(DialogMensagemSucesso.class.getResource("/img/sign-warning-icon_34355.png")));
 
 		setBounds(0, 0, 320, 130);
 		BufferedImage bg = null;
