@@ -51,7 +51,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	private Usuario usuarioAtual;
 	private RoundJTextField txtComplemento;
 
-	public TelaFichaPaciente(final Usuario usuarioAtual, final Paciente pacienteSelecionado) {
+	public TelaFichaPaciente(Usuario usuarioAtual, Paciente pacienteSelecionado) {
 		this.pacienteSelecionado = pacienteSelecionado;
 		this.usuarioAtual = usuarioAtual;
 		setTitle("Hospital Esmeralda - Ficha dos Paciente");

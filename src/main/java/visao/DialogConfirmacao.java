@@ -1,7 +1,6 @@
 package visao;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,24 +11,17 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controle.MedicoDAO;
 import controle.PacienteDAO;
-import controle.UsuarioDAO;
-import modelo.Medico;
 import modelo.Paciente;
-import modelo.Usuario;
 
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.Rectangle;
-
-public class DialogConfirmacao extends JFrame {
+public class DialogConfirmacao extends JFrame implements InterfaceConfirmacao {
 
 	private Paciente pacienteSelecionado = null;
 	private PacienteDAO pDao = new PacienteDAO();
@@ -109,5 +101,17 @@ public class DialogConfirmacao extends JFrame {
 
 		setLocationRelativeTo(null);
 		setUndecorated(true);
+	}
+
+	@Override
+	public void btnConfirmacao() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void bntCancelar() {
+		// TODO Auto-generated method stub
+
 	}
 }

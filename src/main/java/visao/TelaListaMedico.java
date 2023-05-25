@@ -250,7 +250,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 			panel_2.add(btnAlterar, "cell 1 3,growx,aligny center");
 
 			btnDeletar = new JButton("Deletar");
-			final TelaListaMedico tela = this;
+			TelaListaMedico tela = this;
 			btnDeletar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (medicoSelecionado == null && funcionarioSelecionado == null) {

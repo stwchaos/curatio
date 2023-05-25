@@ -28,7 +28,7 @@ import modelo.TipoUsuario;
 import modelo.Usuario;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaConsultaPendente extends JFrame {
+public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -83,24 +83,13 @@ public class TelaConsultaPendente extends JFrame {
 			btnDesmarcar.setBackground(new Color(0, 81, 81));
 			btnDesmarcar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			btnDesmarcar.setFocusPainted(false);
+			TelaConsultaPendente tela = this;
 			btnDesmarcar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// TODO confirmaçao
-					JOptionPane.showConfirmDialog(btnDesmarcar, "Deletar?");
-					if (consultaSelecionada == null) {
-						new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
-						return;
-					}
-					aDao.deletar(consultaSelecionada);
-					if (cDao.deletar(consultaSelecionada) == true) {
-						new DialogMensagemSucesso("Consulta deletada com sucesso!").setVisible(true);
-					} else {
-						new DialogMensagemErro("Ocorreu um erro ao deletar.").setVisible(true);
-					}
-					listarConsultas();
-					consultaSelecionada = null;
-				}
-			});
+					new DialogConfirmacao("Cancelar consulta?", tela).setVisible(true);
+	
+			}});
 			panel.add(btnDesmarcar, "cell 0 3,growx,aligny center");
 
 			JButton btnRemarcar = new JButton("Remarcar");
@@ -235,5 +224,27 @@ public class TelaConsultaPendente extends JFrame {
 			}
 		}
 		table.setModel(modelo);
+	}
+
+	@Override
+	public void btnConfirmacao() {
+		if (consultaSelecionada == null) {
+			new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+			return;
+		}
+		aDao.deletar(consultaSelecionada);
+		if (cDao.deletar(consultaSelecionada) == true) {
+			new DialogMensagemSucesso("Consulta deletada com sucesso!").setVisible(true);
+		} else {
+			new DialogMensagemErro("Ocorreu um erro ao deletar.").setVisible(true);
+		}
+		listarConsultas();
+		consultaSelecionada = null;
+	}
+	
+
+	@Override
+	public void bntCancelar() {
+		
 	}
 }
