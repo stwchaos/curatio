@@ -156,6 +156,7 @@ public class TelaHistorico extends JFrame {
 							consulta.getData() };
 				}
 				modelo.addRow(rowData);
+
 			}
 		}
 		table.setModel(modelo);

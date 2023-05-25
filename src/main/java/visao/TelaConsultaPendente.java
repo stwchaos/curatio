@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -13,12 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controle.AnamneseDAO;
@@ -37,8 +38,11 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	private Consulta consultaSelecionada = null;
 	private int linha;
 	private AnamneseDAO aDao = new AnamneseDAO();
+	private Consulta consulta;
+	private static final long serialVersionUID = 1L;
 
 	public TelaConsultaPendente(final Usuario usuarioAtual) {
+
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaConsultaPendente.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda - Consultas Pendentes");
@@ -88,8 +92,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 				public void actionPerformed(ActionEvent e) {
 					// TODO confirmaçao
 					new DialogConfirmacao("Cancelar consulta?", tela).setVisible(true);
-	
-			}});
+
+				}
+			});
 			panel.add(btnDesmarcar, "cell 0 3,growx,aligny center");
 
 			JButton btnRemarcar = new JButton("Remarcar");
@@ -178,11 +183,7 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		JScrollPane scrollPane = new JScrollPane();
 		panel_3_4.add(scrollPane, "cell 0 0,grow");
 
-		table = new JTable() {
-			public boolean editCellAt(int row, int column, java.util.EventObject e) {
-				return false;
-			}
-		};
+		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -200,30 +201,69 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {},
 				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
-		modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
+
 		scrollPane.setViewportView(table);
 		listarConsultas();
 	}
 
 	private void listarConsultas() {
 		modelo.setRowCount(0);
-		for (Consulta consulta : cDao.listarConsultas()) {
-			if (consulta.getEncerrada() == false && consulta.getFalta() == false) {
+
+		for (Consulta con : cDao.listarConsultas()) {
+			consulta = con;
+			if (con.getEncerrada() == false) {
 				Object[] rowData;
-				if (consulta.getPaciente().getNomeSocial() == null) {
-					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNome(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
+
+				// TODO
+				if (con.getPaciente().getNomeSocial() == null) {
+					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
+							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+							con.getData(), con.getObjetivo() };
 				} else {
-					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNomeSocial(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
+					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
+							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+							con.getData(), con.getObjetivo() };
 				}
+
+				if (con.getFalta()) {
+					int lastRowIndex = table.getRowCount() - 1;
+					table.setSelectionBackground(Color.RED); // Define a cor de fundo da seleção (linha)
+					table.setSelectionForeground(Color.WHITE); // Define a cor do texto da seleção (linha)
+					table.setRowSelectionInterval(lastRowIndex, lastRowIndex); // Seleciona a linha
+				}
+
 				modelo.addRow(rowData);
 			}
+
 		}
+
 		table.setModel(modelo);
+	}
+
+	private class CustomTableCellRenderer extends DefaultTableCellRenderer {
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
+					column);
+
+			if (table.isRowSelected(row)) {
+				// Define as cores de fundo e texto para a seleção (linha)
+				cellComponent.setBackground(table.getSelectionBackground());
+				cellComponent.setForeground(table.getSelectionForeground());
+			} else {
+				// Define as cores de fundo e texto para as linhas não selecionadas
+				cellComponent.setBackground(table.getBackground());
+				cellComponent.setForeground(table.getForeground());
+
+				// Pinta o fundo da linha quando consulta.getFalta() == true
+				if (consulta.getFalta() && row >= 0) {
+					cellComponent.setBackground(Color.RED);
+				}
+			}
+
+			return cellComponent;
+		}
 	}
 
 	@Override
@@ -241,10 +281,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		listarConsultas();
 		consultaSelecionada = null;
 	}
-	
 
 	@Override
 	public void bntCancelar() {
-		
+
 	}
 }
