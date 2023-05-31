@@ -337,7 +337,7 @@ public class TelaPadrao extends JFrame {
 
 		txtConsultasHj = new JTextField();
 		for (Consulta consulta : consultas) {
-			if ((consulta.getData().equals(LocalDate.now())) && (consulta.getHorario().isBefore(LocalTime.now()))
+			if ((consulta.getData().equals(LocalDate.now())) && (consulta.getFalta()!=true)
 					&& (consulta.getEncerrada() == false)) {
 				consultasHoje++;
 			}

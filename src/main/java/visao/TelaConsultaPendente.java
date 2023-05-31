@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -208,9 +210,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 	private void listarConsultas() {
 		modelo.setRowCount(0);
-
+		ArrayList<Integer> faltas = new ArrayList<>();
+		
 		for (Consulta con : cDao.listarConsultas()) {
-			consulta = con;
 			if (con.getEncerrada() == false) {
 				Object[] rowData;
 
@@ -224,47 +226,24 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
 							con.getData(), con.getObjetivo() };
 				}
-				System.out.println(table.getRowCount());
-//				if (con.getFalta()) {
-//					int lastRowIndex = table.getRowCount() ;
-//					table.setSelectionBackground(Color.RED); // Define a cor de fundo da seleção (linha)
-//					table.setSelectionForeground(Color.WHITE); // Define a cor do texto da seleção (linha)
-//					table.setRowSelectionInterval(lastRowIndex, lastRowIndex); // Seleciona a linha
-//				}
-
-				modelo.addRow(rowData);
-			}
-
-		}
-
-		table.setModel(modelo);
-	}
-
-	private class CustomTableCellRenderer extends DefaultTableCellRenderer {
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-				int row, int column) {
-			Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
-					column);
-
-			if (table.isRowSelected(row)) {
-				// Define as cores de fundo e texto para a seleção (linha)
-				cellComponent.setBackground(table.getSelectionBackground());
-				cellComponent.setForeground(table.getSelectionForeground());
-			} else {
-				// Define as cores de fundo e texto para as linhas não selecionadas
-				cellComponent.setBackground(table.getBackground());
-				cellComponent.setForeground(table.getForeground());
-
-				// Pinta o fundo da linha quando consulta.getFalta() == true
-				if (consulta.getFalta() && row >= 0) {
-					cellComponent.setBackground(Color.RED);
+				modelo.addRow(rowData); 
+				if (con.getFalta()) {
+					faltas.add(modelo.getRowCount()-1);
 				}
-			}
 
-			return cellComponent;
+			}
+		}
+		table.setModel(modelo);
+		for (Integer index : faltas) {
+			for (int i = 0; i < table.getColumnCount(); i++) {
+				table.getCellRenderer(index, i).getTableCellRendererComponent(table, null, false, false, index, i).setBackground(Color.RED);
+				table.getCellRenderer(index, i).getTableCellRendererComponent(table, faltas, rootPaneCheckingEnabled, rootPaneCheckingEnabled, index, i).setBackground(Color.RED);
+				System.out.println(index+" "+i);
+			}
 		}
 	}
+
+
 
 	@Override
 	public void btnConfirmacao() {
