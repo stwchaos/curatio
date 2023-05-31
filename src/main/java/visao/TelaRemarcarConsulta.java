@@ -98,10 +98,10 @@ public class TelaRemarcarConsulta extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaConsultaPendente tela = new TelaConsultaPendente(usuarioAtual);
+				tela.setLocationRelativeTo(null);
+				tela.setVisible(true);
+				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 
