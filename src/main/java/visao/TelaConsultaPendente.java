@@ -200,10 +200,8 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
-		modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
-		scrollPane.setViewportView(table);
+				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Horário", "Objetivo" });
+		
 		listarConsultas();
 	}
 
@@ -215,11 +213,11 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 				if (consulta.getPaciente().getNomeSocial() == null) {
 					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNome(),
 							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
+							consulta.getData(), consulta.getHorario(), consulta.getObjetivo() };
 				} else {
 					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNomeSocial(),
 							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getObjetivo() };
+							consulta.getData(), consulta.getHorario(), consulta.getObjetivo() };
 				}
 				modelo.addRow(rowData);
 			}
