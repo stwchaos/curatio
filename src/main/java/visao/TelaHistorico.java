@@ -107,50 +107,52 @@ public class TelaHistorico extends JFrame {
 		panel_4.add(btnVoltar, "cell 0 0,grow");
 		listarConsultas(pacienteSelecionado);
 
-		// if (u.getTipo() == TipoUsuario.MEDICO) {
-		JButton btnAnamnese = new JButton("Anamnese Preenchida");
-		btnAnamnese.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (consultaSelecionada == null) {
-					new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
-					return;
-				}
-				dispose();
+		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO) {
+			JButton btnAnamnese = new JButton("Anamnese Preenchida");
+			btnAnamnese.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (consultaSelecionada == null) {
+						new DialogMensagemErro("Nenhuma consulta selecionada!").setVisible(true);
+						return;
+					}
+					dispose();
 
-				AnamneseDAO aDao = new AnamneseDAO();
-				TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual, aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()), rootPaneCheckingEnabled, encerrado);
-				telaAna.setLocationRelativeTo(null);
-				telaAna.setVisible(true);
-				telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
-		btnAnamnese.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
-		btnAnamnese.setOpaque(false);
-		btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAnamnese.setForeground(Color.WHITE);
-		btnAnamnese.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
-		btnAnamnese.setFocusPainted(false);
-		btnAnamnese.setBorder(null);
-		btnAnamnese.setBackground((Color) null);
-		if(usuarioAtual.getTipo()==TipoUsuario.MEDICO) {
-			panel_4.add(btnAnamnese, "cell 2 0,growx,aligny top");
-		}
-		
-		table.addMouseListener(new MouseAdapter() {	
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			linha = table.getSelectedRow();
-			Integer id = (Integer) table.getValueAt(linha, 0);
-			for (Consulta consulta : cDao.listarConsultas()) {
-				if (id.equals(consulta.getIdConsulta())) {
-					consultaSelecionada = consulta;
-					// consultaSelecionada=null;
+					AnamneseDAO aDao = new AnamneseDAO();
+					TelaAnamnese telaAna = new TelaAnamnese(usuarioAtual,
+							aDao.buscarAnamnesePorIdConsulta(consultaSelecionada.getIdConsulta()),
+							rootPaneCheckingEnabled, encerrado);
+					telaAna.setLocationRelativeTo(null);
+					telaAna.setVisible(true);
+					telaAna.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
+			});
+			btnAnamnese.setIcon(new ImageIcon(TelaHistorico.class.getResource("/img/Trequinhoaindamaiscleareado.png")));
+			btnAnamnese.setOpaque(false);
+			btnAnamnese.setHorizontalAlignment(SwingConstants.LEFT);
+			btnAnamnese.setForeground(Color.WHITE);
+			btnAnamnese.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 15));
+			btnAnamnese.setFocusPainted(false);
+			btnAnamnese.setBorder(null);
+			btnAnamnese.setBackground((Color) null);
+			if (usuarioAtual.getTipo() == TipoUsuario.MEDICO) {
+				panel_4.add(btnAnamnese, "cell 2 0,growx,aligny top");
 			}
+
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					linha = table.getSelectedRow();
+					Integer id = (Integer) table.getValueAt(linha, 0);
+					for (Consulta consulta : cDao.listarConsultas()) {
+						if (id.equals(consulta.getIdConsulta())) {
+							consultaSelecionada = consulta;
+							// consultaSelecionada=null;
+						}
+					}
+				}
+			});
 		}
-	});
 	}
-	// }
 
 	private void listarConsultas(Paciente pacienteSelecionado) {
 		modelo.setRowCount(0);
