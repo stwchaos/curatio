@@ -86,7 +86,7 @@ public class TelaPadrao extends JFrame {
 		btnProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaMedico telaListaMedico = new TelaListaMedico(usuarioAtual);
+				TelaListaProfissional telaListaMedico = new TelaListaProfissional(usuarioAtual);
 				telaListaMedico.setLocationRelativeTo(null);
 				telaListaMedico.setVisible(true);
 				telaListaMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);

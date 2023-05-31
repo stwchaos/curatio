@@ -364,7 +364,7 @@ public class TelaCadastrarProfisional extends JFrame {
 				}
 
 				dispose();
-				TelaListaMedico tela = new TelaListaMedico(usuarioAtual);
+				TelaListaProfissional tela = new TelaListaProfissional(usuarioAtual);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -379,7 +379,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaMedico tela = new TelaListaMedico(usuarioAtual);
+				TelaListaProfissional tela = new TelaListaProfissional(usuarioAtual);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);

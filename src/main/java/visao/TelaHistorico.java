@@ -71,8 +71,11 @@ public class TelaHistorico extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, "cell 0 0,grow");
 
-		table = new JTable();
-
+		table = new JTable() {
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Paciente", "Setor", "Médico", "Data" });
 		table.setModel(

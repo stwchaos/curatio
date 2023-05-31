@@ -37,10 +37,10 @@ import java.beans.PropertyChangeEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
+public class TelaListaProfissional extends JFrame implements InterfaceConfirmacao {
 
 	private JPanel contentPane;
-	private JTextField txtPesquisarPaciente;
+	private JTextField txtPesquisarProfissional;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JScrollPane scrollPane;
@@ -62,12 +62,12 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 	private DefaultTableModel modelo;
 	private DefaultTableModel pesquisa;
 
-	public TelaListaMedico(final Usuario usuarioAtual) {
+	public TelaListaProfissional(final Usuario usuarioAtual) {
 
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda - Profissionais");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/logoHospital.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaProfissional.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);
 
@@ -136,16 +136,15 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 		table.setModel(modelo);
 		scrollPane.setViewportView(table);
 
-		txtPesquisarPaciente = new JTextField();
-		txtPesquisarPaciente.addKeyListener(new KeyAdapter() {
+		txtPesquisarProfissional = new JTextField();
+		txtPesquisarProfissional.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				pesquisa.setRowCount(0);
-				ArrayList<Medico> medicos = mDao.listarPesquisa(txtPesquisarPaciente.getText());
-				ArrayList<Funcionario> funcionarios = fDao.listarPesquisa(txtPesquisarPaciente.getText());
-				if (txtPesquisarPaciente.getText().isEmpty()) {
-					txtPesquisarPaciente.setText("Pesquisar profissional");
-					txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
+				ArrayList<Medico> medicos = mDao.listarPesquisa(txtPesquisarProfissional.getText());
+				ArrayList<Funcionario> funcionarios = fDao.listarPesquisa(txtPesquisarProfissional.getText());
+				if (txtPesquisarProfissional.getText().isEmpty()) {
+					txtPesquisarProfissional.setForeground(new Color(128, 128, 128));
 					table.setModel(modelo);
 				} else {
 					if (medicos.size() != 0) {
@@ -160,17 +159,16 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 									funcionario.getUsuario().getTipo() });
 						}
 					}
-					txtPesquisarPaciente.setForeground(new Color(0, 0, 0));
+					txtPesquisarProfissional.setForeground(new Color(0, 0, 0));
 					table.setModel(pesquisa);
 				}
 			}
 		});
-		txtPesquisarPaciente.setForeground(new Color(128, 128, 128));
-		txtPesquisarPaciente.setText("Pesquisar profissional");
-		txtPesquisarPaciente.setToolTipText("");
-		txtPesquisarPaciente.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		contentPane.add(txtPesquisarPaciente, "cell 2 1,growx,aligny bottom");
-		txtPesquisarPaciente.setColumns(10);
+		txtPesquisarProfissional.setForeground(new Color(128, 128, 128));
+		txtPesquisarProfissional.setToolTipText("");
+		txtPesquisarProfissional.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		contentPane.add(txtPesquisarProfissional, "cell 2 1,growx,aligny bottom");
+		txtPesquisarProfissional.setColumns(10);
 
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(new Color(255, 255, 255));
@@ -197,7 +195,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 
 			lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(
-					new ImageIcon(TelaListaMedico.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
+					new ImageIcon(TelaListaProfissional.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
 			panel_2.add(lblNewLabel_1, "cell 1 0,alignx center,aligny top");
 
 			lblNewLabel_2 = new JLabel("Controle de Administrador");
@@ -250,7 +248,7 @@ public class TelaListaMedico extends JFrame implements InterfaceConfirmacao {
 			panel_2.add(btnAlterar, "cell 1 3,growx,aligny center");
 
 			btnDeletar = new JButton("Deletar");
-			final TelaListaMedico tela = this;
+			final TelaListaProfissional tela = this;
 			btnDeletar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (medicoSelecionado == null && funcionarioSelecionado == null) {
