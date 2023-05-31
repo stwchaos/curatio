@@ -224,13 +224,13 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
 							con.getData(), con.getObjetivo() };
 				}
-
-				if (con.getFalta()) {
-					int lastRowIndex = table.getRowCount() - 1;
-					table.setSelectionBackground(Color.RED); // Define a cor de fundo da seleção (linha)
-					table.setSelectionForeground(Color.WHITE); // Define a cor do texto da seleção (linha)
-					table.setRowSelectionInterval(lastRowIndex, lastRowIndex); // Seleciona a linha
-				}
+				System.out.println(table.getRowCount());
+//				if (con.getFalta()) {
+//					int lastRowIndex = table.getRowCount() ;
+//					table.setSelectionBackground(Color.RED); // Define a cor de fundo da seleção (linha)
+//					table.setSelectionForeground(Color.WHITE); // Define a cor do texto da seleção (linha)
+//					table.setRowSelectionInterval(lastRowIndex, lastRowIndex); // Seleciona a linha
+//				}
 
 				modelo.addRow(rowData);
 			}
