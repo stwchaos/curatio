@@ -35,7 +35,7 @@ class MedicoDAOTest {
 		usuario.setSenha("doremifa");
 		usuario.setTipo(TipoUsuario.MEDICO);
 
-		medico.setCrm(123456l);
+		medico.setCrm("123456l");
 		medico.setNome("Gabriel do Rosario Batista");
 		medico.setCpf(123456789109l);
 		medico.setSexo("Masculino");
@@ -57,7 +57,7 @@ class MedicoDAOTest {
 		assertNotNull(primeiroMedico.getCrm());
 		assertNotNull(primeiroMedico.getEspecialidade());
 
-		assertEquals(primeiroMedico.getCrm(), 123456l);
+		assertEquals(primeiroMedico.getCrm(), "123456l");
 	}
 
 	@Test
