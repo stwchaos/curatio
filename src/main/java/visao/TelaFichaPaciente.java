@@ -361,7 +361,9 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JPanel panel_2 = new RoundJPanel(30, new Color(0, 64, 64));
 		panel_2.setBackground(null);
 		panel_2.setBorder(null);
-		c.add(panel_2, "flowx,cell 3 1,grow");
+		if(usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA) {
+			c.add(panel_2, "flowx,cell 3 1,grow");
+		}
 		panel_2.setLayout(
 				new MigLayout("", "[36.00,grow][177px][36.00px,grow]", "[grow][23px][][][][][grow]"));
 
