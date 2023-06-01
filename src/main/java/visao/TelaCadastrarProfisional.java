@@ -152,22 +152,24 @@ public class TelaCadastrarProfisional extends JFrame {
 		}
 
 		comboBoxTipoProfissional = new RoundComboBox();
-		comboBoxTipoProfissional.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex() + 1);
-				if (tipo == TipoUsuario.MEDICO) {
-					panel.add(txtCrm, "cell 1 6,growx");
-					panel.add(comboEspecialidade, "cell 1 9,growx");
-					panel.add(lblNewLabel_3, "cell 1 8");
-					panel.add(lblNewLabel_2, "cell 1 5");
-				} else {
-					panel.remove(txtCrm);
-					panel.remove(comboEspecialidade);
-					panel.remove(lblNewLabel_2);
-					panel.remove(lblNewLabel_3);
-				}
-			}
+		comboBoxTipoProfissional.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex() + 1);
+		        if (tipo == TipoUsuario.MEDICO) {
+		            panel.add(txtCrm, "cell 1 6,growx");
+		            panel.add(comboEspecialidade, "cell 1 9,growx");
+		            panel.add(lblNewLabel_3, "cell 1 8");
+		            panel.add(lblNewLabel_2, "cell 1 5");
+		        } else {
+		            panel.remove(txtCrm);
+		            panel.remove(comboEspecialidade);
+		            panel.remove(lblNewLabel_2);
+		            panel.remove(lblNewLabel_3);
+		        }
+		        contentPane.repaint();
+		    }
 		});
+
 
 		JLabel lblNewLabel_4_1 = new JLabel("Função*");
 		panel.add(lblNewLabel_4_1, "cell 3 11");
