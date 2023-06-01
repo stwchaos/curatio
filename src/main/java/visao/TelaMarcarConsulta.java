@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -37,6 +38,7 @@ import controle.MedicoDAO;
 import controle.PacienteDAO;
 import controle.PagamentoDAO;
 import modelo.Anamnese;
+import modelo.AutoComboBox;
 import modelo.Consulta;
 import modelo.Medico;
 import modelo.Paciente;
@@ -57,6 +59,8 @@ public class TelaMarcarConsulta extends JFrame {
 	private JTextField txtHora;
 	private JComboBox comboPaciente;
 	private JComboBox comboMedico;
+	private ArrayList<String> pacientes = new ArrayList<String>();
+	private ArrayList<String> medicos = new ArrayList<String>();
 	
 	public TelaMarcarConsulta(final Usuario usuarioAtual) {
 		setTitle("Hospital Esmeralda - Marcar Consulta");
@@ -110,7 +114,7 @@ public class TelaMarcarConsulta extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
 
-		comboPaciente = new RoundComboBox();
+		comboPaciente = new AutoComboBox();
 		comboPaciente.setBackground(new Color(210, 210, 210));
 		panel.add(comboPaciente, "cell 0 2 5 1,growx");
 		listaPaciente = pDao.listarPacientes();
@@ -183,7 +187,7 @@ public class TelaMarcarConsulta extends JFrame {
 		txtMarcarConsulta.setBackground(new Color(64, 128, 128));
 		panel.add(txtMarcarConsulta, "cell 0 0 7 1,grow");
 
-		comboMedico = new RoundComboBox();
+		comboMedico = new AutoComboBox();
 		comboMedico.setForeground(new Color(0, 0, 0));
 		comboMedico.setBackground(new Color(210, 210, 210));
 		panel.add(comboMedico, "cell 0 4 5 1,grow");
@@ -196,6 +200,8 @@ public class TelaMarcarConsulta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String objetivo = txtObjetivo.getText();
 				String hora = txtHora.getText();
+				Integer index = null;
+				String med = null, pac = null;
 
 				if(objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
@@ -218,6 +224,20 @@ public class TelaMarcarConsulta extends JFrame {
 					return;
 				}
 				
+				if(comboMedico.getSelectedItem() == null) {
+					JOptionPane.showMessageDialog(btnMarcar, "Medico não selecionado!");
+					return;
+				} else {
+					med = comboMedico.getSelectedItem().toString();
+				}
+				
+				if(comboPaciente.getSelectedItem()==null) {
+					JOptionPane.showMessageDialog(btnMarcar, "Paciente não selecionado!");
+					return;
+				} else {
+					pac = comboPaciente.getSelectedItem().toString();
+				}
+				
 				Consulta c = new Consulta();
 				ConsultaDAO cDao = new ConsultaDAO();
 				Pagamento p = new Pagamento();
@@ -227,14 +247,41 @@ public class TelaMarcarConsulta extends JFrame {
 				
 				p.setData_Pagamento(LocalDate.now());
 				p.setFormaPagamento(String.valueOf(comboPagamento.getSelectedItem()));
-				p.setCpfPagante(listaPaciente.get(comboPaciente.getSelectedIndex()).getCpf());
+
+				index = null;
+				for (int i = 0; i < pacientes.size(); i++) {
+					if(pacientes.get(i).equals(pac)) {
+						index=i;
+						break;
+					}
+				}
+				if(index==null) {
+					JOptionPane.showMessageDialog(btnMarcar, "Paciente não selecionado!");
+					return;
+				}
+				Paciente paciente = listaPaciente.get(index);
+				
+				p.setCpfPagante(paciente.getCpf());
 				pDao.inserir(p);
 				
 				c.setData(convertToLocalDateViaInstant(dtConsulta.getDate()));
 				c.setEncerrada(false);
-				c.setMedico(listaMedicos.get(comboMedico.getSelectedIndex()));
-				c.setObjetivo(objetivo);
-				c.setPaciente(listaPaciente.get(comboPaciente.getSelectedIndex()));
+
+				index = null;
+				for (int i = 0; i < medicos.size(); i++) {
+					if(medicos.get(i).equals(med)) {
+						index=i;
+						break;
+					}
+				}
+				if(index==null) {
+					JOptionPane.showMessageDialog(btnMarcar, "Medico não selecionado!");
+					return;
+				}
+				
+				c.setMedico(listaMedicos.get(index));
+				c.setObjetivo(objetivo);	
+				c.setPaciente(paciente);
 				c.setPagamento(p);
 				c.setFalta(false);
 				c.setHorario(LocalTime.parse(txtHora.getText()));
@@ -294,16 +341,23 @@ public class TelaMarcarConsulta extends JFrame {
 	private void listarPacientes() {
 		for (Paciente p : listaPaciente) {
 			if (p.getNomeSocial()==null) {
-				comboPaciente.addItem(p.getNome()+" - "+p.getCpf());
+				comboPaciente.addItem((p.getNome()+" - "+p.getCpf()));
+				pacientes.add((p.getNome()+" - "+p.getCpf()));
 			} else {
-				comboPaciente.addItem(p.getNomeSocial()+" - "+p.getCpf());
+				comboPaciente.addItem((p.getNomeSocial()+" - "+p.getCpf()));
+				pacientes.add((p.getNomeSocial()+" - "+p.getCpf()));
 			}
 		}
+		AutoComboBox autoComboBox = new AutoComboBox();
+		autoComboBox.setKeyWord(pacientes);
 	}
 	
 	private void listarMedicos() {
 		for (Medico m : listaMedicos) {
+			medicos.add(m.getNome()+" - "+m.getCrm());
 			comboMedico.addItem(m.getNome()+" - "+m.getCrm());
 		}
+		AutoComboBox autoComboBox = new AutoComboBox();
+		autoComboBox.setKeyWord(medicos);
 	}
 }
