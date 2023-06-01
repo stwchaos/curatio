@@ -209,23 +209,6 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	}
 
 	private void listarConsultas() {
-
-		modelo.setRowCount(0);
-		for (Consulta consulta : cDao.listarConsultas()) {
-			if (consulta.getEncerrada() == false && consulta.getFalta() == false) {
-				Object[] rowData;
-				if (consulta.getPaciente().getNomeSocial() == null) {
-					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNome(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getHorario(), consulta.getObjetivo() };
-				} else {
-					rowData = new Object[] { consulta.getIdConsulta(), consulta.getPaciente().getNomeSocial(),
-							consulta.getMedico().getEspecialidade().getEspecialidade(), consulta.getMedico().getNome(),
-							consulta.getData(), consulta.getHorario(), consulta.getObjetivo() };
-				}
-				modelo.addRow(rowData);
-			}
-		}
 		table.setModel(modelo);
 	    modelo.setRowCount(0);
 	    ArrayList<Integer> faltas = new ArrayList<>();
@@ -238,11 +221,11 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	            if (con.getPaciente().getNomeSocial() == null) {
 	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
 	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        con.getData(), con.getObjetivo() };
+	                        con.getData(),  con.getHorario(), con.getObjetivo() };
 	            } else {
 	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
 	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        con.getData(), con.getObjetivo() };
+	                        con.getData(),  con.getHorario(), con.getObjetivo() };
 	            }
 	            modelo.addRow(rowData); 
 	            if (con.getFalta()) {
