@@ -341,12 +341,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 				p.setEndereco(en);
 
 				if (pDao.alterar(p)) {
-					new DialogMensagemSucesso("Alterado com sucesso!").setVisible(true);
 					dispose();
 					TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
 					telaListaPaciente.setLocationRelativeTo(null);
 					telaListaPaciente.setVisible(true);
 					telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					new DialogMensagemSucesso("Alterado com sucesso!").setVisible(true);
 				} else {
 					new DialogMensagemErro("Erro ao alterar.").setVisible(true);
 
@@ -461,7 +461,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	public void btnConfirmacao() {
 		PacienteDAO pDao = new PacienteDAO();
 		if (pDao.deletar(pacienteSelecionado)) {
-			new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
 		} else {
 			new DialogMensagemErro("Paciente já possui registros cadastrados!").setVisible(true);
 		}
@@ -470,6 +469,8 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		telaListaPaciente.setLocationRelativeTo(null);
 		telaListaPaciente.setVisible(true);
 		telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
+
 
 	}
 

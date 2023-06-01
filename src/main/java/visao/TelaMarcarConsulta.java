@@ -294,7 +294,6 @@ public class TelaMarcarConsulta extends JFrame {
 				c.setHorario(LocalTime.parse(txtHora.getText()));
 
 				if(cDao.inserir(c)==true) {
-					new DialogMensagemSucesso("Consulta marcada").setVisible(true);
 					a.setAlergia(null);
 					a.setDisposicaoGeral(null);
 					a.setExamesApresentados(null);
@@ -317,6 +316,7 @@ public class TelaMarcarConsulta extends JFrame {
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
+				new DialogMensagemSucesso("Consulta marcada").setVisible(true);
 			}
 		});
 		btnMarcar.setForeground(new Color(255, 255, 255));

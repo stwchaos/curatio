@@ -312,14 +312,12 @@ public class TelaCadastrarProfisional extends JFrame {
 
 					if (editar == true) {
 						if (medicoDao.alterar(m) == true) {
-							new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
 							uDao.alterar(u);
 						} else {
 							new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 						}
 					} else {
 						if (medicoDao.inserir(m) == true) {
-							new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
 						} else {
 							new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
 						}
@@ -350,14 +348,12 @@ public class TelaCadastrarProfisional extends JFrame {
 
 					if (editar == true) {
 						if (fDao.alterar(f) == true) {
-							new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
 							uDao.alterar(u);
 						} else {
 							new DialogMensagemErro("Não foi possível alterar").setVisible(true);
 						}
 					} else {
 						if (fDao.inserir(f) == true) {
-							new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
 						} else {
 							new DialogMensagemErro("Não foi possível cadastrar").setVisible(true);
 						}
@@ -369,6 +365,11 @@ public class TelaCadastrarProfisional extends JFrame {
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				if (editar == true) {
+					new DialogMensagemSucesso("Alterado com sucesso").setVisible(true);
+				} else {
+					new DialogMensagemSucesso("Cadastrado com sucesso").setVisible(true);
+				}
 			}
 		});
 		btnAdicionar.setBackground(new Color(0, 81, 81));

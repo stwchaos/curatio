@@ -378,9 +378,9 @@ public class TelaAnamnese extends JFrame {
 				anaSelecionada.setTrataAtuais(tratamentoAtual);
 
 				if (aDao.alterar(anaSelecionada)) {
-					new DialogMensagemSucesso("a Anamnese foi realizada!").setVisible(true);
 					cDao.consultaRealizada(anaSelecionada.getConsulta());
 					dispose();
+					new DialogMensagemSucesso("a Anamnese foi realizada!").setVisible(true);
 					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
 					telaAnterior.setLocationRelativeTo(null);
 					telaAnterior.setVisible(true);

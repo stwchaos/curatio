@@ -225,7 +225,6 @@ public class TelaRemarcarConsulta extends JFrame {
 				c.setHorario(LocalTime.parse(txtHora.getText()));
 
 				if (cDao.alterar(c) == true) {
-					new DialogMensagemSucesso("Consulta alterada!").setVisible(true);
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
@@ -234,6 +233,8 @@ public class TelaRemarcarConsulta extends JFrame {
 				telaPadrao.setVisible(true);
 				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
+				new DialogMensagemSucesso("Consulta alterada!").setVisible(true);
+
 			}
 		});
 
