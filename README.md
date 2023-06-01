@@ -104,7 +104,7 @@ Nesta tela é possível marcar uma consulta preenchendo os campos pendentes e se
 #### Consultas Pendentes
 Exibe as consultas que foram marcadas, onde é exibido o setor do profissional, nome do profissional, além da data prevista. A opção de controle de consultas pendentes 
 
- ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultaPendente.png)
+ ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultaPendentes.png)
 
 
 #### Cadastrar Paciente
