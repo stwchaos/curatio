@@ -104,7 +104,7 @@ Nesta tela é possível marcar uma consulta preenchendo os campos pendentes e se
 #### Consultas Pendentes
 Exibe as consultas que foram marcadas, onde é exibido o setor do profissional, nome do profissional, além da data prevista. A opção de controle de consultas pendentes 
 
- ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultasPendentes.png)
+ ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultaPendente.png)
 
 
 #### Cadastrar Paciente
@@ -121,7 +121,7 @@ Exibe todos os pacientes já registrados, caso clique em determinado paciente, r
 #### Ficha paciente
 Nesta tela as informações já registradas no sistema do paciente serão exibidas permitindo apenas alteração de campos que poderão mudar com o tempo.
 
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaFichaPaciente.png)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaFichaPacientes.png)
 
 
 #### Tela cadastrar profissional
