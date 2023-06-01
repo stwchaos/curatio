@@ -228,7 +228,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 			btnAlterar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (medicoSelecionado == null && funcionarioSelecionado == null) {
-						new DialogMensagemErro("Médico não selecionado").setVisible(true);
+						new DialogMensagemErro("Funcionário não selecionado").setVisible(true);
 						return;
 					}
 
@@ -255,7 +255,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 						new DialogMensagemErro("Nada selecionado!").setVisible(true);
 						return;
 					}
-					new DialogConfirmacao("O médico será deletado.", tela).setVisible(true);
+					new DialogConfirmacao("O Funcionário será deletado.", tela).setVisible(true);
 
 				}
 			});

@@ -41,7 +41,7 @@ public class TelaCadastrarProfisional extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCrm;
-    private JTextField txtCpf;
+	private JTextField txtCpf;
 	private JTextField txtSenha;
 	private ArrayList<Especialidade> listaEspecialidades;
 	private JComboBox comboEspecialidade;
@@ -124,15 +124,15 @@ public class TelaCadastrarProfisional extends JFrame {
 			txtCrm.setEditable(false);
 		}
 
-        txtCpf = new RoundJFormattedTextField("###.###.###-##");
-        txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCpf = new RoundJFormattedTextField("###.###.###-##");
+		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCpf.setBackground(new Color(255, 255, 255));
 		txtCpf.setForeground(new Color(0, 47, 47));
 		txtCpf.setCaretColor(Color.WHITE);
 		panel.add(txtCpf, "cell 3 6,growx");
 		txtCpf.setColumns(10);
 		if (editar) {
-		    txtCpf.setEditable(false);
+			txtCpf.setEditable(false);
 		}
 
 		final JLabel lblNewLabel_3 = new JLabel("Especialidade médica*");
@@ -151,26 +151,28 @@ public class TelaCadastrarProfisional extends JFrame {
 		for (Especialidade e : listaEspecialidades) {
 			comboEspecialidade.addItem(e.getEspecialidade());
 		}
+		if (editar == true) {
+			comboBoxTipoProfissional.setEnabled(false);
 
+		}
 		comboBoxTipoProfissional = new RoundComboBox();
 		comboBoxTipoProfissional.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex() + 1);
-		        if (tipo == TipoUsuario.MEDICO) {
-		            panel.add(txtCrm, "cell 1 6,growx");
-		            panel.add(comboEspecialidade, "cell 1 9,growx");
-		            panel.add(lblNewLabel_3, "cell 1 8");
-		            panel.add(lblNewLabel_2, "cell 1 5");
-		        } else {
-		            panel.remove(txtCrm);
-		            panel.remove(comboEspecialidade);
-		            panel.remove(lblNewLabel_2);
-		            panel.remove(lblNewLabel_3);
-		        }
-		        contentPane.repaint();
-		    }
+			public void actionPerformed(ActionEvent e) {
+				tipo = TipoUsuario.ObterTipo(comboBoxTipoProfissional.getSelectedIndex() + 1);
+				if (tipo == TipoUsuario.MEDICO) {
+					panel.add(txtCrm, "cell 1 6,growx");
+					panel.add(comboEspecialidade, "cell 1 9,growx");
+					panel.add(lblNewLabel_3, "cell 1 8");
+					panel.add(lblNewLabel_2, "cell 1 5");
+				} else {
+					panel.remove(txtCrm);
+					panel.remove(comboEspecialidade);
+					panel.remove(lblNewLabel_2);
+					panel.remove(lblNewLabel_3);
+				}
+				contentPane.repaint();
+			}
 		});
-
 
 		JLabel lblNewLabel_4_1 = new JLabel("Função*");
 		panel.add(lblNewLabel_4_1, "cell 3 11");
@@ -194,8 +196,8 @@ public class TelaCadastrarProfisional extends JFrame {
 		if (editar == true) {
 			comboSexo.setEditable(false);
 		}
-		
-		if(editar == true) {
+
+		if (editar == true) {
 			JLabel lblNewLabel_4 = new JLabel("Senha");
 			panel.add(lblNewLabel_4, "cell 1 11");
 
@@ -204,7 +206,6 @@ public class TelaCadastrarProfisional extends JFrame {
 			panel.add(lblNewLabel_4, "cell 1 11");
 
 		}
-
 
 		txtSenha = new RoundJTextField();
 		txtSenha.setHorizontalAlignment(SwingConstants.CENTER);
@@ -240,7 +241,7 @@ public class TelaCadastrarProfisional extends JFrame {
 				String nome = txtNome.getText();
 				String senha = txtSenha.getText();
 				String crm = txtCrm.getText();
-				
+
 				Long cpf;
 
 				Usuario u = new Usuario();
@@ -251,12 +252,12 @@ public class TelaCadastrarProfisional extends JFrame {
 					return;
 				} else {
 					try {
-					    String cpfText = txtCpf.getText();
-					    String cpfWithoutSpecialChars = cpfText.replaceAll("[^0-9]", "");
-					    cpf = Long.valueOf(cpfWithoutSpecialChars);
+						String cpfText = txtCpf.getText();
+						String cpfWithoutSpecialChars = cpfText.replaceAll("[^0-9]", "");
+						cpf = Long.valueOf(cpfWithoutSpecialChars);
 					} catch (NumberFormatException e2) {
-					    new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
-					    return;
+						new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
+						return;
 					}
 				}
 				if (comboBoxTipoProfissional.getSelectedIndex() == 0) {
