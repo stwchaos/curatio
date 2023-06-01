@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -163,6 +165,13 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_2, "cell 3 12 2 1");
 
 		txtTelefone = new RoundJTextField();
+//		txtTelefone.setColumns(10);
+        try {
+            MaskFormatter mascaraNum = new MaskFormatter("(##)#####-####");
+            mascaraNum.setValueContainsLiteralCharacters(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtTelefone.setColumns(10);
 		panel.add(txtTelefone, "cell 0 13 2 1,growx,aligny top");
