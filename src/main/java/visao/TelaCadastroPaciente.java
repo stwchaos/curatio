@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -126,10 +128,10 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Número da Casa *");
 		panel.add(lblNewLabel_4, "cell 3 7");
 
-		final RoundJTextField txtCPF = new RoundJTextField();
-		txtCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtCPF.setColumns(10);
-		panel.add(txtCPF, "cell 0 8 2 1,growx");
+		RoundJFormattedTextField txtCpf = new RoundJFormattedTextField("###.###.###-##");
+		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCpf.setColumns(10);
+		panel.add(txtCpf, "cell 0 8 2 1,growx");
 
 		final RoundJTextField txtNumeroCasa = new RoundJTextField();
 		txtNumeroCasa.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -163,6 +165,13 @@ public class TelaCadastroPaciente extends JFrame {
 		panel.add(lblNewLabel_5_2, "cell 3 12 2 1");
 
 		txtTelefone = new RoundJTextField();
+//		txtTelefone.setColumns(10);
+		try {
+			MaskFormatter mascaraNum = new MaskFormatter("(##)#####-####");
+			mascaraNum.setValueContainsLiteralCharacters(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtTelefone.setColumns(10);
 		panel.add(txtTelefone, "cell 0 13 2 1,growx,aligny top");
@@ -203,10 +212,11 @@ public class TelaCadastroPaciente extends JFrame {
 		txtComplemento.setColumns(10);
 		panel.add(txtComplemento, "cell 0 19 2 1,growx");
 
-		final RoundJTextField txtCEP = new RoundJTextField();
-		txtCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtCEP.setColumns(10);
-		panel.add(txtCEP, "cell 3 19 2 1,growx");
+
+		RoundJFormattedTextField txtCep = new RoundJFormattedTextField("#####-###");
+		txtCep.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCep.setColumns(10);
+		panel.add(txtCep, "cell 3 19 2 1,growx");
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(240, 240, 240));
@@ -270,8 +280,8 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String nome = txtNome.getText();
-				String numCpf = txtCPF.getText();
-				String numCep = txtCEP.getText();
+				String numCpf = txtCpf.getText();
+				String numCep = txtCep.getText();
 				String nomeSoc = txtNomeSoc.getText();
 				String email = txtEmail.getText();
 				String bairro = txtBairro.getText();
@@ -295,7 +305,7 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						cpf = Long.valueOf(txtCPF.getText());
+						cpf = Long.valueOf(txtCpf.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
 						return;
@@ -351,7 +361,7 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						cep = Long.valueOf(txtCEP.getText());
+						cep = Long.valueOf(txtCep.getText());
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
 						return;

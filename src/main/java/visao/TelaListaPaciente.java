@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import controle.MedicoDAO;
 import controle.PacienteDAO;
@@ -21,6 +22,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -180,11 +182,42 @@ public class TelaListaPaciente extends JFrame {
 
 	private void listarPacientes(ArrayList<Paciente> pacientes) {
 		modelo.setRowCount(0);
+
+		MaskFormatter formatCpf = null;
+
+		try {
+			formatCpf = new MaskFormatter("###.###.###-##");
+			formatCpf.setValueContainsLiteralCharacters(false);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		MaskFormatter formatNum = null;
+
+		try {
+			formatNum = new MaskFormatter("(##)#####-####");
+			formatNum.setValueContainsLiteralCharacters(false);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+
 		for (Paciente paciente : pacientes) {
+
 			if (paciente.getNomeSocial() == null) {
-				modelo.addRow(new Object[] { paciente.getNome(), paciente.getCpf(), paciente.getTelefone() });
+				try {
+					modelo.addRow(new Object[] { paciente.getNome(), formatCpf.valueToString(paciente.getCpf()),
+							formatNum.valueToString(paciente.getTelefone()) });
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 			} else {
-				modelo.addRow(new Object[] { paciente.getNomeSocial(), paciente.getCpf(), paciente.getTelefone() });
+				try {
+					modelo.addRow(new Object[] { paciente.getNomeSocial(), formatCpf.valueToString(paciente.getCpf()),
+							formatNum.valueToString(paciente.getTelefone()) });
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		table.setModel(modelo);
