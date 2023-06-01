@@ -211,7 +211,7 @@ public class TelaCadastrarProfisional extends JFrame {
 			btnAdicionar.setBackground(new Color(64, 128, 128));
 			btnAdicionar.setForeground(new Color(255, 255, 255));
 			JLabel label = new JLabel("Alterar Profissional");
-			label.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 17));
+			label.setFont(new Font("Yu Gothic Light", Font.PLAIN, 17));
 			label.setForeground(new Color(255, 255, 255));
 			panel_1.add(label, "cell 0 0,alignx center,aligny bottom");
 		} else {
@@ -220,7 +220,7 @@ public class TelaCadastrarProfisional extends JFrame {
 			btnAdicionar.setBackground(new Color(64, 128, 128));
 			btnAdicionar.setForeground(new Color(255, 255, 255));
 			JLabel label = new JLabel("Cadastrar Profissional");
-			label.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 17));
+			label.setFont(new Font("Yu Gothic Light", Font.PLAIN, 17));
 			label.setForeground(new Color(255, 255, 255));
 			panel_1.add(label, "cell 0 0,alignx center,aligny bottom");
 		}
@@ -376,6 +376,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		panel.add(btnAdicionar, "cell 1 16,alignx center,aligny bottom");
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Yu Gothic Light", Font.PLAIN, 11));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

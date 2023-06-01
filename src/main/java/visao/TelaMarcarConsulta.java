@@ -23,7 +23,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -225,14 +224,14 @@ public class TelaMarcarConsulta extends JFrame {
 				}
 				
 				if(comboMedico.getSelectedItem() == null) {
-					JOptionPane.showMessageDialog(btnMarcar, "Medico não selecionado!");
+					new DialogMensagemErro("Medico não selecionado!").setVisible(true);
 					return;
 				} else {
 					med = comboMedico.getSelectedItem().toString();
 				}
 				
 				if(comboPaciente.getSelectedItem()==null) {
-					JOptionPane.showMessageDialog(btnMarcar, "Paciente não selecionado!");
+					new DialogMensagemErro("Paciente não selecionado!").setVisible(true);
 					return;
 				} else {
 					pac = comboPaciente.getSelectedItem().toString();
@@ -256,7 +255,7 @@ public class TelaMarcarConsulta extends JFrame {
 					}
 				}
 				if(index==null) {
-					JOptionPane.showMessageDialog(btnMarcar, "Paciente não selecionado!");
+					new DialogMensagemErro("Paciente não selecionado!").setVisible(true);
 					return;
 				}
 				Paciente paciente = listaPaciente.get(index);
@@ -275,7 +274,7 @@ public class TelaMarcarConsulta extends JFrame {
 					}
 				}
 				if(index==null) {
-					JOptionPane.showMessageDialog(btnMarcar, "Medico não selecionado!");
+					new DialogMensagemErro("Medico não selecionado!").setVisible(true);
 					return;
 				}
 				
