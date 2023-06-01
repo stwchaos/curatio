@@ -94,7 +94,7 @@ public class Conexao {
 					+ "    FOREIGN KEY (especialidade_id_especialidade)\r\n"
 					+ "    REFERENCES especialidade (id_especialidade),\r\n"
 					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
-					+ "    REFERENCES usuario (id_usuario);";
+					+ "    REFERENCES usuario (id_usuario));";
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS pagamento (\r\n"
@@ -111,14 +111,14 @@ public class Conexao {
 					+ "  objetivo VARCHAR(45) NOT NULL,\r\n"
 					+ "  encerrada TINYINT NOT NULL,\r\n"
 					+ "  paciente_cpf BIGINT(12) NOT NULL,\r\n"
-					+ "  medico_crm BIGINT(6) NOT NULL,\r\n"
+					+ "  medico_crm VARCHAR(10) NOT NULL,\r\n"
 					+ "  pagamento_id_pagamento INT NOT NULL,\r\n"
 					+ "  falta TINYINT NOT NULL,\r\n"
 					+ "  PRIMARY KEY (id_consulta),\r\n"
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf),\r\n"
 					+ "    FOREIGN KEY (medico_crm)\r\n"
-					+ "    REFERENCES medico (crm),\r\n"
+					+ "    REFERENCES medico (crm)\r\n"
 					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
 					+ "    REFERENCES pagamento (id_pagamento));";
 			stm.executeUpdate(wsql);
