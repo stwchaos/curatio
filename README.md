@@ -34,9 +34,13 @@ O software que estamos criando oferece diversas funcionalidades para facilitar o
 O nosso software é uma solução completa para a gestão de pacientes e consultas em hospitais, oferecendo uma interface fácil de usar e eficiente para os profissionais de saúde.
 
 
-## :wrench: Construído com
-- [Eclipse](https://www.eclipse.org/downloads/)
-- [WindowBuilder](https://www.eclipse.org/windowbuilder/)
+## :wrench: TECNOLOGIAS UTILIZADAS
+
+- [Eclipse IDE 2022-06](https://www.eclipse.org/downloads/);
+- [WindowBuilder](https://www.eclipse.org/windowbuilder/);
+- Swing;
+- Java(TM) SE Development Kit 18.0.2; 
+- Bibliotecas/.jar externos: Miglayout-Core-4.2, Miglayout-Swing-4.2, Apache Maven, Junit-jupiter-api-5.9.1, Junit-platform-commons-1.9.1, Jcalendar-1.4, Apiguardian-api-1.1.2, mysql-connector-java-8.0.30, Opentst4j-1.2.0, Protobuf-java-3.19.4;
 
 ## :busts_in_silhouette: Equipe de desenvolvimento do projeto
 - [@Misomania]
