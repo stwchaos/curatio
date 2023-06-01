@@ -124,17 +124,26 @@ public class TelaListaPaciente extends JFrame {
 			}
 		};
 		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				linha = table.getSelectedRow();
-				Long id = (Long) table.getValueAt(linha, 1);
-				for (Paciente paciente : pDao.listarPacientes()) {
-					if (id.equals(paciente.getCpf())) {
-						pacienteSelecionado = paciente;
-					}
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        linha = table.getSelectedRow();
+		        Object value = table.getValueAt(linha, 1);
+		        String idStr = value.toString().replaceAll("[^0-9]", "");
+		        Long id = null;
+		        try {
+		            id = Long.valueOf(idStr);
+		        } catch (NumberFormatException ex) {
+		            ex.printStackTrace();
+		            return;
+		        }
+		        for (Paciente paciente : pDao.listarPacientes()) {
+		            if (id.equals(paciente.getCpf())) {
+		                pacienteSelecionado = paciente;
+		            }
+		        }
+		    }
 		});
+
 
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF", "Telefone" });

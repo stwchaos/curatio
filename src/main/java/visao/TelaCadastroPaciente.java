@@ -164,14 +164,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_5_2.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_5_2, "cell 3 12 2 1");
 
-		txtTelefone = new RoundJTextField();
-//		txtTelefone.setColumns(10);
-		try {
-			MaskFormatter mascaraNum = new MaskFormatter("(##)#####-####");
-			mascaraNum.setValueContainsLiteralCharacters(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		txtTelefone = new RoundJFormattedTextField("(##) ####-####");
 		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtTelefone.setColumns(10);
 		panel.add(txtTelefone, "cell 0 13 2 1,growx,aligny top");
@@ -211,7 +204,6 @@ public class TelaCadastroPaciente extends JFrame {
 		txtComplemento.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtComplemento.setColumns(10);
 		panel.add(txtComplemento, "cell 0 19 2 1,growx");
-
 
 		RoundJFormattedTextField txtCep = new RoundJFormattedTextField("#####-###");
 		txtCep.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -305,7 +297,9 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						cpf = Long.valueOf(txtCpf.getText());
+						String cpfText = txtCpf.getText();
+						String cpfWithoutSpecialChars = cpfText.replaceAll("[^0-9]", "");
+						cpf = Long.valueOf(cpfWithoutSpecialChars);
 					} catch (NumberFormatException e2) {
 						new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
 						return;
@@ -334,11 +328,14 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						telefone = Long.valueOf(txtTelefone.getText());
+						String telefoneText = txtTelefone.getText();
+						String telefoneWithoutSpecialChars = telefoneText.replaceAll("[^0-9]", "");
+						telefone = Long.valueOf(telefoneWithoutSpecialChars);
 					} catch (NumberFormatException e2) {
-						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
+						new DialogMensagemErro("Informação inválida no campo Telefone!").setVisible(true);
 						return;
 					}
+
 				}
 
 				if (cidade.trim().isEmpty()) {
@@ -361,11 +358,19 @@ public class TelaCadastroPaciente extends JFrame {
 					return;
 				} else {
 					try {
-						cep = Long.valueOf(txtCep.getText());
-					} catch (NumberFormatException e2) {
-						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
-						return;
+					    String cepText = txtCep.getText().replaceAll("[^0-9]", "");
+					    if (cepText.isEmpty()) {
+					        throw new NumberFormatException();
+					    }
+					    cep = Long.valueOf(cepText);
+					} catch (NumberFormatException ex) {
+					    new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
+					    return;
 					}
+
+
+
+
 				}
 				if (complemento.trim().isEmpty()) {
 					complemento = null;

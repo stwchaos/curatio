@@ -40,7 +40,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	private JTextField txtNomeSocial;
 	private JTextField txtSexo;
 	private JTextField txtNascimento;
-	private JTextField txtCEP;
+	private JTextField txtCep;
 	private JTextField txtNumCasa;
 	private JTextField txtBairro;
 	private JTextField txtCidade;
@@ -81,7 +81,8 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JPanel panel = new RoundJPanel(150);
 		c.add(panel, "flowx,cell 1 0 1 3,alignx center,growy");
 
-		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]",
+				"[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -117,13 +118,13 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		panel.add(txtNome, "cell 0 5 3 1,growx,aligny center");
 		txtNome.setColumns(10);
 
-		RoundJTextField txtCPF = new RoundJTextField();
-		txtCPF.setBackground(new Color(163, 163, 163));
-		txtCPF.setText(pacienteSelecionado.getCpf().toString());
-		txtCPF.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtCPF.setEditable(false);
-		txtCPF.setColumns(10);
-		panel.add(txtCPF, "cell 4 5,growx");
+		RoundJFormattedTextField txtCpf = new RoundJFormattedTextField("###.###.###-##");
+		txtCpf.setBackground(new Color(163, 163, 163));
+		txtCpf.setText(pacienteSelecionado.getCpf().toString());
+		txtCpf.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCpf.setEditable(false);
+		txtCpf.setColumns(10);
+		panel.add(txtCpf, "cell 4 5,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Nome social (se houver)");
 		panel.add(lblNewLabel_2, "cell 0 6,alignx left,aligny bottom");
@@ -220,15 +221,15 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		panel.add(txtNascimento, "cell 2 9 3 1,growx,aligny center");
 		txtNascimento.setColumns(10);
 
-		txtCEP = new RoundJTextField();
-		txtCEP.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
-		txtCEP.setColumns(10);
-		panel.add(txtCEP, "cell 0 13 2 1,growx,aligny center");
+		txtCep = new RoundJFormattedTextField("#####-###");
+		txtCep.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		txtCep.setColumns(10);
+		panel.add(txtCep, "cell 0 13 2 1,growx,aligny center");
 
 		JLabel lblNewLabel_5_1 = new JLabel("CEP");
 		panel.add(lblNewLabel_5_1, "cell 0 12,growx,aligny bottom");
 
-		txtTelefone = new RoundJTextField();
+		txtTelefone = new RoundJFormattedTextField("(##) ####-####");
 		panel.add(txtTelefone, "cell 0 11 3 1,growx,aligny center");
 		txtTelefone.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		txtTelefone.setColumns(10);
@@ -245,7 +246,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String numCep = txtCEP.getText();
+				String numCep = txtCep.getText();
 				String email = txtEmail.getText();
 				String numTel = txtTelefone.getText();
 				String nomeSoc = txtNomeSocial.getText();
@@ -268,10 +269,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					return;
 				} else {
 					try {
-						cep = Long.valueOf(txtCEP.getText());
-					} catch (NumberFormatException e2) {
-						new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
-						return;
+					    String cepText = txtCep.getText().replaceAll("[^0-9]", "");
+					    if (cepText.isEmpty()) {
+					        throw new NumberFormatException();
+					    }
+					    cep = Long.valueOf(cepText);
+					} catch (NumberFormatException ex) {
+					    new DialogMensagemErro("Informação inválida no campo CEP!").setVisible(true);
+					    return;
 					}
 				}
 				if (numTel.trim().isEmpty()) {
@@ -279,11 +284,14 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 					return;
 				} else {
 					try {
-						telefone = Long.valueOf(txtTelefone.getText());
+						String telefoneText = txtTelefone.getText();
+						String telefoneWithoutSpecialChars = telefoneText.replaceAll("[^0-9]", "");
+						telefone = Long.valueOf(telefoneWithoutSpecialChars);
 					} catch (NumberFormatException e2) {
-						new DialogMensagemErro("Informação inválida no campo telefone!").setVisible(true);
+						new DialogMensagemErro("Informação inválida no campo Telefone!").setVisible(true);
 						return;
 					}
+
 				}
 				if (email.trim().isEmpty()) {
 					new DialogMensagemErro("Email Vazio").setVisible(true);
@@ -361,11 +369,10 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JPanel panel_2 = new RoundJPanel(30, new Color(0, 64, 64));
 		panel_2.setBackground(null);
 		panel_2.setBorder(null);
-		if(usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA) {
+		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA) {
 			c.add(panel_2, "flowx,cell 3 1,grow");
 		}
-		panel_2.setLayout(
-				new MigLayout("", "[36.00,grow][177px][36.00px,grow]", "[grow][23px][][][][][grow]"));
+		panel_2.setLayout(new MigLayout("", "[36.00,grow][177px][36.00px,grow]", "[grow][23px][][][][][grow]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4
@@ -416,22 +423,22 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		btnDeletar.setFocusPainted(false);
 		btnDeletar.setBackground(null);
 		btnDeletar.setOpaque(false);
-		
-				JButton btnVoltar = new JButton("Voltar");
-				c.add(btnVoltar, "flowx,cell 0 2,alignx left,aligny bottom");
-				btnVoltar.setForeground(new Color(255, 255, 255));
-				btnVoltar.setBackground(new Color(0, 81, 81));
-				btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				btnVoltar.addActionListener(new ActionListener() {
 
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-						TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
-						telaListaPaciente.setLocationRelativeTo(null);
-						telaListaPaciente.setVisible(true);
-						telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					}
-				});
+		JButton btnVoltar = new JButton("Voltar");
+		c.add(btnVoltar, "flowx,cell 0 2,alignx left,aligny bottom");
+		btnVoltar.setForeground(new Color(255, 255, 255));
+		btnVoltar.setBackground(new Color(0, 81, 81));
+		btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnVoltar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+				telaListaPaciente.setLocationRelativeTo(null);
+				telaListaPaciente.setVisible(true);
+				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -451,7 +458,7 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		txtSexo.setText(pacienteSelecionado.getSexo());
 		txtNascimento.setText(Date.valueOf(pacienteSelecionado.getNascimento()).toString());
 		txtTelefone.setText(String.valueOf(pacienteSelecionado.getTelefone()));
-		txtCEP.setText(String.valueOf(pacienteSelecionado.getCep()));
+		txtCep.setText(String.valueOf(pacienteSelecionado.getCep()));
 		txtNumCasa.setText(String.valueOf(pacienteSelecionado.getNumCasa()));
 		txtBairro.setText(pacienteSelecionado.getEndereco().getBairro());
 		txtCidade.setText(pacienteSelecionado.getEndereco().getCidade());
@@ -463,16 +470,16 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 	public void btnConfirmacao() {
 		PacienteDAO pDao = new PacienteDAO();
 		if (pDao.deletar(pacienteSelecionado)) {
+			dispose();
+			TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+			telaListaPaciente.setLocationRelativeTo(null);
+			telaListaPaciente.setVisible(true);
+			telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
 		} else {
 			new DialogMensagemErro("Paciente já possui registros cadastrados!").setVisible(true);
 		}
-		dispose();
-		TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
-		telaListaPaciente.setLocationRelativeTo(null);
-		telaListaPaciente.setVisible(true);
-		telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
-
+		
 
 	}
 

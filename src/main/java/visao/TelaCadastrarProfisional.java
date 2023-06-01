@@ -40,8 +40,8 @@ public class TelaCadastrarProfisional extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
-	private JTextField txtCpf;
 	private JTextField txtCrm;
+    private JTextField txtCpf;
 	private JTextField txtSenha;
 	private ArrayList<Especialidade> listaEspecialidades;
 	private JComboBox comboEspecialidade;
@@ -113,7 +113,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("CPF*");
 		panel.add(lblNewLabel_5, "cell 3 5");
 
-		RoundJFormattedTextField txtCrm = new RoundJFormattedTextField("UU-####");
+		txtCrm = new RoundJFormattedTextField("UU-####");
 		txtCrm.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCrm.setBackground(new Color(255, 255, 255));
 		txtCrm.setForeground(new Color(0, 47, 47));
@@ -124,8 +124,8 @@ public class TelaCadastrarProfisional extends JFrame {
 			txtCrm.setEditable(false);
 		}
 
-		RoundJFormattedTextField txtCpf = new RoundJFormattedTextField("###.###.###-##");
-		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
+        txtCpf = new RoundJFormattedTextField("###.###.###-##");
+        txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCpf.setBackground(new Color(255, 255, 255));
 		txtCpf.setForeground(new Color(0, 47, 47));
 		txtCpf.setCaretColor(Color.WHITE);
@@ -194,9 +194,17 @@ public class TelaCadastrarProfisional extends JFrame {
 		if (editar == true) {
 			comboSexo.setEditable(false);
 		}
+		
+		if(editar == true) {
+			JLabel lblNewLabel_4 = new JLabel("Senha");
+			panel.add(lblNewLabel_4, "cell 1 11");
 
-		JLabel lblNewLabel_4 = new JLabel("Senha*");
-		panel.add(lblNewLabel_4, "cell 1 11");
+		} else {
+			JLabel lblNewLabel_4 = new JLabel("Senha*");
+			panel.add(lblNewLabel_4, "cell 1 11");
+
+		}
+
 
 		txtSenha = new RoundJTextField();
 		txtSenha.setHorizontalAlignment(SwingConstants.CENTER);
@@ -397,7 +405,8 @@ public class TelaCadastrarProfisional extends JFrame {
 
 	private void receberDadosM(Medico medicoSelecioado) {
 		txtNome.setText(medicoSelecioado.getNome());
-		txtCrm.setText(String.valueOf(medicoSelecioado.getCrm()));
+		System.out.println(medicoSelecioado.getCrm());
+		txtCrm.setText(medicoSelecioado.getCrm());
 		txtCpf.setText(String.valueOf(medicoSelecioado.getCpf()));
 		comboEspecialidade.setSelectedIndex(medicoSelecioado.getEspecialidade().getIdEspecialidade() - 1);
 		comboSexo.setSelectedItem(medicoSelecioado.getSexo());

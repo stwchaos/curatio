@@ -380,7 +380,6 @@ public class TelaAnamnese extends JFrame {
 				if (aDao.alterar(anaSelecionada)) {
 					cDao.consultaRealizada(anaSelecionada.getConsulta());
 					dispose();
-					new DialogMensagemSucesso("a Anamnese foi realizada!").setVisible(true);
 					TelaConsultaPendente telaAnterior = new TelaConsultaPendente(usuarioAtual);
 					telaAnterior.setLocationRelativeTo(null);
 					telaAnterior.setVisible(true);
@@ -388,6 +387,7 @@ public class TelaAnamnese extends JFrame {
 				} else {
 					new DialogMensagemErro("Ocorreu um erro ao salvar anamnese.").setVisible(true);
 				}
+				new DialogMensagemSucesso("a Anamnese foi realizada!").setVisible(true);
 			}
 		});
 		btnSalvar.setForeground(Color.WHITE);
