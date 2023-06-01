@@ -215,40 +215,36 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 	private void listarConsultas() {
 		table.setModel(modelo);
-	    modelo.setRowCount(0);
-	    ArrayList<Integer> faltas = new ArrayList<>();
+		modelo.setRowCount(0);
+		ArrayList<Integer> faltas = new ArrayList<>();
 
-	    for (Consulta con : cDao.listarConsultas()) {
-	    	
-	        if (con.getEncerrada() == false) {
-	            Object[] rowData;
-	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		for (Consulta con : cDao.listarConsultas()) {
 
-	            String dataFormatada = con.getData().format(formatter);
+			if (con.getEncerrada() == false) {
+				Object[] rowData;
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	            
+				String dataFormatada = con.getData().format(formatter);
 
-	            // TODO
-	            if (con.getPaciente().getNomeSocial() == null) {
-	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
-	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        dataFormatada,  con.getHorario(), con.getObjetivo() };
-	            } else {
-	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
-	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        dataFormatada,  con.getHorario(), con.getObjetivo() };
-	            }
-	            modelo.addRow(rowData); 
-	            if (con.getFalta()) {
-	                faltas.add(modelo.getRowCount()-1);
-	            }
-	        }
-	    }
+				if (con.getPaciente().getNomeSocial() == null) {
+					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
+							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+							dataFormatada, con.getHorario(), con.getObjetivo() };
+				} else {
+					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
+							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+							dataFormatada, con.getHorario(), con.getObjetivo() };
+				}
+				modelo.addRow(rowData);
+				if (con.getFalta()) {
+					faltas.add(modelo.getRowCount() - 1);
+				}
+			}
+		}
 
-	    table.setModel(modelo);
-	    table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
+		table.setModel(modelo);
+		table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
 	}
-
 
 	@Override
 	public void btnConfirmacao() {
