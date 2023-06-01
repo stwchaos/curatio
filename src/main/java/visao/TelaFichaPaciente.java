@@ -75,28 +75,13 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		c.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(c);
-		c.setLayout(new MigLayout("", "[247.00,grow][294.00px,grow][247.00,grow]", "[682px,grow]"));
-
-		JButton btnVoltar = new JButton("Voltar");
-		c.add(btnVoltar, "cell 0 0,alignx left,aligny bottom");
-		btnVoltar.setForeground(new Color(255, 255, 255));
-		btnVoltar.setBackground(new Color(0, 81, 81));
-		btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnVoltar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
-				telaListaPaciente.setLocationRelativeTo(null);
-				telaListaPaciente.setVisible(true);
-				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
+		c.setLayout(new MigLayout("", "[247.00,grow][294.00px,grow][107.00,grow][273.00]",
+				"[46,grow][611.00px,grow][46.00,grow]"));
 
 		JPanel panel = new RoundJPanel(150);
-		c.add(panel, "flowx,cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]",
-				"[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
+		c.add(panel, "flowx,cell 1 0 1 3,alignx center,growy");
+
+		panel.setLayout(new MigLayout("", "[58.00px,grow][grow][174.00px,grow][-1.00][138.00px,grow]", "[69.00,grow][][116.00px,grow][][][32px][][33px][][33px][14px][20px][14px][20px][][][1px][][21.00px][21.00,grow]"));
 
 		txtRegistrosDosPacientes = new RoundJTextField();
 		txtRegistrosDosPacientes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -251,20 +236,12 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
 		panel.add(lblNewLabel_5, "cell 0 10,growx,aligny bottom");
 
-		JButton btnDeletar = new JButton("Deletar Paciente");
-		btnDeletar.setForeground(new Color(255, 255, 255));
-		btnDeletar.setBackground(new Color(240, 240, 240));
-		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		final TelaFichaPaciente tela = this;
-		btnDeletar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new DialogConfirmacao("O paciente será deletado.", tela).setVisible(true);
-			}
-		});
-
-		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
+		JButton btnConfirmar = new JButton("Confirmar alterações");
+		panel.add(btnConfirmar, "cell 3 19 2 1,growx,aligny bottom");
+		btnConfirmar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
 		btnConfirmar.setForeground(new Color(255, 255, 255));
+		btnConfirmar.setBackground(new Color(0, 81, 81));
+//		btnConfirmar.setBorder(null);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -376,24 +353,78 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 				}
 			}
 		});
-		btnConfirmar.setBackground(new Color(64, 128, 128));
+		btnConfirmar.setBackground(new Color(0, 81, 81));
 		btnConfirmar.setIcon(null);
 		btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		panel.add(btnConfirmar, "cell 0 19,growx,aligny center");
-		btnDeletar.setForeground(new Color(255, 255, 255));
-		btnDeletar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 11));
-		btnDeletar.setBackground(new Color(191, 0, 0));
-		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnDeletar.setBorderPainted(false);
-		btnDeletar.setFocusPainted(false);
-		panel.add(btnDeletar, "cell 4 19,growx,aligny center");
+		final TelaFichaPaciente tela = this;
+
+		JPanel panel_2 = new RoundJPanel(30, new Color(0, 64, 64));
+		panel_2.setBackground(null);
+		panel_2.setBorder(null);
+		c.add(panel_2, "flowx,cell 3 1,grow");
+		panel_2.setLayout(
+				new MigLayout("", "[36.00,grow][177px][36.00px,grow]", "[grow][23px][][][][][grow]"));
+
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4
+				.setIcon(new ImageIcon(TelaPadrao.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
+		panel_2.add(lblNewLabel_4, "cell 1 0,alignx center,aligny top");
 		// }
 
 		JButton btnHistorico = new JButton("Acessar histórico de consultas");
-		c.add(btnHistorico, "flowx,cell 2 0,alignx right,aligny bottom");
+		btnHistorico.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
+		panel_2.add(btnHistorico, "cell 1 1,growx,aligny top");
 		btnHistorico.setForeground(new Color(255, 255, 255));
-		btnHistorico.setBackground(new Color(0, 81, 81));
 		btnHistorico.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnHistorico.setBackground(null);
+		btnHistorico.setOpaque(false);
+//		btnHistorico.setBorder(null);
+
+		JButton btnMarcarConsulta = new JButton("Marcar Consulta");
+		btnMarcarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMarcarConsulta.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
+		btnMarcarConsulta.setForeground(new Color(255, 255, 255));
+		btnMarcarConsulta.setBackground(null);
+		btnMarcarConsulta.setOpaque(false);
+//		btnMarcarConsulta.setBorder(null);
+		btnMarcarConsulta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel_2.add(btnMarcarConsulta, "cell 1 3,growx,aligny top");
+
+		JButton btnDeletar = new JButton("Deletar Paciente");
+		panel_2.add(btnDeletar, "cell 1 5,growx,aligny center");
+		btnDeletar.setForeground(new Color(255, 255, 255));
+		btnDeletar.setBackground(new Color(240, 240, 240));
+		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DialogConfirmacao("O paciente será deletado.", tela).setVisible(true);
+			}
+		});
+		btnDeletar.setForeground(new Color(255, 255, 255));
+		btnDeletar.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
+		btnDeletar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnDeletar.setFocusPainted(false);
+		btnDeletar.setBackground(null);
+		btnDeletar.setOpaque(false);
+		
+				JButton btnVoltar = new JButton("Voltar");
+				c.add(btnVoltar, "flowx,cell 0 2,alignx left,aligny bottom");
+				btnVoltar.setForeground(new Color(255, 255, 255));
+				btnVoltar.setBackground(new Color(0, 81, 81));
+				btnVoltar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				btnVoltar.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						TelaListaPaciente telaListaPaciente = new TelaListaPaciente(usuarioAtual);
+						telaListaPaciente.setLocationRelativeTo(null);
+						telaListaPaciente.setVisible(true);
+						telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					}
+				});
 		btnHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
