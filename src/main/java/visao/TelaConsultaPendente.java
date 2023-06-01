@@ -186,7 +186,11 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		JScrollPane scrollPane = new JScrollPane();
 		panel_3_4.add(scrollPane, "cell 0 0,grow");
 
-		table = new JTable();
+		table = new JTable() {
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
