@@ -228,12 +228,11 @@ public class TelaCadastrarProfisional extends JFrame {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nCpf = txtCpf.getText();
-				String nCrm = txtCrm.getText();
 				String nome = txtNome.getText();
 				String senha = txtSenha.getText();
-
+				String crm = txtCrm.getText();
+				
 				Long cpf;
-				Long crm = null;
 
 				Usuario u = new Usuario();
 				UsuarioDAO uDao = new UsuarioDAO();
@@ -250,16 +249,9 @@ public class TelaCadastrarProfisional extends JFrame {
 					}
 				}
 				if (comboBoxTipoProfissional.getSelectedIndex() == 0) {
-					if (nCrm.trim().isEmpty()) {
+					if (crm.trim().isEmpty()) {
 						new DialogMensagemErro("CRM Vazio").setVisible(true);
 						return;
-					} else {
-						try {
-							crm = Long.valueOf(txtCrm.getText());
-						} catch (NumberFormatException e2) {
-							new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
-							return;
-						}
 					}
 				}
 				if (nome.trim().isEmpty()) {

@@ -25,7 +25,7 @@ public class MedicoDAO {
 			String query = "INSERT INTO medico (crm, nome, cpf, sexo, pronome, especialidade_id_especialidade, usuario_id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setLong(1, m.getCrm());
+			stm.setString(1, m.getCrm());
 			stm.setString(2, m.getNome());
 			stm.setLong(3, m.getCpf());
 			stm.setString(4, m.getSexo());
@@ -58,7 +58,7 @@ public class MedicoDAO {
 			stm.setString(3, m.getPronome());
 			stm.setLong(4, m.getUsuario().getId());
 			stm.setLong(5, m.getEspecialidade().getIdEspecialidade());
-			stm.setLong(6, m.getCrm());
+			stm.setString(6, m.getCrm());
 
 			stm.executeUpdate();
 			return true;
@@ -78,7 +78,7 @@ public class MedicoDAO {
 		try {
 			String query = "DELETE FROM medico WHERE crm = ?;";
 			PreparedStatement stm = co.prepareStatement(query);
-			stm.setLong(1, m.getCrm());
+			stm.setString(1, m.getCrm());
 			
 			stm.executeUpdate();
 			return true;
@@ -108,7 +108,7 @@ public class MedicoDAO {
 					+ " INNER JOIN especialidade ON medico.especialidade_id_especialidade = especialidade.id_especialidade);";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				Long crm = rs.getLong("crm");
+				String crm = rs.getString("crm");
 				Long cpf = rs.getLong("cpf");
 				String nome = rs.getString("nome");
 				String sexo = rs.getString("sexo");
@@ -172,7 +172,7 @@ public class MedicoDAO {
 			ResultSet rs = stm.executeQuery();
 			
 			while (rs.next()) {
-				Long crm = rs.getLong("crm");
+				String crm = rs.getString("crm");
 				Long cpf = rs.getLong("cpf");
 				String nome = rs.getString("nome");
 				String sexo = rs.getString("sexo");

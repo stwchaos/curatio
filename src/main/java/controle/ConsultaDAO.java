@@ -34,7 +34,7 @@ public class ConsultaDAO {
 			stm.setString(2, c.getObjetivo());
 			stm.setBoolean(3, c.getEncerrada());
 			stm.setInt(4, c.getPagamento().getIdPagamento());
-			stm.setLong(5, c.getMedico().getCrm());
+			stm.setString(5, c.getMedico().getCrm());
 			stm.setLong(6, c.getPaciente().getCpf());
 			stm.setBoolean(7, c.getFalta());
 			String dateFormat = "yyyy-MM-dd'T'HH:mm:ss";
@@ -90,7 +90,7 @@ public class ConsultaDAO {
 			}
 			stm.setTimestamp(1, new Timestamp(dataHora.getTime()));
 			stm.setString(2, c.getObjetivo());
-			stm.setLong(3, c.getMedico().getCrm());
+			stm.setString(3, c.getMedico().getCrm());
 			stm.setInt(4, c.getIdConsulta());
 
 			stm.executeUpdate();
@@ -146,7 +146,7 @@ public class ConsultaDAO {
 				Date dataPagamento = rs.getDate("data_pagamento");
 				Long cpfPagante = rs.getLong("cpf_pagante");
 				Long pacienteCpf = rs.getLong("paciente_cpf");
-				Long medicoCrm = rs.getLong("medico_crm");
+				String medicoCrm = rs.getString("medico_crm");
 				Boolean falta = rs.getBoolean("falta");
 				
 				Consulta c = new Consulta();

@@ -118,7 +118,7 @@ public class Conexao {
 					+ "    FOREIGN KEY (paciente_cpf)\r\n"
 					+ "    REFERENCES paciente (cpf),\r\n"
 					+ "    FOREIGN KEY (medico_crm)\r\n"
-					+ "    REFERENCES medico (crm)\r\n"
+					+ "    REFERENCES medico (crm),\r\n"
 					+ "    FOREIGN KEY (pagamento_id_pagamento)\r\n"
 					+ "    REFERENCES pagamento (id_pagamento));";
 			stm.executeUpdate(wsql);

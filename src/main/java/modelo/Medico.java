@@ -2,7 +2,7 @@ package modelo;
 
 public class Medico {
 
-	private Long crm;
+	private String crm;
 	private String nome;
 	private Long cpf;
 	private String sexo;
@@ -10,10 +10,10 @@ public class Medico {
 	private Especialidade especialidade;
 	private Usuario usuario;
 	
-	public Long getCrm() {
+	public String getCrm() {
 		return crm;
 	}
-	public void setCrm(Long crm) {
+	public void setCrm(String crm) {
 		this.crm = crm;
 	}
 	public String getNome() {
