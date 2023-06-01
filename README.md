@@ -4,7 +4,7 @@
 
 ---
 ### Progresso do projeto
-▓▓▓▓▓▓▓▓░░ 80%
+▓▓▓▓▓▓▓▓▓▓░ 95%
 
 
 
@@ -147,5 +147,6 @@ A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre 
 ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaAnamnese.png)
 
 #### Tela Histórico:
+Exibe informações de consultas já finalizadas de um determinado paciente.
 
-#### Tela Informaçõe da Consulta:
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaHistorico.png)
