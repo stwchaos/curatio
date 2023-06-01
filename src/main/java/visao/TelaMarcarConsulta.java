@@ -61,7 +61,7 @@ public class TelaMarcarConsulta extends JFrame {
 	private ArrayList<String> pacientes = new ArrayList<String>();
 	private ArrayList<String> medicos = new ArrayList<String>();
 	
-	public TelaMarcarConsulta(final Usuario usuarioAtual) {
+	public TelaMarcarConsulta(final Usuario usuarioAtual, final Paciente pacienteSelecionado) {
 		setTitle("Hospital Esmeralda - Marcar Consulta");
 		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA){
 			setTitle("Hospital Esmeralda - Remarcar Consulta");
@@ -99,10 +99,18 @@ public class TelaMarcarConsulta extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
-				telaPadrao.setLocationRelativeTo(null);
-				telaPadrao.setVisible(true);
-				telaPadrao.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				if(pacienteSelecionado == null) {
+					TelaPadrao tela = new TelaPadrao(usuarioAtual);
+					tela.setLocationRelativeTo(null);
+					tela.setVisible(true);
+					tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				} else {
+					TelaFichaPaciente tela = new TelaFichaPaciente(usuarioAtual, pacienteSelecionado);
+					tela.setLocationRelativeTo(null);
+					tela.setVisible(true);
+					tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				}
+				
 			}
 		});
 
@@ -314,6 +322,10 @@ public class TelaMarcarConsulta extends JFrame {
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
+		if(pacienteSelecionado!=null) {
+			comboPaciente.setEditable(false);
+			pacSelecionado(pacienteSelecionado);
+		}
 	}
 	
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
@@ -358,5 +370,17 @@ public class TelaMarcarConsulta extends JFrame {
 		}
 		AutoComboBox autoComboBox = new AutoComboBox();
 		autoComboBox.setKeyWord(medicos);
+	}
+	
+	private void pacSelecionado(Paciente pacienteSelecionado) {
+		Integer i=0;
+		for (Paciente paciente : listaPaciente) {
+			if(paciente.getCpf().equals(pacienteSelecionado.getCpf())) {
+				comboPaciente.setSelectedIndex(i);
+				comboPaciente.setEnabled(false);
+				break;
+			}
+			i++;
+		}
 	}
 }

@@ -131,7 +131,7 @@ public class TelaPadrao extends JFrame {
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta(usuarioAtual);
+				TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta(usuarioAtual, null);
 				telaMarcarConsulta.setLocationRelativeTo(null);
 				telaMarcarConsulta.setVisible(true);
 				telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);

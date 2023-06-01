@@ -181,7 +181,6 @@ public class TelaListaPaciente extends JFrame {
 	private void listarPacientes(ArrayList<Paciente> pacientes) {
 		modelo.setRowCount(0);
 		for (Paciente paciente : pacientes) {
-			System.out.println(paciente.getNomeSocial());
 			if (paciente.getNomeSocial() == null) {
 				modelo.addRow(new Object[] { paciente.getNome(), paciente.getCpf(), paciente.getTelefone() });
 			} else {

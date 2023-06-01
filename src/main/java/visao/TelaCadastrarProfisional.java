@@ -161,7 +161,6 @@ public class TelaCadastrarProfisional extends JFrame {
 					panel.add(lblNewLabel_3, "cell 1 8");
 					panel.add(lblNewLabel_2, "cell 1 5");
 				} else {
-					System.out.println("teste");
 					panel.remove(txtCrm);
 					panel.remove(comboEspecialidade);
 					panel.remove(lblNewLabel_2);

@@ -383,6 +383,11 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 		JButton btnMarcarConsulta = new JButton("Marcar Consulta");
 		btnMarcarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaMarcarConsulta telaMarcarConsulta = new TelaMarcarConsulta(usuarioAtual, pacienteSelecionado);
+				telaMarcarConsulta.setLocationRelativeTo(null);
+				telaMarcarConsulta.setVisible(true);
+				telaMarcarConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		btnMarcarConsulta.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
@@ -455,7 +460,6 @@ public class TelaFichaPaciente extends JFrame implements InterfaceConfirmacao {
 
 	public void btnConfirmacao() {
 		PacienteDAO pDao = new PacienteDAO();
-		System.out.println(pacienteSelecionado.getNome());
 		if (pDao.deletar(pacienteSelecionado)) {
 			new DialogMensagemSucesso("Paciente deletado!").setVisible(true);
 		} else {

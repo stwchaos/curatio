@@ -52,7 +52,6 @@ public class ConsultaDAO {
 			//dataHora.setMinutes(c.getHorario().getMinutes());
 		
 			stm.setTimestamp(1, new Timestamp(dataHora.getTime()));
-			System.out.println(stm);
 			stm.executeUpdate();
 			
 			ResultSet rs= stm.getGeneratedKeys();
