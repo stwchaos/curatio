@@ -40,12 +40,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	private Consulta consultaSelecionada = null;
 	private int linha;
 	private AnamneseDAO aDao = new AnamneseDAO();
-<<<<<<< HEAD
 	private Boolean encerrado = false;
-=======
 	private Consulta consulta;
 	private static final long serialVersionUID = 1L;
->>>>>>> linhamudacor
 
 	public TelaConsultaPendente(final Usuario usuarioAtual) {
 
@@ -206,19 +203,13 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {},
-<<<<<<< HEAD
 				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Horário", "Objetivo" });
-		
-=======
-				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
-
 		scrollPane.setViewportView(table);
->>>>>>> linhamudacor
 		listarConsultas();
 	}
 
 	private void listarConsultas() {
-<<<<<<< HEAD
+
 		modelo.setRowCount(0);
 		for (Consulta consulta : cDao.listarConsultas()) {
 			if (consulta.getEncerrada() == false && consulta.getFalta() == false) {
@@ -236,7 +227,6 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 			}
 		}
 		table.setModel(modelo);
-=======
 	    modelo.setRowCount(0);
 	    ArrayList<Integer> faltas = new ArrayList<>();
 
@@ -263,7 +253,6 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 	    table.setModel(modelo);
 	    table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
->>>>>>> linhamudacor
 	}
 
 
