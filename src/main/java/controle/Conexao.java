@@ -1,5 +1,8 @@
 package controle;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,9 +14,7 @@ public class Conexao {
 
 	private Connection conexao;
 	private static Conexao instancia;
-	private final String DATABASE = "esmeralda";
-	private final String USER = "root";
-	private final String PSW = "aluno";
+	private final String URL = null, USER = null, PSW = null, DATABASE = null;
 	
 	private Conexao() {}
 	
@@ -26,6 +27,21 @@ public class Conexao {
 			instancia = new Conexao();
 		}
 	return instancia;
+	}
+	
+	/**
+	 * @param curatio
+	 */
+	public static void leArquioBD(String filename) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			if(reader!=null) {
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void criaBanco() {
