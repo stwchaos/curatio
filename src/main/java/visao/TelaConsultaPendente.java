@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -218,18 +219,24 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	    ArrayList<Integer> faltas = new ArrayList<>();
 
 	    for (Consulta con : cDao.listarConsultas()) {
+	    	
 	        if (con.getEncerrada() == false) {
 	            Object[] rowData;
+	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	            String dataFormatada = con.getData().format(formatter);
+
+	            
 
 	            // TODO
 	            if (con.getPaciente().getNomeSocial() == null) {
 	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
 	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        con.getData(),  con.getHorario(), con.getObjetivo() };
+	                        dataFormatada,  con.getHorario(), con.getObjetivo() };
 	            } else {
 	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
 	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-	                        con.getData(),  con.getHorario(), con.getObjetivo() };
+	                        dataFormatada,  con.getHorario(), con.getObjetivo() };
 	            }
 	            modelo.addRow(rowData); 
 	            if (con.getFalta()) {
