@@ -209,40 +209,33 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	}
 
 	private void listarConsultas() {
-		modelo.setRowCount(0);
-		ArrayList<Integer> faltas = new ArrayList<>();
-		
-		for (Consulta con : cDao.listarConsultas()) {
-			if (con.getEncerrada() == false) {
-				Object[] rowData;
+	    modelo.setRowCount(0);
+	    ArrayList<Integer> faltas = new ArrayList<>();
 
-				// TODO
-				if (con.getPaciente().getNomeSocial() == null) {
-					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
-							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-							con.getData(), con.getObjetivo() };
-				} else {
-					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
-							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-							con.getData(), con.getObjetivo() };
-				}
-				modelo.addRow(rowData); 
-				if (con.getFalta()) {
-					faltas.add(modelo.getRowCount()-1);
-				}
+	    for (Consulta con : cDao.listarConsultas()) {
+	        if (con.getEncerrada() == false) {
+	            Object[] rowData;
 
-			}
-		}
-		table.setModel(modelo);
-		for (Integer index : faltas) {
-			for (int i = 0; i < table.getColumnCount(); i++) {
-				table.getCellRenderer(index, i).getTableCellRendererComponent(table, null, false, false, index, i).setBackground(Color.RED);
-				table.getCellRenderer(index, i).getTableCellRendererComponent(table, faltas, rootPaneCheckingEnabled, rootPaneCheckingEnabled, index, i).setBackground(Color.RED);
-				System.out.println(index+" "+i);
-			}
-		}
+	            // TODO
+	            if (con.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        con.getData(), con.getObjetivo() };
+	            } else {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        con.getData(), con.getObjetivo() };
+	            }
+	            modelo.addRow(rowData); 
+	            if (con.getFalta()) {
+	                faltas.add(modelo.getRowCount()-1);
+	            }
+	        }
+	    }
+
+	    table.setModel(modelo);
+	    table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
 	}
-
 
 
 	@Override
