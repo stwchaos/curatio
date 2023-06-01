@@ -34,6 +34,7 @@ import modelo.Usuario;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Toolkit;
+import org.apache.commons.lang3.StringUtils;
 
 public class TelaCadastrarProfisional extends JFrame {
 
@@ -112,7 +113,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("CPF*");
 		panel.add(lblNewLabel_5, "cell 3 5");
 
-		txtCrm = new RoundJTextField();
+		RoundJFormattedTextField txtCrm = new RoundJFormattedTextField("UU-####");
 		txtCrm.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCrm.setBackground(new Color(255, 255, 255));
 		txtCrm.setForeground(new Color(0, 47, 47));
@@ -123,15 +124,15 @@ public class TelaCadastrarProfisional extends JFrame {
 			txtCrm.setEditable(false);
 		}
 
-		txtCpf = new RoundJTextField();
+		RoundJFormattedTextField txtCpf = new RoundJFormattedTextField("###.###.###-##");
 		txtCpf.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCpf.setBackground(new Color(255, 255, 255));
 		txtCpf.setForeground(new Color(0, 47, 47));
 		txtCpf.setCaretColor(Color.WHITE);
 		panel.add(txtCpf, "cell 3 6,growx");
 		txtCpf.setColumns(10);
-		if (editar == true) {
-			txtCpf.setEditable(false);
+		if (editar) {
+		    txtCpf.setEditable(false);
 		}
 
 		final JLabel lblNewLabel_3 = new JLabel("Especialidade médica*");
@@ -243,10 +244,12 @@ public class TelaCadastrarProfisional extends JFrame {
 					return;
 				} else {
 					try {
-						cpf = Long.valueOf(txtCpf.getText());
+					    String cpfText = txtCpf.getText();
+					    String cpfWithoutSpecialChars = cpfText.replaceAll("[^0-9]", "");
+					    cpf = Long.valueOf(cpfWithoutSpecialChars);
 					} catch (NumberFormatException e2) {
-						new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
-						return;
+					    new DialogMensagemErro("Informação inválida no campo CPF!").setVisible(true);
+					    return;
 					}
 				}
 				if (comboBoxTipoProfissional.getSelectedIndex() == 0) {
@@ -255,10 +258,12 @@ public class TelaCadastrarProfisional extends JFrame {
 						return;
 					} else {
 						try {
-							crm = Long.valueOf(txtCrm.getText());
+						    String crmText = txtCrm.getText();
+						    String crmWithoutSpecialChars = crmText.replaceAll("[^0-9]", "");
+						    long crmConvert = Long.valueOf(crmWithoutSpecialChars);
 						} catch (NumberFormatException e2) {
-							new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
-							return;
+						    new DialogMensagemErro("Informação inválida no campo CRM!").setVisible(true);
+						    return;
 						}
 					}
 				}

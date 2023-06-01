@@ -60,10 +60,10 @@ public class TelaMarcarConsulta extends JFrame {
 	private JComboBox comboMedico;
 	private ArrayList<String> pacientes = new ArrayList<String>();
 	private ArrayList<String> medicos = new ArrayList<String>();
-	
+
 	public TelaMarcarConsulta(final Usuario usuarioAtual, final Paciente pacienteSelecionado) {
 		setTitle("Hospital Esmeralda - Marcar Consulta");
-		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA){
+		if (usuarioAtual.getTipo() == TipoUsuario.MEDICO || usuarioAtual.getTipo() == TipoUsuario.SECRETARIA) {
 			setTitle("Hospital Esmeralda - Remarcar Consulta");
 		} else {
 			setTitle("Hospital Esmeralda - Marcar Consultas");
@@ -99,7 +99,7 @@ public class TelaMarcarConsulta extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				if(pacienteSelecionado == null) {
+				if (pacienteSelecionado == null) {
 					TelaPadrao tela = new TelaPadrao(usuarioAtual);
 					tela.setLocationRelativeTo(null);
 					tela.setVisible(true);
@@ -110,13 +110,14 @@ public class TelaMarcarConsulta extends JFrame {
 					tela.setVisible(true);
 					tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
-				
+
 			}
 		});
 
 		JPanel panel = new JPanel();
 		c.add(panel, "cell 1 0,alignx center,growy");
-		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px,grow][10px][138.00px]", "[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
+		panel.setLayout(new MigLayout("", "[58.00px,grow][10px][59px][10px][108px,grow][10px][138.00px]",
+				"[36px,grow][18.00][24.00px][14px][20px][14px][21px][14px][20px,grow][14px][20px][6px][14px][20px][][80.00,fill][14.00px,grow]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Paciente *");
 		panel.add(lblNewLabel_1, "cell 0 1 2 1,alignx left,aligny bottom");
@@ -141,22 +142,16 @@ public class TelaMarcarConsulta extends JFrame {
 
 			}
 		});
-		
+
 		JLabel lblNewLabel_3_1 = new JLabel("Horário da consulta *");
 		panel.add(lblNewLabel_3_1, "cell 4 5");
 		panel.add(dtConsulta, "cell 0 6 4 1,growx,aligny bottom");
 		dtConsulta.getDate();
+
+		RoundJFormattedTextField txtHora = new RoundJFormattedTextField("##:##");
+		panel.add(txtHora, "cell 4 6,alignx left");
+		txtHora.setColumns(10);
 		
-		txtHora = new JFormattedTextField();
-        panel.add(txtHora, "cell 4 6,alignx left");
-        txtHora.setColumns(10);
-        try {
-            MaskFormatter mascaraHora = new MaskFormatter("##:##");
-            mascaraHora.setPlaceholderCharacter('_');
-            mascaraHora.install((JFormattedTextField) txtHora);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 		txtObjetivo = new RoundJTextField();
 		txtObjetivo.setHorizontalAlignment(SwingConstants.CENTER);
 		txtObjetivo.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -166,7 +161,7 @@ public class TelaMarcarConsulta extends JFrame {
 		final JComboBox comboPagamento = new RoundComboBox();
 		comboPagamento.setBackground(new Color(218, 218, 218));
 		panel.add(comboPagamento, "cell 0 10 5 1,growx");
-		String[] listaPagamento = {"Debito","Credito","Pix","Cheque","Em Especie"};
+		String[] listaPagamento = { "Debito", "Credito", "Pix", "Cheque", "Em Especie" };
 		comboPagamento.setSelectedItem("Inserir");
 		for (String string : listaPagamento) {
 			comboPagamento.addItem(string);
@@ -210,11 +205,11 @@ public class TelaMarcarConsulta extends JFrame {
 				Integer index = null;
 				String med = null, pac = null;
 
-				if(objetivo.trim().isEmpty()) {
+				if (objetivo.trim().isEmpty()) {
 					new DialogMensagemErro("Objetivo Vazio").setVisible(true);
 					return;
 				}
-				
+
 				try {
 					Integer.valueOf(firstNChars(hora, 2));
 					Integer.valueOf(getLastN(hora, 2));
@@ -222,78 +217,78 @@ public class TelaMarcarConsulta extends JFrame {
 					new DialogMensagemErro("Horário Invalido").setVisible(true);
 					return;
 				}
-				if(Integer.valueOf(firstNChars(hora, 2))>23) {
+				if (Integer.valueOf(firstNChars(hora, 2)) > 23) {
 					new DialogMensagemErro("Horário Invalido").setVisible(true);
 					return;
 				}
-				if(Integer.valueOf(getLastN(hora, 2)) > 59) {
+				if (Integer.valueOf(getLastN(hora, 2)) > 59) {
 					new DialogMensagemErro("Horário Invalido").setVisible(true);
 					return;
 				}
-				
-				if(comboMedico.getSelectedItem() == null) {
+
+				if (comboMedico.getSelectedItem() == null) {
 					new DialogMensagemErro("Medico não selecionado!").setVisible(true);
 					return;
 				} else {
 					med = comboMedico.getSelectedItem().toString();
 				}
-				
-				if(comboPaciente.getSelectedItem()==null) {
+
+				if (comboPaciente.getSelectedItem() == null) {
 					new DialogMensagemErro("Paciente não selecionado!").setVisible(true);
 					return;
 				} else {
 					pac = comboPaciente.getSelectedItem().toString();
 				}
-				
+
 				Consulta c = new Consulta();
 				ConsultaDAO cDao = new ConsultaDAO();
 				Pagamento p = new Pagamento();
 				PagamentoDAO pDao = new PagamentoDAO();
 				Anamnese a = new Anamnese();
 				AnamneseDAO aDao = new AnamneseDAO();
-				
+
 				p.setData_Pagamento(LocalDate.now());
 				p.setFormaPagamento(String.valueOf(comboPagamento.getSelectedItem()));
 
 				index = null;
 				for (int i = 0; i < pacientes.size(); i++) {
-					if(pacientes.get(i).equals(pac)) {
-						index=i;
+					if (pacientes.get(i).equals(pac)) {
+						index = i;
 						break;
 					}
 				}
-				if(index==null) {
+				if (index == null) {
 					new DialogMensagemErro("Paciente não selecionado!").setVisible(true);
 					return;
 				}
 				Paciente paciente = listaPaciente.get(index);
-				
+
 				p.setCpfPagante(paciente.getCpf());
 				pDao.inserir(p);
-				
+
 				c.setData(convertToLocalDateViaInstant(dtConsulta.getDate()));
 				c.setEncerrada(false);
 
 				index = null;
 				for (int i = 0; i < medicos.size(); i++) {
-					if(medicos.get(i).equals(med)) {
-						index=i;
+					if (medicos.get(i).equals(med)) {
+						index = i;
 						break;
 					}
 				}
-				if(index==null) {
+				if (index == null) {
 					new DialogMensagemErro("Medico não selecionado!").setVisible(true);
 					return;
 				}
-				
+
 				c.setMedico(listaMedicos.get(index));
-				c.setObjetivo(objetivo);	
+				c.setObjetivo(objetivo);
 				c.setPaciente(paciente);
 				c.setPagamento(p);
 				c.setFalta(false);
 				c.setHorario(LocalTime.parse(txtHora.getText()));
 
-				if(cDao.inserir(c)==true) {
+				if (cDao.inserir(c) == true) {
 					a.setAlergia(null);
 					a.setDisposicaoGeral(null);
 					a.setExamesApresentados(null);
@@ -310,7 +305,7 @@ public class TelaMarcarConsulta extends JFrame {
 				} else {
 					new DialogMensagemErro("Tente novamente").setVisible(true);
 				}
-				
+
 				TelaPadrao telaPadrao = new TelaPadrao(usuarioAtual);
 				telaPadrao.setLocationRelativeTo(null);
 				telaPadrao.setVisible(true);
@@ -322,60 +317,58 @@ public class TelaMarcarConsulta extends JFrame {
 		btnMarcar.setForeground(new Color(255, 255, 255));
 		btnMarcar.setBackground(new Color(0, 81, 81));
 		panel.add(btnMarcar, "cell 6 16,growx,aligny bottom");
-		if(pacienteSelecionado!=null) {
+		if (pacienteSelecionado != null) {
 			comboPaciente.setEditable(false);
 			pacSelecionado(pacienteSelecionado);
 		}
 	}
-	
+
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
-	    return dateToConvert.toInstant()
-	      .atZone(ZoneId.systemDefault())
-	      .toLocalDate();
+		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
-	
+
 	public static String firstNChars(String str, int n) {
-        if (str == null) {
-            return null;
-        }
- 
-        return str.length() < n ? str : str.substring(0, n);
-    }
-	
+		if (str == null) {
+			return null;
+		}
+
+		return str.length() < n ? str : str.substring(0, n);
+	}
+
 	public static String getLastN(String s, int n) {
-        if (s == null) {
-            return null;
-        }
-        return s.substring(Math.max(0, s.length() - n));
-    }
-	
+		if (s == null) {
+			return null;
+		}
+		return s.substring(Math.max(0, s.length() - n));
+	}
+
 	private void listarPacientes() {
 		for (Paciente p : listaPaciente) {
-			if (p.getNomeSocial()==null) {
-				comboPaciente.addItem((p.getNome()+" - "+p.getCpf()));
-				pacientes.add((p.getNome()+" - "+p.getCpf()));
+			if (p.getNomeSocial() == null) {
+				comboPaciente.addItem((p.getNome() + " - " + p.getCpf()));
+				pacientes.add((p.getNome() + " - " + p.getCpf()));
 			} else {
-				comboPaciente.addItem((p.getNomeSocial()+" - "+p.getCpf()));
-				pacientes.add((p.getNomeSocial()+" - "+p.getCpf()));
+				comboPaciente.addItem((p.getNomeSocial() + " - " + p.getCpf()));
+				pacientes.add((p.getNomeSocial() + " - " + p.getCpf()));
 			}
 		}
 		AutoComboBox autoComboBox = new AutoComboBox();
 		autoComboBox.setKeyWord(pacientes);
 	}
-	
+
 	private void listarMedicos() {
 		for (Medico m : listaMedicos) {
-			medicos.add(m.getNome()+" - "+m.getCrm());
-			comboMedico.addItem(m.getNome()+" - "+m.getCrm());
+			medicos.add(m.getNome() + " - " + m.getCrm());
+			comboMedico.addItem(m.getNome() + " - " + m.getCrm());
 		}
 		AutoComboBox autoComboBox = new AutoComboBox();
 		autoComboBox.setKeyWord(medicos);
 	}
-	
+
 	private void pacSelecionado(Paciente pacienteSelecionado) {
-		Integer i=0;
+		Integer i = 0;
 		for (Paciente paciente : listaPaciente) {
-			if(paciente.getCpf().equals(pacienteSelecionado.getCpf())) {
+			if (paciente.getCpf().equals(pacienteSelecionado.getCpf())) {
 				comboPaciente.setSelectedIndex(i);
 				comboPaciente.setEnabled(false);
 				break;
