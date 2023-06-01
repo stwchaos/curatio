@@ -82,19 +82,19 @@ public class Conexao {
 					+ "  PRIMARY KEY (id_usuario));\r\n";
 			stm.executeUpdate(wsql);
 			
-			wsql = "CREATE TABLE IF NOT EXISTS medico(\r\n"
+			wsql = "CREATE TABLE IF NOT EXISTS medico (\r\n"
 					+ "  especialidade_id_especialidade INT NOT NULL,\r\n"
-					+ "  crm BIGINT(6) NOT NULL,\r\n"
+					+ "  crm VARCHAR(10) NOT NULL,\r\n"
 					+ "  nome VARCHAR(45) NOT NULL,\r\n"
 					+ "  cpf BIGINT(11) NOT NULL,\r\n"
 					+ "  sexo VARCHAR(45) NOT NULL,\r\n"
-					+ " usuario_id_usuario INT NOT NULL,\r\n"
+					+ "  usuario_id_usuario INT NOT NULL,\r\n"
 					+ "  pronome VARCHAR(20) NOT NULL,\r\n"
-					+ "  PRIMARY KEY (crm),\r\n"
+					+ "  PRIMARY KEY (crm, usuario_id_usuario),\r\n"
 					+ "    FOREIGN KEY (especialidade_id_especialidade)\r\n"
 					+ "    REFERENCES especialidade (id_especialidade),\r\n"
 					+ "    FOREIGN KEY (usuario_id_usuario)\r\n"
-					+ "    REFERENCES usuario (id_usuario));";
+					+ "    REFERENCES usuario (id_usuario);";
 			stm.executeUpdate(wsql);
 			
 			wsql = "CREATE TABLE IF NOT EXISTS pagamento (\r\n"
