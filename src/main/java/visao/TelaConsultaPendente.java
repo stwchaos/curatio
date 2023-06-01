@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -8,17 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controle.AnamneseDAO;
@@ -37,9 +40,15 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	private Consulta consultaSelecionada = null;
 	private int linha;
 	private AnamneseDAO aDao = new AnamneseDAO();
+<<<<<<< HEAD
 	private Boolean encerrado = false;
+=======
+	private Consulta consulta;
+	private static final long serialVersionUID = 1L;
+>>>>>>> linhamudacor
 
 	public TelaConsultaPendente(final Usuario usuarioAtual) {
+
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaConsultaPendente.class.getResource("/img/logoHospital.png")));
 		setTitle("Hospital Esmeralda - Consultas Pendentes");
@@ -89,8 +98,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 				public void actionPerformed(ActionEvent e) {
 					// TODO confirmaçao
 					new DialogConfirmacao("Cancelar consulta?", tela).setVisible(true);
-	
-			}});
+
+				}
+			});
 			panel.add(btnDesmarcar, "cell 0 3,growx,aligny center");
 
 			JButton btnRemarcar = new JButton("Remarcar");
@@ -179,11 +189,7 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		JScrollPane scrollPane = new JScrollPane();
 		panel_3_4.add(scrollPane, "cell 0 0,grow");
 
-		table = new JTable() {
-			public boolean editCellAt(int row, int column, java.util.EventObject e) {
-				return false;
-			}
-		};
+		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -200,12 +206,19 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel(new Object[][] {},
+<<<<<<< HEAD
 				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Horário", "Objetivo" });
 		
+=======
+				new String[] { "ID", "Paciente", "Setor", "Médico", "Data", "Objetivo" });
+
+		scrollPane.setViewportView(table);
+>>>>>>> linhamudacor
 		listarConsultas();
 	}
 
 	private void listarConsultas() {
+<<<<<<< HEAD
 		modelo.setRowCount(0);
 		for (Consulta consulta : cDao.listarConsultas()) {
 			if (consulta.getEncerrada() == false && consulta.getFalta() == false) {
@@ -223,7 +236,36 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 			}
 		}
 		table.setModel(modelo);
+=======
+	    modelo.setRowCount(0);
+	    ArrayList<Integer> faltas = new ArrayList<>();
+
+	    for (Consulta con : cDao.listarConsultas()) {
+	        if (con.getEncerrada() == false) {
+	            Object[] rowData;
+
+	            // TODO
+	            if (con.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        con.getData(), con.getObjetivo() };
+	            } else {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        con.getData(), con.getObjetivo() };
+	            }
+	            modelo.addRow(rowData); 
+	            if (con.getFalta()) {
+	                faltas.add(modelo.getRowCount()-1);
+	            }
+	        }
+	    }
+
+	    table.setModel(modelo);
+	    table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
+>>>>>>> linhamudacor
 	}
+
 
 	@Override
 	public void btnConfirmacao() {
@@ -240,10 +282,9 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 		listarConsultas();
 		consultaSelecionada = null;
 	}
-	
 
 	@Override
 	public void bntCancelar() {
-		
+
 	}
 }
