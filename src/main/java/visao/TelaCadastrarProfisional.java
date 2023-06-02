@@ -50,13 +50,7 @@ public class TelaCadastrarProfisional extends JFrame {
 	private JComboBox comboBoxTipoProfissional;
 	private TipoUsuario tipo;
 
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaCadastrarProfisional(final Usuario usuarioAtual, final Medico medicoSelecionado, final Boolean editar,
 			final Funcionario funcionarioSelecionado) {
 		setIconImage(Toolkit.getDefaultToolkit()
@@ -151,10 +145,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		for (Especialidade e : listaEspecialidades) {
 			comboEspecialidade.addItem(e.getEspecialidade());
 		}
-		if (editar == true) {
-			comboBoxTipoProfissional.setEnabled(false);
 
-		}
 		comboBoxTipoProfissional = new RoundComboBox();
 		comboBoxTipoProfissional.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,6 +186,8 @@ public class TelaCadastrarProfisional extends JFrame {
 		panel.add(comboSexo, "cell 3 9,growx");
 		if (editar == true) {
 			comboSexo.setEditable(false);
+			comboBoxTipoProfissional.setEditable(false);
+			comboBoxTipoProfissional.setEnabled(false);
 		}
 
 		if (editar == true) {
