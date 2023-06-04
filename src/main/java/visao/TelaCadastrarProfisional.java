@@ -168,7 +168,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		JLabel lblNewLabel_4_1 = new JLabel("Função*");
 		panel.add(lblNewLabel_4_1, "cell 3 11");
 		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
-		String[] tipos = { "Medico", "Secretaria", "Administrador", "Outro" };
+		String[] tipos = { "Medico", "Secretario", "Administrador", "Outro" };
 		for (String string : tipos) {
 			comboBoxTipoProfissional.addItem(string);
 		}
@@ -191,7 +191,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		}
 
 		if (editar == true) {
-			JLabel lblNewLabel_4 = new JLabel("Senha");
+			JLabel lblNewLabel_4 = new JLabel("Nova senha");
 			panel.add(lblNewLabel_4, "cell 1 11");
 
 		} else {

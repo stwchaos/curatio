@@ -7,6 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 
 import controle.MedicoDAO;
 import controle.PacienteDAO;
@@ -24,6 +29,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -229,7 +235,15 @@ public class TelaListaPaciente extends JFrame {
 				}
 			}
 		}
-		table.setModel(modelo);
+		 table.setModel(modelo);
+		 ordenaTabela(); 
 	}
+	
+	private void ordenaTabela() {
+	    TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+	    sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.ASCENDING))); // Sort by column 0 in ascending order
+	    table.setRowSorter(sorter);
+	}
+
 
 }

@@ -67,7 +67,8 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda - Profissionais");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaProfissional.class.getResource("/img/logoHospital.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaListaProfissional.class.getResource("/img/logoHospital.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 845);
 
@@ -194,8 +195,8 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 					new MigLayout("", "[grow][89px][grow]", "[184.00,grow][279.00,grow][51.00px][51.00][51.00][grow]"));
 
 			lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(
-					new ImageIcon(TelaListaProfissional.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
+			lblNewLabel_1.setIcon(new ImageIcon(
+					TelaListaProfissional.class.getResource("/img/EngrenagenzinhaBranquinhaUmPoucoMaior.png")));
 			panel_2.add(lblNewLabel_1, "cell 1 0,alignx center,aligny top");
 
 			lblNewLabel_2 = new JLabel("Controle de Administrador");
@@ -271,6 +272,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 
 	private void listarMedicos() {
 		modelo.setRowCount(0);
+
 		for (Medico medico : mDao.listarProfissionais()) {
 			modelo.addRow(
 					new Object[] { medico.getCpf(), medico.getNome(), medico.getEspecialidade().getEspecialidade() });
@@ -282,8 +284,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 		table.setModel(modelo);
 	}
 
-	// TODO override
-
+	@Override
 	public void btnConfirmacao() {
 		MedicoDAO mDao = new MedicoDAO();
 		UsuarioDAO uDao = new UsuarioDAO();
@@ -320,7 +321,9 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 		listarMedicos();
 
 	}
-
+	
+	
+	@Override
 	public void bntCancelar() {
 
 	}

@@ -24,6 +24,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import controle.AnamneseDAO;
 import controle.ConsultaDAO;
@@ -214,36 +219,39 @@ public class TelaConsultaPendente extends JFrame implements InterfaceConfirmacao
 	}
 
 	private void listarConsultas() {
-		table.setModel(modelo);
-		modelo.setRowCount(0);
-		ArrayList<Integer> faltas = new ArrayList<>();
+	    table.setModel(modelo);
+	    modelo.setRowCount(0);
+	    ArrayList<Integer> faltas = new ArrayList<>();
 
-		for (Consulta con : cDao.listarConsultas()) {
+	    List<Consulta> consultas = cDao.listarConsultas();
 
-			if (con.getEncerrada() == false) {
-				Object[] rowData;
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    // Ordenar consultas por data e horário mais próximos
+	    consultas.sort(Comparator.comparing(Consulta::getData).thenComparing(Consulta::getHorario));
 
-				String dataFormatada = con.getData().format(formatter);
+	    for (Consulta con : consultas) {
+	        if (con.getEncerrada() == false) {
+	            Object[] rowData;
+	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	            String dataFormatada = con.getData().format(formatter);
 
-				if (con.getPaciente().getNomeSocial() == null) {
-					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
-							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-							dataFormatada, con.getHorario(), con.getObjetivo() };
-				} else {
-					rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
-							con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
-							dataFormatada, con.getHorario(), con.getObjetivo() };
-				}
-				modelo.addRow(rowData);
-				if (con.getFalta()) {
-					faltas.add(modelo.getRowCount() - 1);
-				}
-			}
-		}
+	            if (con.getPaciente().getNomeSocial() == null) {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNome(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        dataFormatada, con.getHorario(), con.getObjetivo() };
+	            } else {
+	                rowData = new Object[] { con.getIdConsulta(), con.getPaciente().getNomeSocial(),
+	                        con.getMedico().getEspecialidade().getEspecialidade(), con.getMedico().getNome(),
+	                        dataFormatada, con.getHorario(), con.getObjetivo() };
+	            }
+	            modelo.addRow(rowData);
+	            if (con.getFalta()) {
+	                faltas.add(modelo.getRowCount() - 1);
+	            }
+	        }
+	    }
 
-		table.setModel(modelo);
-		table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
+	    table.setModel(modelo);
+	    table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(faltas));
 	}
 
 	@Override
