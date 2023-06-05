@@ -156,10 +156,11 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 						}
 					}
 					if (funcionarios.size() != 0) {
-						for (Funcionario funcionario : funcionarios) {
-							pesquisa.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(),
-									funcionario.getUsuario().getTipo() });
-						}
+					    for (Funcionario funcionario : funcionarios) {
+					        pesquisa.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(),
+					            obterTextoTipoUsuario(funcionario.getUsuario().getTipo()) });
+					    }
+
 					}
 					txtPesquisarProfissional.setForeground(new Color(0, 0, 0));
 					table.setModel(pesquisa);
