@@ -50,7 +50,6 @@ public class TelaCadastrarProfisional extends JFrame {
 	private JComboBox comboBoxTipoProfissional;
 	private TipoUsuario tipo;
 
-
 	public TelaCadastrarProfisional(final Usuario usuarioAtual, final Medico medicoSelecionado, final Boolean editar,
 			final Funcionario funcionarioSelecionado) {
 		setIconImage(Toolkit.getDefaultToolkit()
@@ -168,7 +167,7 @@ public class TelaCadastrarProfisional extends JFrame {
 		JLabel lblNewLabel_4_1 = new JLabel("Função*");
 		panel.add(lblNewLabel_4_1, "cell 3 11");
 		panel.add(comboBoxTipoProfissional, "cell 3 12,growx");
-		String[] tipos = { "Medico", "Secretario", "Administrador", "Outro" };
+		String[] tipos = { "Medico", "Secretario", "Administrador" };
 		for (String string : tipos) {
 			comboBoxTipoProfissional.addItem(string);
 		}
@@ -254,11 +253,13 @@ public class TelaCadastrarProfisional extends JFrame {
 					}
 				}
 				if (comboBoxTipoProfissional.getSelectedIndex() == 0) {
-					if (crm.trim().isEmpty()) {
-						new DialogMensagemErro("CRM Vazio").setVisible(true);
-						return;
-					}
+				    if (!crm.matches("\\w\\w-\\d\\d\\d\\d")) {
+				        new DialogMensagemErro("Informação inválida no campo CRM").setVisible(true);
+				        return;
+				    }
 				}
+
+
 				if (nome.trim().isEmpty()) {
 					new DialogMensagemErro("Nome Vazio").setVisible(true);
 					return;

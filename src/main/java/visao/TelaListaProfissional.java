@@ -37,6 +37,7 @@ import java.beans.PropertyChangeEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
 public class TelaListaProfissional extends JFrame implements InterfaceConfirmacao {
 
 	private JPanel contentPane;
@@ -63,7 +64,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 	private DefaultTableModel pesquisa;
 
 	public TelaListaProfissional(final Usuario usuarioAtual) {
-
+		
 		setForeground(new Color(0, 85, 85));
 		setBackground(new Color(0, 85, 85));
 		setTitle("Hospital Esmeralda - Profissionais");
@@ -277,11 +278,24 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 			modelo.addRow(
 					new Object[] { medico.getCpf(), medico.getNome(), medico.getEspecialidade().getEspecialidade() });
 		}
+
 		for (Funcionario funcionario : fDao.listarFuncionarios()) {
-			modelo.addRow(
-					new Object[] { funcionario.getCpf(), funcionario.getNome(), funcionario.getUsuario().getTipo() });
+			String tipoUsuarioString = obterTextoTipoUsuario(funcionario.getUsuario().getTipo());
+			modelo.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(), tipoUsuarioString });
 		}
+
 		table.setModel(modelo);
+	}
+
+	private String obterTextoTipoUsuario(TipoUsuario tipoUsuario) {
+		switch (tipoUsuario) {
+		case ADMIN:
+			return "Administrador";
+		case SECRETARIA:
+			return "Secretário";
+		default:
+			return "Desconhecido";
+		}
 	}
 
 	@Override
@@ -321,8 +335,7 @@ public class TelaListaProfissional extends JFrame implements InterfaceConfirmaca
 		listarMedicos();
 
 	}
-	
-	
+
 	@Override
 	public void bntCancelar() {
 
