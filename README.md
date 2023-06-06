@@ -4,14 +4,16 @@
 
 ---
 ### Progresso do projeto
-▓▓▓▓▓▓▓▓▓▓░ 95%
+▓▓▓▓▓▓▓▓▓▓▓ 100%
 
 
 
 ---
 
 ## Introdução
-O Projeto Integrador que estamos desenvolvendo na linguagem Java tem como objetivo criar um software específico para hospitais, visando aprimorar o controle de pacientes e consultas pelos profissionais da área de saúde. Esse projeto está sendo desenvolvido para a disciplina de Projeto Integrador no Instituto Federal de Santa Catarina.
+O Projeto Integrador que estamos desenvolvendo na linguagem Java tem como objetivo criar o Curatio, um software específico para hospitais, visando aprimorar o controle de pacientes e consultas pelos profissionais da área de saúde. Esse projeto está sendo desenvolvido para a disciplina de Projeto Integrador no Instituto Federal de Santa Catarina.
+
+O Curatio é um sistema administrativo desenvolvido para atender às necessidades de instituições de saúde modernas. Ele oferece benefícios como administração eficaz e melhor atendimento aos pacientes, por meio da automação e integração tecnológica. O objetivo principal do projeto é facilitar a administração e controle dos funcionários, proporcionando uma gestão mais eficiente e promovendo melhorias no ambiente de trabalho.
 
 O software que estamos criando oferece diversas funcionalidades para facilitar o gerenciamento de pacientes e consultas, tais como:
 
@@ -78,72 +80,42 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 
 
 
-## Telas
-<span style="color:red;">![AVISO]</span> As telas ainda estão em andamento e nem todas constam neste documento. :warning:
+## Telas e Funcionalidades
+
 
 ####  Login
-  Em que o funcionário insere seus dados(Nome e senha), para assim acessar o software.
-Caso digite informações inválidas, o sistema avisará o usuário para que assim o corrija.
+No momento em que o funcionário insere seus dados (nome e senha), é possível acessar o software. Se forem inseridas informações inválidas, o sistema irá notificar o usuário para que possa corrigi-las.
+
   ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/Login.gif)
   
 
-#### Início
-É a tela padrão do software em que o funcionário é capaz de realizar suas funções,com cada botão abrindo telas novas com suas respectivas propriedades.
+#### Funcionários gerais
+O Administrador do sistema poderá gerenciar o cadastro dos funcionários gerais
 
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaPadrao.png)
-
-
-#### Marcar Consulta
-Nesta tela é possível marcar uma consulta preenchendo os campos pendentes e selecionando o paciente e o médico que irá atender, assim como formas de pagamento e a data da consulta.
- 
- ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaMarcarConsulta.png)
-
-#### Consultas Pendentes
-Exibe as consultas que foram marcadas, onde é exibido o setor do profissional, nome do profissional, além da data prevista. A opção de controle de consultas pendentes 
-
- ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaConsultaPendentes.png)
+ ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/Profissionais.gif)
+ ---
+ ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/SecretarAdm.gif)
 
 
-#### Cadastrar Paciente
-  Insere as informações dos pacientes, as registrando no sistema.
+#### Paciente
+Na seção "Pacientes", é possível inserir as informações dos pacientes, registrando-os no sistema. Também é exibida uma lista de todos os pacientes já registrados. Ao clicar em um paciente específico, suas informações gerais são reveladas e é possível realizar alterações.
   
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaCadastroPaciente.png)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/Pacientes.gif)
 
 
-#### Lista pacientes
-Exibe todos os pacientes já registrados, caso clique em determinado paciente, revelará suas informações gerais.
-
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaListaPaciente.png)
-
-#### Ficha paciente
-Nesta tela as informações já registradas no sistema do paciente serão exibidas permitindo apenas alteração de campos que poderão mudar com o tempo.
-
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaFichaPacientes.png)
+#### Consulta
+É possível marcar uma consulta selecionando o paciente por meio da tela "Marcar Consulta" ou selecionando diretamente o paciente na tela "Pacientes" para agendar o atendimento. As consultas não comparecidas (quando o paciente não comparece sem aviso prévio) serão destacadas em vermelho na JTable.
+ 
+ ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/Consulta(1).gif)
 
 
-#### Tela cadastrar profissional
-Nesta tela, o usuário (adm) poderá registrar um profissional no sistema, sendo ele: médico, secretário, administrador, outro.
+#### Anamnese
+A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre durante a consulta. Nela é exibida informação já cadastrada do paciente e informações a serem preenchidas pelo médico durante a realização da consulta. Assim que uma consulta for realizada, ela será transferida para a tela Histórico de consultas presente em cada paciente, nela, será possível visualizar a anamnese daquele consulta anterior. Apenas médicos terão acesso a esta função.
 
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaCadastrarProfissional-Medico.png)
-
-
-#### Tela alterar profissional
-Nesta tela, é possível alterar informações já registradas do profissional.
-
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaAlterarProfissional.png)
-
-#### Tela Lista Profissional
-Nesta tela a lista dos profissionais cadastrados no sistema é evidenciada, contendo um campo de texto para pesquisa por nome. A visão controle de administrador aparece apenas na visão do adm.
-
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaListaProfissionais.png)
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/AnamneseLogout.gif)
 
 
-#### Tela Anamnese
-A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre durante a consulta. Nela é exibida informação já cadastrada do paciente e informações a serem preenchidas pelo médico durante a realização da consulta.
+## Referências Bibliográficas
 
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaAnamnese.png)
+¹ ANDRADE, Davi Gomes de; FALK, James Anthony. Eficácia de sistemas de informação e percepção de mudança organizacional: um estudo de caso. Revista de administração contemporânea, v. 5, p. 53-84, 2001.
 
-#### Tela Histórico:
-Exibe informações de consultas já finalizadas de um determinado paciente.
-
-![image](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaHistorico.png)
