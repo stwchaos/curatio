@@ -84,11 +84,8 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 ####  Login
   Em que o funcionário insere seus dados(Nome e senha), para assim acessar o software.
 Caso digite informações inválidas, o sistema avisará o usuário para que assim o corrija.
-  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial1.png)
-
-> Mensagem de aviso gerada pela validação de acesso:
-  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial2.png)
-  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/TelaInicial3.png)
+  ![imagem](https://github.com/stwchaos/curatio/blob/main/imgMD/Login.gif)
+  
 
 #### Início
 É a tela padrão do software em que o funcionário é capaz de realizar suas funções,com cada botão abrindo telas novas com suas respectivas propriedades.
