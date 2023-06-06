@@ -99,7 +99,9 @@ O Administrador do sistema poderá gerenciar o cadastro dos funcionários gerais
 
 #### Paciente
 Na seção "Pacientes", é possível inserir as informações dos pacientes, registrando-os no sistema. Também é exibida uma lista de todos os pacientes já registrados. Ao clicar em um paciente específico, suas informações gerais são reveladas e é possível realizar alterações.
-  
+ 
+![image](https://github.com/stwchaos/curatio/blob/main/imgMD/CadastroPaciente.gif)
+---
 ![image](https://github.com/stwchaos/curatio/blob/main/imgMD/Pacientes.gif)
 
 
