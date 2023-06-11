@@ -3,6 +3,7 @@ package controle;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ public class Conexao {
 
 	private Connection conexao;
 	private static Conexao instancia;
-	private final String URL = null, USER = null, PSW = null, DATABASE = null;
+	private static String URL = null, USER = null, PSW = null, DATABASE = null;
 	
 	private Conexao() {}
 	
@@ -30,17 +31,26 @@ public class Conexao {
 	}
 	
 	/**
-	 * @param curatio
+	 * @param credenciais.txt
 	 */
 	public static void leArquioBD(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
 			if(reader!=null) {
-				
+				URL = reader.readLine();
+				USER = reader.readLine();
+				PSW = reader.readLine();
+				DATABASE = reader.readLine();
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reader.close();
+			
+			System.out.println(URL);
+			System.out.println(USER);
+			System.out.println(PSW);
+			System.out.println(DATABASE);
+		} catch (IOException e) {
+			System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+			return;
 		}
 	}
 	
