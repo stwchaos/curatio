@@ -1,5 +1,9 @@
 package controle;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,9 +15,7 @@ public class Conexao {
 
 	private Connection conexao;
 	private static Conexao instancia;
-	private final String DATABASE = "esmeralda";
-	private final String USER = "root";
-	private final String PSW = "aluno";
+	private static String URL = null, USER = null, PSW = null, DATABASE = null;
 	
 	private Conexao() {}
 	
@@ -28,10 +30,28 @@ public class Conexao {
 	return instancia;
 	}
 	
-	public void criaBanco() {
-		final String user = "root", psw = "aluno";
+	/**
+	 * @param credenciais.txt
+	 */
+	public static void leArquioBD(String filename) {
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/", user, psw);
+			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			if(reader!=null) {
+				URL = reader.readLine();
+				USER = reader.readLine();
+				PSW = reader.readLine();
+				DATABASE = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+			return;
+		}
+	}
+	
+	public void criaBanco() {
+		try {
+			conexao = DriverManager.getConnection(URL, USER, PSW);
 			
 			Statement stm = conexao.createStatement();
 			

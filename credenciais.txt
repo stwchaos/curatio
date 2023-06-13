@@ -1,0 +1,4 @@
+jdbc:mysql://localhost/
+root
+aluno
+esmeralda
