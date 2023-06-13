@@ -15,7 +15,7 @@ public class Conexao {
 
 	private Connection conexao;
 	private static Conexao instancia;
-	private static String URL = null, USER = null, PSW = null, DATABASE = null;
+	private static String URL = null, URL2 = null, USER = null, PSW = null, DATABASE = null;
 	
 	private Conexao() {}
 	
@@ -41,6 +41,7 @@ public class Conexao {
 				USER = reader.readLine();
 				PSW = reader.readLine();
 				DATABASE = reader.readLine();
+				URL2 = reader.readLine();
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -198,7 +199,7 @@ public class Conexao {
 	
 	public Connection conectar() {
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/"+ DATABASE + "?serverTimeZone=UTC",USER,PSW);
+			conexao = DriverManager.getConnection(URL + DATABASE + URL2,USER,PSW);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

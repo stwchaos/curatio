@@ -2,3 +2,4 @@ jdbc:mysql://localhost/
 root
 aluno
 esmeralda
+?serverTimeZone=UTC
