@@ -400,7 +400,6 @@ public class TelaCadastrarProfisional extends JFrame {
 
 	private void receberDadosM(Medico medicoSelecioado) {
 		txtNome.setText(medicoSelecioado.getNome());
-		System.out.println(medicoSelecioado.getCrm());
 		txtCrm.setText(medicoSelecioado.getCrm());
 		txtCpf.setText(String.valueOf(medicoSelecioado.getCpf()));
 		comboEspecialidade.setSelectedIndex(medicoSelecioado.getEspecialidade().getIdEspecialidade() - 1);
