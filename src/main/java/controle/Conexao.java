@@ -43,11 +43,6 @@ public class Conexao {
 				DATABASE = reader.readLine();
 			}
 			reader.close();
-			
-			System.out.println(URL);
-			System.out.println(USER);
-			System.out.println(PSW);
-			System.out.println(DATABASE);
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo: " + e.getMessage());
 			return;
@@ -55,9 +50,8 @@ public class Conexao {
 	}
 	
 	public void criaBanco() {
-		final String user = "root", psw = "aluno";
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/", user, psw);
+			conexao = DriverManager.getConnection(URL, USER, PSW);
 			
 			Statement stm = conexao.createStatement();
 			
