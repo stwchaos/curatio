@@ -52,8 +52,6 @@ public class TelaInicial extends JFrame {
 			}
 		});
 		Conexao co = Conexao.getInstancia();
-		co.leArquioBD("credenciais.txt");
-		co.criaBanco();
 	}
 
 	public TelaInicial() {

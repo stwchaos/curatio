@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 public class Conexao {
 
-	private Connection conexao;
+	private static Connection conexao;
 	private static Conexao instancia;
 	private static String URL = null, URL2 = null, USER = null, PSW = null, DATABASE = null;
 	
@@ -26,6 +26,8 @@ public class Conexao {
 	public static Conexao getInstancia() {
 		if(instancia == null) {
 			instancia = new Conexao();
+			leArquioBD("credenciais.txt");
+			criaBanco();
 		}
 	return instancia;
 	}
@@ -50,7 +52,7 @@ public class Conexao {
 		}
 	}
 	
-	public void criaBanco() {
+	public static void criaBanco() {
 		try {
 			conexao = DriverManager.getConnection(URL, USER, PSW);
 			
@@ -206,7 +208,7 @@ public class Conexao {
 	return conexao;
 	
 	}
-	public boolean fecharConexao() {
+	public static boolean fecharConexao() {
 		
 		try {
 			conexao.close();
