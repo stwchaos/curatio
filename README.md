@@ -39,10 +39,11 @@ O nosso software é uma solução completa para a gestão de pacientes e consult
 ## :wrench: TECNOLOGIAS UTILIZADAS
 
 - [Eclipse IDE 2022-06](https://www.eclipse.org/downloads/);
-- [WindowBuilder](https://www.eclipse.org/windowbuilder/);
-- Swing;
-- Java(TM) SE Development Kit 18.0.2; 
-- Bibliotecas/.jar externos: Miglayout-Core-4.2, Miglayout-Swing-4.2, Apache Maven, Junit-jupiter-api-5.9.1, Junit-platform-commons-1.9.1, Jcalendar-1.4, Apiguardian-api-1.1.2, mysql-connector-java-8.0.30, Opentst4j-1.2.0, Protobuf-java-3.19.4;
+- [WindowBuilder 1.11.0](https://www.eclipse.org/windowbuilder/);
+- Maven 4.0.0;
+- Java(TM) SE Development Kit 18.0.2;
+- Bibliotecas/.jar externos: Miglayout-Core-4.2, Miglayout-Swing-4.2, Apache Maven, Junit-jupiter-api-5.9.1, Junit-platform-
+commons-1.9.1, Jcalendar-1.4, Apiguardian-api-1.1.2, mysql-connector-java-8.0.30, Opentst4j-1.2.0, Protobuf-java-3.19.4;
 
 ## :busts_in_silhouette: Equipe de desenvolvimento do projeto
 - [@Misomania]
@@ -124,6 +125,20 @@ A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre 
 </p>
 
 ¹ ANDRADE, Davi Gomes de; FALK, James Anthony. Eficácia de sistemas de informação e percepção de mudança organizacional: um estudo de caso. Revista de administração contemporânea, v. 5, p. 53-84, 2001.
+IBM. Eclipse documentation - Current Release. Disponibilidade: https://help.eclipse.org/. Acesso em: 13/06/2023, às 10:45.
+
+ORACLE. Help Center. Disponibilidade: https://docs.oracle.com/en/java/. Acesso em: 13/06/2023, às 10:55.
+
+ORACLE. Oracle Docs. Disponibilidade: https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/javax/swing/package-summary.html. Acesso em: 13/06/2023, às 11:04.
+
+Mig InfoCom AB. MigLayout - Java Layout Manager. Disponibilidade: https://www.miglayout.com/. Acesso em: 13/06/2023, às 11:14.
+
+THE APACHE SOFTWARE FOUNDATION. Apache HTTP Server Project. Disponibilidade: https://httpd.apache.org/docs/. Acesso em: 13/06/2023, às 11:22.
+
+JUnit. JUnit 5 User Guide. Disponibilidade: https://junit.org/junit5/docs/current/user-guide/. Acesso em: 13/06/2023, às 11:30.
+
+THE BOARD OF REGENTS OF THE UNIVERSITY OF WISCONSIN SYSTEM. Space Science and Engineering Center. Disponibilidade: https://www.ssec.wisc.edu/mcidas/software/v/javadoc/1.4/edu/wisc/ssec/mcidasv/data/dateChooser/JCalendar.html. Acesso em: 13/06/2023, às 11:38.
+
 
 ---
 
