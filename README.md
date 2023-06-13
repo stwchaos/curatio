@@ -120,9 +120,9 @@ A tela Anamnese é visível apenas para o médico, visto que, a anamnese ocorre 
 
 ## Referências Bibliográficas
 
-<p=align: "center">
+
   <img src="https://github.com/stwchaos/curatio/blob/main/imgMD/ref.png" alt="logo" width="200" height="100">
-</p>
+
 
 ¹ ANDRADE, Davi Gomes de; FALK, James Anthony. Eficácia de sistemas de informação e percepção de mudança organizacional: um estudo de caso. Revista de administração contemporânea, v. 5, p. 53-84, 2001.
 IBM. Eclipse documentation - Current Release. Disponibilidade: https://help.eclipse.org/. Acesso em: 13/06/2023, às 10:45.
